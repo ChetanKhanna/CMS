@@ -53,10 +53,12 @@ Now suppose you have made changes in your local machine to the file in PS-Grieva
 1. `git status`
 This will list all the files and folders where changes were made. Run this command often to keep track of whatever changes you are making while you are editing the files. There will also be other useful information displayed sometimes. 
 
-2. ```
+2. 
+```
 git add <filename/folder>
 git commit
 ```
+
 This will open a text editor for you to write a commit mesaage. Give a short description/one line about what these changes do. Avoid non-sense commit messages makes it tough to refer to the commit later.
 
 3. The changes are now saved in your local machine. We need to push it to your GitHub fork. But before that we also need to see if anyone else in the team has got their changes *merged* in the main repository. Hence do the following: `git pull upstream master`

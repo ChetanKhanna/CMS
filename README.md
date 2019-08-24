@@ -28,19 +28,21 @@ This will create a directory by the name PS-Grievance there.
 
 3. cd into the PS-Grievance directory just created and type: `git remote -v`. This should output something like:
 
-> origin https://github.com/<Your github username>/PS-Grievance.git (fetch)
-> origin https://github.com/<Your github username>/PS-Grievance.git (push)
-
+```console
+origin https://github.com/<Your github username>/PS-Grievance.git (fetch)
+origin https://github.com/<Your github username>/PS-Grievance.git (push)
+```
 
 4. This is the link to your fork and its name is *origin*. Whenever you *push* changes to *origin* it will reflect under your forked repository in your GitHub account and similary you can *pull* to get content from your repository to your local machine using the handle *origin*. But we also need to interact with the main repository from [Keshav's](https://github.com/kestal-lab/PS-Grievance) account.
 
 5. In the same folder, type: `git remote add upstream https://github.com/kestal-lab/PS-Grievance`. Now to verify, again type: `git remote -v`. This should show:
 
-> origin https://github.com/<Your github username>/PS-Grievance.git (fetch)
-> origin https://github.com/<Your github username>/PS-Grievance.git (push)
-> upstream https://github.com/kestal-lab/PS-Grievance (fetch)
-> upstream https://github.com/kestal-lab/PS-Grievance (push)
-
+```console
+origin https://github.com/<Your github username>/PS-Grievance.git (fetch)
+origin https://github.com/<Your github username>/PS-Grievance.git (push)
+upstream https://github.com/kestal-lab/PS-Grievance (fetch)
+upstream https://github.com/kestal-lab/PS-Grievance (push)
+```
 This will add a link to the main repository on Keshav's account and will be called *upstream*. (origin and upstream are conventional names) In order to get changes to from the main repo use *upstream* handle. **Never push anythihng to upstream**
 
 
@@ -51,11 +53,10 @@ Now suppose you have made changes in your local machine to the file in PS-Grieva
 1. `git status`
 This will list all the files and folders where changes were made. Run this command often to keep track of whatever changes you are making while you are editing the files. There will also be other useful information displayed sometimes. 
 
-2. 
-`
-git add <filename/folder
-git commit <filename/folder
-`
+2. ```
+git add <filename/folder>
+git commit
+```
 This will open a text editor for you to write a commit mesaage. Give a short description/one line about what these changes do. Avoid non-sense commit messages makes it tough to refer to the commit later.
 
 3. The changes are now saved in your local machine. We need to push it to your GitHub fork. But before that we also need to see if anyone else in the team has got their changes *merged* in the main repository. Hence do the following: `git pull upstream master`
@@ -65,7 +66,7 @@ This will get the latest content from the *upstram* (main repo) to your local ma
 4. In case there were no merge conflicts or they were solved, do: `git push origin master`
 This will push all your work to your fork.
 
-5. Now go to your GitHub account and open the PS-Grievances repository. A green button **Compare & pull request** should've come inside a highlighted box. (There is also a pull request button below the green Clone or download button I guess) The next page should ideally say that automatic merge is possible with a large text box. Hit the create pull button to submit the PR. If GitHub gives you an option to *merge pull request* then **don't** do it. Let any other member from the team review and merge it. I'll add how to review a PR later.
+5. Now go to your GitHub account and open the PS-Grievances repository. A green button **Compare & pull request** should've come inside a highlighted box. OR there is also a pull request button below the green Clone or download button. The next page should ideally say that *Able to merge* with a large **Create pull request** button. Press the button and a confirmation page with a text box to fill in details about the PR (optional) will come. Confirm by pressing the **Create pull request** button there.
 
 
 #### Merge conflicts

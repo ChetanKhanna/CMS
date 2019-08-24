@@ -18,5 +18,5 @@ from django.urls import path,include
 from django.contrib import admin
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('PS_Grievance/', include('grievance.urls')),
+    url('ps-grievance/', include('grievance.urls')),
 ]

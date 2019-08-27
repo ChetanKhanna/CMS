@@ -5,4 +5,5 @@ import grievance.views as VIEWS
 app_name = 'grievance'
 urlpatterns =[
 	# path('', VIEWS.HomeView.as_view())
+	path('cmo/', VIEWS.CMO.as_view()),
 ]

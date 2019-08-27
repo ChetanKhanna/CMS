@@ -11,10 +11,20 @@ class Student(models.Model):
 	name = models.CharField(max_length = 100)
 	contact = models.CharField(max_length = 20)
 	email = models.EmailField()
-	campus = models.IntegerField()
+	campus = models.IntegerField(default = 0)
 
 	def __str__(self):
 		return str(self.student_id)
+
+class OtherUsers(models.Model):
+	user_id = models.CharField(max_length =25, primary_key=True,unique=True)
+	name = models.CharField(max_length = 50)
+	contact = models.CharField(max_length = 20)
+	email = models.EmailField()
+	campus = models.IntegerField(default = 0)
+
+	def __str__(self):
+		return str(self.user_id)
 
 class GrievanceForm(models.Model):
 	student_id = models.OneToOneField(Student, on_delete=models.CASCADE)
@@ -44,7 +54,9 @@ class ApplicationStatus(models.Model):
 	level1Comment = models.CharField(max_length = 500)
 	level2Comment = models.CharField(max_length = 500)
 	newStation = models.CharField(max_length = 500)
-
+	campus = models.IntegerField(default = 0)
+	natureOfQuery = models.IntegerField(default = 0)
+	
 	class Meta:
 		unique_together = (('student_id', 'attempt'),)
 

@@ -5,7 +5,7 @@ import grievance.tempViews as VIEWS
 
 app_name = 'grievance'
 urlpatterns =[
-	# path('', VIEWS.HomeView.as_view())
+	path('', VIEWS.HomeView.as_view()),
 	path('cmo/', VIEWS.CMO.as_view()),
 	path('accounts/', include('django.contrib.auth.urls')),
 ]

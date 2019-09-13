@@ -11,7 +11,15 @@ class CMO(generic.TemplateView):
 		# if(current_user.is_authenticated):
 		# 	if(UserType.objects.get(user=current_user).token == constants.UserType.CMO.value):
 		# 		print("Success")k
-		return cmoViews.CMO().get(self, request, args, kwargs)
+		print(request.GET.get("type"))
+		# print(type1)
+		print("hello\n")
+		print(kwargs['type'])
+		return cmoViews.CMO().get(self, self.request, args, kwargs)
+
+class TEMP(generic.TemplateView):
+	def get(self, request, *args, **kwargs):
+		return render(request,"grievance/cmoHomePage.html")
 
 class loginTimeoutRedirect(generic.TemplateView):
 	def get(self, request, *args, **kwargs):

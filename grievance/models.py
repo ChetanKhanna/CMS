@@ -2,12 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
-class UserType(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	token = models.IntegerField(default=0)
+# class UserType(models.Model):
+# 	user = models.OneToOneField(User, on_delete=models.CASCADE)
+# 	token = models.IntegerField(default=0)
 
-class Student(models.Model):
-	student_id = models.CharField(max_length =25, primary_key=True,unique=True)
+class UserProfile(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+	# token to know the type of user
+	token = models.IntegerField(default=0)
+	# user profile related data
 	name = models.CharField(max_length = 100)
 	contact = models.CharField(max_length = 20)
 	email = models.EmailField()
@@ -16,18 +19,18 @@ class Student(models.Model):
 	def __str__(self):
 		return str(self.student_id)
 
-class OtherUsers(models.Model):
-	user_id = models.CharField(max_length =25, primary_key=True,unique=True)
-	name = models.CharField(max_length = 50)
-	contact = models.CharField(max_length = 20)
-	email = models.EmailField()
-	campus = models.IntegerField(default = 0)
+# class OtherUsers(models.Model):
+# 	user_id = models.CharField(max_length =25, primary_key=True,unique=True)
+# 	name = models.CharField(max_length = 50)
+# 	contact = models.CharField(max_length = 20)
+# 	email = models.EmailField()
+# 	campus = models.IntegerField(default = 0)
 
-	def __str__(self):
-		return str(self.user_id)
+# 	def __str__(self):
+# 		return str(self.user_id)
 
 class GrievanceForm(models.Model):
-	student_id = models.OneToOneField(Student, on_delete=models.CASCADE)
+	student_id = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
 	cg = models.CharField(max_length = 10)
 	offShoot = models.CharField(max_length = 10)
 	allocatedStation = models.CharField(max_length = 500)
@@ -45,7 +48,7 @@ class GrievanceForm(models.Model):
 		return str(self.student_id)
 
 class ApplicationStatus(models.Model):
-	student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	attempt = models.IntegerField()
 	level = models.IntegerField()
 	status = models.IntegerField()

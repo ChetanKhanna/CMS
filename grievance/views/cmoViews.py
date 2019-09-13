@@ -1,5 +1,6 @@
-from grievance.models import ApplicationStatus, OtherUsers, Student
-import grievance.back_end_codes.constants as constants
+from grievance.models import ApplicationStatus
+from grievance.views import constants as constants
+
 from django.http import JsonResponse, HttpResponse
 class CMO():
 	def get(self, request, *args, **kwargs):
@@ -8,8 +9,8 @@ class CMO():
 
 		student_list = ApplicationStatus.objects.filter(campus = campus, level = 1, 
 			natureOfQuery = constants.NatureOfQuery.MEDICAL.value)
-		list2=Student.objects.filter(student_id=student_list)
-		print(list2)
+		# list2=Student.objects.filter(student_id=student_list)
+		# print(list2)
 		# empty_list = list(student_list)
 		empty_list=[]
 		for student in student_list:

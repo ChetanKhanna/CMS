@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#migration files
+migrations/
+
+#__pycache__ files
+# already there at the top

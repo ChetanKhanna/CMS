@@ -5,6 +5,9 @@ import grievance.views.constants as constants
 import grievance.views.cmoViews as cmoViews
 from django.shortcuts import redirect
 # Create your views here.
+class HomeView(generic.TemplateView):
+	template_name = 'grievance/website_base.html'
+
 class CMO(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
 		# current_user=request.user

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,8 +11,13 @@
 </head>
 
 <body>
-
+-->
     <!-- navbar code -->
+{% extends 'grievance/website_base.html' %}
+{% load static %}
+
+{% block content %}
+<!--
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">PSD</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -50,8 +55,11 @@
             </form>
         </div>
     </nav>
-
+-->
     <!-- form code -->
+
+<div class="site-section">
+    <div class="container">
     <form class="signup-form shadow p-3 mb-5 bg-white rounded" action="" method="post">
         <h2 class="text-center">Grievance Application Form</h2>
         <br/>
@@ -130,7 +138,8 @@
             <button type="submit" class="btn btn-block btn-lg" style="background-color: #428bca; color: white">Submit</button>
         </div>
     </form>
-
+    </div>
+</div>
     <!-- footer -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -141,6 +150,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-</body>
 
-</html>
+{% endblock %}

@@ -28,6 +28,8 @@
   <link href="{% static 'grievance/css/jquery.mb.YTPlayer.min.css' %}" media="all" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" href="{% static 'grievance/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'grievance/css/grievanceForm.css' %}">
+  <link rel="stylesheet" href="{% static 'grievance/css/addUser.css' %}">
 
 
 
@@ -52,9 +54,10 @@
         <div class="row align-items-center">
           <div class="col-lg-9 d-none d-lg-block">
           <!--	<a href="#" class="small btn btn-warning px-4 py-2 rounded-1 mr-3" style="color: white"><span class="icon-reply mr-2"></span> Back</a> -->
-            <a  class="small mr-3" style="color: white"><span class="icon-question-circle-o mr-2"></span> Having troubles ?</a>             
-            <a href="mailto:psgrievances.bits@gmail.com" class="small mr-3" style="color: #292929"><span class="icon-envelope-o mr-2"></span> psgrievances.bits@gmail.com</a> 
+            <a  class="small mr-3" style="color: white" ><span class="icon-question-circle-o mr-2" ></span> Having troubles ?</a>             
+            <a href="mailto:psgrievances.bits@gmail.com" class="small mr-3" style="color: #292929" data-toggle="tooltip" data-placement="top" title="Please note, no query regarding application will be entertained on this email, only queries related to working of website will be entertained on this email. While submitting any query please clearly mention your name, roll number and email in the query." ><span class="icon-envelope-o mr-2"></span> psgrievances.bits@gmail.com</a> 
           </div>
+          
           <div class="col-lg-3 text-right">
             <!-- <a href="#" class="small btn btn-danger px-6 py-2 rounded-1 mr-3"><span class="icon-lock"></span> Log Out</a> -->
             <!--<a href="#" class="small btn btn-primary px-2 py-2 rounded-0"><span class="icon-users"></span> Register</a> -->
@@ -100,14 +103,51 @@
                   </li>
               </ul>                                                                                                                                                                                                                                                                                          </ul>
             </nav>
-
           </div>
-          
+
+          <div class="ml-auto">
+            <div class="social-wrap">
+              <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
+                class="icon-menu h3"></span></a>
+            </div>
           </div>
          
         </div>
       </div>
 
     </header>
+  </div>
+
+    <body>
     
+
+    {% block content %}
+    {% endblock %}
+    
+    {% block footer %}
+    {% endblock %}
+
+
+  <script src="{% static 'grievance/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'grievance/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'grievance/js/jquery-ui.js' %}"></script>
+  <script src="{% static 'grievance/js/popper.min.js' %}"></script>
+  <script src="{% static 'grievance/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'grievance/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'grievance/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'grievance/js/jquery.countdown.min.js' %}"></script>
+  <script src="{% static 'grievance/js/bootstrap-datepicker.min.js' %}"></script>
+  <script src="{% static 'grievance/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'grievance/js/aos.js' %}"></script>
+  <script src="{% static 'grievance/js/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'grievance/js/jquery.sticky.js' %}"></script>
+  <script src="{% static 'grievance/js/jquery.mb.YTPlayer.min.js' %}"></script>
+
+
+
+
+  <script src="{% static 'grievance/js/main.js' %}"></script>
+
+</body>
+
 </html>

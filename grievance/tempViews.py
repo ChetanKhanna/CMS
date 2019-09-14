@@ -8,6 +8,12 @@ from django.shortcuts import redirect
 class HomeView(generic.TemplateView):
 	template_name = 'grievance/website_base.html'
 
+class FormView(generic.TemplateView):
+	template_name = 'grievance/grievanceForm.html'
+
+class AddView(generic.TemplateView):
+	template_name = 'grievance/addUser.html'
+
 class CMO(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
 		# current_user=request.user

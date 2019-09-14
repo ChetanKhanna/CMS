@@ -9,3 +9,23 @@ class UserType(enum.Enum):
 
 class NatureOfQuery(enum.Enum):
 	MEDICAL=1
+
+class Priority(enum.Enum):
+	LOW=0
+	MEDIUM=1
+	HIGH=2
+
+class Status(enum.Enum):
+	NOAPPLICATION=0
+	INPROGRESS=1
+	APPROVED=2
+	REJECTED=3
+
+class Attempt(enum.Enum):
+	ATTEMPT1=1
+	ATTEMPT2=2
+	ATTEMPT3=3
+
+class Levels(enum.Enum):
+	LEVEL1=1
+	LEVEL2=2

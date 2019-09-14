@@ -42,11 +42,11 @@ class GrievanceForm(models.Model):
 	preferedStation3 = models.CharField(max_length = 500)
 	preferedStation4 = models.CharField(max_length = 500)
 	preferedStation5 = models.CharField(max_length = 500)
-	document1 = models.FileField(upload_to='documents/',)
-	document2 = models.FileField(upload_to='documents/',)
-	document3 = models.FileField(upload_to='documents/',)
-	document4 = models.FileField(upload_to='documents/',)
-	document5 = models.FileField(upload_to='documents/',)
+	document1 = models.FileField(upload_to='documents/', blank=True)
+	document2 = models.FileField(upload_to='documents/', blank=True)
+	document3 = models.FileField(upload_to='documents/', blank=True)
+	document4 = models.FileField(upload_to='documents/', blank=True)
+	document5 = models.FileField(upload_to='documents/', blank=True)
 	priority = models.IntegerField()
 
 	def __str__(self):

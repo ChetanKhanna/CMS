@@ -18,7 +18,7 @@ from grievance.views import constants as constants
 @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
 class level1HomeView(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
-		return render(request,"grievance/cmoHomePage.html")
+		return render(request,"grievance/level1HomePage.html")
 
 
 @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
@@ -49,7 +49,7 @@ class level1RequestView(generic.View):
 			dict1 = {
 			"id":student.student_id.user.username,
 			"name":student.student_id.name,
-			"description":student.discription
+			"description":student.description
 			}
 			returnList.append(dict1) 
 		# print(returnList)

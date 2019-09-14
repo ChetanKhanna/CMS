@@ -148,9 +148,8 @@ function getData(type)
   console.log("Type = "+type_val);
   //  console.log("Priority ="+priority);
     $.ajax({
-      url: '/ps-grievance/cmo/',
+      url: '/ps-grievance/cmo/'+type_val,
       type:'GET',
-      data: {type:type_val},
       success: function(response)
       {
         $('#table-body').html('');

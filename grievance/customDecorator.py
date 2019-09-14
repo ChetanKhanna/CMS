@@ -1,9 +1,11 @@
 from grievance.models import *
 
 from functools import wraps
+from django.utils.decorators import method_decorator
+
 from django.http import HttpResponseRedirect
 
-import grievance.views.constants as constants
+from grievance.views import constants 
 
 def getUser(request):
 	current_user = User.objects.get(username="20160080G") #TODO request.user

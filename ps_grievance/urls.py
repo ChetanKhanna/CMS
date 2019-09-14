@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.urls import path,include
 from django.contrib import admin
-import grievance.tempViews as VIEWS
+import grievance.views as VIEWS
 
 urlpatterns = [
     path('admin/', admin.site.urls),

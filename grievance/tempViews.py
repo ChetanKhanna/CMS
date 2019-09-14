@@ -1,27 +1,29 @@
-from django.shortcuts import render
-from django.views import generic
+# from django.shortcuts import render
+# from django.views import generic
+# from django.utils.decorators import method_decorator
 
-import grievance.views.constants as constants
-import grievance.views.cmoViews as cmoViews
-from django.shortcuts import redirect
-# Create your views here.
-class HomeView(generic.TemplateView):
-	template_name = 'grievance/website_base.html'
+# from django.contrib.auth.decorators import login_required
+# from grievance.customDecorator import cmo_required
 
-class FormView(generic.TemplateView):
-	template_name = 'grievance/grievanceForm.html'
+# class CMO(generic.TemplateView):
+# 	def get(self, request, *args, **kwargs):
+# 		# current_user=request.user
+# 		# if(current_user.is_authenticated):
+# 		# 	if(UserType.objects.get(user=current_user).token == constants.UserType.CMO.value):
+# 		# 		print("Success")k
+# 		print(request.GET.get("type"))
+# 		# print(type1)
+# 		print("hello\n")
+# 		print(kwargs['type'])
+# 		return cmoViews.CMO().get(self, self.request, args, kwargs)
 
-class AddView(generic.TemplateView):
-	template_name = 'grievance/addUser.html'
+# @method_decorator([login_required,cmo_required], name='dispatch')
+# class TEMP(generic.TemplateView):
+# 	# @login_required
+# 	def get(self, request, *args, **kwargs):
+# 		print("inside temp function = ",request.user)
+# 		return render(request,"grievance/cmoHomePage.html")
 
-class CMO(generic.TemplateView):
-	def get(self, request, *args, **kwargs):
-		# current_user=request.user
-		# if(current_user.is_authenticated):
-		# 	if(UserType.objects.get(user=current_user).token == constants.UserType.CMO.value):
-		# 		print("Success")k
-		return cmoViews.CMO().get(self, request, args, kwargs)
-
-class loginTimeoutRedirect(generic.TemplateView):
-	def get(self, request, *args, **kwargs):
-		return redirect('/ps-grievance/accounts/login')
+# class loginTimeoutRedirect(generic.TemplateView):
+# 	def get(self, request, *args, **kwargs):
+# 		return redirect('/ps-grievance/accounts/login')

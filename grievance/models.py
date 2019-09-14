@@ -17,7 +17,7 @@ class UserProfile(models.Model):
 	campus = models.IntegerField(default = 0)
 
 	def __str__(self):
-		return str(self.student_id)
+		return str(self.user)
 
 # class OtherUsers(models.Model):
 # 	user_id = models.CharField(max_length =25, primary_key=True,unique=True)
@@ -52,11 +52,11 @@ class ApplicationStatus(models.Model):
 	attempt = models.IntegerField()
 	level = models.IntegerField()
 	status = models.IntegerField()
-	lastChangedDate = models.DateTimeField()
+	lastChangedDate = models.DateTimeField(auto_now_add=True)
 	discription = models.CharField(max_length = 500)
-	level1Comment = models.CharField(max_length = 500)
-	level2Comment = models.CharField(max_length = 500)
-	newStation = models.CharField(max_length = 500)
+	level1Comment = models.CharField(max_length = 500, blank=True)
+	level2Comment = models.CharField(max_length = 500, blank=True)
+	newStation = models.CharField(max_length = 500, blank=True)
 	campus = models.IntegerField(default = 0)
 	natureOfQuery = models.IntegerField(default = 0)
 	

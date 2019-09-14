@@ -148,24 +148,32 @@ function getData(type)
   console.log("Type = "+type_val);
   //  console.log("Priority ="+priority);
     $.ajax({
-      url: '/ps-grievance/cmo/'+type_val,
+      url: '/ps-grievance/level1/'+type_val,
       type:'GET',
       success: function(response)
       {
         $('#table-body').html('');
         var len=response.length;
       //  console.log(len);
+        if(len==0)
+        {
+          var entry="<tr><td colspan=4>No Data</td></tr>";
+          $('#table-body').append(entry);
+
+        }
+        console.log(len);
         for(var i=0;i<len;i++)
         {
              var name = response[i].name;
-
-          var entry="<tr> <td>"+response[i].refNo+"</td> <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href='formDisplay.html' id=''>"+response[i].description+"</a></td></tr>";
+            var id = response[i].id;
+          var entry="<tr> <td>"+response[i].refNo+"</td> <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student/"+id+">"+response[i].description+"</a></td></tr>";
           $('#table-body').append(entry);
 
 
         }
+
       }
-    });rea
+    });
 
 
 }

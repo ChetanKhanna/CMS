@@ -9,3 +9,9 @@ class UserType(enum.Enum):
 
 class NatureOfQuery(enum.Enum):
 	MEDICAL=1
+	NONMEDICAL=0
+
+class Campus(enum.Enum):
+	GOA=0
+	HYDERABAD=1
+	PILANI=2

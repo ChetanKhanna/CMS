@@ -49,19 +49,19 @@
 
       <div class="col-md-2">
         <label for="name" ><strong>Student Name</strong> </label>
-        <input class="form-control" id="name" name="name"  disabled type="text">
+        <input class="form-control" id="name" name="name" value='{{name}}' disabled type="text">
       </div>
       <div class="col-md-2">
         <label for="uid" ><strong>University Id</strong> </label>
-        <input class="form-control" id="uid" name="uid" disabled type="text">
+        <input class="form-control" id="uid" name="uid" value='{{uid}}' disabled type="text">
       </div>
       <div class="col-md-2">
         <label for="date" ><strong>Form Submission date</strong> </label>
-        <input class="form-control" id="date" name="date" disabled type="text">
+        <input class="form-control" id="date" name="date" value='{{date}}' disabled type="text">
       </div>
       <div class="col-md-2">
         <label for="PS" ><strong>Current PS</strong> </label>
-        <input class="form-control" id="PS" name="PS" disabled type="text">
+        <input class="form-control" id="PS" name="PS" value='{{ps}}' disabled type="text">
       </div>
     </div>
 
@@ -118,20 +118,15 @@
 </body>
 
 <script type="text/javascript">
-$(document).ready(function(){
-var refNo=123;
-$.ajax({
-url: 'getJson2.php',
-type:'get',
-data:{refNo:refNo},
-success: function(response)
-{
-  document.getElementById('name').value=response.name;
-  document.getElementById('uid').value=response.uid;
+/*$(document).ready(function(){
+//var uid=document.getElementById;
 
-  document.getElementById('desc').value=response.desc;
-  document.getElementById('date').value=response.date;
-  document.getElementById('PS').value=response.ps;
+  document.getElementById('name').value={{name}};
+  document.getElementById('uid').value={{uid}};
+
+  document.getElementById('desc').value={{desc}};
+  document.getElementById('date').value={{date}};
+  document.getElementById('PS').value={{ps}};
   //document.getElementById('name')=response.name;
 var documents=response.documents;
 
@@ -147,11 +142,8 @@ $('#docs').append(doc);
 
 
 
-}
 
-
-});
-});
+});*/
 </script>
 
 

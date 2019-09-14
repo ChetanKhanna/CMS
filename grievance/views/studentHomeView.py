@@ -12,17 +12,25 @@ class studenthomeview():
         formEntry = GrievanceForm.objects.get(student_id = user)
         const= constants.Status.NOAPPLICATION.value()
         attempt_status=[const,const,const]
+        description=["","",""]
+        comments=["","",""]
+        newStation=["","",""]
         if formEntry:
             i=0
             applicationstatus_list = ApplicationStatus.objects.filter(student_id = user)
             for x in applicationstatus_list:
                 attempt_status[x.attempt-1]=x.status
+                comments[x.attempt-1]=x.level2Comment
+                newStation[x.attempt-1]=x.newStation
                 i+=1
             details={       #things to be passed to front end
             'formEntry':formEntry,
             'attemptStatus':attempt_status,
+            'description'
             'campus':user.campus,
-            'name': user.name
+            'name': user.name,
+            'comments':comments,
+            'newStation':newStation
             }
             #TODO : return render
         else:

@@ -125,3 +125,6 @@ LOGOUT_REDIRECT_URL = '/ps-grievance/accounts/login/'
 
 STATIC_URL = '/static/'
 STATIS_ROOT = os.path.join(BASE_DIR, "static")
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

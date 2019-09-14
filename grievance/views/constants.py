@@ -15,3 +15,15 @@ class Campus(enum.Enum):
 	GOA=0
 	HYDERABAD=1
 	PILANI=2
+
+class Priority(enum.Enum):
+	LOW=0
+	MEDIUM=1
+	HIGH=2
+
+class Status(enum.Enum):
+	NOAPPLICATION=0
+	INPROGRESS=1
+	APPROVED=2
+	REJECTED=3
+	

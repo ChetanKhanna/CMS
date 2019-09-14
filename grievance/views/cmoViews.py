@@ -61,6 +61,7 @@ class level1StudentView(generic.View):
 		params={'name':"name222"}
 		return render(request,"grievance/cmoStudentPage.html",params)
 
-class level1StudentDetails(generic.View):
-	def get(self, request, *args, **kwargs):
-		student_id = kwargs[student_id]
+#TODO
+# class level1StudentDetails(generic.View):
+# 	def get(self, request, *args, **kwargs):
+# 		student_id = kwargs[student_id]

@@ -15,13 +15,13 @@ from grievance.models import ApplicationStatus
 from grievance.views import constants as constants
 
 
-@method_decorator([login_required,cmo_required], name='dispatch')
+# @method_decorator([login_required,cmo_required], name='dispatch')
 class cmoHomeView(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
 		return render(request,"grievance/cmoHomePage.html")
 
 
-@method_decorator([login_required,cmo_required], name='dispatch')
+# @method_decorator([login_required,cmo_required], name='dispatch')
 class cmoRequestView(generic.View):
 	def get(self, request, *args, **kwargs):
 

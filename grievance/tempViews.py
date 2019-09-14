@@ -2,10 +2,6 @@
 # from django.views import generic
 # from django.utils.decorators import method_decorator
 
-# import grievance.views.constants as constants
-# import grievance.views.cmoViews as cmoViews
-# from django.shortcuts import redirect
-
 # from django.contrib.auth.decorators import login_required
 # from grievance.customDecorator import cmo_required
 

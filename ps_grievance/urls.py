@@ -16,10 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.urls import path,include
 from django.contrib import admin
-import grievance.tempViews as VIEWS
+import grievance.views as VIEWS
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # url(r'^accounts/login/(?P<next>.*)$',VIEWS.loginTimeoutRedirect.as_view()),
+    url(r'^accounts/login/(?P<next>.*)$',VIEWS.loginTimeoutRedirect.as_view()),
     url('ps-grievance/', include('grievance.urls')),
 ]

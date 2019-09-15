@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,9 +11,9 @@
 </head>
 
 <body>
-
+-->
     <!-- navbar code -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <!--   <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">PSD</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,8 +50,15 @@
             </form>
         </div>
     </nav>
-
+-->
     <!-- form code -->
+
+{% extends 'grievance/website_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="site-section">
+    <div class="container">
     <form class="signup-form shadow p-3 mb-5 bg-white rounded" action="" method="post">{% csrf_token %}
         <h2 class="text-center">New User Form</h2>
         <p class="lead">
@@ -112,6 +119,8 @@
                 User</button>
         </div>
     </form>
+    </div>
+</div>
 
     <!-- footer -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -123,6 +132,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-</body>
 
-</html>
+
+{% endblock %}

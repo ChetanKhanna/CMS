@@ -9,7 +9,7 @@ from django.utils.decorators import method_decorator
 from grievance.customDecorator import cmo_or_ad_required
 
 #import models
-from grievance.models import ApplicationStatus, UserProfile
+from grievance.models import ApplicationStatus, UserProfile, User
 
 #import views
 from grievance.views import constants as constants
@@ -58,7 +58,16 @@ class level1RequestView(generic.View):
 @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
 class level1StudentView(generic.View):
 	def get(self, request, *args, **kwargs):
-		params={'name':"name222"}
+		student_id = kwargs['student_id']
+		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object)
+		params={
+			'name' : userProfile_object.name,
+			'student_id' : student_id,
+			'allocatedStation' : 'remove it',
+			'applicationDate' : ApplicationStatus_object.lastChangedDate,
+			'description': ApplicationStatus_object.description,
+		}
 		return render(request,"grievance/cmoStudentPage.html",params)
 
 #TODO

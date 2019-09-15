@@ -14,6 +14,7 @@ urlpatterns =[
 	path('', include('django.contrib.auth.urls')),
 	path('level1/<student_id>', VIEWS.level1StudentView.as_view()),
 	path('redirect/', VIEWS.RedirectView.as_view()),
+	path('student/', VIEWS.studentHomeView.as_view()),
 	# path('temp/', VIEWS.TEMP.as_view()),
 
 ]

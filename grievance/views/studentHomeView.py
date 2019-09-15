@@ -5,11 +5,11 @@ import datetime
 from . import constants as constants
 from django.views import generic
 
-class studenthomeview(generic.TemplateView):
+class studentHomeView(generic.TemplateView):
     def get(self, request,*args, **kwargs):
-        # current_user=request.user
-        # user = UserProfile.objects.get(user=current_user)
-        user = UserProfile.objects.get(user=User.objects.get(username="20160080G"))
+        current_user=request.user
+        user = UserProfile.objects.get(user=current_user)
+        # user = UserProfile.objects.get(user=User.objects.get(username="20160080G"))
         # const= str(constants.Status.NOAPPLICATION.value())
         const = "0"
         attempt_status=[const,const,const]

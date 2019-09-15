@@ -9,6 +9,12 @@ class UserType(enum.Enum):
 
 class NatureOfQuery(enum.Enum):
 	MEDICAL=1
+	NONMEDICAL=0
+
+class Campus(enum.Enum):
+	GOA=0
+	HYDERABAD=1
+	PILANI=2
 
 class Priority(enum.Enum):
 	LOW=0
@@ -20,12 +26,4 @@ class Status(enum.Enum):
 	INPROGRESS=1
 	APPROVED=2
 	REJECTED=3
-
-class Attempt(enum.Enum):
-	ATTEMPT1=1
-	ATTEMPT2=2
-	ATTEMPT3=3
-
-class Levels(enum.Enum):
-	LEVEL1=1
-	LEVEL2=2
+	

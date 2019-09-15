@@ -1,6 +1,8 @@
 import os
 from django.conf import settings
 from django.views import generic
+from django.http import HttpResponse
+
 
 BASE_DIR = settings.BASE_DIR
 
@@ -14,4 +16,4 @@ class updateLastSubmissionDate(generic.TemplateView):
 		jsFile = os.path.join(BASE_DIR, 'grievance/static/grievance/js/date.js')
 		with open(jsFile, mode='w') as file:
 			file.write("var date=\""+newDate+"\";")
-		
+		return HttpResponse('OK')

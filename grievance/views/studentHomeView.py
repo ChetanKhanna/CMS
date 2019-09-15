@@ -20,7 +20,7 @@ class studentHomeView(generic.TemplateView):
         comments=["","",""]
         newStation=["","",""]
 
-        formEntry = GrievanceForm.objects.get(student_id = user)
+        # formEntry = GrievanceForm.objects.get(student_id = user)
         applicationstatus_list = ApplicationStatus.objects.filter(student_id = user)
         for x in applicationstatus_list:
             attempt_status[x.attempt-1]=x.status-1
@@ -29,7 +29,6 @@ class studentHomeView(generic.TemplateView):
             description[x.attempt-1]=x.description
 
         details={       #things to be passed to front end
-        'formEntry':formEntry,
         'attemptStatus':attempt_status,
         'descriptions' : description,
         'campus':user.campus,
@@ -43,12 +42,15 @@ class studentHomeView(generic.TemplateView):
         current_user=request.user
         user = UserProfile.objects.get(user=current_user)
         if request.POST.get("submit1"):
+            print("\n\n-----------------asdf----------------")
+            print(request.POST)
             if (GrievanceForm.objects.filter(student_id = user).count())==0:
-                form1 = StudentHomeViewForm(request.POST, request.FILES).save(commit=False)
+                temp1 = StudentHomeViewForm(request.POST, request.FILES)
+                form1 = temp1.save(commit=False)
                 form2 = ApplicationStatusForm(request.POST).save(commit=False)
                 form1.student_id=user
                 form1.applicationDate = datetime.datetime.now()
-                form1.priority = constants.priority.LOW.value
+                form1.priority = constants.Priority.LOW.value
                 form1.save()
                 form2.student_id=user
                 form2.status = constants.Status.INPROGRESS.value

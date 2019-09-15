@@ -630,7 +630,7 @@ h1, h2, h3, h4, h5,
       opacity: .9;
       z-index: 0; }
     .section-bg.style-1 > .container {
-      z-index: 2; }
+      z-index: 1; }
     .section-bg.style-1 .icon {
       font-size: 3.5rem;
       color: #51be78; }

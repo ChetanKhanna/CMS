@@ -127,7 +127,6 @@
 
           <thead>
             <tr>
-              <th>Reference Number </th>
               <th>College ID</th>
               <th>Name</th>
               <th>Reason</th>
@@ -180,7 +179,7 @@
       //  console.log(len);
         if(len==0)
         {
-          var entry="<tr><td colspan=4>No Data</td></tr>";
+          var entry="<tr><td colspan=4>No Applications</td></tr>";
           $('#table-body').append(entry);
 
         }
@@ -189,7 +188,7 @@
         {
              var name = response[i].name;
             var id = response[i].id;
-          var entry="<tr> <td>"+response[i].refNo+"</td> <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student/"+id+">"+response[i].description+"</a></td></tr>";
+          var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href="+id+">"+response[i].description+"</a></td></tr>";
           $('#table-body').append(entry);
 
 

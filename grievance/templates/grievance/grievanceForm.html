@@ -307,7 +307,6 @@
             document.getElementById("preferedStation4").value = "{{ formEntry.preferedStation4 }}";
             document.getElementById("preferedStation5").value = "{{ formEntry.preferedStation5 }}";
             var comments = {{ comments|safe }};
-            console.log('asfdsdfdsf--------------------------')
             console.log(comments)
             document.getElementById("comments1").value = comments[0];
             document.getElementById("comments2").value = comments[1];
@@ -315,7 +314,6 @@
             var newStations = {{ newStation|safe }};
             console.log(newStations);
             var statuses = {{ attemptStatus|safe }};
-            console.log("here")
             console.log(statuses)
             document.getElementById("status1").textContent = getStatusToWords(statuses[0]);
             document.getElementById("status2").textContent = getStatusToWords(statuses[1]);

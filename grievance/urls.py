@@ -13,6 +13,7 @@ urlpatterns =[
 	url(r'^level1/(?P<type>[a-z]+)$',VIEWS.level1RequestView.as_view()),
 	path('accounts/', include('django.contrib.auth.urls')),
 	path('level1/<student_id>', VIEWS.level1StudentView.as_view()),
+	path('redirect/', VIEWS.RedirectView.as_view()),
 	# path('temp/', VIEWS.TEMP.as_view()),
 
 ]

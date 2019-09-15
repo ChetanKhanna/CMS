@@ -8,7 +8,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
   <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'grievance/fonts/icomoon/style.css' %}">
 
@@ -56,6 +55,8 @@
           <!--	<a href="#" class="small btn btn-warning px-4 py-2 rounded-1 mr-3" style="color: white"><span class="icon-reply mr-2"></span> Back</a> -->
             <a  class="small mr-3" style="color: white" ><span class="icon-question-circle-o mr-2" ></span> Having troubles ?</a>             
             <a href="mailto:psgrievances.bits@gmail.com" class="small mr-3" style="color: #292929" data-toggle="tooltip" data-placement="top" title="Please note, no query regarding application will be entertained on this email, only queries related to working of website will be entertained on this email. While submitting any query please clearly mention your name, roll number and email in the query." ><span class="icon-envelope-o mr-2"></span> psgrievances.bits@gmail.com</a> 
+            <input type="textbox" id="date" value="123">
+
           </div>
           
           <div class="col-lg-3 text-right">
@@ -151,5 +152,9 @@
   <script src="{% static 'grievance/js/main.js' %}"></script>
 
 </body>
+
+<script src="{% static 'grievance/js/date.js' %}">
+document.getElementById('date').value=date;
+ </script>
 
 </html>

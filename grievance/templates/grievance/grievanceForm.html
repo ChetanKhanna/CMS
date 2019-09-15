@@ -25,8 +25,8 @@
         <br/>
 
         <div class="form-group row">
-            <label for="userid" class="col-sm-4 col-form-label">Status</label>
-            <label id="status1" name="status1" class="col-sm-4 col-form-label"></label>
+            <label for="userid" class="col-sm-4 col-form-label mr-5">Status</label>
+            <div class="ml-5 mr-5 px-5"><label id="status1" class="btn btn-success text-light ml-5">Success</label></div>
         </div>
 
         <div class="form-group row">
@@ -108,7 +108,28 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 4</label>
+                <label for="userid" class="col-sm-4 {% extends 'grievance/website_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="site-section">
+    <form class="signup-form1 shadow p-3 mb-5 bg-white rounded" id="application1Form" action="/ps-grievance/student/" method="post" readonly>
+        {% csrf_token %}
+        <h2 class="text-center">Grievance Application Form</h2>
+        <br/>
+
+        <div class="form-group row">
+            <label for="userid" class="col-sm-4 col-form-label mr-5">Status</label>
+            <div class="ml-5 mr-5 px-5"><label id="status1" class="btn btn-success text-light ml-5">Success</label></div>
+        </div>
+
+        <div class="form-group row">
+            <label for="userid" class="col-sm-4 col-form-label">Name</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="name" name="name" readonly>
+            </div>
+        </div>col-form-label">Preferred Station 4</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="preferedStation4" name="preferedStation4" placeholder="4">
                 </div>
@@ -171,7 +192,7 @@
 
             <div class="form-group row">
                 <label for="userid" class="col-sm-4 col-form-label">Status</label>
-                <label id="status2" name="status2" class="col-sm-4 col-form-label"></label>
+                <div class="ml-5 mr-5 px-5"><label id="status2" name="status2" class="btn btn-success text-light ml-5">Success</label></div>
             </div>
 
             <fieldset id="application2Entries">
@@ -220,7 +241,7 @@
 
             <div class="form-group row">
                 <label for="userid" class="col-sm-4 col-form-label">Status</label>
-                <label id="status3" name="status3" class="col-sm-4 col-form-label"></label>
+                <div class="ml-5 mr-5 px-5"><label id="status3" name="status3" class="btn btn-success text-light ml-5">Success</label></div>
             </div>
 
             <fieldset id="application3Entries">
@@ -274,6 +295,21 @@
                     return "Rejected";   
                 }
             }
+
+            function getStatusClass(status_value){
+                if(status_value == 0){
+                    return "btn btn-info text-light ml-5 px-5";
+                }
+                else if(status_value == 1){
+                    return "btn btn-warning text-light ml-5 px-5";   
+                }
+                else if(status_value == 2){
+                    return "btn btn-success text-light ml-5 px-5";   
+                }
+                else if(status_value == 3){
+                    return "btn btn-important text-light ml-5 px-5";   
+                }
+            }
             var fileUploadsDiv = document.getElementById("file-uploads");
             fileUploadsDiv.onchange = function() {
                 for(var i = 1; i <= 5; i++){
@@ -285,6 +321,7 @@
                     };
                 }
             };
+
 
             console.log("{{ campus }}");
             console.log("{{ name }}");
@@ -318,6 +355,10 @@
             document.getElementById("status1").textContent = getStatusToWords(statuses[0]);
             document.getElementById("status2").textContent = getStatusToWords(statuses[1]);
             document.getElementById("status3").textContent = getStatusToWords(statuses[2]);
+
+            document.getElementById("status1").className = getStatusClass(statuses[0]);
+            document.getElementById("status2").className = getStatusClass(statuses[1]);
+            document.getElementById("status3").className = getStatusClass(statuses[2]);
 
             document.getElementById("newStation1").value = newStations[0];
             document.getElementById("newStation2").value = newStations[1];

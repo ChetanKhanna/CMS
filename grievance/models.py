@@ -54,7 +54,7 @@ class UserProfile(models.Model):
 # 		return str(self.user_id)
 
 class GrievanceForm(models.Model):
-	student_id = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	cg = models.CharField(max_length = 10)
 	offShoot = models.CharField(max_length = 10)
 	allocatedStation = models.CharField(max_length = 500)

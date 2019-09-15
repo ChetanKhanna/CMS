@@ -1,15 +1,15 @@
 import enum
 class UserType(enum.Enum):
-	STUDENT = 1
-	CMO = 2
-	AD = 3
-	ALLOCATIONTEAM = 4
-	SUPERUSER = 5
-	ADMIN = 6	
+	STUDENT = 0
+	CMO = 1
+	AD = 2
+	ALLOCATIONTEAM = 3
+	SUPERUSER = 4
+	ADMIN = 5
 
 class NatureOfQuery(enum.Enum):
-	MEDICAL=1
-	NONMEDICAL=0
+	MEDICAL=0
+	NONMEDICAL=1
 
 class Campus(enum.Enum):
 	GOA=0

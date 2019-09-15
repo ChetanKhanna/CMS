@@ -54,16 +54,16 @@
         <input class="form-control" id="name" name="name" value='{{name}}' disabled type="text">
       </div>
       <div class="col-md-2">
-        <label for="uid" ><strong>University Id</strong> </label>
-        <input class="form-control" id="uid" name="uid" value='{{uid}}' disabled type="text">
+        <label for="student_id" ><strong>Student Id</strong> </label>
+        <input class="form-control" id="student_id" name="student_id" value='{{student_id}}' disabled type="text">
       </div>
       <div class="col-md-2">
-        <label for="date" ><strong>Form Submission date</strong> </label>
-        <input class="form-control" id="date" name="date" value='{{date}}' disabled type="text">
+        <label for="applicationDate" ><strong>Form Submission date</strong> </label>
+        <input class="form-control" id="applicationDate" name="applicationDate" value='{{applicationDate}}' disabled type="text">
       </div>
       <div class="col-md-2">
         <label for="PS" ><strong>Current PS</strong> </label>
-        <input class="form-control" id="PS" name="PS" value='{{ps}}' disabled type="text">
+        <input class="form-control" id="PS" name="PS" value='{{allocatedStation}}' disabled type="text">
       </div>
     </div>
 
@@ -72,8 +72,8 @@
   <div class="col-md-4">
     <div class="row container-fluid ">
       <div class="col-md-12">
-        <label for="desc" ><strong>Description</strong> </label>
-        <textarea class="form-control md-textarea" disabled rows="5" id="desc" name="desc" type="text" ></textarea>
+        <label for="description" ><strong>Description</strong> </label>
+        <textarea class="form-control md-textarea" disabled rows="5" id="description" name="description" type="text" >{{description}}</textarea>
       </div>
     </div>
 
@@ -121,14 +121,14 @@
 
 <script type="text/javascript">
 /*$(document).ready(function(){
-//var uid=document.getElementById;
+//var student_id=document.getElementById;
 
   document.getElementById('name').value={{name}};
-  document.getElementById('uid').value={{uid}};
+  document.getElementById('student_id').value={{student_id}};
 
-  document.getElementById('desc').value={{desc}};
-  document.getElementById('date').value={{date}};
-  document.getElementById('PS').value={{ps}};
+  document.getElementById('description').value={{description}};
+  document.getElementById('applicationDate').value={{applicationDate}};
+  document.getElementById('PS').value={{allocatedStation}};
   //document.getElementById('name')=response.name;
 var documents=response.documents;
 

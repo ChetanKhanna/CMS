@@ -118,7 +118,7 @@ USE_TZ = True
 
 #redirects
 LOGIN_REDIRECT_URL = '/ps-grievance/redirect/'
-LOGOUT_REDIRECT_URL = '/ps-grievance/accounts/login/'
+LOGOUT_REDIRECT_URL = '/ps-grievance/login/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

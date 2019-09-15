@@ -10,4 +10,4 @@ class StudentHomeViewForm(forms.ModelForm):
 class ApplicationStatusForm(forms.ModelForm):
     class Meta:
         model = ApplicationStatus
-        fields = ('description') 
+        fields = ('description',) 

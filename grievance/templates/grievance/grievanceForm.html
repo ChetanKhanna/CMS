@@ -17,128 +17,375 @@
 {% load static %}
 
 {% block content %}
-<!--
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">PSD</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
--->
-    <!-- form code -->
 
 <div class="site-section">
-    
-    <form class="signup-form1 shadow p-3 mb-5 bg-white rounded" action="" method="post">
+    <form class="signup-form1 shadow p-3 mb-5 bg-white rounded" id="application1Form" action="/ps-grievance/test/" method="post" readonly>
+        {% csrf_token %}
         <h2 class="text-center">Grievance Application Form</h2>
         <br/>
+
         <div class="form-group row">
-            <label for="name" class="col-sm-4 col-form-label">Name</label>
+            <label for="userid" class="col-sm-4 col-form-label">Status</label>
+            <label id="status1" name="status1" class="col-sm-4 col-form-label"></label>
+        </div>
+
+        <div class="form-group row">
+            <label for="userid" class="col-sm-4 col-form-label">Name</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                <input type="text" class="form-control" id="name" name="name" readonly>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="campus" class="col-sm-4 col-form-label">Campus</label>
+            <label for="userid" class="col-sm-4 col-form-label">Campus</label>
             <div class="col-sm-8">
-                <select class="custom-select" name="campus" required>
-                    <option value="">Select</option>
-                    <option value="1">Goa</option>
-                    <option value="2">Hyderabad</option>
-                    <option value="3">Pilani</option>
-                </select>
+                <input type="text" class="form-control" id="campus" name="campus" readonly>
             </div>
         </div>
+        <fieldset id="initialEntries">
+            <div class="form-group row" id="cgpaDiv">
+                <label for="userid" class="col-sm-4 col-form-label">CGPA</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="cg" name="cg" placeholder="CGPA" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Offshoot</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="offShoot" name="offShoot" placeholder="Offshoot">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Alotted Station (with Location)</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="allocatedStation" name="allocatedStation" placeholder="Bansal and Sons, Indore" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Preference No. of Alotted Station</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="preferenceNumberOfAllocatedStation" name="preferenceNumberOfAllocatedStation" placeholder="1" required>
+                </div>
+            </div>
 
-        <div class="form-group row">
-            <label for="userid" class="col-sm-4 col-form-label">CGPA</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="cgpa" name="cgpa" placeholder="CGPA" required>
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Type of Query</label>
+                <div class="col-sm-8">
+                    <select class="custom-select" id="natureOfQuery" name="natureOfQuery" required>
+                        <option value="">Select</option>
+                        <option value="1">Medical</option>
+                        <option value="2">Non Medical</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="userid" class="col-sm-4 col-form-label">Offshoot</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="offshoot" name="offshoot" placeholder="Offshoot" required>
+
+            <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                <label for="userid" class="col-sm-4 col-form-label">Description of Query</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="description" rows="5" cols="15" name="description" placeholder="Description" required></textarea>
+                </div>
             </div>
-        </div>
- 		<div class="form-group row">
-            <label for="userid" class="col-sm-4 col-form-label">Alotted Station (with Location)</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="alottedStation" name="alottedStation" placeholder="Bansal and Sons, Indore" required>
+
+            <p>   Add the preference number of the stations you want in order from 1 to 5 </p>
+
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 1</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="preferedStation1" name="preferedStation1" placeholder="1" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="userid" class="col-sm-4 col-form-label">Preference No. of Alotted Station</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="preferenceNumber" name="preferenceNumber" placeholder="1" required>
+
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 2</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="preferedStation2" name="preferedStation2" placeholder="2">
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="userid" class="col-sm-4 col-form-label">Desctiption of Query</label>
-            <div class="col-sm-8">
-                <textarea class="form-control" id="preferenceNumber" rows="5" cols="15" name="preferenceNumber" placeholder="Desctiption" required></textarea>
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 3</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="preferedStation3" name="preferedStation3" placeholder="3">
+                </div>
             </div>
-        </div>
-        <p> You can add upto 5 supporting documents to support your Application. Each document should be less than 5 MB </p>
-        <div id="file-uploads">
-	        <input type="file" name="file1" id="file1"></input>
-	        <input type="file" name="file2" id="file2"></input>
-	        <input type="file" name="file3" id="file3"></input>
-	        <input type="file" name="file4" id="file4"></input>
-	        <input type="file" name="file5" id="file5"></input>
-	    </div>
-	    <script type="text/javascript">
-	        var fileUploadsDiv = document.getElementById("file-uploads");
-	        fileUploadsDiv.onchange = function() {
-	        	for(var i = 1; i <= 5; i++){
-	        		var file = document.getElementById("file" + i.toString());
-	        		if(file.files.length == 0) continue;
-	        		if(file.files[0].size > 5242880){
-						alert("Max size allowed is 5 MB");
-						file.value = "";
-				    };
-	        	}
-			};	
-	    </script>
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 4</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="preferedStation4" name="preferedStation4" placeholder="4">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 5</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="preferedStation5" name="preferedStation5" placeholder="5">
+                </div>
+            </div>
+
+            <h3 class="text-center">Supporting Documents</h3>
+            <p> You can add upto 5 supporting documents to support your Application. Each document should be less than 5 MB </p>
+            <div id="file-uploads" name="file-uploads">
+                <input type="file" name="document1" id="document1"></input>
+                <input type="file" name="document2" id="document2"></input>
+                <input type="file" name="document3" id="document3"></input>
+                <input type="file" name="document4" id="document4"></input>
+                <input type="file" name="document5" id="document5"></input>
+            </div>
+
+            <br/>
+            <br/>
+ 
+        </fieldset>
         
-        <div class="form-group">
-            <button type="submit" class="btn btn-block btn-lg" style="background-color: #428bca; color: white">Submit</button>
+        <div class="text-center" id="submitButton">
+            <button type="submit1" value="submit1" name="submit1" id="submit1" class="btn btn-default" style="background-color: #428bca; color: white">Submit</button>
+        </div>
+
+        <div id="application1Comments">
+
+            <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                <label for="userid" class="col-sm-4 col-form-label">Comments by authorities</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="comments1" rows="5" cols="15" name="comments1" readonly></textarea>
+                </div>
+            </div>
+
+            <div id="acception1Div" name="acception1Div">
+
+                <div class="form-group row">
+                    <label for="userid" class="col-sm-4 col-form-label">New Alotted Station</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="newStation1" name="newStation1" readonly>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </form>
-    
+
+    <form class="signup-form1 shadow p-3 mb-5 bg-white rounded" id="application2Form" action="" method="post" readonly> 
+        {% csrf_token %}
+        <div id="application2Div" name="application2Div">
+            
+
+            <h2 class="text-center"> Reapplication 1 </h2>
+            <br/>
+
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Status</label>
+                <label id="status2" name="status2" class="col-sm-4 col-form-label"></label>
+            </div>
+
+            <fieldset id="application2Entries">
+                <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                    <label for="userid" class="col-sm-4 col-form-label">Reason to Reapply</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="description2" rows="5" cols="15" name="description" required></textarea>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="form-group text-center">
+                <button type="submit" id="submit2" name="submit2" value="submit2" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
+            </div>
+
+            <div id="application2Comments">
+
+                <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                    <label for="userid" class="col-sm-4 col-form-label">Comments by authorities</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="comments2" rows="5" cols="15" name="comments2" readonly></textarea>
+                    </div>
+                </div>
+
+                <div id="acception2Div" name="acception2Div">
+
+                    <div class="form-group row">
+                        <label for="userid" class="col-sm-4 col-form-label">New Alotted Station</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="newStation2" name="newStation2" readonly>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form class="signup-form1 shadow p-3 mb-5 bg-white rounded" id="application3Form" action="" method="post" readonly> 
+        {% csrf_token %}
+        <div id="application3Div" name="application3Div">
+            
+
+            <h2 class="text-center"> Reapplication 2 </h2>
+            <br/>
+
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Status</label>
+                <label id="status3" name="status3" class="col-sm-4 col-form-label"></label>
+            </div>
+
+            <fieldset id="application3Entries">
+                <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                    <label for="userid" class="col-sm-4 col-form-label">Reason to Reapply</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="description3" rows="5" cols="15" name="description" required></textarea>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="form-group text-center">
+                <button type="submit" id="submit3" name="submit3" value="submit3" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
+            </div>
+
+            <div id="application3Comments">
+
+                <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                    <label for="userid" class="col-sm-4 col-form-label">Comments by authorities</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="comments3" rows="5" cols="15" name="comments3" readonly></textarea>
+                    </div>
+                </div>
+
+                <div id="acception3Div" name="acception3Div">
+
+                    <div class="form-group row">
+                        <label for="userid" class="col-sm-4 col-form-label">New Alotted Station</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="newStation3" name="newStation3" readonly>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+            function getStatusToWords(status_value){
+                if(status_value == 0){
+                    return "Not Applied";
+                }
+                else if(status_value == 1){
+                    return "Pending";   
+                }
+                else if(status_value == 2){
+                    return "Accepted";   
+                }
+                else if(status_value == 3){
+                    return "Rejected";   
+                }
+            }
+            var fileUploadsDiv = document.getElementById("file-uploads");
+            fileUploadsDiv.onchange = function() {
+                for(var i = 1; i <= 5; i++){
+                    var file = document.getElementById("file" + i.toString());
+                    if(file.files.length == 0) continue;
+                    if(file.files[0].size > 5242880){
+                        alert("Max size allowed is 5 MB");
+                        file.value = "";
+                    };
+                }
+            };
+
+            console.log("{{ campus }}");
+            console.log("{{ name }}");
+            document.getElementById("name").value = "{{ name }}";
+            document.getElementById("campus").value = "{{ campus }}";
+            document.getElementById("cg").value = "{{ formEntry.cg }}";
+            document.getElementById("offShoot").value = "{{ formEntry.offShoot }}";
+            document.getElementById("allocatedStation").value = "{{ formEntry.allocatedStation }}";
+            document.getElementById("preferenceNumberOfAllocatedStation").value = "{{ formEntry.preferenceNumberOfAllocatedStation }}";
+            document.getElementById("natureOfQuery").value = "{{ formEntry.natureOfQuery }}";
+            var descriptions = {{ descriptions|safe }};
+            console.log(descriptions);
+            document.getElementById("description").value = descriptions[0];
+            document.getElementById("description2").value = descriptions[1];
+            document.getElementById("description3").value = descriptions[2];
+            //document.getElementById("description2").value = descriptions[2];
+            document.getElementById("preferedStation1").value = "{{ formEntry.preferedStation1 }}";
+            document.getElementById("preferedStation2").value = "{{ formEntry.preferedStation2 }}";
+            document.getElementById("preferedStation3").value = "{{ formEntry.preferedStation3 }}";
+            document.getElementById("preferedStation4").value = "{{ formEntry.preferedStation4 }}";
+            document.getElementById("preferedStation5").value = "{{ formEntry.preferedStation5 }}";
+            var comments = {{ comments|safe }};
+            console.log('asfdsdfdsf--------------------------')
+            console.log(comments)
+            document.getElementById("comments1").value = comments[0];
+            document.getElementById("comments2").value = comments[1];
+            document.getElementById("comments3").value = comments[2];
+            var newStations = {{ newStation|safe }};
+            console.log(newStations);
+            var statuses = {{ attemptStatus|safe }};
+            console.log("here")
+            console.log(statuses)
+            document.getElementById("status1").textContent = getStatusToWords(statuses[0]);
+            document.getElementById("status2").textContent = getStatusToWords(statuses[1]);
+            document.getElementById("status3").textContent = getStatusToWords(statuses[2]);
+
+            document.getElementById("newStation1").value = newStations[0];
+            document.getElementById("newStation2").value = newStations[1];
+            document.getElementById("newStation3").value = newStations[2];
+            if(statuses[0] == 0){
+                document.getElementById("application1Comments").style.display = "none";
+                document.getElementById("application2Form").style.display = "none";
+            }
+            else if(statuses[0] == 1){
+                document.getElementById("initialEntries").disabled="disabled";
+                document.getElementById("submit1").style.display = "none";
+                document.getElementById("application1Comments").style.display = "none";
+                document.getElementById("application2Form").style.display = "none";
+            }
+            else if(statuses[0] == 2){
+                document.getElementById("initialEntries").disabled="disabled";
+                document.getElementById("submit1").style.display = "none";
+            }
+            else if(statuses[0] == 3){
+                document.getElementById("initialEntries").disabled="disabled";
+                document.getElementById("submit1").style.display = "none";
+                document.getElementById("acception1Div").style.display = "none";
+            }
+
+            if(statuses[1] == 0){
+                document.getElementById("application2Comments").style.display = "none";
+                document.getElementById("application3Form").style.display = "none";
+            }
+            else if(statuses[1] == 1){
+                document.getElementById("application2Entries").disabled="disabled";
+                document.getElementById("submit2").style.display = "none";
+                document.getElementById("application2Comments").style.display = "none";
+                document.getElementById("application3Form").style.display = "none";
+            }
+            else if(statuses[1] == 2){
+                document.getElementById("application2Entries").disabled="disabled";
+                document.getElementById("submit2").style.display = "none";
+            }
+            else if(statuses[1] == 3){
+                document.getElementById("application2Entries").disabled="disabled";
+                document.getElementById("submit2").style.display = "none";
+                document.getElementById("acception2Div").style.display = "none";
+            }
+
+            if(statuses[2] == 0){
+                document.getElementById("application3Comments").style.display = "none";
+            }
+            else if(statuses[2] == 1){
+                document.getElementById("application3Entries").disabled="disabled";
+                document.getElementById("submit3").style.display = "none";
+                document.getElementById("application3Comments").style.display = "none";
+            }
+            else if(statuses[2] == 2){
+                document.getElementById("application3Entries").disabled="disabled";
+                document.getElementById("submit3").style.display = "none";
+            }
+            else if(statuses[2] == 3){
+                document.getElementById("application3Entries").disabled="disabled";
+                document.getElementById("submit3").style.display = "none";
+                document.getElementById("acception3Div").style.display = "none";
+            }
+            /*if(statuses[1] == 0){
+                document.getElementById("reapplication1Form").style.display = "none";
+            }*/
+            //document.getElementById('file-uploads').style.display = "none";   
+    </script>
 </div>
     <!-- footer -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

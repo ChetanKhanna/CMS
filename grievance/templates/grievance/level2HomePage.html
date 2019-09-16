@@ -81,9 +81,9 @@
         <label class="btn mt-2 btn-outline-success">
           <input type="radio" name="type" id="approved" value="approved" autocomplete="off"><i class="fas fa-thumbs-up"></i> Approved Requests
         </label><br>
-        <!--<label class="btn mt-2 btn-outline-danger">
+        <label class="btn mt-2 btn-outline-danger">
           <input type="radio" name="type" id="rejected" value="rejected" autocomplete="off"> <i class="far fa-times-circle"></i> Rejected Requests
-        </label>-->
+        </label>
       </div>
       
 
@@ -164,29 +164,79 @@
   console.log("Type = "+type_val);
   //  console.log("Priority ="+priority);
     $.ajax({
-      url: '/ps-grievance/level1/type/'+type_val,
+      url: '/ps-grievance/level2/type/'+type_val,
       type:'GET',
       success: function(response)
       {
         $('#table-body').html('');
-        var len=response.length;
+        // var len=response.length;
       //  console.log(len);
+        // if(len==0)
+        // {
+        //   var entry="<tr><td colspan=4>No Applications</td></tr>";
+        //   $('#table-body').append(entry);
+
+        // }
+        // console.log(len);
+
+        var len;
+
+        len=response[2].length;
+        var entry="<tr><td colspan=4>High Priority Applications</td></tr>";
+          $('#table-body').append(entry);
         if(len==0)
         {
           var entry="<tr><td colspan=4>No Applications</td></tr>";
           $('#table-body').append(entry);
 
         }
-        console.log(len);
         for(var i=0;i<len;i++)
         {
-             var name = response[i].name;
-            var id = response[i].id;
-          var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student/"+id+">"+response[i].description+"</a></td></tr>";
+             var name = response[2][i].name;
+            var id = response[2][i].id;
+          var entry="<tr>  <td>"+response[2][i].id+"</td><td>"+response[2][i].name+"</td><td><a href="+id+">"+response[2][i].description+"</a></td></tr>";
           $('#table-body').append(entry);
 
 
-          }
+        }
+
+        len=response[1].length;
+        var entry="<tr><td colspan=4>Medium Priority Applications</td></tr>";
+          $('#table-body').append(entry);
+        if(len==0)
+        {
+          var entry="<tr><td colspan=4>No Applications</td></tr>";
+          $('#table-body').append(entry);
+
+        }
+        for(var i=0;i<len;i++)
+        {
+             var name = response[1][i].name;
+            var id = response[1][i].id;
+          var entry="<tr>  <td>"+response[1][i].id+"</td><td>"+response[1][i].name+"</td><td><a href="+id+">"+response[1][i].description+"</a></td></tr>";
+          $('#table-body').append(entry);
+
+
+        }
+
+        len=response[0].length;
+        var entry="<tr><td colspan=4>Low Priority Applications</td></tr>";
+          $('#table-body').append(entry);
+        if(len==0)
+        {
+          var entry="<tr><td colspan=4>No Applications</td></tr>";
+          $('#table-body').append(entry);
+
+        }
+        for(var i=0;i<len;i++)
+        {
+             var name = response[0][i].name;
+            var id = response[0][i].id;
+          var entry="<tr>  <td>"+response[0][i].id+"</td><td>"+response[0][i].name+"</td><td><a href="+id+">"+response[0][i].description+"</a></td></tr>";
+          $('#table-body').append(entry);
+
+
+        }        
       }
     });
 

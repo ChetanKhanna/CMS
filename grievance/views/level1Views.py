@@ -28,9 +28,9 @@ class level1RequestView(generic.View):
 
 		typeOfRequest = kwargs["type"]
 		if(typeOfRequest == "pending"):
-			level=1
+			status = constants.Status.PENDING.value
 		else:
-			level=2
+			status = constants.Status.APPROVED.value
 
 		user_object = request.user
 		user_profile_object = UserProfile.objects.get(user_id=user_object)
@@ -40,8 +40,9 @@ class level1RequestView(generic.View):
 			natureOfQuery = constants.NatureOfQuery.MEDICAL.value
 		else:
 			natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value
-		student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
-			natureOfQuery = natureOfQuery, attempt=1).order_by(
+			
+		student_list = ApplicationStatus.objects.filter(campus = campus, level = 1, 
+			status = status, natureOfQuery = natureOfQuery, attempt=1).order_by(
 			'lastChangedDate')
 		
 		returnList=[]

@@ -26,7 +26,9 @@ class studentHomeView(generic.TemplateView):
         comments=["","",""]
         newStation=["","",""]
 
-        # formEntry = GrievanceForm.objects.get(student_id = user)
+        formEntry = None
+        if len(GrievanceForm.objects.filter(student_id=user)) ==1:
+            formEntry = GrievanceForm.objects.get(student_id = user)
         applicationstatus_list = ApplicationStatus.objects.filter(student_id = user)
         for x in applicationstatus_list:
             attempt_status[x.attempt-1]=x.status
@@ -34,6 +36,7 @@ class studentHomeView(generic.TemplateView):
             newStation[x.attempt-1]=x.newStation
             description[x.attempt-1]=x.description
         details={       #things to be passed to front end
+        'formEntry' : formEntry,
         'attemptStatus':attempt_status,
         'descriptions' : description,
         'campus':user.campus,

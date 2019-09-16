@@ -9,10 +9,7 @@
 
 <!--
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"></script>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     bootstrap ends
@@ -29,6 +26,9 @@
     <title> Form Display</title>
   </head>
 -->
+<head>
+ 
+  </head>
 
 {% extends 'grievance/website_base.html' %}
 {% load static %}
@@ -91,30 +91,35 @@
 
 
     <div class="col-md-6 col-sm-12 p-0 d-flex justify-content-center ">
-      <div class="btn btn-group-inline  btn-group-toggle btn-grp  pl-0" id="priority" data-toggle="buttons">
+      <div class=" row btn btn-group-inline  btn-group-toggle btn-grp  pl-0" id="priority" data-toggle="buttons">
    <h5 class="h5"> Set Priority </h5>
         <label class="btn mt-2 btn-outline-warning ">
-          <input type="radio" name="priority-option" value="low" id="low"  autocomplete="off" > <i class="fas fa-user"> </i> Low Priority
+          <input type="radio" name="priority-option" value="0" id="low"  autocomplete="off" > <i class="fas fa-user"> </i> Low Priority
         </label>
         <label class="btn mt-2 btn-outline-primary ">
-          <input type="radio" name="priority-option" value="med" id="med" autocomplete="off" > <i class="fas fa-user"> </i> Medium Priority
+          <input type="radio" name="priority-option" value="1" id="med" autocomplete="off" > <i class="fas fa-user"> </i> Medium Priority
         </label>
 
         <label class="btn mt-2 btn-outline-danger">
-          <input type="radio" name="priority-option" value="high" id="high" autocomplete="off" > <i class="fas fa-user"> </i> High Priority
+          <input type="radio" name="priority-option" value="2" id="high" autocomplete="off" > <i class="fas fa-user"> </i> High Priority
         </label>
-      </div>
+     
+      <br><br>
+      <span class="text-danger"  id="priority-message">Please Select a Priority</span>
+     </div>
     </div>
+
       <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
         <h5> Enter Remarks</h5>
-
+        
           <textarea class="form-control md-textarea" rows="3" id="remarks"  name="remarks" type="text" ></textarea>
+          <span class="text-danger" id="remarks-message" style="display:none">Please enter the remarks</span>
 
       </div>
     </div>
 
 <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-  <button class="btn btn-lg btn-primary">Submit</button>
+  <button class="btn btn-lg btn-primary" onclick="sendData()">Submit</button>
 </div>
 </section>
 </div>
@@ -146,6 +151,64 @@ $('#docs').append(doc);
 
 
 });*/
+
+$(document).ready(function()
+{
+  console.log('doc ready');
+$('#priority-message').hide();
+$('#remarks-message').hide();
+
+});
+
+
+
+function sendData()
+{
+
+
+$('#priority-message').hide();
+  var priority=$("input:radio[name='priority-option']:checked").val();
+  var remarks=$("#remarks").val();
+
+
+if(!priority)
+{
+$('#priority-message').show();
+console.log('here');
+}
+else if(!remarks)
+$('#remarks-message').show();
+
+else {
+
+  var token = '{{csrf_token}}'
+  $.ajax({
+  headers : {"X-CSRFToken":token},
+  url: '#',
+  type:'POST',
+  data:{priority:priority,remarks:remarks},
+  success: function(response)
+  {
+    console.log('data sent successfully');
+    if(response.flag!=1)
+      location.href = '/ps-grievance/redirect/'
+  }
+
+});
+}
+
+
+
+}
+
+
+$('priority-option').change(function(){
+
+  var priority=$("input:radio[name='priority-option']:checked").val();
+  console.log(priority);
+ // getData(type);
+
+  });
 </script>
 
 {% endblock %}

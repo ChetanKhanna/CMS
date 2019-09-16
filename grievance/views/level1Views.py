@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.http import JsonResponse
+from django.http import HttpResponseRedirect
 
 #import decorators
 from django.contrib.auth.decorators import login_required
@@ -9,7 +10,7 @@ from django.utils.decorators import method_decorator
 from grievance.customDecorator import cmo_or_ad_required
 
 #import models
-from grievance.models import ApplicationStatus, UserProfile, User
+from grievance.models import *
 
 #import views
 from grievance.views import constants as constants
@@ -39,9 +40,8 @@ class level1RequestView(generic.View):
 			natureOfQuery = constants.NatureOfQuery.MEDICAL.value
 		else:
 			natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value
-
 		student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
-			natureOfQuery = natureOfQuery).order_by(
+			natureOfQuery = natureOfQuery, attempt=1).order_by(
 			'lastChangedDate')
 		
 		returnList=[]
@@ -60,7 +60,7 @@ class level1StudentView(generic.View):
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
-		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object)
+		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt =1)
 		params={
 			'name' : userProfile_object.name,
 			'student_id' : student_id,
@@ -69,8 +69,39 @@ class level1StudentView(generic.View):
 			'description': ApplicationStatus_object.description,
 		}
 		return render(request,"grievance/cmoStudentPage.html",params)
+	def post(self, request, *args, **kwargs):
+		student_id = kwargs['student_id']
+		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object, attempt =1)
+		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
 
-#TODO
+		priority = request.POST.get("priority")
+		level1comment = request.POST.get("remarks")
+
+		grievanceForm_object.priority = priority
+
+		ApplicationStatus_object.level1Comment = level1comment
+		ApplicationStatus_object.level = 2
+		ApplicationStatus_object.status = constants.Status.PENDING.value
+
+		ApplicationStatus_object.save()
+		grievanceForm_object.save()
+
+		return HttpResponseRedirect('/ps-grievance/redirect/')
+
+# # TODO
 # class level1StudentDetails(generic.View):
-# 	def get(self, request, *args, **kwargs):
+# 	def post(self, request, *args, **kwargs):
 # 		student_id = kwargs[student_id]
+# 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+# 		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object)
+		
+# 		priority = request.POST.get("priority")
+# 		level1comment = request.POST.get("remarks")
+		
+# 		ApplicationStatus_object.priority = priority
+# 		ApplicationStatus_object.level1comment = level1comment
+# 		ApplicationStatus_object.save()
+
+# 		return render(request,"grievance/level1HomePage.html")
+

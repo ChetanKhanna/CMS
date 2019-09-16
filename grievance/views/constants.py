@@ -24,6 +24,7 @@ class Priority(enum.Enum):
 class Status(enum.Enum):
 	NOAPPLICATION=0
 	INPROGRESS=1
+	PENDING=1
 	APPROVED=2
 	REJECTED=3
 	

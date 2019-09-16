@@ -6,6 +6,12 @@ from . import constants as constants
 from django.views import generic
 from django.http import HttpResponseRedirect
 
+#import decorators
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from grievance.customDecorator import student_required
+
+@method_decorator([login_required, student_required], name='dispatch')
 class studentHomeView(generic.TemplateView):
 
     def redirect(self):
@@ -23,11 +29,10 @@ class studentHomeView(generic.TemplateView):
         # formEntry = GrievanceForm.objects.get(student_id = user)
         applicationstatus_list = ApplicationStatus.objects.filter(student_id = user)
         for x in applicationstatus_list:
-            attempt_status[x.attempt-1]=x.status-1
+            attempt_status[x.attempt-1]=x.status
             comments[x.attempt-1]=x.level2Comment
             newStation[x.attempt-1]=x.newStation
             description[x.attempt-1]=x.description
-
         details={       #things to be passed to front end
         'attemptStatus':attempt_status,
         'descriptions' : description,

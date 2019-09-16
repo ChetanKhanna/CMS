@@ -40,7 +40,6 @@ class level1RequestView(generic.View):
 			natureOfQuery = constants.NatureOfQuery.MEDICAL.value
 		else:
 			natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value
-
 		student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
 			natureOfQuery = natureOfQuery).order_by(
 			'lastChangedDate')
@@ -61,7 +60,7 @@ class level1StudentView(generic.View):
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
-		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object)
+		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt =1)
 		params={
 			'name' : userProfile_object.name,
 			'student_id' : student_id,
@@ -79,10 +78,12 @@ class level1StudentView(generic.View):
 		priority = request.POST.get("priority")
 		level1comment = request.POST.get("remarks")
 
-		print(level1comment,"\n\n-------",ApplicationStatus_object.lastChangedDate)
-
 		grievanceForm_object.priority = priority
-		ApplicationStatus_object.level1comment = level1comment
+
+		ApplicationStatus_object.level1Comment = level1comment
+		ApplicationStatus_object.level = 2
+		ApplicationStatus_object.status = constants.Status.PENDING.value
+
 		ApplicationStatus_object.save()
 		grievanceForm_object.save()
 

@@ -20,6 +20,7 @@ import grievance.views as VIEWS
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^accounts/login/(?P<next>.*)$',VIEWS.loginTimeoutRedirect.as_view()),
+    url(r'^accounts/login/(?P<next>.*)$',VIEWS.RedirectView.as_view()),
     url('ps-grievance/', include('grievance.urls')),
+    # url('grievance/', include('grievance.urls')),
 ]

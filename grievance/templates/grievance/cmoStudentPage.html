@@ -34,8 +34,8 @@
 {% load static %}
 
 {% block content %}
-<div class="site-section">
-<div class="row mb-5 justify-content-center text-center">
+<div class="site-section container-fluid">
+<div class="row mb-5 justify-content-center container-fluid text-center">
 
 
     <section class="container-fluid" id="main">
@@ -81,7 +81,7 @@
   <div class="col-md-1"></div>
   <div class="col-md-5 col-sm-5">
   <h5>  Submitted Documents </h5>
-    <div class="row documents" id="docs">
+    <div class="row documents d-flex justify-content-center" id="docs">
 
 
       </div>
@@ -125,9 +125,9 @@
 </div>
 
 <script type="text/javascript">
-/*$(document).ready(function(){
+$(document).ready(function(){
 //var student_id=document.getElementById;
-
+/*
   document.getElementById('name').value={{name}};
   document.getElementById('student_id').value={{student_id}};
 
@@ -136,13 +136,22 @@
   document.getElementById('PS').value={{allocatedStation}};
   //document.getElementById('name')=response.name;
 var documents=response.documents;
-
-var length=documents.length;
-
+*/
+var length='{{count}}';
+if(length>0)
+{
+var documents='{{documents}}';
 for(var i=0;i<length;i++)
 {
-var doc='<div class="col-md-2 p-3 document"><a href="'+documents[i].url+'" id="doc'+i+'">      <div class="thumbnail">        <img src="img/docs.png" id="img1" class="p-1 img " style="width:100%;" alt="'+documents[i].type+'" >      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">'+documents[i].type+'</p>        </div>      </a>      </div>';
+  
+  var doc='<div class="col-md-2 p-3 d-flex justify-content-center document"><a href="'+documents[i]+'" target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">Document '+(i+1)+'</p>        </div>      </a>      </div>';
 $('#docs').append(doc);
+}
+}
+else
+{
+  var doc='<div class=" p-3 d-flex text-danger justify-content-center document"> No documents have been uploaded by the student. </div>';
+ $('#docs').append(doc); 
 }
 
 
@@ -150,7 +159,7 @@ $('#docs').append(doc);
 
 
 
-});*/
+});
 
 $(document).ready(function()
 {
@@ -210,5 +219,30 @@ $('priority-option').change(function(){
 
   });
 </script>
+<style>
+  .documents a{
+  text-decoration: none;
+}
+.caption{
+  opacity: 0;
+  text-align: center;
+  font-size: 110%;
+position: absolute;
+  top:0;
+  text-transform:uppercase;
+  width: 100%;
+  transition: .1s ease;
+  height: 100%;
+  left:5px;
+}
+.document:hover  .caption{
+  opacity: 1;
+
+}
+.caption p
+{
+  font-size: 80%;
+}
+  </style>
 
 {% endblock %}

@@ -88,6 +88,7 @@ class ApplicationStatus(models.Model):
 	newStation = models.CharField(max_length = 500, blank=True)
 	campus = models.IntegerField(default = 0)
 	natureOfQuery = models.IntegerField(default = 0)
+	publish = models.IntegerField(default=0)
 	
 	class Meta:
 		unique_together = (('student_id', 'attempt'),)

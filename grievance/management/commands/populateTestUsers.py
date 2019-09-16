@@ -7,7 +7,7 @@ class Command(BaseCommand):
   def _create(self):
     for i in range(10):
       try: 
-        (user, created) = User.objects.get_or_create(username="user"+str(i),password='qwerty@123')
+        (user, created) = User.objects.get_or_create(username="user"+str(i),password='123456')
         (_, _) = UserProfile.objects.get_or_create(user = user, token=0, name="Name "+str(i), contact="9876543210", email="user@mail.com", campus=0)
       except:
         pass
@@ -15,7 +15,7 @@ class Command(BaseCommand):
       
 
     try:
-      (user, created) = User.objects.get_or_create(username="cmo",password='qwerty@123')
+      (user, created) = User.objects.get_or_create(username="cmo",password='123456')
       (_, _) = UserProfile.objects.get_or_create(user = user, token=1, name="CMO "+str(i), contact="9876543210", email="cmo@mail.com", campus=0)
     except:
       pass 
@@ -23,7 +23,7 @@ class Command(BaseCommand):
     
     
     try:
-      (user, created) = User.objects.get_or_create(username="ad",password='qwerty@123')
+      (user, created) = User.objects.get_or_create(username="ad",password='123456')
       (_, _) = UserProfile.objects.get_or_create(user = user, token=2, name="AD ", contact="9876543210", email="ad@mail.com", campus=0)
     except:
       pass

@@ -17,8 +17,7 @@ class studentHomeView(generic.TemplateView):
     def redirect(self):
         return HttpResponseRedirect('/ps-grievance/redirect')
 
-    def get(self, request,*args, **kwargs):
-        current_user=request.user
+    def getDetails(self, current_user):
         user = UserProfile.objects.get(user=current_user)
         const = constants.Status.NOAPPLICATION.value
         attempt_status=[const,const,const]
@@ -31,7 +30,11 @@ class studentHomeView(generic.TemplateView):
             formEntry = GrievanceForm.objects.get(student_id = user)
         applicationstatus_list = ApplicationStatus.objects.filter(student_id = user)
         for x in applicationstatus_list:
-            attempt_status[x.attempt-1]=x.status
+            status = x.status
+            # if not published by the team, then pending status must be displayed
+            if(status == constants.Status.APPROVED.value or status == constants.Status.REJECTED.value) and x.publish == 0 :
+                status = constants.Status.PENDING.value
+            attempt_status[x.attempt-1]=status
             comments[x.attempt-1]=x.level2Comment
             newStation[x.attempt-1]=x.newStation
             description[x.attempt-1]=x.description
@@ -44,6 +47,13 @@ class studentHomeView(generic.TemplateView):
         'comments':comments,
         'newStation':newStation
         }
+
+        return details
+
+
+    def get(self, request,*args, **kwargs):
+        current_user=request.user
+        details = self.getDetails(current_user)
         return render (request, "grievance/grievanceForm.html", details)
        
     def post(self, request, *args, **kwargs):

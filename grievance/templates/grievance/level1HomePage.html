@@ -161,7 +161,7 @@
 
 
   var type_val=type;
-  console.log("Type = "+type_val);
+  // console.log("Type = "+type_val);
   //  console.log("Priority ="+priority);
     $.ajax({
       url: '/ps-grievance/level1/type/'+type_val,
@@ -177,16 +177,27 @@
           $('#table-body').append(entry);
 
         }
-        console.log(len);
-        for(var i=0;i<len;i++)
-        {
-             var name = response[i].name;
-            var id = response[i].id;
-          var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student/"+id+">"+response[i].description+"</a></td></tr>";
-          $('#table-body').append(entry);
-
+        // console.log(len);
+        if(type_val == "pending"){
+          for(var i=0;i<len;i++)
+          {
+               var name = response[i].name;
+              var id = response[i].id;
+            var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student/"+id+">"+response[i].description+"</a></td></tr>";
+            $('#table-body').append(entry);
 
           }
+        }
+        else{
+          for(var i=0;i<len;i++)
+          {
+               var name = response[i].name;
+              var id = response[i].id;
+            var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student-status/"+id+">"+response[i].description+"</a></td></tr>";
+            $('#table-body').append(entry);
+
+          }
+        }
       }
     });
 

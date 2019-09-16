@@ -16,12 +16,12 @@ from grievance.models import *
 from grievance.views import constants as constants
 
 
-# @method_decorator([login_required], name='dispatch') #TODO
+# @method_decorator([login_required,allocationTeam_required], name='dispatch') #TODO
 class level2HomeView(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
 		return render(request,"grievance/level2HomePage.html")
 
-# @method_decorator([login_required, cmo_or_ad_required], name='dispatch') #TODO
+# @method_decorator([login_required, allocationTeam_required], name='dispatch') #TODO
 class level2RequestView(generic.View):
 	def get(self, request, *args, **kwargs):
 
@@ -63,3 +63,54 @@ class level2RequestView(generic.View):
 		returnList.append(highPriorityList)
 		# print(returnList)
 		return JsonResponse(returnList, safe=False)
+
+	def post(self, request, *args, **kwargs):
+		student_list = ApplicationStatus.objects.filter(level = 2, 
+			status = constants.Status.PENDING.value)
+
+		for student in student_list:
+			student.publish = 1
+			student.save()
+
+		return HttpResponseRedirect('/ps-grievance/redirect/')
+
+# @method_decorator([login_required, allocationTeam_required], name='dispatch')
+class level2StudentView(generic.View):
+	def get(self, request, *args, **kwargs):
+		student_id = kwargs['student_id']
+		attemp = 1 #TODO
+		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
+		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt = attempt)
+		params={
+			'name' : userProfile_object.name,
+			'student_id' : student_id,
+			'applcationStatusObject' : ApplicationStatus_object,
+			'grievanceFormObject' : grievanceForm_object,
+		}
+		return render(request,"grievance/level2StudentPage.html",params)
+
+	def post(self, request, *args, **kwargs):
+		student_id = kwargs['student_id']
+		attempt = 1 #TODO
+		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object, attempt =attempt)
+		# grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
+
+		if ApplicationStatus_object.status == constants.Status.PENDING.value : 
+
+			newStation = request.POST.get("newStation")
+			level2comment = request.POST.get("remarks")
+			publish = request.POST.get("publish")
+
+			ApplicationStatus_object.level2Comment = level2comment
+			ApplicationStatus_object.publish = pusblish
+			if request.POST.get('approved') :
+				ApplicationStatus_object.newStation = newStation
+				ApplicationStatus_object.status = constants.Status.APPROVED.value
+			else :
+				ApplicationStatus_object.status = constants.Status.REJECTED.value
+
+			ApplicationStatus_object.save()
+
+		return HttpResponseRedirect('/ps-grievance/redirect/')

@@ -69,6 +69,7 @@ class level1StudentView(generic.View):
 			'allocatedStation' : 'remove it',
 			'applicationDate' : ApplicationStatus_object.lastChangedDate,
 			'description': ApplicationStatus_object.description,
+			'count': 3,
 		}
 		return render(request,"grievance/cmoStudentPage.html",params)
 	def post(self, request, *args, **kwargs):

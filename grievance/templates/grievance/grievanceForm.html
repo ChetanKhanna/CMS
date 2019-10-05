@@ -20,11 +20,11 @@
 
 {% block content %}
 
-<div class="site-section">
-    <form class="signup-form1 shadow p-3 mb-5 bg-white rounded" id="application3Form" action="" method="post" readonly> 
+<div class="table-light site-section">
+    <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application3Form" action="" method="post" readonly> 
         {% csrf_token %}
         <div id="application3Div" name="application3Div">
-            
+            (with Location)
 
             <h2 class="text-center"> Reapplication 2 </h2>
             <br/>
@@ -69,9 +69,11 @@
             </div>
         </div>
     </form>
-    <form class="signup-form1 shadow p-3 mb-5 bg-white rounded" id="application2Form" action="" method="post" readonly> 
+
+
+    <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application2Form" action="" method="post" readonly> 
         {% csrf_token %}
-        <div id="application2Div" name="application2Div">
+        <div table-warning id="application2Div" name="application2Div">
             
 
             <h2 class="text-center"> Reapplication 1 </h2>
@@ -117,7 +119,7 @@
             </div>
         </div>
     </form>
-    <form class="signup-form1 shadow p-3 mb-5 bg-white rounded" id="application1Form" action="/ps-grievance/student/" method="post" readonly>
+    <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application1Form" action="/ps-grievance/student/" method="post" readonly>
         {% csrf_token %}
         <h2 class="text-center">Grievance Application Form</h2>
         <br/>
@@ -184,7 +186,7 @@
                 </div>
             </div>
 
-            <p>   Add the preference number of the stations you want in order from 1 to 5 </p>
+            <p align="center">   Add the preference number of the stations you want in order from 1 to 5 (with Location)</p>
 
             <div class="form-group row">
                 <label for="userid" class="col-sm-4 col-form-label">Preferred Station 1</label>
@@ -219,7 +221,7 @@
             </div>
 
             <h3 class="text-center">Supporting Documents</h3>
-            <p> You can add upto 5 supporting documents to support your Application. Each document should be less than 5 MB </p>
+            <p class="text-center"> You can add upto 5 supporting documents to support your Application. Each document should be less than 5 MB </p>
             <div id="file-uploads" name="file-uploads">
                 <input type="file" name="document1" id="document1"></input>
                 <input type="file" name="document2" id="document2"></input>

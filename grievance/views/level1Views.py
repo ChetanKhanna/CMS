@@ -7,13 +7,14 @@ from django.http import HttpResponseRedirect
 #import decorators
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from grievance.customDecorator import cmo_or_ad_required
+from grievance.customDecorator import cmo_or_ad_required, ad_required
 
 #import models
 from grievance.models import *
 
 #import views
 from grievance.views import constants as constants
+from grievance.views import studentHomeView
 
 
 @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
@@ -28,9 +29,9 @@ class level1RequestView(generic.View):
 
 		typeOfRequest = kwargs["type"]
 		if(typeOfRequest == "pending"):
-			level=1
+			level = 1
 		else:
-			level=2
+			level = 2
 
 		user_object = request.user
 		user_profile_object = UserProfile.objects.get(user_id=user_object)
@@ -40,8 +41,9 @@ class level1RequestView(generic.View):
 			natureOfQuery = constants.NatureOfQuery.MEDICAL.value
 		else:
 			natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value
+
 		student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
-			natureOfQuery = natureOfQuery, attempt=1).order_by(
+			 natureOfQuery = natureOfQuery, attempt=1).order_by(
 			'lastChangedDate')
 		
 		returnList=[]
@@ -67,6 +69,7 @@ class level1StudentView(generic.View):
 			'allocatedStation' : 'remove it',
 			'applicationDate' : ApplicationStatus_object.lastChangedDate,
 			'description': ApplicationStatus_object.description,
+			'count': 3,
 		}
 		return render(request,"grievance/cmoStudentPage.html",params)
 	def post(self, request, *args, **kwargs):
@@ -105,3 +108,11 @@ class level1StudentView(generic.View):
 
 # 		return render(request,"grievance/level1HomePage.html")
 
+@method_decorator([login_required, cmo_or_ad_required], name='dispatch')
+class level1StudentStatusView(generic.View):
+	def get(self, request, *args, **kwargs):
+
+		student_id = kwargs['student_id']
+		student = User.objects.get(username = student_id)
+		details = studentHomeView.studentHomeView().getDetails(student)
+		return render (request, "grievance/grievanceForm.html", details)

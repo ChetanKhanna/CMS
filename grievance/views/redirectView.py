@@ -19,7 +19,7 @@ class RedirectView(generic.TemplateView):
 			else:
 				print("Unknow user logged in")
 				return redirect('/ps-grievance/login')
-		except ObjectDoesNotExist:
+		except :
 			# Check if user credentials match any admin/staff
 			if current_user.is_superuser or current_user.is_staff:
 				return redirect('/ps-grievance/psd')

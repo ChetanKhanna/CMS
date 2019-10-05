@@ -7,9 +7,9 @@
   <head>-->
 
 
-<!--
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     bootstrap ends
@@ -24,30 +24,28 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
     <title> Form Display</title>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
   </head>
--->
+
 <head>
- 
+
   </head>
 
 {% extends 'grievance/website_base.html' %}
 {% load static %}
 
 {% block content %}
-<div class="site-section container-fluid">
-<div class="row mb-5 justify-content-center container-fluid text-center">
 
-
-    <section class="container-fluid" id="main">
+    <section class="container-fluid m-0 " id="main">
 
 
 <br><br><br>
 
-  <div class="row pt-4 table-primary pb-3">
+  <div class="row container-fluid pt-4 d-flex justify-content-center table-primary pb-3">
 
-    <div class="col-md-2">
-  
-    </div>
 
       <div class="col-md-2">
         <label for="name" ><strong>Student Name</strong> </label>
@@ -57,18 +55,24 @@
         <label for="student_id" ><strong>Student Id</strong> </label>
         <input class="form-control" id="student_id" style="text-align: center;" name="student_id" value='{{student_id}}' disabled type="text">
       </div>
-      <div class="col-md-2">
-        <label for="applicationDate" ><strong>Form Submission date</strong> </label>
-        <input class="form-control" id="applicationDate" style="text-align: center;" name="applicationDate" value='{{applicationDate}}' disabled type="text">
-      </div>
-      <div class="col-md-2">
-        <label for="PS" ><strong>Current PS</strong> </label>
-        <input class="form-control" id="PS" name="PS" style="text-align: center;" value='{{allocatedStation}}' disabled type="text">
-      </div>
-    </div>
 
+      <div class="col-md-2">
+        <label for="PS" ><strong>Nature of Query</strong> </label>
+        <input class="form-control" id="nature" name="nature" style="text-align: center;" value='{{nature}}' disabled type="text">
+      </div>
+      <div class="col-md-2">
+        <label for="CG" ><strong>CG</strong> </label>
+        <input class="form-control" id="CG" name="CG" style="text-align: center;" value='{{cg}}' disabled type="text">
+      </div>
+      <div class="col-md-2">
+        <label for="Offshoot" ><strong>Offshoot</strong> </label>
+        <input class="form-control" id="offshoot" name="offshoot" style="text-align: center;" value='{{offshoot}}' disabled type="text">
+      </div>
+
+    </div>
+    <hr width="80%">
     <h3 class="text-danger h3 mb-4  text-center"> Form Details</h3>
-<div class="row d-flex justify-content-center">
+<div class="row container-fluid d-flex justify-content-center">
   <div class="col-md-4">
     <div class="row container-fluid ">
       <div class="col-md-12">
@@ -81,29 +85,29 @@
   <div class="col-md-1"></div>
   <div class="col-md-5 col-sm-5">
   <h5>  Submitted Documents </h5>
-    <div class="row documents d-flex justify-content-center" id="docs">
+    <div class="row container-fluid documents d-flex justify-content-center" id="docs">
 
 
       </div>
     </div>
   </div>
-  <div class="row mt-5">
+  <div class="row  container-fluid mt-5">
 
 
     <div class="col-md-6 col-sm-12 p-0 d-flex justify-content-center ">
-      <div class=" row btn btn-group-inline  btn-group-toggle btn-grp  pl-0" id="priority" data-toggle="buttons">
+      <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0" id="priority" data-toggle="buttons">
    <h5 class="h5"> Set Priority </h5>
-        <label class="btn mt-2 btn-outline-warning ">
+        <label class="btn mt-2 btn-outline-warning">
           <input type="radio" name="priority-option" value="0" id="low"  autocomplete="off" > <i class="fas fa-user"> </i> Low Priority
         </label>
         <label class="btn mt-2 btn-outline-primary ">
-          <input type="radio" name="priority-option" value="1" id="med" autocomplete="off" > <i class="fas fa-user"> </i> Medium Priority
+          <input type="radio"  name="priority-option" value="1" id="med"  autocomplete="off" > <i class="fas fa-user"> </i> Medium Priority
         </label>
 
         <label class="btn mt-2 btn-outline-danger">
           <input type="radio" name="priority-option" value="2" id="high" autocomplete="off" > <i class="fas fa-user"> </i> High Priority
         </label>
-     
+
       <br><br>
       <span class="text-danger"  id="priority-message">Please Select a Priority</span>
      </div>
@@ -111,13 +115,102 @@
 
       <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
         <h5> Enter Remarks</h5>
-        
-          <textarea class="form-control md-textarea" rows="3" id="remarks"  name="remarks" type="text" ></textarea>
-          <span class="text-danger" id="remarks-message" style="display:none">Please enter the remarks</span>
+
+          <textarea class="form-control md-textarea" disabled rows="3" id="remarks"  name="remarks" type="text" ></textarea>
 
       </div>
     </div>
 
+
+
+    <hr width="80%" class="mt-5">
+
+
+
+    <div class="row container-fluid mt-5 mb-5   ">
+      <div class="col-md-6 m-3 ">
+        <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+        <strong> Current PS </strong>
+
+          <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;" value='{{current_ps}}' disabled type="text">
+      </div>
+    </div>
+    <div class="row mt-5 d-flex justify-content-center">
+
+      <div class="col-md-6">
+      <strong> Preference No. of Alloted Station </strong>
+
+        <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;" value='{{current_ps}}' disabled type="text">
+    </div>
+    </div>
+  </div>
+      <div class="col-md-4">
+
+        <div class="row m-1">
+          <div class="col-md-6">
+            <label for="p1" ><strong>Preference 1:</strong> </label>
+          </div>
+          <div class="col-md-6">
+            <input class="form-control" name="p1" style="text-align: center;" value='{{p1}}' disabled type="text">
+          </div>
+        </div>
+        <div class="row m-1">
+          <div class="col-md-6">
+            <label for="p2" ><strong>Preference 2:</strong> </label>
+          </div>
+          <div class="col-md-6">
+            <input class="form-control" name="p2" style="text-align: center;" value='{{p2}}' disabled type="text">
+          </div>
+        </div>
+        <div class="row m-1">
+          <div class="col-md-6">
+            <label for="p3" ><strong>Preference 3:</strong> </label>
+          </div>
+          <div class="col-md-6">
+            <input class="form-control" name="p3" style="text-align: center;" value='{{p3}}' disabled type="text">
+          </div>
+        </div>
+        <div class="row m-1">
+          <div class="col-md-6">
+            <label for="p4" ><strong>Preference 4:</strong> </label>
+          </div>
+          <div class="col-md-6">
+            <input class="form-control" name="p4" style="text-align: center;" value='{{p4}}' disabled type="text">
+          </div>
+        </div>
+        <div class="row m-1">
+          <div class="col-md-6">
+            <label for="p5" ><strong>Preference 5:</strong> </label>
+          </div>
+          <div class="col-md-6">
+            <input class="form-control" name="p5" style="text-align: center;" value='{{p5}}' disabled type="text">
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <hr width="80%" class="mt-5">
+
+<div class="row form-group container-fluid mt-5">
+  <div class="col-md-6 d-flex justify-content-center">
+    <div class="col-md-6">
+    <label for="ex1"><strong>New Alloted PS Station</strong> </label>
+    <input class="form-control mt-4" id="ex1" type="text">
+  </div>
+
+  </div>
+  <div class="col-md-6  d-flex justify-content-center">
+
+    <div class="col-md-8  form-group text-center p-0">
+
+<label for="remarks"><strong>Remarks </strong></label>
+        <textarea class="form-control md-textarea"  rows="3" id="remarks"  name="remarks" type="text" ></textarea>
+        <span class="text-danger" id="remarks-message" style="display:none">Please enter the remarks</span>
+
+    </div>
+  </div>
+</div>
 <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
   <button class="btn btn-lg btn-primary" onclick="sendData()">Submit</button>
 </div>
@@ -143,15 +236,15 @@ if(length>0)
 var documents='{{documents}}';
 for(var i=0;i<length;i++)
 {
-  
-  var doc='<div class="col-md-2 p-3 d-flex justify-content-center document"><a href="'+documents[i]+'" target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">Document '+(i+1)+'</p>        </div>      </a>      </div>';
+
+  var doc='<div class="col-md-2 p-3 d-flex justify-content-center document"><a href="'+documents[i]+'" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">Document '+(i+1)+'</p>        </div>      </a>      </div>';
 $('#docs').append(doc);
 }
 }
 else
 {
   var doc='<div class=" p-3 d-flex text-danger justify-content-center document"> No documents have been uploaded by the student. </div>';
- $('#docs').append(doc); 
+ $('#docs').append(doc);
 }
 
 

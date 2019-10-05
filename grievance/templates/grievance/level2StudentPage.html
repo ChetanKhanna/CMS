@@ -8,84 +8,92 @@
 
 
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    bootstrap ends
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+bootstrap ends
 
-     fa icons
+fa icons
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous">
-     fa icons ends
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css"
+  integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous">
+fa icons ends
 
-    custom
-    <script src="js/jscript.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="utf-8">
-    <title> Form Display</title>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+custom
+<script src="js/jscript.js" type="text/javascript"></script>
+<link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<title> Form Display</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
-  </head>
+</head>
 
 <head>
 
-  </head>
+</head>
 
 {% extends 'grievance/website_base.html' %}
 {% load static %}
 
 {% block content %}
 
-    <section class="container-fluid m-0 " id="main">
+<section class="container-fluid m-0 " id="main">
 
 
-<br><br><br>
+  <br><br><br>
 
   <div class="row container-fluid pt-4 d-flex justify-content-center table-primary pb-3">
 
 
-      <div class="col-md-2">
-        <label for="name" ><strong>Student Name</strong> </label>
-        <input class="form-control" id="name" style="text-align: center;" name="name" value='{{name}}' disabled type="text">
-      </div>
-      <div class="col-md-2">
-        <label for="student_id" ><strong>Student Id</strong> </label>
-        <input class="form-control" id="student_id" style="text-align: center;" name="student_id" value='{{student_id}}' disabled type="text">
-      </div>
-
-      <div class="col-md-2">
-        <label for="PS" ><strong>Nature of Query</strong> </label>
-        <input class="form-control" id="nature" name="nature" style="text-align: center;" value='{{applcationStatusObject.natureOfQuery}}' disabled type="text">
-      </div>
-      <div class="col-md-2">
-        <label for="CG" ><strong>CG</strong> </label>
-        <input class="form-control" id="CG" name="CG" style="text-align: center;" value='{{grievanceFormObject.cg}}' disabled type="text">
-      </div>
-      <div class="col-md-2">
-        <label for="Offshoot" ><strong>Offshoot</strong> </label>
-        <input class="form-control" id="offshoot" name="offshoot" style="text-align: center;" value='{{grievanceFormObject.offShoot}}' disabled type="text">
-      </div>
-
+    <div class="col-md-2">
+      <label for="name"><strong>Student Name</strong> </label>
+      <input class="form-control" id="name" style="text-align: center;" name="name" value='{{name}}' disabled
+        type="text">
     </div>
-    <hr width="80%">
-    <h3 class="text-danger h3 mb-4  text-center"> Form Details</h3>
-<div class="row container-fluid d-flex justify-content-center">
-  <div class="col-md-4">
-    <div class="row container-fluid ">
-      <div class="col-md-12">
-        <label for="description" ><strong>Description</strong> </label>
-        <textarea class="form-control md-textarea" disabled rows="5" id="description" name="description" type="text" >{{applcationStatusObject.description}}</textarea>
-      </div>
+    <div class="col-md-2">
+      <label for="student_id"><strong>Student Id</strong> </label>
+      <input class="form-control" id="student_id" style="text-align: center;" name="student_id" value='{{student_id}}'
+        disabled type="text">
+    </div>
+
+    <div class="col-md-2">
+      <label for="PS"><strong>Nature of Query</strong> </label>
+      <input class="form-control" id="nature" name="nature" style="text-align: center;"
+        value='{{applcationStatusObject.natureOfQuery}}' disabled type="text">
+    </div>
+    <div class="col-md-2">
+      <label for="CG"><strong>CG</strong> </label>
+      <input class="form-control" id="CG" name="CG" style="text-align: center;" value='{{grievanceFormObject.cg}}'
+        disabled type="text">
+    </div>
+    <div class="col-md-2">
+      <label for="Offshoot"><strong>Offshoot</strong> </label>
+      <input class="form-control" id="offshoot" name="offshoot" style="text-align: center;"
+        value='{{grievanceFormObject.offShoot}}' disabled type="text">
     </div>
 
   </div>
-  <div class="col-md-1"></div>
-  <div class="col-md-5 col-sm-5">
-  <h5>  Submitted Documents </h5>
-    <div class="row container-fluid documents d-flex justify-content-center" id="docs">
+  <hr width="80%">
+  <h3 class="text-danger h3 mb-4  text-center"> Form Details</h3>
+  <div class="row container-fluid d-flex justify-content-center">
+    <div class="col-md-4">
+      <div class="row container-fluid ">
+        <div class="col-md-12">
+          <label for="description"><strong>Description</strong> </label>
+          <textarea class="form-control md-textarea" disabled rows="5" id="description" name="description"
+            type="text">{{applcationStatusObject.description}}</textarea>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-5 col-sm-5">
+      <h5> Submitted Documents </h5>
+      <div class="row container-fluid documents d-flex justify-content-center" id="docs">
 
 
       </div>
@@ -96,269 +104,449 @@
 
     <div class="col-md-6 col-sm-12 p-0 d-flex justify-content-center ">
       <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0" id="priority" data-toggle="buttons">
-      <h5 class="h5"> Set Priority </h5>
+        <h5 class="h5"> Set Priority </h5>
         <label class="btn mt-2 btn-outline-warning">
-          <input type="radio" name="priority-option" value="0" id="low"  autocomplete="off" > <i class="fas fa-user"> </i> Low Priority
+          <input type="radio" name="priority-option" value="0" id="low" autocomplete="off"> <i class="fas fa-user"> </i>
+          Low Priority
         </label>
         <label class="btn mt-2 btn-outline-primary ">
-          <input type="radio"  name="priority-option" value="1" id="med"  autocomplete="off" > <i class="fas fa-user"> </i> Medium Priority
+          <input type="radio" name="priority-option" value="1" id="med" autocomplete="off"> <i class="fas fa-user"> </i>
+          Medium Priority
         </label>
 
         <label class="btn mt-2 btn-outline-danger">
-          <input type="radio" name="priority-option" value="2" id="high" autocomplete="off" > <i class="fas fa-user"> </i> High Priority
+          <input type="radio" name="priority-option" value="2" id="high" autocomplete="off"> <i class="fas fa-user">
+          </i> High Priority
         </label>
 
-      <br><br>
-      <span class="text-danger"  id="priority-message">Please Select a Priority</span>
-     </div>
+        <br><br>
+        <span class="text-danger" id="priority-message">Please Select a Priority</span>
+      </div>
     </div>
 
-     <!--  <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
+    <!--  <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
         <h5> Level 1 Remarks</h5>
 
           <textarea class="form-control md-textarea" disabled rows="3" id="level1Remarks"  name="level1Remarks" type="text" >{{applcationStatusObject.level1Comment}}</textarea>
 
       </div> -->
-    </div>
+  </div>
 
 
 
-    <hr width="80%" class="mt-5">
+  <hr width="80%" class="mt-5">
 
 
 
-    <div class="row container-fluid mt-5 mb-5   ">
-      <div class="col-md-6 m-3 ">
-        <div class="row d-flex justify-content-center">
+  <div class="row container-fluid mt-5 mb-5   ">
+    <div class="col-md-6 m-3 ">
+      <div class="row d-flex justify-content-center">
         <div class="col-md-6">
-        <strong> Current PS </strong>
+          <strong> Current PS </strong>
 
-          <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;" value='{{grievanceFormObject.allocatedStation}}' disabled type="text">
+          <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;"
+            value='{{grievanceFormObject.allocatedStation}}' disabled type="text">
+        </div>
+      </div>
+      <div class="row mt-5 d-flex justify-content-center">
+
+        <div class="col-md-6">
+          <strong> Preference No. of Alloted Station </strong>
+
+          <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;"
+            value='{{grievanceFormObject.preferenceNumberOfAllocatedStation}}' disabled type="text">
+        </div>
       </div>
     </div>
-    <div class="row mt-5 d-flex justify-content-center">
+    <div class="col-md-4">
 
+      <div class="row m-1">
+        <div class="col-md-6">
+          <label for="p1"><strong>Preference 1:</strong> </label>
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" name="p1" style="text-align: center;"
+            value='{{grievanceFormObject.preferedStation1}}' disabled type="text">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col-md-6">
+          <label for="p2"><strong>Preference 2:</strong> </label>
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" name="p2" style="text-align: center;"
+            value='{{grievanceFormObject.preferedStation2}}' disabled type="text">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col-md-6">
+          <label for="p3"><strong>Preference 3:</strong> </label>
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" name="p3" style="text-align: center;"
+            value='{{grievanceFormObject.preferedStation3}}' disabled type="text">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col-md-6">
+          <label for="p4"><strong>Preference 4:</strong> </label>
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" name="p4" style="text-align: center;"
+            value='{{grievanceFormObject.preferedStation4}}' disabled type="text">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col-md-6">
+          <label for="p5"><strong>Preference 5:</strong> </label>
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" name="p5" style="text-align: center;"
+            value='{{grievanceFormObject.preferedStation5}}' disabled type="text">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <hr width="80%" class="mt-5">
+
+
+  <!-- level1 -->
+
+  <div class="row form-group container-fluid mt-5">
+    <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
-      <strong> Preference No. of Alloted Station </strong>
+        <label for="ex1"><strong>New Alloted PS Station</strong> </label>
+        <input class="form-control mt-4" type="text" name="newStation" id="newStation1" {% if numberOfAttempts > 1 %}
+          disabled {% endif %}>
+        <span class="text-danger" id="newStation-message1" style="display:none">Please enter new PS station</span>
+      </div>
 
-        <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;" value='{{grievanceFormObject.preferenceNumberOfAllocatedStation}}' disabled type="text">
     </div>
-    </div>
-  </div>
-      <div class="col-md-4">
+    <div class="col-md-6  d-flex justify-content-center">
 
-        <div class="row m-1">
-          <div class="col-md-6">
-            <label for="p1" ><strong>Preference 1:</strong> </label>
-          </div>
-          <div class="col-md-6">
-            <input class="form-control" name="p1" style="text-align: center;" value='{{grievanceFormObject.preferedStation1}}' disabled type="text">
-          </div>
-        </div>
-        <div class="row m-1">
-          <div class="col-md-6">
-            <label for="p2" ><strong>Preference 2:</strong> </label>
-          </div>
-          <div class="col-md-6">
-            <input class="form-control" name="p2" style="text-align: center;" value='{{grievanceFormObject.preferedStation2}}' disabled type="text">
-          </div>
-        </div>
-        <div class="row m-1">
-          <div class="col-md-6">
-            <label for="p3" ><strong>Preference 3:</strong> </label>
-          </div>
-          <div class="col-md-6">
-            <input class="form-control" name="p3" style="text-align: center;" value='{{grievanceFormObject.preferedStation3}}' disabled type="text">
-          </div>
-        </div>
-        <div class="row m-1">
-          <div class="col-md-6">
-            <label for="p4" ><strong>Preference 4:</strong> </label>
-          </div>
-          <div class="col-md-6">
-            <input class="form-control" name="p4" style="text-align: center;" value='{{grievanceFormObject.preferedStation4}}' disabled type="text">
-          </div>
-        </div>
-        <div class="row m-1">
-          <div class="col-md-6">
-            <label for="p5" ><strong>Preference 5:</strong> </label>
-          </div>
-          <div class="col-md-6">
-            <input class="form-control" name="p5" style="text-align: center;" value='{{grievanceFormObject.preferedStation5}}' disabled type="text">
-          </div>
-        </div>
+      <div class="col-md-8  form-group text-center p-0">
+
+        <label for="remarks"><strong>Remarks </strong></label>
+        <textarea class="form-control md-textarea" rows="3" id="remarks1" name="remarks" type="text"
+          {% if numberOfAttempts > 1 %} disabled {% endif %}></textarea>
+        <span class="text-danger" id="remarks-message1" style="display:none">Please enter the remarks</span>
 
       </div>
     </div>
-    <hr width="80%" class="mt-5">
-
-<div class="row form-group container-fluid mt-5">
-  <div class="col-md-6 d-flex justify-content-center">
-    <div class="col-md-6">
-    <label for="ex1"><strong>New Alloted PS Station</strong> </label>
-    <input class="form-control mt-4" type="text" name="newStation" id="newStation">
-    <span class="text-danger" id="newStation-message" style="display:none">Please enter new PS station</span>
   </div>
+  <div id="publishSection1">
 
-  </div>
-  <div class="col-md-6  d-flex justify-content-center">
+    <div class="col-md-12 col-sm-12 p-0 d-flex justify-content-center ">
+      <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0 justify-content-center" id="priority"
+        data-toggle="buttons">
+        <h5 class="h5"> Publish </h5>
+        <label class="btn mt-2 btn-outline-danger ">
+          <input type="radio" name="publish-option" value="0" id="no1" autocomplete="off"> <i class="fas fa-user"> </i>
+          Do
+          not Publish
+        </label>
 
-    <div class="col-md-8  form-group text-center p-0">
+        <label class="btn mt-2 btn-outline-success">
+          <input type="radio" name="publish-option" value="1" id="yes1" autocomplete="off"> <i class="fas fa-user"> </i>
+          Publish
+        </label>
 
-<label for="remarks"><strong>Remarks </strong></label>
-        <textarea class="form-control md-textarea"  rows="3" id="remarks"  name="remarks" type="text" ></textarea>
-        <span class="text-danger" id="remarks-message" style="display:none">Please enter the remarks</span>
-
+        <br><br>
+        <span class="text-danger" id="publish-message1">Please Select</span>
+      </div>
     </div>
   </div>
-</div>
+  <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
+    <button id="acceptButton1" class="btn btn-lg btn-primary" name="accept1" onclick="sendData('accept')">Accept</button>
 
-<div class="col-md-6 col-sm-12 p-0 d-flex justify-content-center ">
-  <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0" id="priority" data-toggle="buttons">
-  <h5 class="h5"> Publish </h5>
-    <label class="btn mt-2 btn-outline-danger ">
-      <input type="radio"  name="publish-option" value="0" id="no"  autocomplete="off" > <i class="fas fa-user"> </i> Do not  Publish
-    </label>
-
-    <label class="btn mt-2 btn-outline-success">
-      <input type="radio" name="publish-option" value="1" id="yes" autocomplete="off" > <i class="fas fa-user"> </i> Publish
-    </label>
-
-  <br><br>
-  <span class="text-danger"  id="publish-message">Please Select </span>
- </div>
-</div>
-
-<div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-  <button class="btn btn-lg btn-primary" name="accept" onclick="sendData('accept')">Accept</button>
-
-  <button class="btn btn-lg btn-primary" name="reject" onclick="sendData('reject')">Reject</button>
-</div>
+    <button id="rejectButton1" class="btn btn-lg btn-primary" name="reject1" style="margin-left: 5px;"
+      onclick="sendData('reject')">Reject</button>
+    <button id="statusButton1" class="btn btn-lg btn-primary" disabled name="status1" style="margin-left: 5px; display: none;">Rejected</button>
+  </div>
 
 </section>
 </div>
 
+
+
+
+
+
+<!-- level2 -->
+<div id="formSection2">
+  <hr>
+  <h2 class="text-center">Re-Application 1</h2>
+  <div class="row form-group container-fluid mt-5">
+    <div class="col-md-6 d-flex justify-content-center">
+      <div class="col-md-6">
+        <label for="ex1"><strong>New Alloted PS Station</strong> </label>
+        <input class="form-control mt-4" type="text" name="newStation2" id="newStation2" {% if numberOfAttempts > 2 %}
+          disabled {% endif %}>
+        <span class="text-danger" id="newStation-message2" style="display:none">Please enter new PS station</span>
+      </div>
+
+    </div>
+    <div class="col-md-6  d-flex justify-content-center">
+
+      <div class="col-md-8  form-group text-center p-0">
+
+        <label for="remarks"><strong>Remarks </strong></label>
+        <textarea class="form-control md-textarea" rows="3" id="remarks2" name="remarks" type="text"
+          {% if numberOfAttempts > 2 %} disabled {% endif %}></textarea>
+        <span class="text-danger" id="remarks-message2" style="display:none">Please enter the remarks</span>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="publishSection2">
+    <div class="col-md-12 col-sm-12 p-0 d-flex justify-content-center ">
+      <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0 justify-content-center" id="priority"
+        data-toggle="buttons">
+        <h5 class="h5"> Publish </h5>
+        <label class="btn mt-2 btn-outline-danger ">
+          <input type="radio" name="publish-option" value="0" id="no2" autocomplete="off"> <i class="fas fa-user"> </i>
+          Do
+          not Publish
+        </label>
+
+        <label class="btn mt-2 btn-outline-success">
+          <input type="radio" name="publish-option" value="1" id="yes2" autocomplete="off"> <i class="fas fa-user"> </i>
+          Publish
+        </label>
+
+        <br><br>
+        <span class="text-danger" id="publish-message2">Please Select </span>
+      </div>
+    </div>
+  </div>
+  <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
+    <button id="acceptButton2" class="btn btn-lg btn-primary" name="accept2" onclick="sendData('accept')">Accept</button>
+
+    <button id="rejectButton2" class="btn btn-lg btn-primary" name="reject2" style="margin-left: 5px;"
+      onclick="sendData('reject')">Reject</button>
+    <button id="statusButton2" class="btn btn-lg btn-primary" disabled name="status2" style="margin-left: 5px; display: none;">Rejected</button>
+  </div>
+
+  </section>
+</div>
+
+
+
+<!-- level3 -->
+<div id="formSection3">
+  <hr>
+  <h2 class="text-center">Re-Application 2</h2>
+  <div class="row form-group container-fluid mt-5">
+    <div class="col-md-6 d-flex justify-content-center">
+      <div class="col-md-6">
+        <label for="ex1"><strong>New Alloted PS Station</strong> </label>
+        <input class="form-control mt-4" type="text" name="newStation3" id="newStation3">
+        <span class="text-danger" id="newStation-message3" style="display:none">Please enter new PS station</span>
+      </div>
+
+    </div>
+    <div class="col-md-6  d-flex justify-content-center">
+
+      <div class="col-md-8  form-group text-center p-0">
+
+        <label for="remarks"><strong>Remarks </strong></label>
+        <textarea class="form-control md-textarea" rows="3" id="remarks3" name="remarks" type="text"></textarea>
+        <span class="text-danger" id="remarks-message3" style="display:none">Please enter the remarks</span>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="publishSection3">
+    <div class="col-md-12 col-sm-12 p-0 d-flex justify-content-center ">
+      <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0 justify-content-center" id="priority"
+        data-toggle="buttons">
+        <h5 class="h5"> Publish </h5>
+        <label class="btn mt-2 btn-outline-danger ">
+          <input type="radio" name="publish-option" value="0" id="no3" autocomplete="off"> <i class="fas fa-user"> </i>
+          Do
+          not Publish
+        </label>
+
+        <label class="btn mt-2 btn-outline-success">
+          <input type="radio" name="publish-option" value="1" id="yes3" autocomplete="off"> <i class="fas fa-user"> </i>
+          Publish
+        </label>
+
+        <br><br>
+        <span class="text-danger" id="publish-message3">Please Select </span>
+      </div>
+    </div>
+
+    <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
+      <button id="acceptButton3" class="btn btn-lg btn-primary" name="accept3" onclick="sendData('accept')">Accept</button>
+
+      <button id="rejectButton3" class="btn btn-lg btn-primary" name="reject3" style="margin-left: 5px;"
+        onclick="sendData('reject')">Reject</button>
+    <button id="statusButton3" class="btn btn-lg btn-primary" disabled name="status3" style="margin-left: 5px; display: none;"></button>
+  </div>
+  </div>
+
+
+  </section>
+</div>
+
+
+
+
+
+
 <script type="text/javascript">
-$(document).ready(function(){
-//var student_id=document.getElementById;
-/*
-  document.getElementById('name').value={{name}};
-  document.getElementById('student_id').value={{student_id}};
 
-  document.getElementById('description').value={{description}};
-  document.getElementById('applicationDate').value={{applicationDate}};
-  document.getElementById('PS').value={{allocatedStation}};
-  //document.getElementById('name')=response.name;
-var documents=response.documents;
-*/
-var length='{{count}}';
-if(length>0)
-{
-var documents='{{documents}}';
-for(var i=0;i<length;i++)
-{
-
-  var doc='<div class="col-md-2 p-3 d-flex justify-content-center document"><a href="'+documents[i]+'" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">Document '+(i+1)+'</p>        </div>      </a>      </div>';
-$('#docs').append(doc);
-}
-}
-else
-{
-  var doc='<div class=" p-3 d-flex text-danger justify-content-center document"> No documents have been uploaded by the student. </div>';
- $('#docs').append(doc);
-}
+  $('#priority-message').hide();
+  $('#publish-message1').hide();
+  $('#publish-message2').hide();
+  $('#publish-message3').hide();
+  $('#remarks-message1').hide();
+  $('#remarks-message2').hide();
+  $('#remarks-message3').hide();
+  $('#newStation-message1').hide();
+  $('#newStation-message2').hide();
+  $('#newStation-message3').hide();
 
 
+  $('#formSection2').hide();
+  $('#formSection3').hide();
+  var numberOfAttempts = '{{numberOfAttempts}}';
+  if (numberOfAttempts > 1) {
+    $('#formSection2').show();
+    $('#publishSection1').hide();
+    $('#acceptButton1').hide();
+    $('#rejectButton1').hide();
+    $('#statusButton1').show();
+    if (numberOfAttempts > 2) {
+      $('#formSection3').show();
+      $('#publishSection2').hide();
+      $('#acceptButton2').hide();
+      $('#rejectButton2').hide();
+      $('#statusButton2').show();
+    }
+  }
+
+
+  console.log(numberOfAttempts);
+
+  $(document).ready(function () {
+    //var student_id=document.getElementById;
+    /*
+      document.getElementById('name').value={{name}};
+      document.getElementById('student_id').value={{student_id}};
+    
+      document.getElementById('description').value={{description}};
+      document.getElementById('applicationDate').value={{applicationDate}};
+      document.getElementById('PS').value={{allocatedStation}};
+      //document.getElementById('name')=response.name;
+    var documents=response.documents;
+    */
+    var length = '{{count}}';
+    if (length > 0) {
+      var documents = '{{documents}}';
+      for (var i = 0; i < length; i++) {
+
+        var doc = '<div class="col-md-2 p-3 d-flex justify-content-center document"><a href="' + documents[i] + '" id="doc' + i + '">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">Document ' + (i + 1) + '</p>        </div>      </a>      </div>';
+        $('#docs').append(doc);
+      }
+    }
+    else {
+      var doc = '<div class=" p-3 d-flex text-danger justify-content-center document"> No documents have been uploaded by the student. </div>';
+      $('#docs').append(doc);
+    }
 
 
 
 
-});
-
-$(document).ready(function()
-{
-  console.log('doc ready');
-$('#priority-message').hide();
-$('#remarks-message').hide();
-
-});
 
 
+  });
 
-function sendData(button)
-{
+  $(document).ready(function () {
+    console.log('doc ready');
+    $('#priority-message').hide();
+    $('#remarks-message').hide();
+
+  });
 
 
-  $('#publish-message').hide();
-  $('#newStation-message').hide();
-  $('#remarks-message').hide();
-    var publish=$("input:radio[name='publish-option']:checked").val();
-    var remarks=$("#remarks").val();
-    var newStation = $("#newStation").val();
+
+  function sendData(button) {
+
+    var attempt = numberOfAttempts;
+    $('#publish-message' + attempt).hide();
+    $('#newStation-message' + attempt).hide();
+    $('#remarks-message' + attempt).hide();
+    var publish = $("input:radio[name='publish-option" + attempt + " ']:checked").val();
+    var remarks = $("#remarks" + attempt).val();
+    var newStation = $("#newStation" + attempt).val();
     console.log(newStation)
 
-  if(!publish)
-  {
-    $('#publish-message').show();
+    if (!publish) {
+      $('#publish-message' + attempt).show();
+    }
+    else if (!remarks)
+      $('#remarks-message' + attempt).show();
+    else if (button == 'accept' && !newStation)
+      $('#newStation-message' + attempt).show();
+    else {
+      var token = '{{csrf_token}}'
+      $.ajax({
+        headers: { "X-CSRFToken": token },
+        url: '#',
+        type: 'POST',
+        data: { newStation: newStation, remarks: remarks, button: button },
+        success: function (response) {
+          console.log('data sent successfully');
+          if (response.flag != 1)
+            location.href = '/ps-grievance/redirect/'
+        }
+      });
+    }
+
+
+
   }
-  else if(!remarks)
-    $('#remarks-message').show();
-  else if(button == 'accept' && !newStation)
-    $('#newStation-message').show();
-  else 
-  {
-    var token = '{{csrf_token}}'
-    $.ajax({
-      headers : {"X-CSRFToken":token},
-      url: '#',
-      type:'POST',
-      data:{ newStation : newStation, remarks : remarks, button: button},
-      success: function(response)
-      {
-        console.log('data sent successfully');
-        if(response.flag!=1) 
-          location.href = '/ps-grievance/redirect/'
-      }
-    });
-  }
 
 
+  $('priority-option').change(function () {
 
-}
-
-
-$('priority-option').change(function(){
-
-  var priority=$("input:radio[name='priority-option']:checked").val();
-  console.log(priority);
- // getData(type);
+    var priority = $("input:radio[name='priority-option']:checked").val();
+    console.log(priority);
+    // getData(type);
 
   });
 </script>
 <style>
-  .documents a{
-  text-decoration: none;
-}
-.caption{
-  opacity: 0;
-  text-align: center;
-  font-size: 110%;
-position: absolute;
-  top:0;
-  text-transform:uppercase;
-  width: 100%;
-  transition: .1s ease;
-  height: 100%;
-  left:5px;
-}
-.document:hover  .caption{
-  opacity: 1;
+  .documents a {
+    text-decoration: none;
+  }
 
-}
-.caption p
-{
-  font-size: 80%;
-}
-  </style>
+  .caption {
+    opacity: 0;
+    text-align: center;
+    font-size: 110%;
+    position: absolute;
+    top: 0;
+    text-transform: uppercase;
+    width: 100%;
+    transition: .1s ease;
+    height: 100%;
+    left: 5px;
+  }
+
+  .document:hover .caption {
+    opacity: 1;
+
+  }
+
+  .caption p {
+    font-size: 80%;
+  }
+</style>
 
 {% endblock %}

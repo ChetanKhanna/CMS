@@ -58,15 +58,15 @@
 
       <div class="col-md-2">
         <label for="PS" ><strong>Nature of Query</strong> </label>
-        <input class="form-control" id="nature" name="nature" style="text-align: center;" value='{{nature}}' disabled type="text">
+        <input class="form-control" id="nature" name="nature" style="text-align: center;" value='{{applcationStatusObject.natureOfQuery}}' disabled type="text">
       </div>
       <div class="col-md-2">
         <label for="CG" ><strong>CG</strong> </label>
-        <input class="form-control" id="CG" name="CG" style="text-align: center;" value='{{cg}}' disabled type="text">
+        <input class="form-control" id="CG" name="CG" style="text-align: center;" value='{{grievanceFormObject.cg}}' disabled type="text">
       </div>
       <div class="col-md-2">
         <label for="Offshoot" ><strong>Offshoot</strong> </label>
-        <input class="form-control" id="offshoot" name="offshoot" style="text-align: center;" value='{{offshoot}}' disabled type="text">
+        <input class="form-control" id="offshoot" name="offshoot" style="text-align: center;" value='{{grievanceFormObject.offShoot}}' disabled type="text">
       </div>
 
     </div>
@@ -77,7 +77,7 @@
     <div class="row container-fluid ">
       <div class="col-md-12">
         <label for="description" ><strong>Description</strong> </label>
-        <textarea class="form-control md-textarea" disabled rows="5" id="description" name="description" type="text" >{{description}}</textarea>
+        <textarea class="form-control md-textarea" disabled rows="5" id="description" name="description" type="text" >{{applcationStatusObject.description}}</textarea>
       </div>
     </div>
 
@@ -96,7 +96,7 @@
 
     <div class="col-md-6 col-sm-12 p-0 d-flex justify-content-center ">
       <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0" id="priority" data-toggle="buttons">
-   <h5 class="h5"> Set Priority </h5>
+      <h5 class="h5"> Set Priority </h5>
         <label class="btn mt-2 btn-outline-warning">
           <input type="radio" name="priority-option" value="0" id="low"  autocomplete="off" > <i class="fas fa-user"> </i> Low Priority
         </label>
@@ -113,12 +113,12 @@
      </div>
     </div>
 
-      <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
-        <h5> Enter Remarks</h5>
+     <!--  <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
+        <h5> Level 1 Remarks</h5>
 
-          <textarea class="form-control md-textarea" disabled rows="3" id="remarks"  name="remarks" type="text" ></textarea>
+          <textarea class="form-control md-textarea" disabled rows="3" id="level1Remarks"  name="level1Remarks" type="text" >{{applcationStatusObject.level1Comment}}</textarea>
 
-      </div>
+      </div> -->
     </div>
 
 
@@ -133,7 +133,7 @@
         <div class="col-md-6">
         <strong> Current PS </strong>
 
-          <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;" value='{{current_ps}}' disabled type="text">
+          <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;" value='{{grievanceFormObject.allocatedStation}}' disabled type="text">
       </div>
     </div>
     <div class="row mt-5 d-flex justify-content-center">
@@ -141,7 +141,7 @@
       <div class="col-md-6">
       <strong> Preference No. of Alloted Station </strong>
 
-        <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;" value='{{current_ps}}' disabled type="text">
+        <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;" value='{{grievanceFormObject.preferenceNumberOfAllocatedStation}}' disabled type="text">
     </div>
     </div>
   </div>
@@ -152,7 +152,7 @@
             <label for="p1" ><strong>Preference 1:</strong> </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" name="p1" style="text-align: center;" value='{{p1}}' disabled type="text">
+            <input class="form-control" name="p1" style="text-align: center;" value='{{grievanceFormObject.preferedStation1}}' disabled type="text">
           </div>
         </div>
         <div class="row m-1">
@@ -160,7 +160,7 @@
             <label for="p2" ><strong>Preference 2:</strong> </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" name="p2" style="text-align: center;" value='{{p2}}' disabled type="text">
+            <input class="form-control" name="p2" style="text-align: center;" value='{{grievanceFormObject.preferedStation2}}' disabled type="text">
           </div>
         </div>
         <div class="row m-1">
@@ -168,7 +168,7 @@
             <label for="p3" ><strong>Preference 3:</strong> </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" name="p3" style="text-align: center;" value='{{p3}}' disabled type="text">
+            <input class="form-control" name="p3" style="text-align: center;" value='{{grievanceFormObject.preferedStation3}}' disabled type="text">
           </div>
         </div>
         <div class="row m-1">
@@ -176,7 +176,7 @@
             <label for="p4" ><strong>Preference 4:</strong> </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" name="p4" style="text-align: center;" value='{{p4}}' disabled type="text">
+            <input class="form-control" name="p4" style="text-align: center;" value='{{grievanceFormObject.preferedStation4}}' disabled type="text">
           </div>
         </div>
         <div class="row m-1">
@@ -184,7 +184,7 @@
             <label for="p5" ><strong>Preference 5:</strong> </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" name="p5" style="text-align: center;" value='{{p5}}' disabled type="text">
+            <input class="form-control" name="p5" style="text-align: center;" value='{{grievanceFormObject.preferedStation5}}' disabled type="text">
           </div>
         </div>
 
@@ -196,7 +196,8 @@
   <div class="col-md-6 d-flex justify-content-center">
     <div class="col-md-6">
     <label for="ex1"><strong>New Alloted PS Station</strong> </label>
-    <input class="form-control mt-4" id="ex1" type="text">
+    <input class="form-control mt-4" type="text" name="newStation" id="newStation">
+    <span class="text-danger" id="newStation-message" style="display:none">Please enter new PS station</span>
   </div>
 
   </div>
@@ -211,9 +212,29 @@
     </div>
   </div>
 </div>
-<div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-  <button class="btn btn-lg btn-primary" onclick="sendData()">Submit</button>
+
+<div class="col-md-6 col-sm-12 p-0 d-flex justify-content-center ">
+  <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0" id="priority" data-toggle="buttons">
+  <h5 class="h5"> Publish </h5>
+    <label class="btn mt-2 btn-outline-danger ">
+      <input type="radio"  name="publish-option" value="0" id="no"  autocomplete="off" > <i class="fas fa-user"> </i> Do not  Publish
+    </label>
+
+    <label class="btn mt-2 btn-outline-success">
+      <input type="radio" name="publish-option" value="1" id="yes" autocomplete="off" > <i class="fas fa-user"> </i> Publish
+    </label>
+
+  <br><br>
+  <span class="text-danger"  id="publish-message">Please Select </span>
+ </div>
 </div>
+
+<div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
+  <button class="btn btn-lg btn-primary" name="accept" onclick="sendData('accept')">Accept</button>
+
+  <button class="btn btn-lg btn-primary" name="reject" onclick="sendData('reject')">Reject</button>
+</div>
+
 </section>
 </div>
 
@@ -264,40 +285,42 @@ $('#remarks-message').hide();
 
 
 
-function sendData()
+function sendData(button)
 {
 
 
-$('#priority-message').hide();
-  var priority=$("input:radio[name='priority-option']:checked").val();
-  var remarks=$("#remarks").val();
+  $('#publish-message').hide();
+  $('#newStation-message').hide();
+  $('#remarks-message').hide();
+    var publish=$("input:radio[name='publish-option']:checked").val();
+    var remarks=$("#remarks").val();
+    var newStation = $("#newStation").val();
+    console.log(newStation)
 
-
-if(!priority)
-{
-$('#priority-message').show();
-console.log('here');
-}
-else if(!remarks)
-$('#remarks-message').show();
-
-else {
-
-  var token = '{{csrf_token}}'
-  $.ajax({
-  headers : {"X-CSRFToken":token},
-  url: '#',
-  type:'POST',
-  data:{priority:priority,remarks:remarks},
-  success: function(response)
+  if(!publish)
   {
-    console.log('data sent successfully');
-    if(response.flag!=1)
-      location.href = '/ps-grievance/redirect/'
+    $('#publish-message').show();
   }
-
-});
-}
+  else if(!remarks)
+    $('#remarks-message').show();
+  else if(button == 'accept' && !newStation)
+    $('#newStation-message').show();
+  else 
+  {
+    var token = '{{csrf_token}}'
+    $.ajax({
+      headers : {"X-CSRFToken":token},
+      url: '#',
+      type:'POST',
+      data:{ newStation : newStation, remarks : remarks, button: button},
+      success: function(response)
+      {
+        console.log('data sent successfully');
+        if(response.flag!=1) 
+          location.href = '/ps-grievance/redirect/'
+      }
+    });
+  }
 
 
 

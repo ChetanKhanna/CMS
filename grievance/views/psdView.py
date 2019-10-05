@@ -16,4 +16,5 @@ class updateLastSubmissionDate(generic.TemplateView):
 		jsFile = os.path.join(BASE_DIR, 'grievance/static/grievance/js/date.js')
 		with open(jsFile, mode='w') as file:
 			file.write("var date=\""+newDate+"\";")
+			print("Hellloooo")
 		return HttpResponse('OK')

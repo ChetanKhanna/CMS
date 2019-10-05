@@ -69,7 +69,6 @@ class Command(BaseCommand):
                                               campus=0, natureOfQuery=0)
 
 
-    print(password)
 
   def handle(self, *args, **options):
     self._create()

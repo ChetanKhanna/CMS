@@ -88,6 +88,7 @@ class level2StudentView(generic.View):
 			'applcationStatusObject' : ApplicationStatus_object,
 			'grievanceFormObject' : grievanceForm_object,
 			'numberOfAttempts' : 3,
+			'priority' : 2,
 		}
 		return render(request,"grievance/level2StudentPage.html",params)
 

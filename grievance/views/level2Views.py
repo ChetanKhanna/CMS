@@ -93,8 +93,8 @@ class level2StudentView(generic.View):
 
 	def post(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
-		# attempt = request.POST.get('attempt') TODO
-		attempt = 1
+		attempt = request.POST.get('attempt') 
+		# attempt = 1
 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
 		applicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object, attempt =attempt)
 

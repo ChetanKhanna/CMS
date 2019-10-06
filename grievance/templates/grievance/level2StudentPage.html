@@ -214,6 +214,7 @@ custom
   <!-- level1 -->
 
   <div class="row form-group container-fluid mt-5">
+
     <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
         <label for="ex1"><strong>New Alloted PS Station</strong> </label>
@@ -221,7 +222,6 @@ custom
           disabled {% endif %}>
         <span class="text-danger" id="newStation-message1" style="display:none">Please enter new PS station</span>
       </div>
-
     </div>
     <div class="col-md-6  d-flex justify-content-center">
 
@@ -241,29 +241,27 @@ custom
       <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0 justify-content-center" id="priority"
         data-toggle="buttons">
         <h5 class="h5"> Publish </h5>
-        <label class="btn mt-2 btn-outline-danger ">
-          <input type="radio" name="publish-option" value="0" id="no1" autocomplete="off"> <i class="fas fa-user"> </i>
-          Do
-          not Publish
+        <label class="btn mt-2 btn-outline-danger " style="width: 80px;">
+          <input type="radio" name="publish-option" value="0" id="no1" autocomplete="off"><i class="fa fa-times" aria-hidden="true"></i> No
         </label>
-
-        <label class="btn mt-2 btn-outline-success">
-          <input type="radio" name="publish-option" value="1" id="yes1" autocomplete="off"> <i class="fas fa-user"> </i>
-          Publish
+        <label class="btn mt-2 btn-outline-success" style="width: 80px;">
+          <input type="radio" name="publish-option" value="1" id="yes1" autocomplete="off"><i class="fa fa-check" aria-hidden="true"></i> Yes
         </label>
-
-        <br><br>
         <span class="text-danger" id="publish-message1">Please Select</span>
       </div>
     </div>
   </div>
-  <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-    <button id="acceptButton1" class="btn btn-lg btn-primary" name="accept1" onclick="sendData('accept')">Accept</button>
 
-    <button id="rejectButton1" class="btn btn-lg btn-primary" name="reject1" style="margin-left: 5px;"
-      onclick="sendData('reject')">Reject</button>
-    <button id="statusButton1" class="btn btn-lg btn-primary" disabled name="status1" style="margin-left: 5px; display: none;">Rejected</button>
-  </div>
+    <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
+      <div class="col-4">
+        <button id="acceptButton1" class="btn btn-lg btn-success" name="accept1" onclick="sendData('accept')" style="width: 45%">Accept</button>
+
+      <button id="rejectButton1" class="btn btn-lg btn-danger" name="reject1"
+        onclick="sendData('reject')" style="margin-left: 5%; width: 45%">Reject</button>
+      
+        <button id="statusButton1" class="btn btn-lg btn-info" disabled name="status1" style="margin-left: 5px; display: none;">Rejected</button>
+      
+    </div>
 
 </section>
 </div>
@@ -278,6 +276,15 @@ custom
   <hr>
   <h2 class="text-center">Re-Application 1</h2>
   <div class="row form-group container-fluid mt-5">
+
+    
+    <div class="col-md-12 justify-content-center text-center" style="margin-bottom: 20px;">
+      <div style="max-width: 40%; margin-left:auto; margin-right:auto;">
+        <label for="description2"><strong>Description </strong></label>
+        <textarea class="form-control md-textarea" rows="3" id="description2" name="description2" type="text" disabled></textarea>
+      </div>
+    </div>
+
     <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
         <label for="ex1"><strong>New Alloted PS Station</strong> </label>
@@ -305,29 +312,25 @@ custom
       <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0 justify-content-center" id="priority"
         data-toggle="buttons">
         <h5 class="h5"> Publish </h5>
-        <label class="btn mt-2 btn-outline-danger ">
-          <input type="radio" name="publish-option" value="0" id="no2" autocomplete="off"> <i class="fas fa-user"> </i>
-          Do
-          not Publish
+        <label class="btn mt-2 btn-outline-danger " style="width: 80px;">
+          <input type="radio" name="publish-option" value="0" id="no2" autocomplete="off"><i class="fa fa-times" aria-hidden="true"></i> No
         </label>
-
-        <label class="btn mt-2 btn-outline-success">
-          <input type="radio" name="publish-option" value="1" id="yes2" autocomplete="off"> <i class="fas fa-user"> </i>
-          Publish
+        <label class="btn mt-2 btn-outline-success" style="width: 80px;">
+          <input type="radio" name="publish-option" value="1" id="yes2" autocomplete="off"><i class="fa fa-check" aria-hidden="true"></i> Yes
         </label>
-
-        <br><br>
         <span class="text-danger" id="publish-message2">Please Select </span>
       </div>
     </div>
   </div>
-  <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-    <button id="acceptButton2" class="btn btn-lg btn-primary" name="accept2" onclick="sendData('accept')">Accept</button>
 
-    <button id="rejectButton2" class="btn btn-lg btn-primary" name="reject2" style="margin-left: 5px;"
-      onclick="sendData('reject')">Reject</button>
-    <button id="statusButton2" class="btn btn-lg btn-primary" disabled name="status2" style="margin-left: 5px; display: none;">Rejected</button>
-  </div>
+    <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
+      <div class="col-4">
+        <button id="acceptButton2" class="btn btn-lg btn-success" name="accept2" onclick="sendData('accept')" style="width: 45%">Accept</button>
+
+      <button id="rejectButton2" class="btn btn-lg btn-danger" name="reject2"
+        onclick="sendData('reject')" style="margin-left: 5%; width: 45%">Reject</button>
+      <button id="statusButton2" class="btn btn-lg btn-info" disabled name="status2" style="margin-left: 5px; display: none;">Rejected</button>
+    </div>
 
   </section>
 </div>
@@ -339,6 +342,15 @@ custom
   <hr>
   <h2 class="text-center">Re-Application 2</h2>
   <div class="row form-group container-fluid mt-5">
+
+    
+    <div class="col-md-12 justify-content-center text-center" style="margin-bottom: 20px;">
+      <div style="max-width: 40%; margin-left:auto; margin-right:auto;">
+        <label for="description3"><strong>Description </strong></label>
+        <textarea class="form-control md-textarea" rows="3" id="description3" name="description3" type="text" disabled></textarea>
+      </div>
+    </div>
+
     <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
         <label for="ex1"><strong>New Alloted PS Station</strong> </label>
@@ -364,28 +376,25 @@ custom
       <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0 justify-content-center" id="priority"
         data-toggle="buttons">
         <h5 class="h5"> Publish </h5>
-        <label class="btn mt-2 btn-outline-danger ">
-          <input type="radio" name="publish-option" value="0" id="no3" autocomplete="off"> <i class="fas fa-user"> </i>
-          Do
-          not Publish
+        <label class="btn mt-2 btn-outline-danger " style="width: 80px;">
+          <input type="radio" name="publish-option" value="0" id="no3" autocomplete="off"><i class="fa fa-times" aria-hidden="true"></i> No
         </label>
-
-        <label class="btn mt-2 btn-outline-success">
-          <input type="radio" name="publish-option" value="1" id="yes3" autocomplete="off"> <i class="fas fa-user"> </i>
-          Publish
+        <label class="btn mt-2 btn-outline-success" style="width: 80px;">
+          <input type="radio" name="publish-option" value="1" id="yes3" autocomplete="off"><i class="fa fa-check" aria-hidden="true"></i> Yes
         </label>
-
-        <br><br>
         <span class="text-danger" id="publish-message3">Please Select </span>
       </div>
     </div>
 
-    <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-      <button id="acceptButton3" class="btn btn-lg btn-primary" name="accept3" onclick="sendData('accept')">Accept</button>
+    <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
+      <div class="col-4">
+        <button id="acceptButton3" class="btn btn-lg btn-success" name="accept3" onclick="sendData('accept')" style="width: 45%">Accept</button>
 
-      <button id="rejectButton3" class="btn btn-lg btn-primary" name="reject3" style="margin-left: 5px;"
-        onclick="sendData('reject')">Reject</button>
-    <button id="statusButton3" class="btn btn-lg btn-primary" disabled name="status3" style="margin-left: 5px; display: none;"></button>
+      <button id="rejectButton3" class="btn btn-lg btn-danger" name="reject3"
+        onclick="sendData('reject')" style="margin-left: 5%; width: 45%">Reject</button>
+      <button id="statusButton3" class="btn btn-lg btn-info" disabled name="status3" style="margin-left: 5px; display: none;">Rejected</button>
+    </div>
+      
   </div>
   </div>
 

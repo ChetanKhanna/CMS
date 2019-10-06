@@ -80,8 +80,8 @@ class level2StudentView(generic.View):
 		student_id = kwargs['student_id']
 		attempt = 1 #TODO
 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
-		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
-		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt = attempt)
+		grievanceForm_object = GrievanceForm.objects.filter(student_id = userProfile_object)
+		ApplicationStatus_object = ApplicationStatus.objects.filter(student_id = userProfile_object,attempt = attempt)
 		params={
 			'name' : userProfile_object.name,
 			'student_id' : student_id,

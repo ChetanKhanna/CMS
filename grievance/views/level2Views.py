@@ -78,39 +78,39 @@ class level2RequestView(generic.View):
 class level2StudentView(generic.View):
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
-		attemp = 1 #TODO
-		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = 'user0'))
 		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
-		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt = attempt)
+		applicationStatus_objects = ApplicationStatus.objects.filter(student_id = userProfile_object)
+		numberOfAttempts = len(applicationStatus_objects)
 		params={
 			'name' : userProfile_object.name,
 			'student_id' : student_id,
-			'applcationStatusObject' : ApplicationStatus_object,
+			'applcationStatusObjects' : applicationStatus_objects,
 			'grievanceFormObject' : grievanceForm_object,
+			'numberOfAttempts' : numberOfAttempts,
 		}
 		return render(request,"grievance/level2StudentPage.html",params)
 
 	def post(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
-		attempt = 1 #TODO
+		# attempt = request.POST.get('attempt') TODO
+		attempt = 1
 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
-		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object, attempt =attempt)
-		# grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
+		applicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object, attempt =attempt)
 
-		if ApplicationStatus_object.status == constants.Status.PENDING.value : 
-
+		if applicationStatus_object.status == constants.Status.PENDING.value : 
 			newStation = request.POST.get("newStation")
 			level2comment = request.POST.get("remarks")
 			publish = request.POST.get("publish")
 
-			ApplicationStatus_object.level2Comment = level2comment
-			ApplicationStatus_object.publish = pusblish
-			if request.POST.get('approved') :
-				ApplicationStatus_object.newStation = newStation
-				ApplicationStatus_object.status = constants.Status.APPROVED.value
+			applicationStatus_object.level2Comment = level2comment
+			applicationStatus_object.publish = publish
+			if request.POST.get('button') == "approve":
+				applicationStatus_object.newStation = newStation
+				applicationStatus_object.status = constants.Status.APPROVED.value
 			else :
-				ApplicationStatus_object.status = constants.Status.REJECTED.value
+				applicationStatus_object.status = constants.Status.REJECTED.value
 
-			ApplicationStatus_object.save()
+			applicationStatus_object.save()
 
 		return HttpResponseRedirect('/ps-grievance/redirect/')

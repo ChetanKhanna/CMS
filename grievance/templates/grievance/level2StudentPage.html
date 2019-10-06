@@ -64,10 +64,15 @@ fa icons ends
         disabled type="text">
     </div>
 
-    <div class="col-md-2">
+   <!-- <div class="col-md-2">
       <label for="PS"><strong>Nature of Query</strong> </label>
       <input class="form-control" id="nature" name="nature" style="text-align: center;"
         value='{{applcationStatusObjects.0.natureOfQuery}}' disabled type="text">
+    </div> -->
+    <div class="col-md-2">
+      <label for="PS"><strong>Nature of Query</strong> </label>
+      <input class="form-control" id="nature" name="nature" style="text-align: center;"
+        disabled type="text">
     </div>
     <div class="col-md-2">
       <label for="CG"><strong>CG</strong> </label>
@@ -263,7 +268,7 @@ fa icons ends
       <button id="rejectButton1" class="btn btn-lg btn-danger" name="reject1"
         onclick="sendData('reject')" style="margin-left: 5%; width: 45%">Reject</button>
       
-        <button id="statusButton1" class="btn btn-lg btn-info" disabled name="status1" style="margin-left: 5px; display: none;">Rejected</button>
+        <button id="statusButton1" class="btn btn-lg" disabled name="status1" style="margin-left: 5px; display: none;"></button>
       
     </div>
 
@@ -334,7 +339,7 @@ fa icons ends
 
       <button id="rejectButton2" class="btn btn-lg btn-danger" name="reject2"
         onclick="sendData('reject')" style="margin-left: 5%; width: 45%">Reject</button>
-      <button id="statusButton2" class="btn btn-lg btn-info" disabled name="status2" style="margin-left: 5px; display: none;">Rejected</button>
+      <button id="statusButton2" class="btn btn-lg" disabled name="status2" style="margin-left: 5px; display: none;"></button>
     </div>
 
   </section>
@@ -359,7 +364,7 @@ fa icons ends
     <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
         <label for="ex1"><strong>New Alloted PS Station</strong> </label>
-        <input class="form-control mt-4" type="text" name="newStation3" id="newStation3" value={{applcationStatusObjects.2.newStation}}>
+        <input class="form-control mt-4" value='{{applcationStatusObjects.2.newStation}}' type="text" name="newStation3"  id="newStation3"  {% if applcationStatusObjects.2.status > 1 %} disabled {% endif %}>
         <span class="text-danger" id="newStation-message3" style="display:none">Please enter new PS station</span>
       </div>
 
@@ -369,7 +374,7 @@ fa icons ends
       <div class="col-md-8  form-group text-center p-0">
 
         <label for="remarks"><strong>Remarks </strong></label>
-        <textarea class="form-control md-textarea" rows="3" id="remarks3" name="remarks3" type="text">{{applcationStatusObjects.2.level2Comment}}</textarea>
+        <textarea class="form-control md-textarea" rows="3" id="remarks3" name="remarks3" type="text" {% if applcationStatusObjects.2.status > 1 %} disabled {% endif %}>{{applcationStatusObjects.2.level2Comment}}</textarea>
         <span class="text-danger" id="remarks-message3" style="display:none">Please enter the remarks</span>
 
       </div>
@@ -390,6 +395,7 @@ fa icons ends
         <div class="text-danger" id="publish-message3">Please Select </div>
       </div>
     </div>
+  </div>
 
     <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
       <div class="col-4">
@@ -397,10 +403,9 @@ fa icons ends
 
       <button id="rejectButton3" class="btn btn-lg btn-danger" name="reject3"
         onclick="sendData('reject')" style="margin-left: 5%; width: 45%">Reject</button>
-      <button id="statusButton3" class="btn btn-lg btn-info" disabled name="status3" style="margin-left: 5px; display: none;">Rejected</button>
+      <button id="statusButton3" class="btn btn-lg" disabled name="status3" style="margin-left: 5px; display: none;"></button>
     </div>
       
-  </div>
   </div>
 
 
@@ -425,6 +430,31 @@ fa icons ends
   $('#newStation-message2').hide();
   $('#newStation-message3').hide();
 
+  var pending1 = '{{applcationStatusObjects.0.status}}';
+  var pending2 = '{{applcationStatusObjects.1.status}}';
+  var pending3 = '{{applcationStatusObjects.2.status}}';
+  if(pending1 == 2){
+    $('#statusButton1').addClass('btn-success');
+    $('#statusButton1').text('Accepted');
+  } else if(pending1 == 3){
+    $('#statusButton1').addClass('btn-danger');
+    $('#statusButton1').text('Rejected');
+  }
+  if(pending2 == 2){
+    $('#statusButton2').addClass('btn-success');
+    $('#statusButton2').text('Accepted');
+  } else if(pending2 == 3){
+    $('#statusButton2').addClass('btn-danger');
+    $('#statusButton2').text('Rejected');
+  }
+  if(pending3 == 2){
+    $('#statusButton3').addClass('btn-success');
+    $('#statusButton3').text('Accepted');
+  } else if(pending3 == 3){
+    $('#statusButton3').addClass('btn-danger');
+    $('#statusButton3').text('Rejected');
+  }
+
 
   $('#formSection2').hide();
   $('#formSection3').hide();
@@ -437,15 +467,26 @@ fa icons ends
     $('#statusButton1').show();
     if (numberOfAttempts > 2) {
       $('#formSection3').show();
+
+
       $('#publishSection2').hide();
       $('#acceptButton2').hide();
       $('#rejectButton2').hide();
       $('#statusButton2').show();
+      if(pending3 > 1){
+        $('#publishSection3').hide();
+        $('#acceptButton3').hide();
+        $('#rejectButton3').hide();
+        $('#statusButton3').show();
+      }
     }
   }
 
-
-  console.log(numberOfAttempts);
+  var natureType = '{{applcationStatusObjects.0.natureOfQuery}}';
+  if(natureType == 0)
+    $('#nature').val('Medical');
+  else if(natureType == 1)
+    $('#nature').val('Non Medical');
 
   $(document).ready(function () {
     //var student_id=document.getElementById;

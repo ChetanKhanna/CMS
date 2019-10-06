@@ -6,6 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" >
   <head>-->
 
+{% extends 'grievance/website_base.html' %}
+{% load static %}
+
+{% block content %}
 
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -23,12 +27,15 @@ fa icons
   integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous">
 fa icons ends
 
-custom
-<script src="js/jscript.js" type="text/javascript"></script>
-<link rel="stylesheet" href="style.css">
-<meta charset="utf-8">
-<title> Form Display</title>
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    custom
+    <script src="{% static 'grievance/js/jscript.js' %}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{% static 'grievance/css/style.css' %}">
+    <meta charset="utf-8">
+    <title> Form Display</title>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+
   crossorigin="anonymous"></script>
 </head>
 
@@ -36,10 +43,7 @@ custom
 
 </head>
 
-{% extends 'grievance/website_base.html' %}
-{% load static %}
 
-{% block content %}
 
 <section class="container-fluid m-0 " id="main">
 
@@ -63,7 +67,7 @@ custom
     <div class="col-md-2">
       <label for="PS"><strong>Nature of Query</strong> </label>
       <input class="form-control" id="nature" name="nature" style="text-align: center;"
-        value='{{applcationStatusObject.natureOfQuery}}' disabled type="text">
+        value='{{applcationStatusObjects.0.natureOfQuery}}' disabled type="text">
     </div>
     <div class="col-md-2">
       <label for="CG"><strong>CG</strong> </label>
@@ -85,7 +89,7 @@ custom
         <div class="col-md-12">
           <label for="description"><strong>Description</strong> </label>
           <textarea class="form-control md-textarea" disabled rows="5" id="description" name="description"
-            type="text">{{applcationStatusObject.description}}</textarea>
+            type="text">{{applcationStatusObjects.0.description}}</textarea>
         </div>
       </div>
 
@@ -124,12 +128,12 @@ custom
       </div>
     </div>
 
-    <!--  <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
+     <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
         <h5> Level 1 Remarks</h5>
 
-          <textarea class="form-control md-textarea" disabled rows="3" id="level1Remarks"  name="level1Remarks" type="text" >{{applcationStatusObject.level1Comment}}</textarea>
+          <textarea class="form-control md-textarea" disabled rows="3" id="level1Remarks"  name="level1Remarks" type="text" >{{applcationStatusObjects.0.level1Comment}}</textarea>
 
-      </div> -->
+      </div>
   </div>
 
 
@@ -212,12 +216,12 @@ custom
 
 
   <!-- level1 -->
-
+  
   <div class="row form-group container-fluid mt-5">
     <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
         <label for="ex1"><strong>New Alloted PS Station</strong> </label>
-        <input class="form-control mt-4" type="text" name="newStation" id="newStation1" {% if numberOfAttempts > 1 %}
+        <input class="form-control mt-4" type="text" name="newStation" value={{applcationStatusObjects.0.newStation}} id="newStation1" {% if numberOfAttempts > 1 %}
           disabled {% endif %}>
         <span class="text-danger" id="newStation-message1" style="display:none">Please enter new PS station</span>
       </div>
@@ -228,8 +232,8 @@ custom
       <div class="col-md-8  form-group text-center p-0">
 
         <label for="remarks"><strong>Remarks </strong></label>
-        <textarea class="form-control md-textarea" rows="3" id="remarks1" name="remarks" type="text"
-          {% if numberOfAttempts > 1 %} disabled {% endif %}></textarea>
+        <textarea class="form-control md-textarea" rows="3" id="remarks1" name="remarks" type="text" 
+          {% if numberOfAttempts > 1 %} disabled {% endif %}>{{applcationStatusObjects.0.level2Comment}}</textarea>
         <span class="text-danger" id="remarks-message1" style="display:none">Please enter the remarks</span>
 
       </div>
@@ -242,13 +246,13 @@ custom
         data-toggle="buttons">
         <h5 class="h5"> Publish </h5>
         <label class="btn mt-2 btn-outline-danger ">
-          <input type="radio" name="publish-option" value="0" id="no1" autocomplete="off"> <i class="fas fa-user"> </i>
+          <input type="radio" name="publish-option1" value="0" id="no1" autocomplete="off"> <i class="fas fa-user"> </i>
           Do
           not Publish
         </label>
 
         <label class="btn mt-2 btn-outline-success">
-          <input type="radio" name="publish-option" value="1" id="yes1" autocomplete="off"> <i class="fas fa-user"> </i>
+          <input type="radio" name="publish-option1" value="1" id="yes1" autocomplete="off"> <i class="fas fa-user"> </i>
           Publish
         </label>
 
@@ -258,7 +262,7 @@ custom
     </div>
   </div>
   <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-    <button id="acceptButton1" class="btn btn-lg btn-primary" name="accept1" onclick="sendData('accept')">Accept</button>
+    <button id="acceptButton1" class="btn btn-lg btn-primary" name="accept1" onclick="sendData('approve')">Accept</button>
 
     <button id="rejectButton1" class="btn btn-lg btn-primary" name="reject1" style="margin-left: 5px;"
       onclick="sendData('reject')">Reject</button>
@@ -277,12 +281,13 @@ custom
 <div id="formSection2">
   <hr>
   <h2 class="text-center">Re-Application 1</h2>
+  
   <div class="row form-group container-fluid mt-5">
     <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
         <label for="ex1"><strong>New Alloted PS Station</strong> </label>
         <input class="form-control mt-4" type="text" name="newStation2" id="newStation2" {% if numberOfAttempts > 2 %}
-          disabled {% endif %}>
+          disabled {% endif %} value={{applcationStatusObjects.1.newStation}}>
         <span class="text-danger" id="newStation-message2" style="display:none">Please enter new PS station</span>
       </div>
 
@@ -293,7 +298,7 @@ custom
 
         <label for="remarks"><strong>Remarks </strong></label>
         <textarea class="form-control md-textarea" rows="3" id="remarks2" name="remarks" type="text"
-          {% if numberOfAttempts > 2 %} disabled {% endif %}></textarea>
+          {% if numberOfAttempts > 2 %} disabled {% endif %}>{{applcationStatusObjects.1.level2Comment}}</textarea>
         <span class="text-danger" id="remarks-message2" style="display:none">Please enter the remarks</span>
 
       </div>
@@ -306,13 +311,13 @@ custom
         data-toggle="buttons">
         <h5 class="h5"> Publish </h5>
         <label class="btn mt-2 btn-outline-danger ">
-          <input type="radio" name="publish-option" value="0" id="no2" autocomplete="off"> <i class="fas fa-user"> </i>
+          <input type="radio" name="publish-option2" value="0" id="no2" autocomplete="off"> <i class="fas fa-user"> </i>
           Do
           not Publish
         </label>
 
         <label class="btn mt-2 btn-outline-success">
-          <input type="radio" name="publish-option" value="1" id="yes2" autocomplete="off"> <i class="fas fa-user"> </i>
+          <input type="radio" name="publish-option2" value="1" id="yes2" autocomplete="off"> <i class="fas fa-user"> </i>
           Publish
         </label>
 
@@ -322,7 +327,7 @@ custom
     </div>
   </div>
   <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-    <button id="acceptButton2" class="btn btn-lg btn-primary" name="accept2" onclick="sendData('accept')">Accept</button>
+    <button id="acceptButton2" class="btn btn-lg btn-primary" name="accept2" onclick="sendData('approve')">Accept</button>
 
     <button id="rejectButton2" class="btn btn-lg btn-primary" name="reject2" style="margin-left: 5px;"
       onclick="sendData('reject')">Reject</button>
@@ -342,7 +347,7 @@ custom
     <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
         <label for="ex1"><strong>New Alloted PS Station</strong> </label>
-        <input class="form-control mt-4" type="text" name="newStation3" id="newStation3">
+        <input class="form-control mt-4" type="text" name="newStation3" id="newStation3" value={{applcationStatusObjects.2.newStation}}>
         <span class="text-danger" id="newStation-message3" style="display:none">Please enter new PS station</span>
       </div>
 
@@ -352,7 +357,7 @@ custom
       <div class="col-md-8  form-group text-center p-0">
 
         <label for="remarks"><strong>Remarks </strong></label>
-        <textarea class="form-control md-textarea" rows="3" id="remarks3" name="remarks" type="text"></textarea>
+        <textarea class="form-control md-textarea" rows="3" id="remarks3" name="remarks" type="text">{{applcationStatusObjects.2.level2Comment}}</textarea>
         <span class="text-danger" id="remarks-message3" style="display:none">Please enter the remarks</span>
 
       </div>
@@ -365,13 +370,13 @@ custom
         data-toggle="buttons">
         <h5 class="h5"> Publish </h5>
         <label class="btn mt-2 btn-outline-danger ">
-          <input type="radio" name="publish-option" value="0" id="no3" autocomplete="off"> <i class="fas fa-user"> </i>
+          <input type="radio" name="publish-option3" value="0" id="no3" autocomplete="off"> <i class="fas fa-user"> </i>
           Do
           not Publish
         </label>
 
         <label class="btn mt-2 btn-outline-success">
-          <input type="radio" name="publish-option" value="1" id="yes3" autocomplete="off"> <i class="fas fa-user"> </i>
+          <input type="radio" name="publish-option3" value="1" id="yes3" autocomplete="off"> <i class="fas fa-user"> </i>
           Publish
         </label>
 
@@ -381,7 +386,7 @@ custom
     </div>
 
     <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-      <button id="acceptButton3" class="btn btn-lg btn-primary" name="accept3" onclick="sendData('accept')">Accept</button>
+      <button id="acceptButton3" class="btn btn-lg btn-primary" name="accept3" onclick="sendData('approve')">Accept</button>
 
       <button id="rejectButton3" class="btn btn-lg btn-primary" name="reject3" style="margin-left: 5px;"
         onclick="sendData('reject')">Reject</button>
@@ -481,7 +486,7 @@ custom
     $('#publish-message' + attempt).hide();
     $('#newStation-message' + attempt).hide();
     $('#remarks-message' + attempt).hide();
-    var publish = $("input:radio[name='publish-option" + attempt + " ']:checked").val();
+    var publish = $("input:radio[name='publish-option" + attempt + "']:checked").val();
     var remarks = $("#remarks" + attempt).val();
     var newStation = $("#newStation" + attempt).val();
     console.log(newStation)
@@ -499,7 +504,7 @@ custom
         headers: { "X-CSRFToken": token },
         url: '#',
         type: 'POST',
-        data: { newStation: newStation, remarks: remarks, button: button },
+        data: { newStation: newStation, remarks: remarks, button: button, attempt:attempt, publish: publish },
         success: function (response) {
           console.log('data sent successfully');
           if (response.flag != 1)

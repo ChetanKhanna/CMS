@@ -82,6 +82,8 @@ class level2StudentView(generic.View):
 		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
 		applicationStatus_objects = ApplicationStatus.objects.filter(student_id = userProfile_object)
 		numberOfAttempts = len(applicationStatus_objects)
+		print("HELLO")
+		print(grievanceForm_object.document1)
 		params={
 			'name' : userProfile_object.name,
 			'student_id' : student_id,

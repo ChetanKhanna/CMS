@@ -74,7 +74,7 @@
         <strong>    Welcome!</strong>
           <br> 
         </div>
-      <div class="btn-group-toggle btn" id="type" data-toggle="buttons">
+      off<div class="btn-group-toggle btn" id="type" data-toggle="buttons">
         <label class="btn mt-2 btn-outline-warning">
           <input type="radio" name="type" id="pending" value="pending" autocomplete="off"><i class="fas fa-question"></i> Pending Requests
         </label><br>
@@ -185,7 +185,7 @@
         var len;
 
         len=response[2].length;
-        var entry="<tr><td colspan=4>High Priority Applications</td></tr>";
+        var entry="<tr><td colspan=4>High Priority Applications " + len + " </td></tr>";
           $('#table-body').append(entry);
         if(len==0)
         {
@@ -204,7 +204,7 @@
         }
 
         len=response[1].length;
-        var entry="<tr><td colspan=4>Medium Priority Applications</td></tr>";
+        var entry="<tr><td colspan=4>Medium Priority Applications " + len + " </td></tr>";
           $('#table-body').append(entry);
         if(len==0)
         {
@@ -223,7 +223,7 @@
         }
 
         len=response[0].length;
-        var entry="<tr><td colspan=4>Low Priority Applications</td></tr>";
+        var entry="<tr><td colspan=4>Low Priority Applications " + len + " </td></tr>";
           $('#table-body').append(entry);
         if(len==0)
         {

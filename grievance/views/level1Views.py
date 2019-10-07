@@ -63,13 +63,20 @@ class level1StudentView(generic.View):
 		student_id = kwargs['student_id']
 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
 		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt =1)
+		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
+		documents = self.getDocuments(grievanceForm_object)
+		if documents:
+			documentCount = len(documents)
+		else:
+			documentCount = 0
 		params={
 			'name' : userProfile_object.name,
 			'student_id' : student_id,
 			'allocatedStation' : 'remove it',
 			'applicationDate' : ApplicationStatus_object.lastChangedDate,
 			'description': ApplicationStatus_object.description,
-			'count': 3,
+			'documentCount': documentCount,
+			'documents': documents,
 		}
 		return render(request,"grievance/cmoStudentPage.html",params)
 	def post(self, request, *args, **kwargs):
@@ -91,6 +98,27 @@ class level1StudentView(generic.View):
 		grievanceForm_object.save()
 
 		return HttpResponseRedirect('/ps-grievance/redirect/')
+
+
+	def getDocuments(self, grievanceForm_object):
+		documents = []
+		documentCount = 0
+		if grievanceForm_object.document1:
+			documentCount+=1
+			documents.append(grievanceForm_object.document1)
+		if grievanceForm_object.document2:
+			documentCount+=1
+			documents.append(grievanceForm_object.document2)
+		if grievanceForm_object.document3:
+			documentCount+=1
+			documents.append(grievanceForm_object.document3)
+		if grievanceForm_object.document4:
+			documentCount+=1
+			documents.append(grievanceForm_object.document4)
+		if grievanceForm_object.document5:
+			documentCount+=1
+			documents.append(grievanceForm_object.document5)
+		return documents
 
 # # TODO
 # class level1StudentDetails(generic.View):
@@ -116,3 +144,4 @@ class level1StudentStatusView(generic.View):
 		student = User.objects.get(username = student_id)
 		details = studentHomeView.studentHomeView().getDetails(student)
 		return render (request, "grievance/grievanceForm.html", details)
+

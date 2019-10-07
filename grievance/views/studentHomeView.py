@@ -60,8 +60,6 @@ class studentHomeView(generic.TemplateView):
         current_user=request.user
         user = UserProfile.objects.get(user=current_user)
         if request.POST.get("submit1"):
-            print("\n\n-----------------asdf----------------")
-            print(request.POST)
             if (GrievanceForm.objects.filter(student_id = user).count())==0:
                 temp1 = StudentHomeViewForm(request.POST, request.FILES)
                 form1 = temp1.save(commit=False)

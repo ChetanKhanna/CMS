@@ -115,7 +115,7 @@ class level2RequestView(generic.View):
 class level2StudentView(generic.View):
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
-		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = 'user0'))
+		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
 		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
 		applicationStatus_objects = ApplicationStatus.objects.filter(student_id = userProfile_object)
 		numberOfAttempts = len(applicationStatus_objects)
@@ -126,7 +126,7 @@ class level2StudentView(generic.View):
 			'student_id' : student_id,
 			'applcationStatusObjects' : applicationStatus_objects,
 			'grievanceFormObject' : grievanceForm_object,
-			'priority' : 2,
+			'priority' : grievanceForm_object.priority,
 			'numberOfAttempts' : numberOfAttempts,
 
 		}

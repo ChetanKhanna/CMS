@@ -74,9 +74,9 @@
         <strong>    Welcome!</strong>
           <br> 
         </div>
-      off<div class="btn-group-toggle btn" id="type" data-toggle="buttons">
+      <div class="btn-group-toggle btn" id="type" data-toggle="buttons">
         <label class="btn mt-2 btn-outline-warning">
-          <input type="radio" name="type" id="pending" value="pending" autocomplete="off"><i class="fas fa-question"></i> Pending Requests
+          <input type="radio" name="type" id="pending" value="pending" autocomplete="off"><i class="fas fa-question"></i> Pending  Requests
         </label><br>
         <label class="btn mt-2 btn-outline-success">
           <input type="radio" name="type" id="unpublished" value="unpublished" autocomplete="off"><i class="fas fa-thumbs-up"></i> Unpublished Requests
@@ -121,27 +121,62 @@
           <input type="radio" name="type" id="rejected" value="rejected" autocomplete="off"> <i class="far fa-times-circle"></i> Rejected Requests
         </label>
       </div>-->
-      <div id="table" class="table-responsive">
+
+      <div id="table1" class="table-responsive shadow">
 
 
-        <table class="table table-stripped table-hover ">
-          <br>
+        <table id="table1-header" class="table table-stripped table-hover ">
+          
           <!--  <h2 class="text-center"> High Priority</h2>-->
 
-          <thead>
-            <tr>
-              <th>College ID</th>
-              <th>Name</th>
-              <th>Reason</th>
-            </tr>
-          </thead>
-          <tbody id="table-body">
+          
+          <tbody id="table1-body">
 
 
 
           </tbody>
 
         </table>
+      </div>
+      <br>
+
+      <div id="table2" class="table-responsive shadow">
+
+
+        <table id="table2-header" class="table table-stripped table-hover ">
+          
+          <!--  <h2 class="text-center"> High Priority</h2>-->
+
+          
+          <tbody id="table2-body">
+
+
+
+          </tbody>
+
+        </table>
+      </div>
+
+      <br>
+      <div id="table3" class="table-responsive shadow">
+
+
+        <table id="table3-header" class="table table-stripped table-hover ">
+          
+          <!--  <h2 class="text-center"> High Priority</h2>-->
+
+          
+          <tbody id="table3-body">
+
+
+
+          </tbody>
+
+        </table>
+      </div>
+
+      <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
+        <button id="publishAllButton" class="btn btn-lg btn-primary" name="publishAllButton" onclick="sendData('publishAll')">Publish All</button>
       </div>
 
     </div>
@@ -159,95 +194,154 @@
 
   <script type="text/javascript">
 
+  $('#publishAllButton').hide();
   function getData(type)
   {
-
-
-  var type_val=type;
-  console.log("Type = "+type_val);
-  //  console.log("Priority ="+priority);
+    $('#publishAllButton').hide();
+    var type_val=type;
+    console.log("Type = "+type_val);
+    //  console.log("Priority ="+priority);
     $.ajax({
       url: '/ps-grievance/level2/type/'+type_val,
       type:'GET',
       success: function(response)
       {
-        $('#table-body').html('');
-        // var len=response.length;
-      //  console.log(len);
-        // if(len==0)
-        // {
-        //   var entry="<tr><td colspan=4>No Applications</td></tr>";
-        //   $('#table-body').append(entry);
 
-        // }
-        // console.log(len);
+        $('#table1-body').html('');
+        $('#table2-body').html('');
+        $('#table3-body').html('');
 
         var len;
 
-        len=response[2].length;
-        var entry="<tr><td colspan=4>High Priority Applications " + len + " </td></tr>";
-          $('#table-body').append(entry);
-        if(len==0)
+        if(type_val == 'unpublished')
         {
-          var entry="<tr><td colspan=4>No Applications</td></tr>";
-          $('#table-body').append(entry);
+          $('#publishAllButton').show();
+          len = response[1].length + response[0].length;
+          entry="<tr><th colspan=4>Unpublished Applications</th><th>"+len+"</th/tr>";
+            $('#table1-header').append(entry);
 
+          len=response[1].length;
+          var entry="<tr><th colspan=4>Rejected</th><th>"+len+"</th/tr>";
+            $('#table2-header').append(entry);
+          if(len==0)
+          {
+            var entry="<tr><td colspan=4>No Applications</td><td></td></tr>";
+            $('#table2-body').append(entry);
+
+          }
+          for(var i=0;i<len;i++)
+          {
+               var name = response[1][i].name;
+              var id = response[1][i].id;
+            var entry="<tr>  <td>"+response[1][i].id+"</td><td>"+response[1][i].name+"</td><td><a href=student/"+id+">"+response[1][i].description+"</a></td></tr>";
+            $('#table2-body').append(entry);
+
+
+          }
+
+          len=response[0].length;
+          var entry="<tr><th colspan=4>Approved</th><th>"+len+"</th/tr>";
+            $('#table3-header').append(entry);
+          if(len==0)
+          {
+            var entry="<tr><td colspan=4>No Applications</td><td></td></tr>";
+            $('#table3-body').append(entry);
+
+          }
+          for(var i=0;i<len;i++)
+          {
+               var name = response[0][i].name;
+              var id = response[0][i].id;
+            var entry="<tr>  <td>"+response[0][i].id+"</td><td>"+response[0][i].name+"</td><td><a href=student/"+id+">"+response[0][i].description+"</a></td></tr>";
+            $('#table3-body').append(entry);
+
+
+          }        
         }
-        for(var i=0;i<len;i++)
+        else // other than unpublished column
         {
-             var name = response[2][i].name;
-            var id = response[2][i].id;
-          var entry="<tr>  <td>"+response[2][i].id+"</td><td>"+response[2][i].name+"</td><td><a href=student/"+id+">"+response[2][i].description+"</a></td></tr>";
-          $('#table-body').append(entry);
+          len=response[2].length;
+          var entry="<tr><th colspan=4>High Priority Applications</th><th colspan=4>"+len+"</th></tr>";
+            $('#table1-header').append(entry);
+          if(len==0)
+          {
+            var entry="<tr><td colspan=4>No Applications</td><td></td></tr>";
+            $('#table1-body').append(entry);
+
+          }
+          for(var i=0;i<len;i++)
+          {
+               var name = response[2][i].name;
+              var id = response[2][i].id;
+            var entry="<tr>  <td>"+response[2][i].id+"</td><td>"+response[2][i].name+"</td><td><a href=student/"+id+">"+response[2][i].description+"</a></td></tr>";
+            $('#table1-body').append(entry);
 
 
-        }
+          }
 
-        len=response[1].length;
-        var entry="<tr><td colspan=4>Medium Priority Applications " + len + " </td></tr>";
-          $('#table-body').append(entry);
-        if(len==0)
-        {
-          var entry="<tr><td colspan=4>No Applications</td></tr>";
-          $('#table-body').append(entry);
+          len=response[1].length;
+          var entry="<tr><th colspan=4>Medium Priority Applications</th><th>"+len+"</th/tr>";
+            $('#table2-header').append(entry);
+          if(len==0)
+          {
+            var entry="<tr><td colspan=4>No Applications</td><td></td></tr>";
+            $('#table2-body').append(entry);
 
-        }
-        for(var i=0;i<len;i++)
-        {
-             var name = response[1][i].name;
-            var id = response[1][i].id;
-          var entry="<tr>  <td>"+response[1][i].id+"</td><td>"+response[1][i].name+"</td><td><a href="+id+">"+response[1][i].description+"</a></td></tr>";
-          $('#table-body').append(entry);
-
-
-        }
-
-        len=response[0].length;
-        var entry="<tr><td colspan=4>Low Priority Applications " + len + " </td></tr>";
-          $('#table-body').append(entry);
-        if(len==0)
-        {
-          var entry="<tr><td colspan=4>No Applications</td></tr>";
-          $('#table-body').append(entry);
-
-        }
-        for(var i=0;i<len;i++)
-        {
-             var name = response[0][i].name;
-            var id = response[0][i].id;
-          var entry="<tr>  <td>"+response[0][i].id+"</td><td>"+response[0][i].name+"</td><td><a href="+id+">"+response[0][i].description+"</a></td></tr>";
-          $('#table-body').append(entry);
+          }
+          for(var i=0;i<len;i++)
+          {
+               var name = response[1][i].name;
+              var id = response[1][i].id;
+            var entry="<tr>  <td>"+response[1][i].id+"</td><td>"+response[1][i].name+"</td><td><a href=student/"+id+">"+response[1][i].description+"</a></td></tr>";
+            $('#table2-body').append(entry);
 
 
+          }
+
+          len=response[0].length;
+          var entry="<tr><th colspan=4>Low Priority Applications</th><th>"+len+"</th/tr>";
+            $('#table3-header').append(entry);
+          if(len==0)
+          {
+            var entry="<tr><td colspan=4>No Applications</td><td></td></tr>";
+            $('#table3-body').append(entry);
+
+          }
+          for(var i=0;i<len;i++)
+          {
+               var name = response[0][i].name;
+              var id = response[0][i].id;
+            var entry="<tr>  <td>"+response[0][i].id+"</td><td>"+response[0][i].name+"</td><td><a href=student/"+id+">"+response[0][i].description+"</a></td></tr>";
+            $('#table3-body').append(entry);
+
+
+          }
         }        
       }
     });
+  }
 
+  function sendData(button) {
 
+      var token = '{{csrf_token}}'
+      $.ajax({
+        headers: { "X-CSRFToken": token },
+        url: '#',
+        type: 'POST',
+        data: { },
+        success: function (response) {
+          console.log('data sent successfully');
+          if (response.flag != 1)
+            location.href = '/ps-grievance/redirect/'
+        }
+      });
+    
   }
 
   $(document).ready(function(){
-    $('#table-body').html('<th colspan=4><h5><i> Select Request Type from the menu to begin </i></h5></th>');
+    $('#table1-body').html('<th colspan=4><h5><i> Select Request Type from the menu to begin </i></h5></th>');
+    $('#table2-body').html('');
+    $('#table3-body').html('');
   });
 
   $('#type :input').change(function(){

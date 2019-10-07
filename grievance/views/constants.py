@@ -27,4 +27,7 @@ class Status(enum.Enum):
 	PENDING=1
 	APPROVED=2
 	REJECTED=3
-	
+
+class Publish(enum.Enum):
+	PUBLISHED=1
+	UNPUBLISHED=0

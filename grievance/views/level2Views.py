@@ -20,10 +20,10 @@ from grievance.views import constants as constants
 class level2HomeView(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
 		return render(request,"grievance/level2HomePage.html")
-	
+
 	def post(self, request, *args, **kwargs):
 		student_list = ApplicationStatus.objects.filter(level = 2, 
-			status = constants.Status.PENDING.value)
+			publish = constants.Publish.UNPUBLISHED.value, ).exclude( status = constants.Status.PENDING.value)
 
 		for student in student_list:
 			student.publish = 1

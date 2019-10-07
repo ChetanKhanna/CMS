@@ -36,10 +36,15 @@
         disabled type="text">
     </div>
 
-    <div class="col-md-2">
+   <!-- <div class="col-md-2">
       <label for="PS"><strong>Nature of Query</strong> </label>
       <input class="form-control" id="nature" name="nature" style="text-align: center;"
         value='{{applcationStatusObjects.0.natureOfQuery}}' disabled type="text">
+    </div> -->
+    <div class="col-md-2">
+      <label for="PS"><strong>Nature of Query</strong> </label>
+      <input class="form-control" id="nature" name="nature" style="text-align: center;"
+        disabled type="text">
     </div>
     <div class="col-md-2">
       <label for="CG"><strong>CG</strong> </label>
@@ -102,6 +107,11 @@
           <input type="radio" name="priority-option" value="2" id="high" autocomplete="off"> <i class="fas fa-user">
           </i> High Priority
         </label>
+
+        <script type="text/javascript"> 
+        console.log("sdfsdfsfdsdf");
+          console.log('{{ priority }}');
+        </script>
         
         {% endif %}
         <br><br>
@@ -199,21 +209,21 @@
   <!-- level1 -->
   
   <div class="row form-group container-fluid mt-5">
+
     <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
         <label for="ex1"><strong>New Alloted PS Station</strong> </label>
-        <input class="form-control mt-4" type="text" name="newStation" value={{applcationStatusObjects.0.newStation}} id="newStation1" {% if numberOfAttempts > 1 %}
-          disabled {% endif %}>
+        <input class="form-control mt-4" type="text" name="newStation"  id="newStation1" {% if numberOfAttempts > 1 %}
+          disabled {% endif %} value={{applcationStatusObjects.0.newStation}}>
         <span class="text-danger" id="newStation-message1" style="display:none">Please enter new PS station</span>
       </div>
-
     </div>
     <div class="col-md-6  d-flex justify-content-center">
 
       <div class="col-md-8  form-group text-center p-0">
 
         <label for="remarks"><strong>Remarks </strong></label>
-        <textarea class="form-control md-textarea" rows="3" id="remarks1" name="remarks" type="text" 
+        <textarea class="form-control md-textarea" rows="3" id="remarks1" name="remarks1" type="text" 
           {% if numberOfAttempts > 1 %} disabled {% endif %}>{{applcationStatusObjects.0.level2Comment}}</textarea>
         <span class="text-danger" id="remarks-message1" style="display:none">Please enter the remarks</span>
 
@@ -226,29 +236,27 @@
       <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0 justify-content-center" id="priority"
         data-toggle="buttons">
         <h5 class="h5"> Publish </h5>
-        <label class="btn mt-2 btn-outline-danger ">
-          <input type="radio" name="publish-option1" value="0" id="no1" autocomplete="off"> <i class="fas fa-user"> </i>
-          Do
-          not Publish
+        <label class="btn mt-2 btn-outline-danger " style="width: 80px;">
+          <input type="radio" name="publish-option1" value="0" id="no1" autocomplete="off"><i class="fa fa-times" aria-hidden="true"></i> No
         </label>
-
-        <label class="btn mt-2 btn-outline-success">
-          <input type="radio" name="publish-option1" value="1" id="yes1" autocomplete="off"> <i class="fas fa-user"> </i>
-          Publish
+        <label class="btn mt-2 btn-outline-success" style="width: 80px;">
+          <input type="radio" name="publish-option1" value="1" id="yes1" autocomplete="off"><i class="fa fa-check" aria-hidden="true"></i> Yes
         </label>
-
-        <br><br>
-        <span class="text-danger" id="publish-message1">Please Select</span>
+        <div class="text-danger" id="publish-message1">Please Select</div>
       </div>
     </div>
   </div>
-  <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-    <button id="acceptButton1" class="btn btn-lg btn-primary" name="accept1" onclick="sendData('approve')">Accept</button>
 
-    <button id="rejectButton1" class="btn btn-lg btn-primary" name="reject1" style="margin-left: 5px;"
-      onclick="sendData('reject')">Reject</button>
-    <button id="statusButton1" class="btn btn-lg btn-primary" disabled name="status1" style="margin-left: 5px; display: none;">Rejected</button>
-  </div>
+    <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
+      <div class="col-4">
+        <button id="acceptButton1" class="btn btn-lg btn-success" name="accept1" onclick="sendData('accept')" style="width: 45%">Accept</button>
+
+      <button id="rejectButton1" class="btn btn-lg btn-danger" name="reject1"
+        onclick="sendData('reject')" style="margin-left: 5%; width: 45%">Reject</button>
+      
+        <button id="statusButton1" class="btn btn-lg" disabled name="status1" style="margin-left: 5px; display: none;"></button>
+      
+    </div>
 
 </section>
 </div>
@@ -264,6 +272,15 @@
   <h2 class="text-center">Re-Application 1</h2>
   
   <div class="row form-group container-fluid mt-5">
+
+    
+    <div class="col-md-12 justify-content-center text-center" style="margin-bottom: 20px;">
+      <div style="max-width: 40%; margin-left:auto; margin-right:auto;">
+        <label for="description2"><strong>Description </strong></label>
+        <textarea class="form-control md-textarea" rows="3" id="description2" name="description2" type="text" disabled>{{applcationStatusObjects.1.description}}</textarea>
+      </div>
+    </div>
+
     <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
         <label for="ex1"><strong>New Alloted PS Station</strong> </label>
@@ -278,7 +295,7 @@
       <div class="col-md-8  form-group text-center p-0">
 
         <label for="remarks"><strong>Remarks </strong></label>
-        <textarea class="form-control md-textarea" rows="3" id="remarks2" name="remarks" type="text"
+        <textarea class="form-control md-textarea" rows="3" id="remarks2" name="remarks2" type="text"
           {% if numberOfAttempts > 2 %} disabled {% endif %}>{{applcationStatusObjects.1.level2Comment}}</textarea>
         <span class="text-danger" id="remarks-message2" style="display:none">Please enter the remarks</span>
 
@@ -291,29 +308,25 @@
       <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0 justify-content-center" id="priority"
         data-toggle="buttons">
         <h5 class="h5"> Publish </h5>
-        <label class="btn mt-2 btn-outline-danger ">
-          <input type="radio" name="publish-option2" value="0" id="no2" autocomplete="off"> <i class="fas fa-user"> </i>
-          Do
-          not Publish
+        <label class="btn mt-2 btn-outline-danger " style="width: 80px;">
+          <input type="radio" name="publish-option2" value="0" id="no2" autocomplete="off"><i class="fa fa-times" aria-hidden="true"></i> No
         </label>
-
-        <label class="btn mt-2 btn-outline-success">
-          <input type="radio" name="publish-option2" value="1" id="yes2" autocomplete="off"> <i class="fas fa-user"> </i>
-          Publish
+        <label class="btn mt-2 btn-outline-success" style="width: 80px;">
+          <input type="radio" name="publish-option2" value="1" id="yes2" autocomplete="off"><i class="fa fa-check" aria-hidden="true"></i> Yes
         </label>
-
-        <br><br>
-        <span class="text-danger" id="publish-message2">Please Select </span>
+        <div class="text-danger" id="publish-message2">Please Select </div>
       </div>
     </div>
   </div>
-  <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-    <button id="acceptButton2" class="btn btn-lg btn-primary" name="accept2" onclick="sendData('approve')">Accept</button>
 
-    <button id="rejectButton2" class="btn btn-lg btn-primary" name="reject2" style="margin-left: 5px;"
-      onclick="sendData('reject')">Reject</button>
-    <button id="statusButton2" class="btn btn-lg btn-primary" disabled name="status2" style="margin-left: 5px; display: none;">Rejected</button>
-  </div>
+    <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
+      <div class="col-4">
+        <button id="acceptButton2" class="btn btn-lg btn-success" name="accept2" onclick="sendData('accept')" style="width: 45%">Accept</button>
+
+      <button id="rejectButton2" class="btn btn-lg btn-danger" name="reject2"
+        onclick="sendData('reject')" style="margin-left: 5%; width: 45%">Reject</button>
+      <button id="statusButton2" class="btn btn-lg" disabled name="status2" style="margin-left: 5px; display: none;"></button>
+    </div>
 
   </section>
 </div>
@@ -325,10 +338,19 @@
   <hr>
   <h2 class="text-center">Re-Application 2</h2>
   <div class="row form-group container-fluid mt-5">
+
+    
+    <div class="col-md-12 justify-content-center text-center" style="margin-bottom: 20px;">
+      <div style="max-width: 40%; margin-left:auto; margin-right:auto;">
+        <label for="description3"><strong>Description </strong></label>
+        <textarea class="form-control md-textarea" rows="3" id="description3" name="description3" type="text" disabled>{{applcationStatusObjects.2.description}}</textarea>
+      </div>
+    </div>
+
     <div class="col-md-6 d-flex justify-content-center">
       <div class="col-md-6">
         <label for="ex1"><strong>New Alloted PS Station</strong> </label>
-        <input class="form-control mt-4" type="text" name="newStation3" id="newStation3" value={{applcationStatusObjects.2.newStation}}>
+        <input class="form-control mt-4" value='{{applcationStatusObjects.2.newStation}}' type="text" name="newStation3"  id="newStation3"  {% if applcationStatusObjects.2.status > 1 %} disabled {% endif %}>
         <span class="text-danger" id="newStation-message3" style="display:none">Please enter new PS station</span>
       </div>
 
@@ -338,7 +360,7 @@
       <div class="col-md-8  form-group text-center p-0">
 
         <label for="remarks"><strong>Remarks </strong></label>
-        <textarea class="form-control md-textarea" rows="3" id="remarks3" name="remarks" type="text">{{applcationStatusObjects.2.level2Comment}}</textarea>
+        <textarea class="form-control md-textarea" rows="3" id="remarks3" name="remarks3" type="text" {% if applcationStatusObjects.2.status > 1 %} disabled {% endif %}>{{applcationStatusObjects.2.level2Comment}}</textarea>
         <span class="text-danger" id="remarks-message3" style="display:none">Please enter the remarks</span>
 
       </div>
@@ -350,29 +372,26 @@
       <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0 justify-content-center" id="priority"
         data-toggle="buttons">
         <h5 class="h5"> Publish </h5>
-        <label class="btn mt-2 btn-outline-danger ">
-          <input type="radio" name="publish-option3" value="0" id="no3" autocomplete="off"> <i class="fas fa-user"> </i>
-          Do
-          not Publish
+        <label class="btn mt-2 btn-outline-danger " style="width: 80px;">
+          <input type="radio" name="publish-option3" value="0" id="no3" autocomplete="off"><i class="fa fa-times" aria-hidden="true"></i> No
         </label>
-
-        <label class="btn mt-2 btn-outline-success">
-          <input type="radio" name="publish-option3" value="1" id="yes3" autocomplete="off"> <i class="fas fa-user"> </i>
-          Publish
+        <label class="btn mt-2 btn-outline-success" style="width: 80px;">
+          <input type="radio" name="publish-option3" value="1" id="yes3" autocomplete="off"><i class="fa fa-check" aria-hidden="true"></i> Yes
         </label>
-
-        <br><br>
-        <span class="text-danger" id="publish-message3">Please Select </span>
+        <div class="text-danger" id="publish-message3">Please Select </div>
       </div>
     </div>
-
-    <div class="row pb-5 mt-5 mb-5 d-flex  justify-content-center">
-      <button id="acceptButton3" class="btn btn-lg btn-primary" name="accept3" onclick="sendData('approve')">Accept</button>
-
-      <button id="rejectButton3" class="btn btn-lg btn-primary" name="reject3" style="margin-left: 5px;"
-        onclick="sendData('reject')">Reject</button>
-    <button id="statusButton3" class="btn btn-lg btn-primary" disabled name="status3" style="margin-left: 5px; display: none;"></button>
   </div>
+
+    <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
+      <div class="col-4">
+        <button id="acceptButton3" class="btn btn-lg btn-success" name="accept3" onclick="sendData('accept')" style="width: 45%">Accept</button>
+
+      <button id="rejectButton3" class="btn btn-lg btn-danger" name="reject3"
+        onclick="sendData('reject')" style="margin-left: 5%; width: 45%">Reject</button>
+      <button id="statusButton3" class="btn btn-lg" disabled name="status3" style="margin-left: 5px; display: none;"></button>
+    </div>
+      
   </div>
 
 
@@ -397,6 +416,31 @@
   $('#newStation-message2').hide();
   $('#newStation-message3').hide();
 
+  var pending1 = '{{applcationStatusObjects.0.status}}';
+  var pending2 = '{{applcationStatusObjects.1.status}}';
+  var pending3 = '{{applcationStatusObjects.2.status}}';
+  if(pending1 == 2){
+    $('#statusButton1').addClass('btn-success');
+    $('#statusButton1').text('Accepted');
+  } else if(pending1 == 3){
+    $('#statusButton1').addClass('btn-danger');
+    $('#statusButton1').text('Rejected');
+  }
+  if(pending2 == 2){
+    $('#statusButton2').addClass('btn-success');
+    $('#statusButton2').text('Accepted');
+  } else if(pending2 == 3){
+    $('#statusButton2').addClass('btn-danger');
+    $('#statusButton2').text('Rejected');
+  }
+  if(pending3 == 2){
+    $('#statusButton3').addClass('btn-success');
+    $('#statusButton3').text('Accepted');
+  } else if(pending3 == 3){
+    $('#statusButton3').addClass('btn-danger');
+    $('#statusButton3').text('Rejected');
+  }
+
 
   $('#formSection2').hide();
   $('#formSection3').hide();
@@ -409,15 +453,26 @@
     $('#statusButton1').show();
     if (numberOfAttempts > 2) {
       $('#formSection3').show();
+
+
       $('#publishSection2').hide();
       $('#acceptButton2').hide();
       $('#rejectButton2').hide();
       $('#statusButton2').show();
+      if(pending3 > 1){
+        $('#publishSection3').hide();
+        $('#acceptButton3').hide();
+        $('#rejectButton3').hide();
+        $('#statusButton3').show();
+      }
     }
   }
 
-
-  console.log(numberOfAttempts);
+  var natureType = '{{applcationStatusObjects.0.natureOfQuery}}';
+  if(natureType == 0)
+    $('#nature').val('Medical');
+  else if(natureType == 1)
+    $('#nature').val('Non Medical');
 
   $(document).ready(function () {
     //var student_id=document.getElementById;

@@ -3,6 +3,8 @@ from grievance.views import constants
 from django.views import generic
 from django.core.exceptions import ObjectDoesNotExist
 from grievance.models import UserProfile
+
+
 class RedirectView(generic.TemplateView):
 	# request.GET call 
 	def get(self, request, *args, **kwargs):

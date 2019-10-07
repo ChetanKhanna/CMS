@@ -80,9 +80,6 @@ class studentHomeView(generic.TemplateView):
             else:
                 return self.redirect()
         elif request.POST.get("submit2"):
-            # formEntry = GrievanceForm.objects.get(user = user)
-            # applicationStatus = ApplicationStatus.objects.get(student_id = user)
-            # formEntry = GrievanceForm.objects.get(user = user)
             applicationStatus_object = ApplicationStatus.objects.filter(student_id = user)
             if(len(applicationStatus_object) == 1):
                 form = ApplicationStatusForm(request.POST).save(commit=False)
@@ -98,9 +95,6 @@ class studentHomeView(generic.TemplateView):
             else:   
                 return self.redirect() 
         elif request.POST.get("submit3"):
-           # formEntry = GrievanceForm.objects.get(user = user)
-           # applicationStatus = ApplicationStatus.objects.get(student_id = user)
-        #    formEntry = GrievanceForm.get(user = user)
             applicationStatus_object = ApplicationStatus.objects.filter(student_id = user)
             if(len(applicationStatus_object) == 2):
                 form = ApplicationStatusForm(request.POST).save(commit=False)
@@ -114,4 +108,4 @@ class studentHomeView(generic.TemplateView):
                 form.save()
                 return self.redirect()
             else:   
-                return self.redirect() 
+                return self.redirect()

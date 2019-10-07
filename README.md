@@ -9,6 +9,7 @@ Guten tag!
 	- In your GitHub fork, press **Clone or Download** and copy the url.
 	- Open the terminal and: `git clone <copied_url>`
 	- `git remote add upstream https://github.com/kestal-lab/PS-Grievance`
+	- **IMPORTANT**: Do the following to disable push on upstream handle `git remote set-url --push upstream no_push`
 
 - Submiting PR
 	- `git add <filename>` or to add everything `git add .`
@@ -45,6 +46,7 @@ upstream https://github.com/kestal-lab/PS-Grievance (push)
 ```
 This will add a link to the main repository on Keshav's account and will be called *upstream*. (origin and upstream are conventional names) In order to get changes to from the main repo use *upstream* handle. **Never push anythihng to upstream**
 
+**Disbaling push on upstream**: `git remote set-url --push upstream no_push` Do this to avoid mistakenly pushing to the main repository.
 
 #### Git push/pull and pull requests
 

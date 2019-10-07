@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
 from grievance.models import *
 import datetime
 
@@ -66,6 +67,7 @@ class Command(BaseCommand):
           ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=3,
                                               level=1, status=1, description="Hello",
                                               campus=0, natureOfQuery=0)
+
 
 
   def handle(self, *args, **options):

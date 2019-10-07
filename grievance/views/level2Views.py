@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 #import decorators
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from grievance.customDecorator import cmo_or_ad_required
+from grievance.customDecorator import allocationTeam_required
 
 #import models
 from grievance.models import *
@@ -16,7 +16,7 @@ from grievance.models import *
 from grievance.views import constants as constants
 
 
-# @method_decorator([login_required,allocationTeam_required], name='dispatch') #TODO
+@method_decorator([login_required,allocationTeam_required], name='dispatch')
 class level2HomeView(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
 		return render(request,"grievance/level2HomePage.html")
@@ -31,7 +31,7 @@ class level2HomeView(generic.TemplateView):
 
 		return HttpResponseRedirect('/ps-grievance/redirect/')
 
-# @method_decorator([login_required, allocationTeam_required], name='dispatch') #TODO
+@method_decorator([login_required, allocationTeam_required], name='dispatch')
 class level2RequestView(generic.View):
 	def get(self, request, *args, **kwargs):
 
@@ -47,13 +47,7 @@ class level2RequestView(generic.View):
 			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
 		elif typeOfRequest == "unpublished":
 			return self.getUnpublished()
-
-		# user_object = request.user
-		# user_profile_object = UserProfile.objects.get(user_id=user_object)
-
-		# student_list = ApplicationStatus.objects.filter(level = 2, 
-		# 	status=status ,).order_by('lastChangedDate')
-		
+	
 		returnList=[]
 		lowPriorityList=[]
 		midPriorityList=[]
@@ -88,8 +82,6 @@ class level2RequestView(generic.View):
 				"name":student.student_id.name,
 				"description":student.description
 				}
-
-			# priority = GrievanceForm.objects.get(student_id=student.student_id).priority 
 			approvedList.append(dict1) 
 
 		# rejected unpublished list
@@ -101,8 +93,6 @@ class level2RequestView(generic.View):
 				"name":student.student_id.name,
 				"description":student.description
 				}
-
-			# priority = GrievanceForm.objects.get(student_id=student.student_id).priority 
 			rejectedList.append(dict1) 
 
 		returnList = []
@@ -111,7 +101,7 @@ class level2RequestView(generic.View):
 
 		return JsonResponse(returnList, safe=False)
 
-# @method_decorator([login_required, allocationTeam_required], name='dispatch')
+@method_decorator([login_required, allocationTeam_required], name='dispatch')
 class level2StudentView(generic.View):
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
@@ -135,7 +125,6 @@ class level2StudentView(generic.View):
 	def post(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
 		attempt = request.POST.get('attempt') 
-		# attempt = 1
 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
 		applicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object, attempt =attempt)
 

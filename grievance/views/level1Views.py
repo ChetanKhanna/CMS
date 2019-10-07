@@ -120,21 +120,6 @@ class level1StudentView(generic.View):
 			documents.append(grievanceForm_object.document5)
 		return documents
 
-# # TODO
-# class level1StudentDetails(generic.View):
-# 	def post(self, request, *args, **kwargs):
-# 		student_id = kwargs[student_id]
-# 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
-# 		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object)
-		
-# 		priority = request.POST.get("priority")
-# 		level1comment = request.POST.get("remarks")
-		
-# 		ApplicationStatus_object.priority = priority
-# 		ApplicationStatus_object.level1comment = level1comment
-# 		ApplicationStatus_object.save()
-
-# 		return render(request,"grievance/level1HomePage.html")
 
 @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
 class level1StudentStatusView(generic.View):

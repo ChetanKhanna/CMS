@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 from django.core.exceptions import ValidationError
+from django.utils.crypto import get_random_string
 import os
 
 
@@ -19,7 +20,7 @@ def path_and_rename(instance, filename):
     upload_to = 'documents/' + str(instance.student_id)
     ext = filename.split('.')[-1]
     # get filename
-    filename = '{}.{}'.format(instance.student_id, ext)
+    filename = '{}.{}'.format(instance.student_id, get_random_string(), ext)
     # return the whole path to the file
     return os.path.join(upload_to, filename)
 
@@ -31,7 +32,7 @@ def path_and_rename(instance, filename):
 # 	token = models.IntegerField(default=0)
 
 class UserProfile(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+	user = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=True)
 	# token to know the type of user
 	token = models.IntegerField(default=0)
 	# user profile related data
@@ -54,9 +55,9 @@ class UserProfile(models.Model):
 # 		return str(self.user_id)
 
 class GrievanceForm(models.Model):
-	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE, primary_key=True)
 	cg = models.CharField(max_length = 10)
-	offShoot = models.CharField(max_length = 10)
+	offShoot = models.CharField(max_length = 10, blank=True)
 	allocatedStation = models.CharField(max_length = 500)
 	preferenceNumberOfAllocatedStation = models.IntegerField()
 	natureOfQuery = models.IntegerField()

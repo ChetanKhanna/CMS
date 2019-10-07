@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 #import decorators
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from grievance.customDecorator import allocationTeam_required
+from grievance.customDecorator import allocationTeam_required, cmo_required
 
 #import models
 from grievance.models import *
@@ -47,7 +47,8 @@ class level2RequestView(generic.View):
 			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
 		elif typeOfRequest == "unpublished":
 			return self.getUnpublished()
-	
+		
+		print(student_list, "\n\n\n")
 		returnList=[]
 		lowPriorityList=[]
 		midPriorityList=[]
@@ -101,25 +102,32 @@ class level2RequestView(generic.View):
 
 		return JsonResponse(returnList, safe=False)
 
+
+def getStudentDetail(student_id):
+	userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+	grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
+	applicationStatus_objects = ApplicationStatus.objects.filter(student_id = userProfile_object)
+	numberOfAttempts = len(applicationStatus_objects)
+	# print("HELLO")
+	# print(grievanceForm_object.document1)
+	params={
+		'name' : userProfile_object.name,
+		'student_id' : student_id,
+		'applcationStatusObjects' : applicationStatus_objects,
+		'grievanceFormObject' : grievanceForm_object,
+		'priority' : grievanceForm_object.priority,
+		'numberOfAttempts' : numberOfAttempts,
+
+	}
+
+	return params
+
 @method_decorator([login_required, allocationTeam_required], name='dispatch')
 class level2StudentView(generic.View):
+
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
-		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
-		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
-		applicationStatus_objects = ApplicationStatus.objects.filter(student_id = userProfile_object)
-		numberOfAttempts = len(applicationStatus_objects)
-		# print("HELLO")
-		# print(grievanceForm_object.document1)
-		params={
-			'name' : userProfile_object.name,
-			'student_id' : student_id,
-			'applcationStatusObjects' : applicationStatus_objects,
-			'grievanceFormObject' : grievanceForm_object,
-			'priority' : grievanceForm_object.priority,
-			'numberOfAttempts' : numberOfAttempts,
-
-		}
+		params = getStudentDetail(student_id)
 		return render(request,"grievance/level2StudentPage.html",params)
 
 	def post(self, request, *args, **kwargs):
@@ -144,3 +152,9 @@ class level2StudentView(generic.View):
 			applicationStatus_object.save()
 
 		return HttpResponseRedirect('/ps-grievance/redirect/')
+
+class level2StudentViewOnlyView(generic.View):
+	def get(self, request, *args, **kwargs):
+		student_id = kwargs['student_id']
+		params = getStudentDetail(student_id)
+		return render(request, "grievance/viewOnlyStudentPage.html", params)

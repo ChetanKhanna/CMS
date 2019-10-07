@@ -72,7 +72,7 @@ class level1StudentView(generic.View):
 		params={
 			'name' : userProfile_object.name,
 			'student_id' : student_id,
-			'allocatedStation' : 'remove it',
+			'allocatedStation' : grievanceForm_object.allocatedStation,
 			'applicationDate' : ApplicationStatus_object.lastChangedDate,
 			'description': ApplicationStatus_object.description,
 			'documentCount': documentCount,

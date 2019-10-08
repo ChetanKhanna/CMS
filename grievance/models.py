@@ -40,24 +40,14 @@ class UserProfile(models.Model):
 	contact = models.CharField(max_length = 20)
 	email = models.EmailField()
 	campus = models.IntegerField(default = 0)
+	cg = models.CharField(max_length = 10)
 
 	def __str__(self):
 		return str(self.user)
 
-# class OtherUsers(models.Model):
-# 	user_id = models.CharField(max_length =25, primary_key=True,unique=True)
-# 	name = models.CharField(max_length = 50)
-# 	contact = models.CharField(max_length = 20)
-# 	email = models.EmailField()
-# 	campus = models.IntegerField(default = 0)
-
-# 	def __str__(self):
-# 		return str(self.user_id)
-
 class GrievanceForm(models.Model):
 	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE, primary_key=True)
-	cg = models.CharField(max_length = 10)
-	offShoot = models.CharField(max_length = 10, blank=True)
+	contactNumber = models.CharField(max_length = 15)
 	allocatedStation = models.CharField(max_length = 500)
 	preferenceNumberOfAllocatedStation = models.IntegerField()
 	natureOfQuery = models.IntegerField()
@@ -67,6 +57,11 @@ class GrievanceForm(models.Model):
 	preferedStation3 = models.CharField(max_length = 500, blank=True)
 	preferedStation4 = models.CharField(max_length = 500, blank=True)
 	preferedStation5 = models.CharField(max_length = 500, blank=True)
+	preferedStation6 = models.CharField(max_length = 500, blank=True)
+	preferedStation7 = models.CharField(max_length = 500, blank=True)
+	preferedStation8 = models.CharField(max_length = 500, blank=True)
+	preferedStation9 = models.CharField(max_length = 500, blank=True)
+	preferedStation10 = models.CharField(max_length = 500, blank=True)
 	document1 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
 	document2 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
 	document3 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)

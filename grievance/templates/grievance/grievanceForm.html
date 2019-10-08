@@ -158,7 +158,7 @@
             <div class="form-group row">
                 <label for="userid" class="col-sm-4 col-form-label">Alotted Station (with Location)</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="allocatedStation" name="allocatedStation" placeholder="Bansal and Sons, Indore" required>
+                    <input type="text" class="form-control" id="allocatedStation" name="allocatedStation" placeholder="XYZ Pvt. Ltd., Goa" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -169,7 +169,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Type of Query</label>
+                <label for="userid" class="col-sm-4 col-form-label">Nature of Query</label>
                 <div class="col-sm-8">
                     <select class="custom-select" id="natureOfQuery" name="natureOfQuery" required>
                         <option value="">Select</option>
@@ -186,37 +186,37 @@
                 </div>
             </div>
 
-            <p align="center">   Add the preference number of the stations you want in order from 1 to 5 (with Location)</p>
+            <p align="center">   Add the prefered stations you want in order from 1 to 10(with Location)</p>
 
             <div class="form-group row">
                 <label for="userid" class="col-sm-4 col-form-label">Preferred Station 1</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferedStation1" name="preferedStation1" placeholder="1" required>
+                    <input type="text" class="form-control" id="preferedStation1" name="preferedStation1" placeholder="XYZ Pvt. Ltd., Goa" required>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="userid" class="col-sm-4 col-form-label">Preferred Station 2</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferedStation2" name="preferedStation2" placeholder="2">
+                    <input type="text" class="form-control" id="preferedStation2" name="preferedStation2" placeholder="XYZ Pvt. Ltd., Goa">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="userid" class="col-sm-4 col-form-label">Preferred Station 3</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferedStation3" name="preferedStation3" placeholder="3">
+                    <input type="text" class="form-control" id="preferedStation3" name="preferedStation3" placeholder="XYZ Pvt. Ltd., Goa">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="userid" class="col-sm-4 col-form-label">Preferred Station 4</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferedStation4" name="preferedStation4" placeholder="4">
+                    <input type="text" class="form-control" id="preferedStation4" name="preferedStation4" placeholder="XYZ Pvt. Ltd., Goa">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="userid" class="col-sm-4 col-form-label">Preferred Station 5</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferedStation5" name="preferedStation5" placeholder="5">
+                    <input type="text" class="form-control" id="preferedStation5" name="preferedStation5" placeholder="XYZ Pvt. Ltd., Goa">
                 </div>
             </div>
 
@@ -226,6 +226,8 @@
                     <div class="text-center">
                     {% if formEntry.document1 %}
                         <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document1 }}'>File 1</a>
+                    {% else %}
+                        <p style="color:red;"> No documents uploaded </p>
                     {% endif %}
                     {% if formEntry.document2 %}
                         <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document2 }}'>File 2</a>

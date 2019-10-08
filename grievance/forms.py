@@ -5,7 +5,7 @@ class StudentHomeViewForm(forms.ModelForm):
     class Meta:
         model = GrievanceForm
         fields = ('document1','document2','document3','document4','document5','preferedStation1','preferedStation2','preferedStation3','preferedStation4',
-                    'preferedStation5','preferenceNumberOfAllocatedStation','allocatedStation','offShoot','cg','natureOfQuery')
+                    'preferedStation5','preferenceNumberOfAllocatedStation','allocatedStation','natureOfQuery')
 
 class ApplicationStatusForm(forms.ModelForm):
     class Meta:

@@ -6,35 +6,46 @@ import datetime
 
 class Command(BaseCommand):
   def _create(self):
+    try:
+      User.objects.get_or_create(username="admin", passworsd=0, is_superuser=True)
+    except:
+      pass
+
     for i in range(10):
       try: 
-        (user, created) = User.objects.get_or_create(username="user"+str(i),password='123456')
-        (_, _) = UserProfile.objects.get_or_create(user = user, token=0, name="Name "+str(i), contact="9876543210", email="user@mail.com", campus=0)
+        (user, created) = User.objects.get_or_create(username="user"+str(i),password="q")
+        (_, _) = UserProfile.objects.get_or_create(user = user, token=0, name="Name "+str(i), contact="9876543210", email="user@mail.com", campus=0, cg=10)
       except:
         pass
       # user=User.objects.get(username="user"+str(i))
       
 
     try:
-      (user, created) = User.objects.get_or_create(username="cmo",password='123456')
-      (_, _) = UserProfile.objects.get_or_create(user = user, token=1, name="CMO "+str(i), contact="9876543210", email="cmo@mail.com", campus=0)
+      (user, created) = User.objects.get_or_create(username="cmo",password="q")
+      (_, _) = UserProfile.objects.get_or_create(user = user, token=1, name="CMO "+str(i), contact="9876543210", email="cmo@mail.com", campus=0, cg=10)
     except:
       pass 
     # user=User.objects.get(username="cmo")
     
     
     try:
-      (user, created) = User.objects.get_or_create(username="ad",password='123456')
-      (_, _) = UserProfile.objects.get_or_create(user = user, token=2, name="AD ", contact="9876543210", email="ad@mail.com", campus=0)
+      (user, created) = User.objects.get_or_create(username="ad",password="q")
+      (_, _) = UserProfile.objects.get_or_create(user = user, token=2, name="AD ", contact="9876543210", email="ad@mail.com", campus=0, cg=10)
     except:
       pass
     # user=User.objects.get(username="ad")
+
+    try:
+      (user, created) = User.objects.get_or_create(username="level2",password="q")
+      (_, _) = UserProfile.objects.get_or_create(user = user, token=3, name="Allocation team ", contact="9876543210", email="ad@mail.com", campus=0, cg=10)
+    except:
+      pass
     
 
     for i in range(4):
       user = User.objects.get(username="user"+str(i))
       userProfile = UserProfile.objects.get(user=user)
-      GrievanceForm.objects.get_or_create(student_id=userProfile, cg="7.8", offShoot="123", allocatedStation="Cement", preferenceNumberOfAllocatedStation=2, natureOfQuery=1, applicationDate=datetime.datetime.now(), preferedStation1="better cement 1", priority = 0)
+      GrievanceForm.objects.get_or_create(student_id=userProfile, allocatedStation="Cement", preferenceNumberOfAllocatedStation=2, natureOfQuery=1, applicationDate=datetime.datetime.now(), preferedStation1="better cement 1", priority = 0)
       ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=1,
                                               level=1, status=1, description="Hello",
                                               campus=0, natureOfQuery=0)
@@ -52,7 +63,7 @@ class Command(BaseCommand):
       userProfile = UserProfile.objects.get(user=user)
       #GrievanceForm.objects.get_or_create(student_id=userProfile, cg="7.8", offShoot="123", allocatedStation="Cement", preferenceNumberOfAllocatedStation=2, natureOfQuery=1, applicationDate=datetime.datetime.now(), preferedStation1="better cement 1", priority = 0)
       # try:
-      GrievanceForm.objects.get_or_create(student_id=userProfile, cg="7.8", offShoot="123", allocatedStation="Cement", preferenceNumberOfAllocatedStation=2, natureOfQuery=1, applicationDate=datetime.datetime.now(), preferedStation1="better cement 1", priority = 0)
+      GrievanceForm.objects.get_or_create(student_id=userProfile, allocatedStation="Cement", preferenceNumberOfAllocatedStation=2, natureOfQuery=1, applicationDate=datetime.datetime.now(), preferedStation1="better cement 1", priority = 0)
       # except Exception as e:
         # pass
         # GrievanceForm.objects.get(student_id=userProfile, cg="7.8", offShoot="123", allocatedStation="Cement", preferenceNumberOfAllocatedStation=2, natureOfQuery=1, applicationDate=datetime.datetime.now(), preferedStation1="better cement 1", priority = 0)

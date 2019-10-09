@@ -4,12 +4,14 @@ class UserType(enum.Enum):
 	CMO = 1
 	AD = 2
 	ALLOCATIONTEAM = 3
-	SUPERUSER = 4
-	ADMIN = 5
+	PSD = 4
+	SUPERUSER = 5
+	ADMIN = 6
 
 class NatureOfQuery(enum.Enum):
 	MEDICAL=0
 	NONMEDICAL=1
+	INFORMATIVE = 2
 
 class Campus(enum.Enum):
 	GOA=0

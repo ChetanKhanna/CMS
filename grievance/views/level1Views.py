@@ -77,6 +77,7 @@ class level1StudentView(generic.View):
 			'description': ApplicationStatus_object.description,
 			'documentCount': documentCount,
 			'documents': documents,
+			'back': "/ps-grievance/level1/",
 		}
 		return render(request,"grievance/cmoStudentPage.html",params)
 	def post(self, request, *args, **kwargs):

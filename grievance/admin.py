@@ -10,7 +10,7 @@ class UserProfileAdmin(UserAdmin):
     model = UserProfile
     # list_display = ('user','token','name','contact','email','campus','cg')
     # search_fields = ('name','contact','email','campus')
-    list_display = ('name',)
+    list_display = ('name','token','contact','email','campus','cg','user',)
     list_filter = ()
     search_fields = ('name',)
     ordering = ()
@@ -23,20 +23,22 @@ class ApplicationStatusAdmin(UserAdmin):
     # list_display = ('user','token','name','contact','email','campus','cg')
     # search_fields = ('name','contact','email','campus')
     list_display = ('student_id',)
-    list_filter = ('student_id__name',)
-    search_fields = ('student_id__name',)
+    list_filter = ()
+    search_fields = ('student_id__user__username',)
     ordering = ()
     filter_horizontal = ()
     fieldsets = ()
 
 class GrievanceFormAdmin(UserAdmin):
     
-    model = GrievanceForm
+    # model = GrievanceForm
     # list_display = ('user','token','name','contact','email','campus','cg')
     # search_fields = ('name','contact','email','campus')
     list_display = ('student_id',)
-    list_filter = ()
-    search_fields = ('student_id__name',)
+    list_filter = ('student_id__name',)
+    search_fields = ('student_id__user__username',)
+    # raw_id_fields = ('student_id',)
+    # autocomplete_fields=['student_id',]
     ordering = ()
     filter_horizontal = ()
     fieldsets = ()

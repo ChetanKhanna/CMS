@@ -22,9 +22,9 @@ class ApplicationStatusAdmin(UserAdmin):
     model = ApplicationStatus
     # list_display = ('user','token','name','contact','email','campus','cg')
     # search_fields = ('name','contact','email','campus')
-    list_display = ('student_id',)
-    list_filter = ()
-    search_fields = ('student_id__user__username',)
+    list_display = ('student_id','attempt',)
+    list_filter = ('attempt',)
+    search_fields = ('student_id__user__username','attempt',)
     ordering = ()
     filter_horizontal = ()
     fieldsets = ()

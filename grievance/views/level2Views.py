@@ -39,7 +39,7 @@ class level2RequestView(generic.View):
 		if typeOfRequest == "pending":
 			status = constants.Status.PENDING.value
 			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,).order_by('lastChangedDate')
-		elif typeOfRequest == "approved":
+		elif typeOfRequest == "accept":
 			status = constants.Status.APPROVED.value
 			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
 		elif typeOfRequest == "rejected":

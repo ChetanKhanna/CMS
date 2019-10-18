@@ -130,6 +130,7 @@
               <th>College ID</th>
               <th>Name</th>
               <th>Reason</th>
+              <th>Date of Application</th>
             </tr>
           </thead>
           <tbody id="table-body">
@@ -183,7 +184,7 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student/"+id+">"+response[i].description+"</a></td></tr>";
+            var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student/"+id+">"+response[i].description+"</a></td><td>"+response[i].date+"</td></tr>";
             $('#table-body').append(entry);
 
           }
@@ -193,7 +194,7 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student-status/"+id+">"+response[i].description+"</a></td></tr>";
+            var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student-status/"+id+">"+response[i].description+"</a></td><td>"+response[i].date+"</td></tr>";
             $('#table-body').append(entry);
 
           }

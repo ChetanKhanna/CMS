@@ -45,7 +45,6 @@ from .models import *
 
 
 admin.site.register(UserProfile)
-# admin.site.register(Student)
-# admin.site.register(OtherUsers)
+admin.site.register(InformativeQuerryForm)
 admin.site.register(GrievanceForm)
 admin.site.register(ApplicationStatus)

@@ -72,7 +72,7 @@
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-5 col-sm-5">
-      <h5> Submitted Documents </h5>
+      <h5 style="font-size: 17.6px;"><strong>Submitted Documents</strong></h5>
       <div class="row container-fluid documents d-flex justify-content-center" id="docs">
 
 
@@ -84,7 +84,7 @@
 
     <div class="col-md-6 col-sm-12 p-0 d-flex justify-content-center ">
       <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0" id="priority" data-toggle="buttons">
-        <h5 class="h5"> Priority </h5>
+        <h5 class="h5" style="font-size: 17.6px; color:rgb(128, 128, 128);"><strong>Priority</strong></h5>
         {% if priority == 0 %}
         <label class="btn mt-2 btn-warning">
           <input type="radio" name="priority-option" value="0" id="low" autocomplete="off"> <i class="fas fa-user"> </i>
@@ -119,7 +119,7 @@
     </div>
 
     <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
-      <h5> Level 1 Remarks</h5>
+      <h5 style="font-size: 17.6px;"><strong>Level 1 Remarks</strong></h5>
 
       <textarea class="form-control md-textarea" disabled rows="3" id="level1Remarks" name="level1Remarks"
         type="text">{{applcationStatusObjects.0.level1Comment}}</textarea>
@@ -263,9 +263,12 @@
 
   <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
     <div class="col-6">
-      <button id="levelButton1" class="btn btn-lg btn-info" disabled name="level1" style="margin: 5px 1%; width: 30%; max-width: 180px;"></button>
-      <button id="publishButton1" class="btn btn-lg" disabled name="publish1" style="margin: 5px 1%; width: 30%; max-width: 180px;"></button>
-      <button id="statusButton1" class="btn btn-lg" disabled name="status1" style="margin: 5px 1%; width: 30%; max-width: 180px;"></button>
+      <h5 style="font-size: 17.6px;"><strong>Status</strong></h5>
+      <h4>
+        <span id="levelButton1" class="badge badge-info" name="level1" style="padding: 15px 0; margin: 5px 1%; width: 30%; max-width: 180px;"></span>
+        <span id="publishButton1" class="badge" name="publish1" style="padding: 15px 0; margin: 5px 1%; width: 30%; max-width: 180px;"></span>
+        <span id="statusButton1" class="badge" name="status1" style="padding: 15px 0; margin: 5px 1%; width: 30%; max-width: 180px; color: #fff;"></span>
+      </h4>
     </div>
   </div>
 </section>
@@ -343,11 +346,14 @@
     </div>
   </div> -->
   <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
-    <div class="col-6">
-      <button id="levelButton2" class="btn btn-lg btn-info" disabled name="level2" style="margin: 5px 1%; width: 30%; max-width: 180px;"></button>
-      <button id="publishButton2" class="btn btn-lg" disabled name="publish2" style="margin: 5px 1%; width: 30%; max-width: 180px;"></button>
-      <button id="statusButton2" class="btn btn-lg" disabled name="status2" style="margin: 5px 1%; width: 30%; max-width: 180px;"></button>
-    </div>
+      <div class="col-6">
+          <h5 style="font-size: 17.6px;"><strong>Status</strong></h5>
+          <h4>
+            <span id="levelButton2" class="badge badge-info" name="level2" style="padding: 15px 0; margin: 5px 1%; width: 30%; max-width: 180px;"></span>
+            <span id="publishButton2" class="badge" name="publish2" style="padding: 15px 0; margin: 5px 1%; width: 30%; max-width: 180px;"></span>
+            <span id="statusButton2" class="badge" name="status2" style="padding: 15px 0; margin: 5px 1%; width: 30%; max-width: 180px; color: #fff;"></span>
+          </h4>
+        </div>
   </div>
   </section>
 </div>
@@ -422,11 +428,14 @@
 
   </div> -->
   <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
-    <div class="col-6">
-      <button id="levelButton3" class="btn btn-lg btn-info" disabled name="level3" style="margin: 5px 1%; width: 30%; max-width: 180px;"></button>
-      <button id="publishButton3" class="btn btn-lg" disabled name="publish3" style="margin: 5px 1%; width: 30%; max-width: 180px;"></button>
-      <button id="statusButton3" class="btn btn-lg" disabled name="status3" style="margin: 5px 1%; width: 30%; max-width: 180px;"></button>
-    </div>
+      <div class="col-6">
+          <h5 style="font-size: 17.6px;"><strong>Status</strong></h5>
+          <h4>
+            <span id="levelButton3" class="badge badge-info" name="level3" style="padding: 15px 0; margin: 5px 1%; width: 30%; max-width: 180px;"></span>
+            <span id="publishButton3" class="badge" name="publish3" style="padding: 15px 0; margin: 5px 1%; width: 30%; max-width: 180px;"></span>
+            <span id="statusButton3" class="badge" name="status3" style="padding: 15px 0; margin: 5px 1%; width: 30%; max-width: 180px; color: #fff;"></span>
+          </h4>
+        </div>
   </div>
   </section>
 </div>
@@ -514,36 +523,36 @@
   var level1 = '{{applcationStatusObjects.0.level}}';
   var level2 = '{{applcationStatusObjects.1.level}}';
   var level3 = '{{applcationStatusObjects.2.level}}';
-  $('#levelButton1').text("Level: " + level1);
-  $('#levelButton2').text("Level: " + level2);
-  $('#levelButton3').text("Level: " + level3);
+  $('#levelButton1').text("Level " + level1);
+  $('#levelButton2').text("Level " + level2);
+  $('#levelButton3').text("Level " + level3);
 
   var publish1 = '{{applcationStatusObjects.0.publish}}';
   var publish2 = '{{applcationStatusObjects.1.publish}}';
   var publish3 = '{{applcationStatusObjects.2.publish}}';
   if (publish1 == 1) {
     $('#publishButton1').text("Published");
-    $('#publishButton1').addClass("btn-success");
+    $('#publishButton1').addClass("badge-success");
   }
   else {
     $('#publishButton1').text("Not published");
-    $('#publishButton1').addClass("btn-danger");
+    $('#publishButton1').addClass("badge-danger");
   }
   if (publish2 == 1) {
     $('#publishButton2').text("Published");
-    $('#publishButton2').addClass("btn-success");
+    $('#publishButton2').addClass("badge-success");
   }
   else {
     $('#publishButton2').text("Not published");
-    $('#publishButton2').addClass("btn-danger");
+    $('#publishButton2').addClass("badge-danger");
   }
   if (publish3 == 1) {
     $('#publishButton3').text("Published");
-    $('#publishButton3').addClass("btn-success");
+    $('#publishButton3').addClass("badge-success");
   }
   else {
     $('#publishButton3').text("Not published");
-    $('#publishButton3').addClass("btn-danger");
+    $('#publishButton3').addClass("badge-danger");
   }
 
   var pending1 = '{{applcationStatusObjects.0.status}}';
@@ -551,33 +560,33 @@
   var pending3 = '{{applcationStatusObjects.2.status}}';
   console.log(pending3);
   if (pending1 == 2) {
-    $('#statusButton1').addClass('btn-success');
+    $('#statusButton1').addClass('badge-success');
     $('#statusButton1').text('Accepted');
   } else if (pending1 == 3) {
-    $('#statusButton1').addClass('btn-danger');
+    $('#statusButton1').addClass('badge-danger');
     $('#statusButton1').text('Rejected');
   } else if(pending1 == 1){
-    $('#statusButton1').addClass('btn-warning');
+    $('#statusButton1').addClass('badge-warning');
     $('#statusButton1').text('Pending');
   }
   if (pending2 == 2) {
-    $('#statusButton2').addClass('btn-success');
+    $('#statusButton2').addClass('badge-success');
     $('#statusButton2').text('Accepted');
   } else if (pending2 == 3) {
-    $('#statusButton2').addClass('btn-danger');
+    $('#statusButton2').addClass('badge-danger');
     $('#statusButton2').text('Rejected');
   } else if(pending2 == 1){
-    $('#statusButton2').addClass('btn-warning');
+    $('#statusButton2').addClass('badge-warning');
     $('#statusButton2').text('Pending');
   }
   if (pending3 == 2) {
-    $('#statusButton3').addClass('btn-success');
+    $('#statusButton3').addClass('badge-success');
     $('#statusButton3').text('Accepted');
   } else if (pending3 == 3) {
-    $('#statusButton3').addClass('btn-danger');
+    $('#statusButton3').addClass('badge-danger');
     $('#statusButton3').text('Rejected');
   } else if(pending3 == 1){
-    $('#statusButton3').addClass('btn-warning');
+    $('#statusButton3').addClass('badge-warning');
     $('#statusButton3').text('Pending');
   }
 

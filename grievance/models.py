@@ -8,10 +8,6 @@ import os
 
 def validate_document(document):
     file_size = document.file.size
-    # limit_kb = 150
-    # if file_size > limit_kb * 1024:
-    #     raise ValidationError("Max size of file is %s KB" % limit)
-
     limit_mb = 5
     if file_size > limit_mb * 1024 * 1024:
        raise ValidationError("Max size of file is %s MB" % limit_mb)
@@ -24,12 +20,6 @@ def path_and_rename(instance, filename):
     # return the whole path to the file
     return os.path.join(upload_to, filename)
 
-
-# Create your models here.
-
-# class UserType(models.Model):
-# 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-# 	token = models.IntegerField(default=0)
 
 class UserProfile(models.Model):
     
@@ -48,7 +38,7 @@ class UserProfile(models.Model):
 
 class GrievanceForm(models.Model):
 	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE, primary_key=True)
-	contactNumber = models.CharField(max_length = 15)
+	campus = models.IntegerField(default = 0)
 	allocatedStation = models.CharField(max_length = 500)
 	preferenceNumberOfAllocatedStation = models.IntegerField()
 	natureOfQuery = models.IntegerField()
@@ -83,7 +73,6 @@ class ApplicationStatus(models.Model):
 	level1Comment = models.CharField(max_length = 500, blank=True)
 	level2Comment = models.CharField(max_length = 500, blank=True)
 	newStation = models.CharField(max_length = 500, blank=True)
-	campus = models.IntegerField(default = 0)
 	natureOfQuery = models.IntegerField(default = 0)
 	publish = models.IntegerField(default=0)
 	
@@ -92,3 +81,16 @@ class ApplicationStatus(models.Model):
 
 	def __str__(self):
 		return str((self.student_id,self.attempt))
+
+
+class InformativeQuerryForm(models.Model):
+	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	attempt = models.IntegerField()
+	userQuerry = models.CharField(max_length=200, blank=True)
+	psdResponse = models.CharField(max_length=200, blank=True)
+
+	class Meta:
+		unique_together = (('student_id', 'attempt'))
+
+	def __str__(self):
+		return str('InformativeQuerryForm Object:', (self.student_id, self.attempt))

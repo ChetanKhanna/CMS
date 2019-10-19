@@ -43,3 +43,4 @@ class GrievanceFormAdmin(admin.ModelAdmin):
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(GrievanceForm, GrievanceFormAdmin)
 admin.site.register(ApplicationStatus, ApplicationStatusAdmin)
+admin.site.register(InformativeQuerryForm)

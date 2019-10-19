@@ -13,7 +13,9 @@ class Command(BaseCommand):
 
     for i in range(10):
       try: 
-        (user, created) = User.objects.get_or_create(username="user"+str(i),password="q")
+        (user, created) = User.objects.get_or_create(username="user"+str(i))
+        user.set_password('q')
+        user.save()
         (_, _) = UserProfile.objects.get_or_create(user = user, token=0, name="Name "+str(i), contact="9876543210", email="user@mail.com", campus=0, cg=10)
       except:
         pass
@@ -21,7 +23,9 @@ class Command(BaseCommand):
       
 
     try:
-      (user, created) = User.objects.get_or_create(username="cmo",password="q")
+      (user, created) = User.objects.get_or_create(username="cmo")
+      user.set_password('q')
+      user.save()
       (_, _) = UserProfile.objects.get_or_create(user = user, token=1, name="CMO "+str(i), contact="9876543210", email="cmo@mail.com", campus=0, cg=10)
     except:
       pass 
@@ -29,14 +33,18 @@ class Command(BaseCommand):
     
     
     try:
-      (user, created) = User.objects.get_or_create(username="ad",password="q")
+      (user, created) = User.objects.get_or_create(username="ad")
+      user.set_password('q')
+      user.save()
       (_, _) = UserProfile.objects.get_or_create(user = user, token=2, name="AD ", contact="9876543210", email="ad@mail.com", campus=0, cg=10)
     except:
       pass
     # user=User.objects.get(username="ad")
 
     try:
-      (user, created) = User.objects.get_or_create(username="level2",password="q")
+      (user, created) = User.objects.get_or_create(username="level2")
+      user.set_password('q')
+      user.save()
       (_, _) = UserProfile.objects.get_or_create(user = user, token=3, name="Allocation team ", contact="9876543210", email="ad@mail.com", campus=0, cg=10)
     except:
       pass

@@ -7,7 +7,9 @@ import datetime
 class Command(BaseCommand):
   def _create(self):
     try:
-      User.objects.get_or_create(username="admin", passworsd='q', is_superuser=True)
+      (user, created) = User.objects.get_or_create(username="admin", is_superuser=True)
+      user.set_password('q')
+      user.save()
     except:
       pass
 
@@ -55,18 +57,18 @@ class Command(BaseCommand):
       userProfile = UserProfile.objects.get(user=user)
       GrievanceForm.objects.get_or_create(student_id=userProfile, allocatedStation="Cement",
                                           preferenceNumberOfAllocatedStation=2, natureOfQuery=1,
-                                          applicationDate=datetime.datetime.now(),
+                                          applicationDate=datetime.datetime.now(), campus=0,
                                           preferedStation1="better cement 1", priority = 0)
       ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=1,
-                                              level=1, status=1, description="Hello",
+                                              level=1, status=1, description="Hello", campus=0,
                                               natureOfQuery=0)
       if i%2 == 0:
         ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=2,
-                                              level=1, status=1, description="Hello",
+                                              level=1, status=1, description="Hello", campus=0,
                                               natureOfQuery=0)
         if i%3 == 0:
           ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=3,
-                                              level=1, status=1, description="Hello",
+                                              level=1, status=1, description="Hello", campus=0,
                                               natureOfQuery=0)
 
     # for i in range(4,8):

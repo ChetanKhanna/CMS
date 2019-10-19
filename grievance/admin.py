@@ -5,17 +5,17 @@ from django.contrib.auth.admin import UserAdmin
 from .models import *
 
 
-class UserProfileAdmin(UserAdmin):
+# class UserProfileAdmin(UserAdmin):
 
-    model = UserProfile
-    # list_display = ('user','token','name','contact','email','campus','cg')
-    # search_fields = ('name','contact','email','campus')
-    list_display = ('user','name','token','contact','email','campus','cg',)
-    list_filter = ('campus',)
-    search_fields = ('name',)
-    ordering = ()
-    filter_horizontal = ()
-    fieldsets = ()
+#     model = UserProfile
+#     # list_display = ('user','token','name','contact','email','campus','cg')
+#     # search_fields = ('name','contact','email','campus')
+#     list_display = ('user','name','token','contact','email','campus','cg',)
+#     list_filter = ('campus',)
+#     search_fields = ('name',)
+#     ordering = ()
+#     filter_horizontal = ()
+#     fieldsets = ()
 
 # class ApplicationStatusAdmin(UserAdmin):
     
@@ -44,7 +44,7 @@ class UserProfileAdmin(UserAdmin):
 #     fieldsets = ()
 
 
-admin.site.register(UserProfile, UserProfileAdmin)
+admin.site.register(UserProfile)
 # admin.site.register(Student)
 # admin.site.register(OtherUsers)
 admin.site.register(GrievanceForm)

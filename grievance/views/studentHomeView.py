@@ -49,7 +49,8 @@ class studentHomeView(generic.TemplateView):
         'id': current_user.username,
         'email': current_user.email,
         'comments':comments,
-        'newStation':newStation
+        'newStation':newStation,
+        'back': "/ps-grievance/logout/",
         }
 
         return details

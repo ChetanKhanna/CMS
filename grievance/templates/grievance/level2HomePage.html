@@ -75,18 +75,22 @@
           <br> 
         </div>
       <div class="btn-group-toggle btn" id="type" data-toggle="buttons">
-        <label class="btn mt-2 btn-outline-warning" style="width: 100%;">
+        <label class="btn mt-2 btn-outline-danger" style="width: 100%;">
           <input type="radio" name="type" id="pending" value="pending" autocomplete="off"><i class="fas fa-question"></i> Pending Requests
         </label><br>
-        <label class="btn mt-2 btn-outline-success" style="width: 100%;">
-          <input type="radio" name="type" id="unpublished" value="unpublished" autocomplete="off"><i class="fas fa-thumbs-up"></i> Unpublished Requests
+        <label class="btn mt-2 btn-outline-warning" style="width: 100%;">
+          <input type="radio" name="type" id="unpublished" value="unpublished" autocomplete="off"><i class="fas fa-times-circle"></i> Unpublished Requests
         </label><br>
         <label class="btn mt-2 btn-outline-success" style="width: 100%;">
+          <input type="radio" name="type" id="published" value="published" autocomplete="off"><i class="fas fa-thumbs-up"></i> Published Requests
+        </label><br>
+
+        <!-- <label class="btn mt-2 btn-outline-success" style="width: 100%;">
           <input type="radio" name="type" id="approved" value="approved" autocomplete="off"><i class="fas fa-thumbs-up"></i> Approved Requests
         </label><br>
         <label class="btn mt-2 btn-outline-danger" style="width: 100%;">
           <input type="radio" name="type" id="rejected" value="rejected" autocomplete="off"> <i class="far fa-times-circle"></i> Rejected Requests
-        </label>
+        </label> -->
       </div>
       
 
@@ -233,7 +237,7 @@
           {
                var name = response[1][i].name;
               var id = response[1][i].id;
-            var entry="<tr>  <td colspan=4>"+response[1][i].id+"</td><td>"+response[1][i].name+"</td><td><a href=student/"+id+">"+response[1][i].description+"</a></td></tr>";
+            var entry="<tr class=clickable onclick=window.location='student/"+id+"'>  <td>"+response[1][i].id+"</td><td>"+response[1][i].name+"</td><td colspan=4><a href=student/"+id+">"+response[1][i].description+"</a></td></tr>";
             $('#table2-body').append(entry);
 
 
@@ -252,13 +256,60 @@
           {
                var name = response[0][i].name;
               var id = response[0][i].id;
-            var entry="<tr>  <td colspan=4>"+response[0][i].id+"</td><td>"+response[0][i].name+"</td><td><a href=student/"+id+">"+response[0][i].description+"</a></td></tr>";
+            var entry="<tr class=clickable onclick=window.location='student/"+id+"'>  <td>"+response[0][i].id+"</td><td>"+response[0][i].name+"</td><td colspan=4><a href=student/"+id+">"+response[0][i].description+"</a></td></tr>";
             $('#table3-body').append(entry);
 
 
           }        
         }
-        else // other than unpublished column
+
+        else if(type_val == 'published') //published requests
+        {
+          //$('#publishAllButton').show();
+          len = response[1].length + response[0].length;
+          var entry="<tr><th colspan=4>Published Applications</th><th>"+len+"</th></tr>";
+            $('#table1-header').append(entry);          
+
+          len=response[1].length;
+          var entry="<tr><th colspan=4>Rejected</th><th>"+len+"</th></tr>";
+            $('#table2-header').append(entry);
+          if(len==0)
+          {
+            var entry="<tr><td colspan=4>No Applications</td><td></td></tr>";
+            $('#table2-body').append(entry);
+
+          }
+          for(var i=0;i<len;i++)
+          {
+               var name = response[1][i].name;
+              var id = response[1][i].id;
+            var entry="<tr class=clickable onclick=window.location='student/"+id+"'>  <td>"+response[1][i].id+"</td><td>"+response[1][i].name+"</td><td colspan=4><a href=student/"+id+">"+response[1][i].description+"</a></td></tr>";
+            $('#table2-body').append(entry);
+
+
+          }
+
+          len=response[0].length;
+          var entry="<tr><th colspan=4>Approved</th><th>"+len+"</th></tr>";
+            $('#table3-header').append(entry);
+          if(len==0)
+          {
+            var entry="<tr><td colspan=4>No Applications</td><td></td></tr>";
+            $('#table3-body').append(entry);
+
+          }
+          for(var i=0;i<len;i++)
+          {
+               var name = response[0][i].name;
+              var id = response[0][i].id;
+            var entry="<tr class=clickable onclick=window.location='student/"+id+"'>  <td>"+response[0][i].id+"</td><td>"+response[0][i].name+"</td><td colspan=4><a href=student/"+id+">"+response[0][i].description+"</a></td></tr>";
+            $('#table3-body').append(entry);
+
+
+          }        
+        }
+
+        else // pending request
         {
           len=response[2].length;
           var entry="<tr><th colspan=4>High Priority Applications</th><th>"+len+"</th></tr>";
@@ -273,7 +324,7 @@
           {
                var name = response[2][i].name;
               var id = response[2][i].id;
-            var entry="<tr>  <td colspan=4>"+response[2][i].id+"</td><td>"+response[2][i].name+"</td><td><a href=student/"+id+">"+ "click here" +"</a></td></tr>";
+            var entry="<tr class=clickable onclick=window.location='student/"+id+"'>  <td>"+response[2][i].id+"</td><td>"+response[2][i].name+"</td><td colspan=4 ><a href=student/"+id+">"+ response[2][i].attempt +"</a></td></tr>";
             $('#table1-body').append(entry);
 
 
@@ -292,7 +343,7 @@
           {
                var name = response[1][i].name;
               var id = response[1][i].id;
-            var entry="<tr>  <td colspan=4 >"+response[1][i].id+"</td><td>"+response[1][i].name+"</td><td><a href=student/"+id+">"+ "click here" +"</a></td></tr>";
+            var entry="<tr class=clickable onclick=window.location='student/"+id+"'>  <td>"+response[1][i].id+"</td><td>"+response[1][i].name+"</td><td colspan=4 ><a href=student/"+id+">"+ response[2][i].attempt +"</a></td></tr>";
             $('#table2-body').append(entry);
 
 
@@ -311,7 +362,7 @@
           {
                var name = response[0][i].name;
               var id = response[0][i].id;
-            var entry="<tr>  <td>"+response[0][i].id+"</td><td>"+response[0][i].name+"</td><td colspan=4><a href=student/"+id+">"+"click here"+"</a></td></tr>";
+            var entry="<tr class=clickable onclick=window.location='student/"+id+"'>  <td>"+response[0][i].id+"</td><td>"+response[0][i].name+"</td><td colspan=4><a href=student/"+id+">"+response[2][i].attempt +"</a></td></tr>";
             $('#table3-body').append(entry);
 
 

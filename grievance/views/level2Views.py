@@ -14,6 +14,7 @@ from grievance.models import *
 
 #import views
 from grievance.views import constants as constants
+from grievance.views import viewOnlyStudentPageView
 
 
 @method_decorator([login_required,allocationTeam_required], name='dispatch')
@@ -39,12 +40,14 @@ class level2RequestView(generic.View):
 		if typeOfRequest == "pending":
 			status = constants.Status.PENDING.value
 			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,).order_by('lastChangedDate')
-		elif typeOfRequest == "approved":
-			status = constants.Status.APPROVED.value
-			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
-		elif typeOfRequest == "rejected":
-			status = constants.Status.REJECTED.value 
-			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		# elif typeOfRequest == "accept":
+		# 	status = constants.Status.APPROVED.value
+		# 	student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		# elif typeOfRequest == "rejected":
+		# 	status = constants.Status.REJECTED.value 
+		# 	student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		elif typeOfRequest == "published":
+			return self.getPublished()
 		elif typeOfRequest == "unpublished":
 			return self.getUnpublished()
 		
@@ -57,7 +60,8 @@ class level2RequestView(generic.View):
 			dict1 = {
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
-				"description":student.description
+				"description":student.description,
+				"attempt":student.attempt
 				}
 
 			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
@@ -74,25 +78,27 @@ class level2RequestView(generic.View):
 		# print(returnList)
 		return JsonResponse(returnList, safe=False)
 
-	def getUnpublished(self):
+	def getPublished(self):
 		approvedList = []
-		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('lastChangedDate')
+		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
 		for student in student_list:
 			dict1 = {
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
-				"description":student.description
+				"description":student.description,
+				"attempt":student.attempt
 				}
 			approvedList.append(dict1) 
 
-		# rejected unpublished list
+		# rejected published list
 		rejectedList = []
-		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.REJECTED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('lastChangedDate')
+		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.REJECTED.value  ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
 		for student in student_list:
 			dict1 = {
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
-				"description":student.description
+				"description":student.description,
+				"attempt":student.attempt
 				}
 			rejectedList.append(dict1) 
 
@@ -103,31 +109,42 @@ class level2RequestView(generic.View):
 		return JsonResponse(returnList, safe=False)
 
 
-def getStudentDetail(student_id):
-	userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
-	grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
-	applicationStatus_objects = ApplicationStatus.objects.filter(student_id = userProfile_object)
-	numberOfAttempts = len(applicationStatus_objects)
-	# print("HELLO")
-	# print(grievanceForm_object.document1)
-	params={
-		'name' : userProfile_object.name,
-		'student_id' : student_id,
-		'applcationStatusObjects' : applicationStatus_objects,
-		'grievanceFormObject' : grievanceForm_object,
-		'priority' : grievanceForm_object.priority,
-		'numberOfAttempts' : numberOfAttempts,
+	def getUnpublished(self):
+		approvedList = []
+		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('lastChangedDate')
+		for student in student_list:
+			dict1 = {
+				"id":student.student_id.user.username,
+				"name":student.student_id.name,
+				"description":student.description,
+				"attempt":student.attempt
+				}
+			approvedList.append(dict1) 
 
-	}
+		# rejected unpublished list
+		rejectedList = []
+		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.REJECTED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('lastChangedDate')
+		for student in student_list:
+			dict1 = {
+				"id":student.student_id.user.username,
+				"name":student.student_id.name,
+				"description":student.description,
+				"attempt":student.attempt
+				}
+			rejectedList.append(dict1) 
 
-	return params
+		returnList = []
+		returnList.append(approvedList)
+		returnList.append(rejectedList)
+
+		return JsonResponse(returnList, safe=False)
 
 @method_decorator([login_required, allocationTeam_required], name='dispatch')
 class level2StudentView(generic.View):
 
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
-		params = getStudentDetail(student_id)
+		params = viewOnlyStudentPageView.getStudentDetail(student_id)
 		return render(request,"grievance/level2StudentPage.html",params)
 
 	def post(self, request, *args, **kwargs):
@@ -152,9 +169,3 @@ class level2StudentView(generic.View):
 			applicationStatus_object.save()
 
 		return HttpResponseRedirect('/ps-grievance/redirect/')
-
-class level2StudentViewOnlyView(generic.View):
-	def get(self, request, *args, **kwargs):
-		student_id = kwargs['student_id']
-		params = getStudentDetail(student_id)
-		return render(request, "grievance/viewOnlyStudentPage.html", params)

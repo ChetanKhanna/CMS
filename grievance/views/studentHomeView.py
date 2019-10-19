@@ -38,14 +38,19 @@ class studentHomeView(generic.TemplateView):
             comments[x.attempt-1]=x.level2Comment
             newStation[x.attempt-1]=x.newStation
             description[x.attempt-1]=x.description
+
         details={       #things to be passed to front end
         'formEntry' : formEntry,
         'attemptStatus':attempt_status,
         'descriptions' : description,
         'campus':user.campus,
         'name': user.name,
+        'cg': user.cg,
+        'id': current_user.username,
+        'email': current_user.email,
         'comments':comments,
-        'newStation':newStation
+        'newStation':newStation,
+        'back': "/ps-grievance/logout/",
         }
 
         return details

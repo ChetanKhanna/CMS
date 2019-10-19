@@ -7,16 +7,21 @@ import datetime
 class Command(BaseCommand):
   def _create(self):
     try:
-      User.objects.get_or_create(username="admin", passworsd='q', is_superuser=True)
+      (user, created) = User.objects.get_or_create(username="admin", is_superuser=True)
+      user.set_password('q')
+      user.is_staff = True
+      user.is_admin = True
+      user.is_superuser = True
+      user.save()
     except:
       pass
 
     for i in range(10):
       try: 
-        (user, created) = User.objects.get_or_create(username="user"+str(i))
+        (user, created) = User.objects.get_or_create(username="2016A7PS008G"+str(i))
         user.set_password('q')
         user.save()
-        (_, _) = UserProfile.objects.get_or_create(user = user, token=0, name="Name "+str(i), contact="9876543210", email="user@mail.com", campus=0, cg=10)
+        (_, _) = UserProfile.objects.get_or_create(user = user, token=0, name="Name asdfghjklkjjhghhhfhhfhhfhhfhhfhhfhhfhhfhhfhhfhhfhhfhhfhh"+str(i), contact="9876543210", email="user@mail.com", campus=0, cg=10)
       except:
         pass
       # user=User.objects.get(username="user"+str(i))
@@ -51,21 +56,21 @@ class Command(BaseCommand):
     
 
     for i in range(4):
-      user = User.objects.get(username="user"+str(i))
+      user = User.objects.get(username="2016A7PS008G"+str(i))
       userProfile = UserProfile.objects.get(user=user)
       GrievanceForm.objects.get_or_create(student_id=userProfile, allocatedStation="Cement",
                                           preferenceNumberOfAllocatedStation=2, natureOfQuery=1,
-                                          applicationDate=datetime.datetime.now(),
+                                          applicationDate=datetime.datetime.now(), campus=0,
                                           preferedStation1="better cement 1", priority = 0)
-      ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=1,
+      ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=1, campus=0,
                                               level=1, status=1, description="Hello",
                                               natureOfQuery=0)
       if i%2 == 0:
-        ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=2,
+        ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=2, campus=0,
                                               level=1, status=1, description="Hello",
                                               natureOfQuery=0)
         if i%3 == 0:
-          ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=3,
+          ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=3, campus=0,
                                               level=1, status=1, description="Hello",
                                               natureOfQuery=0)
 

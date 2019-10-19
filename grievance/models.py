@@ -65,6 +65,7 @@ class GrievanceForm(models.Model):
 
 class ApplicationStatus(models.Model):
 	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	campus = models.IntegerField(default = 0)
 	attempt = models.IntegerField()
 	level = models.IntegerField()
 	status = models.IntegerField()

@@ -31,14 +31,14 @@ ALLOWED_HOSTS = ['10.20.18.117','localhost', '127.0.0.1', '10.30.13.157']
 # Application definition
 
 INSTALLED_APPS = [
+    'grievance.apps.GrievanceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'grievance.apps.GrievanceConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -129,3 +129,10 @@ STATI_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com' # mail service smtp
+EMAIL_HOST_USER = 'psdiary.bits@gmail.com' # email id
+EMAIL_HOST_PASSWORD = 'Q!W@E#R$' # password
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

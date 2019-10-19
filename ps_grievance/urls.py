@@ -17,10 +17,12 @@ from django.conf.urls import url
 from django.urls import path,include
 from django.contrib import admin
 import grievance.views as VIEWS
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^accounts/login/(?P<next>.*)$',VIEWS.RedirectView.as_view()),
+    url('^', include('django.contrib.auth.urls')),
     url('ps-grievance/', include('grievance.urls')),
     # url('grievance/', include('grievance.urls')),
 ]

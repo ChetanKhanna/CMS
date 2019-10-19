@@ -32,6 +32,7 @@ def path_and_rename(instance, filename):
 # 	token = models.IntegerField(default=0)
 
 class UserProfile(models.Model):
+    
 	user = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=True)
 	# token to know the type of user
 	token = models.IntegerField(default=0)

@@ -14,6 +14,7 @@ from grievance.models import *
 
 #import views
 from grievance.views import constants as constants
+from grievance.views import viewOnlyStudentPageView
 
 
 @method_decorator([login_required,allocationTeam_required], name='dispatch')
@@ -102,32 +103,12 @@ class level2RequestView(generic.View):
 
 		return JsonResponse(returnList, safe=False)
 
-
-def getStudentDetail(student_id):
-	userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
-	grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
-	applicationStatus_objects = ApplicationStatus.objects.filter(student_id = userProfile_object)
-	numberOfAttempts = len(applicationStatus_objects)
-	# print("HELLO")
-	# print(grievanceForm_object.document1)
-	params={
-		'name' : userProfile_object.name,
-		'student_id' : student_id,
-		'applcationStatusObjects' : applicationStatus_objects,
-		'grievanceFormObject' : grievanceForm_object,
-		'priority' : grievanceForm_object.priority,
-		'numberOfAttempts' : numberOfAttempts,
-
-	}
-
-	return params
-
 @method_decorator([login_required, allocationTeam_required], name='dispatch')
 class level2StudentView(generic.View):
 
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
-		params = getStudentDetail(student_id)
+		params = viewOnlyStudentPageView.getStudentDetail(student_id)
 		return render(request,"grievance/level2StudentPage.html",params)
 
 	def post(self, request, *args, **kwargs):
@@ -152,9 +133,3 @@ class level2StudentView(generic.View):
 			applicationStatus_object.save()
 
 		return HttpResponseRedirect('/ps-grievance/redirect/')
-
-class level2StudentViewOnlyView(generic.View):
-	def get(self, request, *args, **kwargs):
-		student_id = kwargs['student_id']
-		params = getStudentDetail(student_id)
-		return render(request, "grievance/viewOnlyStudentPage.html", params)

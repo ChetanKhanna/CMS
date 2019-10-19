@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-  <title>PS Grievance</title>
+  <title>PS Queries</title>
   <link rel="shortcut icon" href="{% static 'grievance/images/favicon' %}" >
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="{% static 'grievance/css/addUser.css' %}">
 
 
+
   
 
 </head>
@@ -59,7 +60,7 @@
     <div class="py-2" style="background: #266793">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-9 d-none d-lg-block">
+          <div class="col-lg-9 d-lg-block">
           <!--	<a href="#" class="small btn btn-warning px-4 py-2 rounded-1 mr-3" style="color: white"><span class="icon-reply mr-2"></span> Back</a> -->
             <a  class="small mr-3" style="color: white" ><span class="icon-question-circle-o mr-2" ></span> Having troubles ?</a>             
             <a href="mailto:psgrievances.bits@gmail.com" class="small mr-3" style="color: #191919" data-toggle="tooltip" data-placement="top" title="Please note, no query regarding application will be entertained on this email, only queries related to working of website will be entertained on this email. While submitting any query please clearly mention your name, roll number and email in the query." ><span class="icon-envelope-o mr-2"></span> psgrievances.bits@gmail.com</a> 
@@ -69,9 +70,7 @@
             <!-- <a href="#" class="small btn btn-danger px-6 py-2 rounded-1 mr-3"><span class="icon-lock"></span> Log Out</a> -->
             <!--<a href="#" class="small btn btn-primary px-2 py-2 rounded-0"><span class="icon-users"></span> Register</a> -->
             
-            <form class="form-inline">
-              <!--<input class="form-control mr-sm-0" type="search" placeholder="Search" aria-label="Search">-->
-            </form>
+            <a href="#" style="color: #B1B1B1">{{user}}</a>
             <!--<a href="#" class="small btn btn-primary px-2 py-2 rounded-0"><span class="icon-search"></span> Search</a> -->
           </div>
         </div>
@@ -79,49 +78,52 @@
     </div>
     <header class="site-navbar py-3 js-sticky-header site-navbar-target border-bottom border-medium" role="banner" style="background: #E3E3E3">
 
-      <div class="container-fluid">
-        <div class="d-flex align-items-center">        	
-          <div class="px-3 site-logo ml-5">
-            <a href="index.html" class="d-block">
+      <div class="container">
+        <div class="d-flex align-items-center text-right col-lg-15">        	
+          <div class="site-logo">
+            <a href="/ps-grievance/redirect" class="d-block">
               <img src="{% static 'grievance/images/logo.png' %}" alt="Image" class="img-fluid">
             </a>
           </div>
           <div class="ml-auto">
-            <nav class="px-5 site-navigation position-relative text-right " role="navigation">
+            <nav class="px-5 site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ">
               	<li>
-              		<a href="#" class="small btn btn-warning px-4 py-2 rounded-1 mr-3" style="color: white"><span class="icon-reply mr-2"></span> Back</a> 
+              		<a href='{{back}}' class="small btn btn-warning px-4 py-2 rounded-1 mr-3 ml-3" style="color: white"><span class="icon-reply mr-2"></span> Back</a> 
               	</li>
                 <li class="active">
-                  <a href="/ps-grievance/redirect" class="nav-link text-left" style="color: darkblue">Home</a>
+                  <a href="/ps-grievance/redirect" class="nav-link text-left mr-3 ml-3" style="color: darkblue">Home</a>
                 </li>
-                <li>
-                  <a href="#" class="nav-link text-left">PS Diary</a>                  
-                </li>
-                <li>
-                  <a href="#" class="nav-link text-left">About Us</a>
-                </li>                
+                              
                 
                   <li>
-                    <a href="#" class="small btn btn-primary px-4 py-2 rounded-1 "style="color: white"><span class="icon-users" ></span> Profile</a>
-                  </li>
-                  
-              </ul>                                                                                                                                                                                                                                                                                          
-            </nav>            
-          </div>
-          <div class="ml-auto">
-            <nav class="px-5 site-navigation position-relative text-right " role="navigation">
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-5">                
+                    <a href="#" class="small btn btn-primary px-4 py-2 rounded-1 mr-3 ml-3"style="color: white"><span class="icon-users" ></span> Profile</a>
+                  </li> 
+                  <li class="ml-5"></li>
+                  <li class="ml-2"></li>       
                   <li> 
-                    <a href="/ps-grievance/logout/" class="small btn btn-danger py-2 rounded-1 px-4" style="color: white"><span class="icon-lock"></span> Log Out</a>
+                    <a href="/ps-grievance/logout/" class="small btn btn-danger py-2 rounded-1 px-4 mr-3 ml-3" style="color: white "><span class="icon-lock"></span> Log Out</a>
                   </li>
-              </ul>                                                                                                                                                                                                                                                                                          
+                </ul> 
+
+                                                                                                                    
+                                                                                                                                                                                                                                                                                                  
             </nav>            
           </div>
-          <div class="ml-right">
+         <!-- <div class="ml-auto">            
+              <nav class="px-5 site-navigation position-relative text-right " role="navigation">
+                <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-5">                
+                    <li> 
+                      <a href="/ps-grievance/logout/" class="small btn btn-danger py-2 rounded-1 px-4" style="color: white"><span class="icon-lock"></span> Log Out</a>
+                    </li>
+                </ul>                                                                                                          
+              </nav>                
+          </div>
+              -->
+          <div class="ml-auto">
             <div class="social-wrap">
               <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
-                class="icon-menu h3"></span></a>
+                class="icon-menu  h2"></span></a>
             </div>
           </div>
          

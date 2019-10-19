@@ -45,13 +45,15 @@ class level1RequestView(generic.View):
 		student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
 			 natureOfQuery = natureOfQuery, attempt=1).order_by(
 			'lastChangedDate')
+
 		
 		returnList=[]
 		for student in student_list:
 			dict1 = {
 			"id":student.student_id.user.username,
 			"name":student.student_id.name,
-			"description":student.description
+			"description":student.description,
+			"date": student.lastChangedDate,
 			}
 			returnList.append(dict1) 
 		# print(returnList)
@@ -77,6 +79,7 @@ class level1StudentView(generic.View):
 			'description': ApplicationStatus_object.description,
 			'documentCount': documentCount,
 			'documents': documents,
+			'back': "/ps-grievance/level1/",
 		}
 		return render(request,"grievance/cmoStudentPage.html",params)
 	def post(self, request, *args, **kwargs):

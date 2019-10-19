@@ -44,8 +44,10 @@ class studentHomeView(generic.TemplateView):
         'descriptions' : description,
         'campus':user.campus,
         'name': user.name,
+        'user': user.name,
         'comments':comments,
-        'newStation':newStation
+        'newStation':newStation,
+        'back': "/ps-grievance/logout/",
         }
 
         return details

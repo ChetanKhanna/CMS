@@ -39,12 +39,14 @@ class level2RequestView(generic.View):
 		if typeOfRequest == "pending":
 			status = constants.Status.PENDING.value
 			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,).order_by('lastChangedDate')
-		elif typeOfRequest == "approved":
-			status = constants.Status.APPROVED.value
-			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
-		elif typeOfRequest == "rejected":
-			status = constants.Status.REJECTED.value 
-			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		# elif typeOfRequest == "accept":
+		# 	status = constants.Status.APPROVED.value
+		# 	student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		# elif typeOfRequest == "rejected":
+		# 	status = constants.Status.REJECTED.value 
+		# 	student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		elif typeOfRequest == "published":
+			return self.getPublished()
 		elif typeOfRequest == "unpublished":
 			return self.getUnpublished()
 		
@@ -57,7 +59,8 @@ class level2RequestView(generic.View):
 			dict1 = {
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
-				"description":student.description
+				"description":student.description,
+				"attempt":student.attempt
 				}
 
 			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
@@ -74,6 +77,37 @@ class level2RequestView(generic.View):
 		# print(returnList)
 		return JsonResponse(returnList, safe=False)
 
+	def getPublished(self):
+		approvedList = []
+		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		for student in student_list:
+			dict1 = {
+				"id":student.student_id.user.username,
+				"name":student.student_id.name,
+				"description":student.description,
+				"attempt":student.attempt
+				}
+			approvedList.append(dict1) 
+
+		# rejected published list
+		rejectedList = []
+		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.REJECTED.value  ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		for student in student_list:
+			dict1 = {
+				"id":student.student_id.user.username,
+				"name":student.student_id.name,
+				"description":student.description,
+				"attempt":student.attempt
+				}
+			rejectedList.append(dict1) 
+
+		returnList = []
+		returnList.append(approvedList)
+		returnList.append(rejectedList)
+
+		return JsonResponse(returnList, safe=False)
+
+
 	def getUnpublished(self):
 		approvedList = []
 		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('lastChangedDate')
@@ -81,7 +115,8 @@ class level2RequestView(generic.View):
 			dict1 = {
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
-				"description":student.description
+				"description":student.description,
+				"attempt":student.attempt
 				}
 			approvedList.append(dict1) 
 
@@ -92,7 +127,8 @@ class level2RequestView(generic.View):
 			dict1 = {
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
-				"description":student.description
+				"description":student.description,
+				"attempt":student.attempt
 				}
 			rejectedList.append(dict1) 
 

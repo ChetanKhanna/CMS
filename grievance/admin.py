@@ -1,23 +1,20 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-# from grievance.models import UserProfile, ApplicationStatus, GrievanceForm
 # Register your models here.
 from .models import *
 
 
-class UserProfileAdmin(UserAdmin):
+class UserProfileAdmin(admin.ModelAdmin):
 
     model = UserProfile
-    # list_display = ('user','token','name','contact','email','campus','cg')
-    # search_fields = ('name','contact','email','campus')
-    list_display = ('name','token','contact','email','campus','cg','user',)
-    list_filter = ()
-    search_fields = ('name',)
+    list_display = ('user','name','token','contact','email','campus','cg',)
+    list_filter = ('campus',)
+    search_fields = ('user__username','name')
     ordering = ()
     filter_horizontal = ()
     fieldsets = ()
 
-class ApplicationStatusAdmin(UserAdmin):
+class ApplicationStatusAdmin(admin.ModelAdmin):
     
     model = ApplicationStatus
     # list_display = ('user','token','name','contact','email','campus','cg')
@@ -29,23 +26,21 @@ class ApplicationStatusAdmin(UserAdmin):
     filter_horizontal = ()
     fieldsets = ()
 
-class GrievanceFormAdmin(UserAdmin):
+class GrievanceFormAdmin(admin.ModelAdmin):
     
-    # model = GrievanceForm
+    model = GrievanceForm
     # list_display = ('user','token','name','contact','email','campus','cg')
     # search_fields = ('name','contact','email','campus')
     list_display = ('student_id',)
     list_filter = ('student_id__name',)
-    search_fields = ('student_id__user__username',)
+    search_fields = ('student_id__name',)
     # raw_id_fields = ('student_id',)
     # autocomplete_fields=['student_id',]
     ordering = ()
     filter_horizontal = ()
     fieldsets = ()
 
-
 admin.site.register(UserProfile, UserProfileAdmin)
-# admin.site.register(Student)
-# admin.site.register(OtherUsers)
 admin.site.register(GrievanceForm, GrievanceFormAdmin)
 admin.site.register(ApplicationStatus, ApplicationStatusAdmin)
+admin.site.register(InformativeQuerryForm)

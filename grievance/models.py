@@ -89,6 +89,8 @@ class InformativeQuerryForm(models.Model):
 	attempt = models.IntegerField()
 	userQuerry = models.CharField(max_length=200, blank=True)
 	psdResponse = models.CharField(max_length=200, blank=True)
+	campus = models.IntegerField(default = 0)
+	allocatedStation = models.CharField(max_length = 500)
 
 	class Meta:
 		unique_together = (('student_id', 'attempt'))

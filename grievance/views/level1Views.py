@@ -22,6 +22,9 @@ class level1HomeView(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
 		return render(request,"grievance/level1HomePage.html")
 
+class adHomeView(generic.TemplateView):
+	def get(self, request, *args, **kwargs):
+		return render(request,"grievance/adHomePage.html")
 
 @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
 class level1RequestView(generic.View):

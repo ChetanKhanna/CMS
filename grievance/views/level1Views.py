@@ -36,36 +36,45 @@ class level1HomeView(generic.TemplateView):
 class level1RequestView(generic.View):
 	def get(self, request, *args, **kwargs):
 
-		typeOfRequest = kwargs["type"]
-		if(typeOfRequest == "pending"):
-			level = 1
-		else:
-			level = 2
-
 		user_object = request.user
 		user_profile_object = UserProfile.objects.get(user_id=user_object)
 		campus =  user_profile_object.campus
 
-		if user_profile_object.token == constants.UserType.CMO.value:
+		typeOfRequest = kwargs["type"]
+		print(typeOfRequest)
+		if typeOfRequest == "medical":
 			natureOfQuery = constants.NatureOfQuery.MEDICAL.value
+			student_list = ApplicationStatus.objects.filter(campus = campus,
+			 	natureOfQuery = natureOfQuery).order_by('-lastChangedDate')
+		elif typeOfRequest == "informative":
+			print("sdfj")
 		else:
-			natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value
+			if typeOfRequest == "pending":
+				level = 1
+			elif typeOfRequest == "forwarded":
+				level = 2
 
-		student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
-			 natureOfQuery = natureOfQuery, attempt=1).order_by(
-			'-lastChangedDate')
+			if user_profile_object.token == constants.UserType.CMO.value:
+				natureOfQuery = constants.NatureOfQuery.MEDICAL.value
+			else:
+				natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value
 
+			student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
+				 natureOfQuery = natureOfQuery, attempt=1).order_by('-lastChangedDate')
 		
 		returnList=[]
 		for student in student_list:
 			dict1 = {
-			"id":student.student_id.user.username,
-			"name":student.student_id.name,
-			"description":student.description,
-			"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+				"id":student.student_id.user.username,
+				"name":student.student_id.name,
+				"description":student.description,
+				"status" : constants.Status(student.status).name,
+				"level" : student.level,
+				"attempt" : student.attempt,
+				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
 			}
 			returnList.append(dict1) 
-		# print(returnList)
+		print(returnList)
 		return JsonResponse(returnList, safe=False)
 
 @method_decorator([login_required, cmo_or_ad_required], name='dispatch')

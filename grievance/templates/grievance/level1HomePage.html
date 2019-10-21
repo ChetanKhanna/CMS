@@ -128,9 +128,9 @@
           <thead>
             <tr>
               <th>College ID</th>
-              <th>Name</th>
-              <th>Reason</th>
+              <th>Name</th>              
               <th>Date of Application</th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="table-body">
@@ -184,7 +184,7 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student/"+id+">"+response[i].description+"</a></td><td>"+response[i].date+"</td></tr>";
+            var entry="<tr class='clickable' onclick=window.location='student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td><a href='student/"+id+"'>Click Here</a></td></tr>";
             $('#table-body').append(entry);
 
           }
@@ -194,7 +194,7 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td><a href=student-status/"+id+">"+response[i].description+"</a></td><td>"+response[i].date+"</td></tr>";
+            var entry="<tr class='clickable' onclick=window.location='student-status/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td><a href='student-status/"+id+"'> Click Here </a></td></tr>";
             $('#table-body').append(entry);
 
           }

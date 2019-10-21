@@ -62,6 +62,7 @@ class Command(BaseCommand):
                                           preferenceNumberOfAllocatedStation=2, natureOfQuery=1,
                                           applicationDate=datetime.datetime.now(), campus=0,
                                           preferedStation1="better cement 1", priority = 0)
+
       ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=1, campus=0,
                                               level=1, status=1, description="Hello",
                                               natureOfQuery=0)

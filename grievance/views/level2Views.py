@@ -61,7 +61,9 @@ class level2RequestView(generic.View):
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
 				"description":student.description,
-				"attempt":student.attempt
+				"attempt":student.attempt,
+				"nature":student.natureOfQuery,
+				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
 				}
 
 			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
@@ -81,12 +83,17 @@ class level2RequestView(generic.View):
 	def getPublished(self):
 		approvedList = []
 		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		
 		for student in student_list:
+			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
 			dict1 = {
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
 				"description":student.description,
-				"attempt":student.attempt
+				"attempt":student.attempt,
+				"nature":student.natureOfQuery,
+				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+				"priority":  priority
 				}
 			approvedList.append(dict1) 
 
@@ -94,11 +101,15 @@ class level2RequestView(generic.View):
 		rejectedList = []
 		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.REJECTED.value  ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
 		for student in student_list:
+			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
 			dict1 = {
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
 				"description":student.description,
-				"attempt":student.attempt
+				"attempt":student.attempt,
+				"nature":student.natureOfQuery,
+				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+				"priority": priority
 				}
 			rejectedList.append(dict1) 
 
@@ -112,12 +123,17 @@ class level2RequestView(generic.View):
 	def getUnpublished(self):
 		approvedList = []
 		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('lastChangedDate')
+		
 		for student in student_list:
+			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
 			dict1 = {
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
 				"description":student.description,
-				"attempt":student.attempt
+				"attempt":student.attempt,
+				"nature":student.natureOfQuery,
+				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+				"priority": priority
 				}
 			approvedList.append(dict1) 
 
@@ -125,11 +141,15 @@ class level2RequestView(generic.View):
 		rejectedList = []
 		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.REJECTED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('lastChangedDate')
 		for student in student_list:
+			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
 			dict1 = {
 				"id":student.student_id.user.username,
 				"name":student.student_id.name,
 				"description":student.description,
-				"attempt":student.attempt
+				"attempt":student.attempt,
+				"nature":student.natureOfQuery,
+				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+				"priority": priority
 				}
 			rejectedList.append(dict1) 
 

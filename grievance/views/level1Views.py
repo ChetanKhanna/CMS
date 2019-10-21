@@ -47,7 +47,7 @@ class level1RequestView(generic.View):
 
 		student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
 			 natureOfQuery = natureOfQuery, attempt=1).order_by(
-			'lastChangedDate')
+			'-lastChangedDate')
 
 		
 		returnList=[]
@@ -56,7 +56,7 @@ class level1RequestView(generic.View):
 			"id":student.student_id.user.username,
 			"name":student.student_id.name,
 			"description":student.description,
-			"date": student.lastChangedDate,
+			"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
 			}
 			returnList.append(dict1) 
 		# print(returnList)

@@ -24,7 +24,7 @@ def getStudentDetail(student_id):
 		'grievanceFormObject' : grievanceForm_object,
 		'priority' : grievanceForm_object.priority,
 		'numberOfAttempts' : numberOfAttempts,
-
+		'back' : '/ps-grievance/redirect'
 	}
 
 	return params

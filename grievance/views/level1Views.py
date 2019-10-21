@@ -20,11 +20,17 @@ from grievance.views import studentHomeView
 @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
 class level1HomeView(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
-		return render(request,"grievance/level1HomePage.html")
+		current_user = request.user
+		userProfile_object = UserProfile.objects.get(user = current_user)
 
-class adHomeView(generic.TemplateView):
-	def get(self, request, *args, **kwargs):
-		return render(request,"grievance/adHomePage.html")
+		if userProfile_object.token == constants.UserType.CMO.value:
+			return render(request,"grievance/level1HomePage.html")
+		elif userProfile_object.token == constants.UserType.AD.value:
+			return render(request,"grievance/adHomePage.html")
+
+# class adHomeView(generic.TemplateView):
+# 	def get(self, request, *args, **kwargs):
+# 		return render(request,"grievance/adHomePage.html")
 
 @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
 class level1RequestView(generic.View):

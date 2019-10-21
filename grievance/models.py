@@ -97,3 +97,7 @@ class InformativeQuerryForm(models.Model):
 
 	def __str__(self):
 		return str('InformativeQuerryForm Object:', (self.student_id, self.attempt))
+
+class Deadline(models.Model):
+	attempt = models.IntegerField()
+	date = models.DateTimeField()

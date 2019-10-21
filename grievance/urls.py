@@ -13,7 +13,7 @@ urlpatterns =[
 	path('level1/type/<type>',VIEWS.level1RequestView.as_view()),
 	path('level1/student/<student_id>', VIEWS.level1StudentView.as_view()),
 	path('level1/student-status/<student_id>', VIEWS.level1StudentStatusView.as_view()),
-	path('ad/', VIEWS.adHomeView.as_view()),
+	# path('ad/', VIEWS.adHomeView.as_view()),
 	# path('ad/type/<type>',VIEWS.level1RequestView.as_view()),
 	# path('ad/student/<student_id>', VIEWS.level1StudentView.as_view()),
 	# path('ad/student-status/<student_id>', VIEWS.level1StudentStatusView.as_view()),
@@ -26,6 +26,7 @@ urlpatterns =[
 	path('level2/student/<student_id>', VIEWS.level2StudentView.as_view()),
 	path('studentDetails/student/<student_id>', VIEWS.ViewOnlyStudentPageView.as_view()),
 	# path('temp/', VIEWS.TEMP.as_view()),
+	path('website-admin/change-deadline', VIEWS.changeDeadlineView.as_view()),
 
 ]
 

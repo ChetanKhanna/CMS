@@ -20,440 +20,742 @@
 
 {% block content %}
 
-<div class="table-light site-section">
-    <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application3Form" action="" method="post" readonly> 
-        {% csrf_token %}
-        <div id="application3Div" name="application3Div">
-            (with Location)
 
-            <h2 class="text-center"> Reapplication 2 </h2>
-            <br/>
+<div class="row" id="mainContent">
+    <div class="table-light site-section d-flex justify-content-center col-md-3">
+        <div class="btn-group-toggle btn p-1 pl-2 mt-5" id="typeOfPage">
+            <br>
+            <input class="btn mt-2 btn-outline-warning" type="button" name="type" id="viewInformativeQueryDiv" value="    Informative Query    " onclick="changeDisplayDiv(2)">
+            <br>
+            <input class="btn mt-2 btn-outline-success" type="button" name="type" id="viewNonInformativeQueryDiv" value="Non Informative Query" onclick="changeDisplayDiv(1)">
+            <br>
+        </div>
+    </div>
 
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Status</label>
-                <div class="ml-5 mr-5 px-5"><label id="status3" name="status3" class="btn btn-success text-light ml-5">Success</label></div>
-            </div>
+    <div class="table-light site-section col-md-9" id="informativeQueryDiv">
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="informativeQuery1Form" action="" method="post" readonly> 
+            {% csrf_token %}
+                <h2 class="text-center"> Query 1 </h2>
+                <br/>
 
-            <fieldset id="application3Entries">
-                <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                    <label for="userid" class="col-sm-4 col-form-label">Reason to Reapply</label>
-                    <div class="col-sm-8">
-                        <textarea class="form-control" id="description3" rows="5" cols="15" name="description" required></textarea>
-                    </div>
-                </div>
-            </fieldset>
-
-            <div class="form-group text-center">
-                <button type="submit" id="submit3" name="submit3" value="submit3" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
-            </div>
-
-            <div id="application3Comments">
-
-                <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                    <label for="userid" class="col-sm-4 col-form-label">Comments by authorities</label>
-                    <div class="col-sm-8">
-                        <textarea class="form-control" id="comments3" rows="5" cols="15" name="comments3" readonly></textarea>
+                <div class=" mb-4 row">
+                    <label for="informativeQuery1Status" class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-md-4 offset-2">
+                        <span id="informativeQuery1Status" class="offset-4 col-md-4"></span>
                     </div>
                 </div>
 
-                <div id="acception3Div" name="acception3Div">
+                <fieldset id="informativeQuery1Entries">
+                    <div class="form-group row" id="informativeQuery1DescriptionDiv" name="informativeQuery1DescriptionDiv">
+                        <label for="userid" class="col-sm-2 col-form-label">Description of Query</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="informativeQuery1Description" rows="4" cols="20" name="informativeQuery1Description" placeholder="placeholder" required></textarea>
+                        </div>
+                    </div>
+                </fieldset>
 
-                    <div class="form-group row">
-                        <label for="userid" class="col-sm-4 col-form-label">New Alotted Station</label>
+                <div class="form-group text-center">
+                    <button type="submit" id="informativeQuery1Submit" name="informativeQuery1Submit" value="informativeQuery1Submit" class="btn btn-default" style="background-color: #428bca; color: white">Submit</button>
+                </div>
+
+                <div class="form-group row" id="informativeQuery1ReplyDiv" name="informativeQuery1ReplyDiv">
+                    <label for="userid" class="col-sm-2 col-form-label">Comments by authorities</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="informativeQuery1Reply" rows="4" cols="20" name="informativeQuery1Reply" readonly></textarea>
+                    </div>
+                </div>
+        </form>
+
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="informativeQuery2Form" action="" method="post" readonly> 
+            {% csrf_token %}
+                <h2 class="text-center"> Query 2 </h2>
+                <br/>
+
+                <div class=" mb-4 row">
+                    <label for="informativeQuery2Status" class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-md-4 offset-2">
+                        <span id="informativeQuery2Status" class="offset-4 col-md-4"></span>
+                    </div>
+                </div>
+
+                <fieldset id="informativeQuery2Entries">
+                    <div class="form-group row" id="informativeQuery2DescriptionDiv" name="informativeQuery2DescriptionDiv">
+                        <label for="userid" class="col-sm-2 col-form-label">Description of Query</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="informativeQuery2Description" rows="4" cols="20" name="informativeQuery2Description" placeholder="placeholder" required></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group text-center">
+                    <button type="submit" id="informativeQuery2Submit" name="informativeQuery2Submit" value="informativeQuery2Submit" class="btn btn-default" style="background-color: #428bca; color: white">Submit</button>
+                </div>
+
+                <div class="form-group row" id="informativeQuery2ReplyDiv" name="informativeQuery2ReplyDiv">
+                    <label for="userid" class="col-sm-2 col-form-label">Comments by authorities</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="informativeQuery2Reply" rows="4" cols="20" name="informativeQuery2Reply" readonly></textarea>
+                    </div>
+                </div>
+        </form>
+
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="informativeQuery3Form" action="" method="post" readonly> 
+            {% csrf_token %}
+                <h2 class="text-center"> Query 3 </h2>
+                <br/>
+
+                <div class=" mb-4 row">
+                    <label for="informativeQuery3Status" class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-md-4 offset-2">
+                        <span id="informativeQuery3Status" class="offset-4 col-md-4"></span>
+                    </div>
+                </div>
+
+                <fieldset id="informativeQuery3Entries">
+                    <div class="form-group row" id="informativeQuery3DescriptionDiv" name="informativeQuery3DescriptionDiv">
+                        <label for="userid" class="col-sm-2 col-form-label">Description of Query</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="informativeQuery3Description" rows="4" cols="20" name="informativeQuery3Description" placeholder="placeholder" required></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group text-center">
+                    <button type="submit" id="informativeQuery3Submit" name="informativeQuery3Submit" value="informativeQuery3Submit" class="btn btn-default" style="background-color: #428bca; color: white">Submit</button>
+                </div>
+
+                <div class="form-group row" id="informativeQuery3ReplyDiv" name="informativeQuery3ReplyDiv">
+                    <label for="userid" class="col-sm-2 col-form-label">Comments by authorities</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="informativeQuery3Reply" rows="4" cols="20" name="informativeQuery3Reply" readonly></textarea>
+                    </div>
+                </div>
+        </form>
+
+    </div>
+
+    <script type="text/javascript">
+        function getInformativeQueryStatusToWords(status_value){
+            if(status_value == 0){
+                return "Not Sent";
+            }
+            else if(status_value == 1){
+                return "In Progress";   
+            }
+            else if(status_value == 2){
+                return "Replied";   
+            }
+        }
+
+        function getInformativeQueryStatusClass(status_value){
+            if(status_value == 0){
+                return "btn btn-info text-light ml-5 px-5";
+            }
+            else if(status_value == 1){
+                return "btn btn-warning text-light ml-5 px-5";   
+            }
+            else if(status_value == 2){
+                return "btn btn-success text-light ml-5 px-5";   
+            }
+        }
+
+        var informativeQueryStatuses = [2,2,2];
+        //var informativeQueryStatuses = {{ informativeQueryStatuses|safe }};
+
+        var informativeQueryDescriptions = ["description1", "description2", "description3"];
+        //informativeQueryDescriptions = {{ informativeQueryDescriptions|safe }}
+        if(informativeQueryStatuses[0] != 0){
+            document.getElementById("informativeQuery1Description").value = informativeQueryDescriptions[0];
+            document.getElementById("informativeQuery1Description").readOnly = true;
+        }
+        if(informativeQueryStatuses[1] != 0){
+            document.getElementById("informativeQuery2Description").value = informativeQueryDescriptions[1];
+            document.getElementById("informativeQuery2Description").readOnly = true;
+        }
+        if(informativeQueryStatuses[2] != 0){
+            document.getElementById("informativeQuery3Description").value = informativeQueryDescriptions[2];
+            document.getElementById("informativeQuery3Description").readOnly = true;
+        }
+
+        //var informativeQueryComments = {{ informativeQueryComments|safe }};
+        var informativeQueryComments = ["comment1", "comment2", "comment3" ];
+        document.getElementById("informativeQuery1Reply").value = informativeQueryComments[0];
+        document.getElementById("informativeQuery2Reply").value = informativeQueryComments[1];
+        document.getElementById("informativeQuery3Reply").value = informativeQueryComments[2];
+
+        
+        document.getElementById("informativeQuery1Status").textContent = getInformativeQueryStatusToWords(informativeQueryStatuses[0]);
+        document.getElementById("informativeQuery2Status").textContent = getInformativeQueryStatusToWords(informativeQueryStatuses[1]);
+        document.getElementById("informativeQuery3Status").textContent = getInformativeQueryStatusToWords(informativeQueryStatuses[2]);
+
+        document.getElementById("informativeQuery1Status").className = getInformativeQueryStatusClass(informativeQueryStatuses[0]);
+        document.getElementById("informativeQuery2Status").className = getInformativeQueryStatusClass(informativeQueryStatuses[1]);
+        document.getElementById("informativeQuery3Status").className = getInformativeQueryStatusClass(informativeQueryStatuses[2]);
+
+
+        if(informativeQueryStatuses[0] == 0){
+            document.getElementById("informativeQuery1ReplyDiv").style.display = "none";
+            document.getElementById("informativeQuery2Form").style.display = "none";
+        }
+        else if(informativeQueryStatuses[0] == 1){
+            document.getElementById("informativeQuery1Submit").style.display = "none";
+            document.getElementById("informativeQuery1ReplyDiv").style.display = "none";
+            document.getElementById("informativeQuery2Form").style.display = "none";
+        }
+        else if(informativeQueryStatuses[0] == 2){
+            document.getElementById("informativeQuery1Submit").style.display = "none";
+        }
+
+        if(informativeQueryStatuses[1] == 0){
+            document.getElementById("informativeQuery2ReplyDiv").style.display = "none";
+            document.getElementById("informativeQuery3Form").style.display = "none";
+        }
+        else if(informativeQueryStatuses[1] == 1){
+            document.getElementById("informativeQuery2Submit").style.display = "none";
+            document.getElementById("informativeQuery2ReplyDiv").style.display = "none";
+            document.getElementById("informativeQuery3Form").style.display = "none";
+        }
+        else if(informativeQueryStatuses[1] == 2){
+            document.getElementById("informativeQuery2Submit").style.display = "none";
+        }
+
+        if(informativeQueryStatuses[2] == 0){
+            document.getElementById("informativeQuery3ReplyDiv").style.display = "none";
+        }
+        else if(informativeQueryStatuses[2] == 1){
+            document.getElementById("informativeQuery3Submit").style.display = "none";
+            document.getElementById("informativeQuery3ReplyDiv").style.display = "none";
+        }
+        else if(informativeQueryStatuses[2] == 2){
+            document.getElementById("informativeQuery3Submit").style.display = "none";
+        }   
+    </script>
+
+
+
+    <div class="table-light site-section col-md-9" id="nonInformativeQueryDiv">
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application3Form" action="" method="post" readonly> 
+            {% csrf_token %}
+            <div id="application3Div" name="application3Div">
+                <h2 class="text-center"> Reapplication 2 </h2>
+                <br/>
+
+                <div class="form-group row">
+                    <label for="userid" class="col-sm-2 col-form-label">Status23</label>
+                    <div class="ml-5 mr-5 px-5"><label id="status3" name="status3" class="btn btn-success text-light ml-5">Success</label></div>
+                </div>
+
+                <div class=" mb-4 row">
+                    <label for="status33" class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-md-4 offset-2">
+                        <span id="status33" class="offset-4 col-md-4"></span>
+                    </div>
+                </div>
+
+                <fieldset id="application3Entries">
+                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                        <label for="userid" class="col-sm-2 col-form-label">Reason to Reapply</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="newStation3" name="newStation3" readonly>
+                            <textarea class="form-control" id="description3" rows="5" cols="15" name="description" required></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group text-center">
+                    <button type="submit" id="submit3" name="submit3" value="submit3" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
+                </div>
+
+                <div id="application3Comments">
+
+                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                        <label for="userid" class="col-sm-2 col-form-label">Comments by authorities</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="comments3" rows="5" cols="15" name="comments3" readonly></textarea>
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </div>
-    </form>
+                    <div id="acception3Div" name="acception3Div">
 
+                        <div class="form-group row">
+                            <label for="userid" class="col-sm-2 col-form-label">New Alotted Station</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="newStation3" name="newStation3" readonly>
+                            </div>
+                        </div>
 
-    <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application2Form" action="" method="post" readonly> 
-        {% csrf_token %}
-        <div table-warning id="application2Div" name="application2Div">
-            
-
-            <h2 class="text-center"> Reapplication 1 </h2>
-            <br/>
-
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Status</label>
-                <div class="ml-5 mr-5 px-5"><label id="status2" name="status2" class="btn btn-success text-light ml-5">Success</label></div>
-            </div>
-
-            <fieldset id="application2Entries">
-                <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                    <label for="userid" class="col-sm-4 col-form-label">Reason to Reapply</label>
-                    <div class="col-sm-8">
-                        <textarea class="form-control" id="description2" rows="5" cols="15" name="description" required></textarea>
                     </div>
                 </div>
-            </fieldset>
-
-            <div class="form-group text-center">
-                <button type="submit" id="submit2" name="submit2" value="submit2" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
             </div>
+        </form>
 
-            <div id="application2Comments">
 
-                <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                    <label for="userid" class="col-sm-4 col-form-label">Comments by authorities</label>
-                    <div class="col-sm-8">
-                        <textarea class="form-control" id="comments2" rows="5" cols="15" name="comments2" readonly></textarea>
-                    </div>
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application2Form" action="" method="post" readonly> 
+            {% csrf_token %}
+            <div table-warning id="application2Div" name="application2Div">
+                
+
+                <h2 class="text-center"> Reapplication 1 </h2>
+                <br/>
+
+                <div class="form-group row">
+                    <label for="userid" class="col-sm-4 col-form-label">Status</label>
+                    <div class="ml-5 mr-5 px-5"><label id="status2" name="status2" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
-                <div id="acception2Div" name="acception2Div">
-
-                    <div class="form-group row">
-                        <label for="userid" class="col-sm-4 col-form-label">New Alotted Station</label>
+                <fieldset id="application2Entries">
+                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                        <label for="userid" class="col-sm-4 col-form-label">Reason to Reapply</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="newStation2" name="newStation2" readonly>
+                            <textarea class="form-control" id="description2" rows="5" cols="15" name="description" required></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group text-center">
+                    <button type="submit" id="submit2" name="submit2" value="submit2" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
+                </div>
+
+                <div id="application2Comments">
+
+                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                        <label for="userid" class="col-sm-4 col-form-label">Comments by authorities</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="comments2" rows="5" cols="15" name="comments2" readonly></textarea>
                         </div>
                     </div>
 
+                    <div id="acception2Div" name="acception2Div">
+
+                        <div class="form-group row">
+                            <label for="userid" class="col-sm-4 col-form-label">New Alotted Station</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="newStation2" name="newStation2" readonly>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
-    <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application1Form" action="/ps-grievance/student/" method="post" readonly  enctype="multipart/form-data">
-        {% csrf_token %}
-        <h2 class="text-center">Grievance Application Form</h2>
-        <br/>
+        </form>
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application1Form" action="/ps-grievance/student/" method="post" readonly  enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="text-center">Grievance Application Form</h2>
+            <br/>
 
-        <div class="form-group row">
-            <label for="userid" class="col-sm-4 col-form-label mr-5">Status</label>
-            <div class="ml-5 mr-5 px-5"><label id="status1" class="btn btn-success text-light ml-5">Success</label></div>
-        </div>
-
-        <div class="form-group row">
-            <label for="userid" class="col-sm-4 col-form-label">Name</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="name" name="name" readonly>
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label mr-5">Status</label>
+                <div class="ml-5 mr-5 px-5"><label id="status1" class="btn btn-success text-light ml-5">Success</label></div>
             </div>
-        </div>
 
-        <div class="form-group row">
-            <label for="userid" class="col-sm-4 col-form-label">Campus</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="campus" name="campus" readonly>
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="name" name="name" readonly>
+                </div>
             </div>
-        </div>
-        <fieldset id="initialEntries">
+
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">ID</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="id" name="id" readonly>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="userid" class="col-sm-4 col-form-label">Campus</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="campus" name="campus" readonly>
+                </div>
+            </div>
             <div class="form-group row" id="cgpaDiv">
                 <label for="userid" class="col-sm-4 col-form-label">CGPA</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="cg" name="cg" placeholder="CGPA" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Offshoot</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="offShoot" name="offShoot" placeholder="Offshoot">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Alotted Station (with Location)</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="allocatedStation" name="allocatedStation" placeholder="XYZ Pvt. Ltd., Goa" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Preference No. of Alotted Station</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferenceNumberOfAllocatedStation" name="preferenceNumberOfAllocatedStation" placeholder="1" required>
+                    <input type="text" class="form-control" id="cg" name="cg" readonly>
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Naturea of Query</label>
+            <div class="form-group row" id="cgpaDiv">
+                <label for="userid" class="col-sm-4 col-form-label">Email</label>
                 <div class="col-sm-8">
-                    <select class="custom-select" id="natureOfQuery" name="natureOfQuery" required>
-                        <option value="">Select</option>
-                        <option value="0">Medical</option>
-                        <option value="1">Non Medical</option>
-                    </select>
+                    <input type="text" class="form-control" id="email" name="email" readonly>
                 </div>
             </div>
 
-            <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                <label for="userid" class="col-sm-4 col-form-label">Description of Query</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" id="description" rows="5" cols="15" name="description" placeholder="Description" required></textarea>
-                </div>
-            </div>
+            <fieldset id="initialEntries">
 
-            <p align="center">   Add the prefered stations you want in order from 1 to 10(with Location)</p>
-
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 1</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferedStation1" name="preferedStation1" placeholder="XYZ Pvt. Ltd., Goa" required>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 2</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferedStation2" name="preferedStation2" placeholder="XYZ Pvt. Ltd., Goa">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 3</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferedStation3" name="preferedStation3" placeholder="XYZ Pvt. Ltd., Goa">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 4</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferedStation4" name="preferedStation4" placeholder="XYZ Pvt. Ltd., Goa">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Preferred Station 5</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="preferedStation5" name="preferedStation5" placeholder="XYZ Pvt. Ltd., Goa">
-                </div>
-            </div>
-
-            <h3 class="text-center">Supporting Documents</h3>
-            <div id="file-uploads" name="file-uploads">
-                {% if attemptStatus.0 > 0 %}
-                    <div class="text-center">
-                    {% if formEntry.document1 %}
-                        <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document1 }}'>File 1</a>
-                    {% else %}
-                        <p style="color:red;"> No documents uploaded </p>
-                    {% endif %}
-                    {% if formEntry.document2 %}
-                        <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document2 }}'>File 2</a>
-                    {% endif %}
-                    {% if formEntry.document3 %}
-                        <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document3 }}'>File 3</a>
-                    {% endif %}
-                    {% if formEntry.document4 %}
-                        <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document4 }}'>File 4</a>
-                    {% endif %}
-                    {% if formEntry.document5 %}
-                        <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document5 }}'>File 5</a>
-                    {% endif %}
+                <div class="form-group row" id="contactNumberDiv">
+                    <label for="userid" class="col-sm-4 col-form-label">Contact No.</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="contact" name="contact" required>
                     </div>
+                </div>
+            
+
+                <div class="form-group row">
+                    <label for="userid" class="col-sm-4 col-form-label">Reason of Query</label>
+                    <div class="col-sm-8">
+                        <select class="custom-select" id="natureOfQuery" name="natureOfQuery" required>
+                            <option value="">Select</option>
+                            <option value="0">Medical</option>
+                            <option value="1">Non Medical</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                    <label for="userid" class="col-sm-4 col-form-label">Description of Query</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="description" rows="5" cols="15" name="description" placeholder="Description" required></textarea>
+                    </div>
+                </div>
+
+                <p align="center">   Add the prefered stations you want in order from 1 to 10(with Location)</p>
+
+                <div class="form-group row">
+                    &emsp;
+                    &emsp;
+                    &emsp;
+                    <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label>
+                    <label for="userid" class="col-sm-3 col-form-label">Station Name</label>
+                </div>
+
+                <div class="form-group row">
+                    <label for="userid" class="col-sm-3 col-form-label">Allocated Station</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="allocatedStationPrefNo" name="allocatedStationPrefNo" placeholder="1" size="10" readonly>
+                    </div>
+
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="allocatedStationName" name="allocatedStationName" placeholder="XYZ Pvt. Ltd., Goa" readonly>
+                    </div>
+                </div>
+
+                <div id="preferedStations">
+                </div>
+
+                <br>
+
+                <h3 class="text-center">Supporting Documents</h3>
+                <div id="file-uploads" name="file-uploads">
+                    {% if attemptStatus.0 > 0 %}
+                        <div class="text-center">
+                        {% if formEntry.document1 %}
+                            <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document1 }}'>File 1</a>
+                        {% else %}
+                            <p style="color:red;"> No documents uploaded </p>
+                        {% endif %}
+                        {% if formEntry.document2 %}
+                            <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document2 }}'>File 2</a>
+                        {% endif %}
+                        {% if formEntry.document3 %}
+                            <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document3 }}'>File 3</a>
+                        {% endif %}
+                        {% if formEntry.document4 %}
+                            <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document4 }}'>File 4</a>
+                        {% endif %}
+                        {% if formEntry.document5 %}
+                            <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document5 }}'>File 5</a>
+                        {% endif %}
+                        </div>
+                    {% else %}
+                        <p class="text-center"> You can add upto 5 supporting documents to support your Application. Each document should be less than 5 MB </p>
+                            <input type="file" name="document1" id="document1"></input>
+                            <input type="file" name="document2" id="document2"></input>
+                            <input type="file" name="document3" id="document3"></input>
+                            <input type="file" name="document4" id="document4"></input>
+                            <input type="file" name="document5" id="document5"></input>
+                    {% endif %}
+                </div>
+
+                <br/>
+                <br/>
+
+                <!-- <h3 class="text-center">Supporting Documents</h3>
+                {% if 1 %}
+                    <p>Uploaded 
+                            <a href="/ps-grievance/media/"+{{ formEntry.document1 }}>File1</a>
+                        </p>
                 {% else %}
                     <p class="text-center"> You can add upto 5 supporting documents to support your Application. Each document should be less than 5 MB </p>
+                    <div id="file-uploads" name="file-uploads">
+                        
+                            
                         <input type="file" name="document1" id="document1"></input>
                         <input type="file" name="document2" id="document2"></input>
                         <input type="file" name="document3" id="document3"></input>
                         <input type="file" name="document4" id="document4"></input>
                         <input type="file" name="document5" id="document5"></input>
+                    </div>
                 {% endif %}
+                <br/>
+                <br/> -->
+
+     
+            </fieldset>
+            
+            <div class="text-center" id="submitButton">
+                <button type="submit1" value="submit1" name="submit1" id="submit1" class="btn btn-default" style="background-color: #428bca; color: white">Submit</button>
             </div>
 
-            <br/>
-            <br/>
+            <div id="application1Comments">
 
-            <!-- <h3 class="text-center">Supporting Documents</h3>
-            {% if 1 %}
-                <p>Uploaded 
-                        <a href="/ps-grievance/media/"+{{ formEntry.document1 }}>File1</a>
-                    </p>
-            {% else %}
-                <p class="text-center"> You can add upto 5 supporting documents to support your Application. Each document should be less than 5 MB </p>
-                <div id="file-uploads" name="file-uploads">
-                    
-                        
-                    <input type="file" name="document1" id="document1"></input>
-                    <input type="file" name="document2" id="document2"></input>
-                    <input type="file" name="document3" id="document3"></input>
-                    <input type="file" name="document4" id="document4"></input>
-                    <input type="file" name="document5" id="document5"></input>
-                </div>
-            {% endif %}
-            <br/>
-            <br/> -->
-
- 
-        </fieldset>
-        
-        <div class="text-center" id="submitButton">
-            <button type="submit1" value="submit1" name="submit1" id="submit1" class="btn btn-default" style="background-color: #428bca; color: white">Submit</button>
-        </div>
-
-        <div id="application1Comments">
-
-            <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                <label for="userid" class="col-sm-4 col-form-label">Comments by authorities</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" id="comments1" rows="5" cols="15" name="comments1" readonly></textarea>
-                </div>
-            </div>
-
-            <div id="acception1Div" name="acception1Div">
-
-                <div class="form-group row">
-                    <label for="userid" class="col-sm-4 col-form-label">New Alotted Station</label>
+                <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                    <label for="userid" class="col-sm-4 col-form-label">Comments by authorities</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="newStation1" name="newStation1" readonly>
+                        <textarea class="form-control" id="comments1" rows="5" cols="15" name="comments1" readonly></textarea>
                     </div>
                 </div>
 
+                <div id="acception1Div" name="acception1Div">
+
+                    <div class="form-group row">
+                        <label for="userid" class="col-sm-4 col-form-label">New Alotted Station</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="newStation1" name="newStation1" readonly>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
 
-    
+        
 
-    
+        
 
-    <script type="text/javascript">
-            function getStatusToWords(status_value){
-                if(status_value == 0){
-                    return "Not Applied";
+        <script type="text/javascript">
+                /*<div class="form-group row">
+                    <label for="userid" class="col-sm-3 col-form-label">Prefered Station 1</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="preferedStation1PrefNo" name="preferedStation1PrefNo" placeholder="1" size="10" required>
+                    </div>
+
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="preferedStation1Name" name="preferedStation1Name" placeholder="XYZ Pvt. Ltd., Goa" required>
+                    </div>
+                </div>*/
+                for(var i = 1; i <= 10; i++){
+                    var row = document.createElement("div"); // the div of each stations
+                    row.className = "form-group row";
+
+                    // label which says "Prefered Station X"
+                    var label = document.createElement("LABEL");
+                    label.className = "col-sm-3 col-form-label";
+                    label.textContent = "Prefered Station " + i.toString();
+                    row.appendChild(label);
+
+                    // div of Prefered Station's Pref Number input
+                    var preferedStationNumberDiv = document.createElement("div");
+                    preferedStationNumberDiv.className = "col-sm-2";
+                    var preferedStationPrefNoInput = document.createElement("INPUT");
+                    preferedStationPrefNoInput.type = "text";
+                    preferedStationPrefNoInput.className = "form-control";
+                    preferedStationPrefNoInput.id = "preferedStation" + i.toString() + "PrefNo";
+                    preferedStationPrefNoInput.placeholder = i.toString();
+                    preferedStationPrefNoInput.size = 10;
+                    if(i == 1) preferedStationPrefNoInput.required = true;
+                    preferedStationNumberDiv.appendChild(preferedStationPrefNoInput);
+                    row.appendChild(preferedStationNumberDiv);
+
+                    // div of Prefered Station's Name input
+                    var preferedStationNameDiv = document.createElement("div");
+                    preferedStationNameDiv.className = "col-sm-5";
+                    var preferedStationNameInput = document.createElement("INPUT");
+                    preferedStationNameInput.type = "text";
+                    preferedStationNameInput.className = "form-control";
+                    preferedStationNameInput.id = "preferedStation" + i.toString() + "Name";
+                    preferedStationNameInput.placeholder = "XYZ Pvt. Ltd., Goa";
+                    if(i == 1) preferedStationNameInput.required = true;
+                    preferedStationNameDiv.appendChild(preferedStationNameInput);
+                    row.appendChild(preferedStationNameDiv);
+                    document.getElementById("preferedStations").appendChild(row);
                 }
-                else if(status_value == 1){
-                    return "In Progress";   
-                }
-                else if(status_value == 2){
-                    return "Accepted";   
-                }
-                else if(status_value == 3){
-                    return "Rejected";   
-                }
-            }
 
-            function getStatusClass(status_value){
-                if(status_value == 0){
-                    return "btn btn-info text-light ml-5 px-5";
+                function getStatusToWords(status_value){
+                    if(status_value == 0){
+                        return "Not Applied";
+                    }
+                    else if(status_value == 1){
+                        return "In Progress";   
+                    }
+                    else if(status_value == 2){
+                        return "Accepted";   
+                    }
+                    else if(status_value == 3){
+                        return "Rejected";   
+                    }
                 }
-                else if(status_value == 1){
-                    return "btn btn-warning text-light ml-5 px-5";   
+
+                function getStatusClass(status_value){
+                    if(status_value == 0){
+                        return "btn btn-info text-light ml-5 px-5";
+                    }
+                    else if(status_value == 1){
+                        return "btn btn-warning text-light ml-5 px-5";   
+                    }
+                    else if(status_value == 2){
+                        return "btn btn-success text-light ml-5 px-5";   
+                    }
+                    else if(status_value == 3){
+                        return "btn btn-danger text-light ml-5 px-5";   
+                    }
                 }
-                else if(status_value == 2){
-                    return "btn btn-success text-light ml-5 px-5";   
+
+                function getCampusName(campus_value){
+                    if(campus_value == 0){
+                        return "Goa";
+                    }
+                    else if(campus_value == 1){
+                        return "Hyderabad";   
+                    }
+                    else if(campus_value == 2){
+                        return "Pilani";   
+                    }
+                    else if(campus_value == 3){
+                        return "Invalid";   
+                    }
                 }
-                else if(status_value == 3){
-                    return "btn btn-danger text-light ml-5 px-5";   
+                var fileUploadsDiv = document.getElementById("file-uploads");
+                fileUploadsDiv.onchange = function() {
+                    for(var i = 1; i <= 5; i++){
+                        var file = document.getElementById("file" + i.toString());
+                        if(file.files.length == 0) continue;
+                        if(file.files[0].size > 5242880){
+                            alert("Max size allowed is 5 MB");
+                            file.value = "";
+                        };
+                    }
+                };
+
+                //document.getElementById("informativeQueryDiv").style.display = "none";
+                //document.getElementById("nonInformativeQueryDiv").style.display = "none";
+
+                console.log("{{ campus }}");
+                console.log("{{ name }}");
+                document.getElementById("name").value = "{{ name }}";
+                document.getElementById("campus").value = getCampusName({{ campus }});
+                document.getElementById("cg").value = "{{ formEntry.cg }}";
+                //document.getElementById("allocatedStation").value = "{{ formEntry.allocatedStation }}";
+                //document.getElementById("preferenceNumberOfAllocatedStation").value = "{{ formEntry.preferenceNumberOfAllocatedStation }}";
+                document.getElementById("natureOfQuery").value = "{{ formEntry.natureOfQuery }}";
+                var descriptions = {{ descriptions|safe }};
+                console.log(descriptions);
+                document.getElementById("description").value = descriptions[0];
+                document.getElementById("description2").value = descriptions[1];
+                document.getElementById("description3").value = descriptions[2];
+                //document.getElementById("description2").value = descriptions[2];
+                document.getElementById("preferedStation1").value = "{{ formEntry.preferedStation1 }}";
+                document.getElementById("preferedStation2").value = "{{ formEntry.preferedStation2 }}";
+                document.getElementById("preferedStation3").value = "{{ formEntry.preferedStation3 }}";
+                document.getElementById("preferedStation4").value = "{{ formEntry.preferedStation4 }}";
+                document.getElementById("preferedStation5").value = "{{ formEntry.preferedStation5 }}";
+                var comments = {{ comments|safe }};
+                console.log(comments)
+                document.getElementById("comments1").value = comments[0];
+                document.getElementById("comments2").value = comments[1];
+                document.getElementById("comments3").value = comments[2];
+                var newStations = {{ newStation|safe }};
+                console.log(newStations);
+                var statuses = {{ attemptStatus|safe }};
+                console.log('statuses are')
+                console.log(statuses)
+                document.getElementById("status1").textContent = getStatusToWords(statuses[0]);
+                document.getElementById("status2").textContent = getStatusToWords(statuses[1]);
+                document.getElementById("status3").textContent = getStatusToWords(statuses[2]);
+
+                document.getElementById("status1").className = getStatusClass(statuses[0]);
+                document.getElementById("status2").className = getStatusClass(statuses[1]);
+                document.getElementById("status3").className = getStatusClass(statuses[2]);
+
+                document.getElementById("newStation1").value = newStations[0];
+                document.getElementById("newStation2").value = newStations[1];
+                document.getElementById("newStation3").value = newStations[2];
+                if(statuses[0] == 0){
+                    document.getElementById("application1Comments").style.display = "none";
+                    document.getElementById("application2Form").style.display = "none";
                 }
-            }
-            var fileUploadsDiv = document.getElementById("file-uploads");
-            fileUploadsDiv.onchange = function() {
-                for(var i = 1; i <= 5; i++){
-                    var file = document.getElementById("file" + i.toString());
-                    if(file.files.length == 0) continue;
-                    if(file.files[0].size > 5242880){
-                        alert("Max size allowed is 5 MB");
-                        file.value = "";
-                    };
+                else if(statuses[0] == 1){
+                    document.getElementById("initialEntries").disabled="disabled";
+                    document.getElementById("submit1").style.display = "none";
+                    document.getElementById("application1Comments").style.display = "none";
+                    document.getElementById("application2Form").style.display = "none";
                 }
-            };
+                else if(statuses[0] == 2){
+                    document.getElementById("initialEntries").disabled="disabled";
+                    document.getElementById("submit1").style.display = "none";
+                }
+                else if(statuses[0] == 3){
+                    document.getElementById("initialEntries").disabled="disabled";
+                    document.getElementById("submit1").style.display = "none";
+                    document.getElementById("acception1Div").style.display = "none";
+                }
 
+                if(statuses[1] == 0){
+                    document.getElementById("application2Comments").style.display = "none";
+                    document.getElementById("application3Form").style.display = "none";
+                }
+                else if(statuses[1] == 1){
+                    document.getElementById("application2Entries").disabled="disabled";
+                    document.getElementById("submit2").style.display = "none";
+                    document.getElementById("application2Comments").style.display = "none";
+                    document.getElementById("application3Form").style.display = "none";
+                }
+                else if(statuses[1] == 2){
+                    document.getElementById("application2Entries").disabled="disabled";
+                    document.getElementById("submit2").style.display = "none";
+                }
+                else if(statuses[1] == 3){
+                    document.getElementById("application2Entries").disabled="disabled";
+                    document.getElementById("submit2").style.display = "none";
+                    document.getElementById("acception2Div").style.display = "none";
+                }
 
-            console.log("{{ campus }}");
-            console.log("{{ name }}");
-            document.getElementById("name").value = "{{ name }}";
-            document.getElementById("campus").value = "{{ campus }}";
-            document.getElementById("cg").value = "{{ formEntry.cg }}";
-            document.getElementById("offShoot").value = "{{ formEntry.offShoot }}";
-            document.getElementById("allocatedStation").value = "{{ formEntry.allocatedStation }}";
-            document.getElementById("preferenceNumberOfAllocatedStation").value = "{{ formEntry.preferenceNumberOfAllocatedStation }}";
-            document.getElementById("natureOfQuery").value = "{{ formEntry.natureOfQuery }}";
-            var descriptions = {{ descriptions|safe }};
-            console.log(descriptions);
-            document.getElementById("description").value = descriptions[0];
-            document.getElementById("description2").value = descriptions[1];
-            document.getElementById("description3").value = descriptions[2];
-            //document.getElementById("description2").value = descriptions[2];
-            document.getElementById("preferedStation1").value = "{{ formEntry.preferedStation1 }}";
-            document.getElementById("preferedStation2").value = "{{ formEntry.preferedStation2 }}";
-            document.getElementById("preferedStation3").value = "{{ formEntry.preferedStation3 }}";
-            document.getElementById("preferedStation4").value = "{{ formEntry.preferedStation4 }}";
-            document.getElementById("preferedStation5").value = "{{ formEntry.preferedStation5 }}";
-            var comments = {{ comments|safe }};
-            console.log(comments)
-            document.getElementById("comments1").value = comments[0];
-            document.getElementById("comments2").value = comments[1];
-            document.getElementById("comments3").value = comments[2];
-            var newStations = {{ newStation|safe }};
-            console.log(newStations);
-            var statuses = {{ attemptStatus|safe }};
-            console.log(statuses)
-            document.getElementById("status1").textContent = getStatusToWords(statuses[0]);
-            document.getElementById("status2").textContent = getStatusToWords(statuses[1]);
-            document.getElementById("status3").textContent = getStatusToWords(statuses[2]);
-
-            document.getElementById("status1").className = getStatusClass(statuses[0]);
-            document.getElementById("status2").className = getStatusClass(statuses[1]);
-            document.getElementById("status3").className = getStatusClass(statuses[2]);
-
-            document.getElementById("newStation1").value = newStations[0];
-            document.getElementById("newStation2").value = newStations[1];
-            document.getElementById("newStation3").value = newStations[2];
-            if(statuses[0] == 0){
-                document.getElementById("application1Comments").style.display = "none";
-                document.getElementById("application2Form").style.display = "none";
-            }
-            else if(statuses[0] == 1){
-                document.getElementById("initialEntries").disabled="disabled";
-                document.getElementById("submit1").style.display = "none";
-                document.getElementById("application1Comments").style.display = "none";
-                document.getElementById("application2Form").style.display = "none";
-            }
-            else if(statuses[0] == 2){
-                document.getElementById("initialEntries").disabled="disabled";
-                document.getElementById("submit1").style.display = "none";
-            }
-            else if(statuses[0] == 3){
-                document.getElementById("initialEntries").disabled="disabled";
-                document.getElementById("submit1").style.display = "none";
-                document.getElementById("acception1Div").style.display = "none";
-            }
-
-            if(statuses[1] == 0){
-                document.getElementById("application2Comments").style.display = "none";
-                document.getElementById("application3Form").style.display = "none";
-            }
-            else if(statuses[1] == 1){
-                document.getElementById("application2Entries").disabled="disabled";
-                document.getElementById("submit2").style.display = "none";
-                document.getElementById("application2Comments").style.display = "none";
-                document.getElementById("application3Form").style.display = "none";
-            }
-            else if(statuses[1] == 2){
-                document.getElementById("application2Entries").disabled="disabled";
-                document.getElementById("submit2").style.display = "none";
-            }
-            else if(statuses[1] == 3){
-                document.getElementById("application2Entries").disabled="disabled";
-                document.getElementById("submit2").style.display = "none";
-                document.getElementById("acception2Div").style.display = "none";
-            }
-
-            if(statuses[2] == 0){
-                document.getElementById("application3Comments").style.display = "none";
-            }
-            else if(statuses[2] == 1){
-                document.getElementById("application3Entries").disabled="disabled";
-                document.getElementById("submit3").style.display = "none";
-                document.getElementById("application3Comments").style.display = "none";
-            }
-            else if(statuses[2] == 2){
-                document.getElementById("application3Entries").disabled="disabled";
-                document.getElementById("submit3").style.display = "none";
-            }
-            else if(statuses[2] == 3){
-                document.getElementById("application3Entries").disabled="disabled";
-                document.getElementById("submit3").style.display = "none";
-                document.getElementById("acception3Div").style.display = "none";
-            }
-            /*if(statuses[1] == 0){
-                document.getElementById("reapplication1Form").style.display = "none";
-            }*/
-            //document.getElementById('file-uploads').style.display = "none";   
-    </script>
+                if(statuses[2] == 0){
+                    document.getElementById("application3Comments").style.display = "none";
+                }
+                else if(statuses[2] == 1){
+                    document.getElementById("application3Entries").disabled="disabled";
+                    document.getElementById("submit3").style.display = "none";
+                    document.getElementById("application3Comments").style.display = "none";
+                }
+                else if(statuses[2] == 2){
+                    document.getElementById("application3Entries").disabled="disabled";
+                    document.getElementById("submit3").style.display = "none";
+                }
+                else if(statuses[2] == 3){
+                    document.getElementById("application3Entries").disabled="disabled";
+                    document.getElementById("submit3").style.display = "none";
+                    document.getElementById("acception3Div").style.display = "none";
+                }
+                /*if(statuses[1] == 0){
+                    document.getElementById("reapplication1Form").style.display = "none";
+                }*/
+                //document.getElementById('file-uploads').style.display = "none";   
+        </script>
+    </div>
 </div>
+
+<script type="text/javascript">
+    var CURRENT_VIEW = 2;
+    document.getElementById("informativeQueryDiv").style.display = "none";
+    document.getElementById("nonInformativeQueryDiv").style.display = "none";
+    function changeDisplayDiv(div_name){
+        if(div_name == 1){
+            document.getElementById("informativeQueryDiv").style.display = "none";
+            document.getElementById("nonInformativeQueryDiv").style.display = "";
+        }
+        else if(div_name == 2){
+            document.getElementById("informativeQueryDiv").style.display = "";
+            document.getElementById("nonInformativeQueryDiv").style.display = "none";
+        }
+    }
+    /*if(CURRENT_VIEW == 1){
+        document.getElementById("informativeQueryDiv").style.display = "none";
+    }
+    else if(CURRENT_VIEW == 2){
+        document.getElementById("nonInformativeQueryDiv").style.display = "none";
+    }*/
+</script>
     <!-- footer -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

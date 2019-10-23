@@ -1,0 +1,342 @@
+<!--
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<meta charset="utf-8">
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<meta name="viewport" content="width=device-width, initial-scale=1" >
+  <head>-->
+
+
+    {% extends 'grievance/level2base.html' %}
+    {% load static %}
+    
+    
+    {% block content %}
+    
+    
+    
+    
+    
+    <section class="container-fluid m-0 " id="main">
+    
+    
+        <br><br><br>
+    
+        <div class="row container-fluid pt-4 d-flex justify-content-center table-primary pb-3">
+    
+    
+            <div class="col-md-2">
+                <label for="name"><strong>Student Name</strong> </label>
+                <input class="form-control" id="name" style="text-align: center;" name="name" value='{{name}}' disabled
+                    type="text">
+            </div>
+            <div class="col-md-2">
+                <label for="student_id"><strong>Student Id</strong> </label>
+                <input class="form-control" id="student_id" style="text-align: center;" name="student_id"
+                    value='{{student_id}}' disabled type="text">
+            </div>
+    
+            <!-- <div class="col-md-2">
+              <label for="PS"><strong>Nature of Query</strong> </label>
+              <input class="form-control" id="nature" name="nature" style="text-align: center;"
+                value='{{applcationStatusObjects.0.natureOfQuery}}' disabled type="text">
+            </div> -->
+            <div class="col-md-2">
+                <label for="PS"><strong>Nature of Query</strong> </label>
+                <input class="form-control" id="nature" name="nature" style="text-align: center;" disabled type="text">
+            </div>
+            <div class="col-md-2">
+                <label for="CG"><strong>CG</strong> </label>
+                <input class="form-control" id="CG" name="CG" style="text-align: center;" value='{{grievanceFormObject.cg}}'
+                    disabled type="text">
+            </div>
+            <div class="col-md-2">
+                <label for="Offshoot"><strong>Offshoot</strong> </label>
+                <input class="form-control" id="offshoot" name="offshoot" style="text-align: center;"
+                    value='{{grievanceFormObject.offShoot}}' disabled type="text">
+            </div>
+    
+        </div>
+        <hr width="80%">
+    
+    
+    
+    
+    
+    
+    
+        <div class="table-light site-section" id="informativeQueryDiv">
+            <!-- QUERY 1 -->
+            <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="informativeQuery1Form" action=""
+                method="post" readonly>
+                {% csrf_token %}
+                <h2 class="text-center"> Query 1 </h2>
+                <br />
+    
+                <fieldset id="informativeQuery1Entries">
+                    <div class="form-group row" id="informativeQuery1DescriptionDiv" name="informativeQuery1DescriptionDiv">
+                        <label for="userid" class="col-sm-2 col-form-label">Query</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="informativeQuery1Description" rows="4" cols="20"
+                                name="informativeQuery1Description" readonly>Placeholder</textarea>
+                        </div>
+                    </div>
+                </fieldset>
+    
+                <div class="form-group row" id="informativeQuery1ReplyDiv" name="informativeQuery1ReplyDiv">
+                    <label for="userid" class="col-sm-2 col-form-label">Reply</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="informativeQuery1Reply" rows="4" cols="20"
+                            name="informativeQuery1Reply" {% if numberOfAttempts > 1 %} disabled {% endif %}>Placeholder</textarea>
+                    </div>
+                </div>
+    
+                <div class="form-group text-center">
+                    <button type="submit" id="informativeQuery1Submit" name="informativeQuery1Submit"
+                        value="informativeQuery1Submit" class="btn btn-default"
+                        style="background-color: #428bca; color: white">Submit</button>
+                </div>
+            </form>
+    
+    
+    
+    
+            <!-- QUERY 2 -->
+    
+    
+    
+    
+            <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="informativeQuery2Form" action=""
+                method="post" style="display: none;" readonly>
+                {% csrf_token %}
+                <h2 class="text-center"> Query 2 </h2>
+                <br />
+    
+                <fieldset id="informativeQuery2Entries">
+                    <div class="form-group row" id="informativeQuery2DescriptionDiv" name="informativeQuery2DescriptionDiv">
+                        <label for="userid" class="col-sm-2 col-form-label">Query</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="informativeQuery2Description" rows="4" cols="20"
+                                name="informativeQuery2Description" readonly>Placeholder</textarea>
+                        </div>
+                    </div>
+                </fieldset>
+    
+                <div class="form-group row" id="informativeQuery2ReplyDiv" name="informativeQuery2ReplyDiv">
+                    <label for="userid" class="col-sm-2 col-form-label">Reply</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="informativeQuery2Reply" rows="4" cols="20"
+                            name="informativeQuery2Reply" {% if numberOfAttempts > 2 %} disabled {% endif %}>Placeholder</textarea>
+                    </div>
+                </div>
+    
+                <div class="form-group text-center">
+                    <button type="submit" id="informativeQuery2Submit" name="informativeQuery2Submit"
+                        value="informativeQuery2Submit" class="btn btn-default"
+                        style="background-color: #428bca; color: white">Submit</button>
+                </div>
+            </form>
+    
+    
+    
+            <!-- QUERY 3 -->
+    
+    
+    
+            <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="informativeQuery3Form" action=""
+                method="post" style="display: none;" readonly>
+                {% csrf_token %}
+                <h2 class="text-center"> Query 3 </h2>
+                <br />
+    
+                <fieldset id="informativeQuery3Entries">
+                    <div class="form-group row" id="informativeQuery3DescriptionDiv" name="informativeQuery1DescriptionDiv">
+                        <label for="userid" class="col-sm-2 col-form-label">Query</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="informativeQuery3Description" rows="4" cols="20"
+                                name="informativeQuery3Description" readonly>Placeholder</textarea>
+                        </div>
+                    </div>
+                </fieldset>
+    
+                <div class="form-group row" id="informativeQuery3ReplyDiv" name="informativeQuery1ReplyDiv">
+                    <label for="userid" class="col-sm-2 col-form-label">Reply</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="informativeQuery3Reply" rows="4" cols="20"
+                            name="informativeQuery3Reply">Placeholder</textarea>
+                    </div>
+                </div>
+    
+                <div class="form-group text-center">
+                    <button type="submit" id="informativeQuery3Submit" name="informativeQuery1Submit"
+                        value="informativeQuery3Submit" class="btn btn-default"
+                        style="background-color: #428bca; color: white">Submit</button>
+                </div>
+            </form>
+    
+    
+    
+    
+        </div>
+    
+    
+    
+    
+        <script type="text/javascript">
+    
+            $('#priority-message').hide();
+            $('#publish-message1').hide();
+            $('#publish-message2').hide();
+            $('#publish-message3').hide();
+            $('#remarks-message1').hide();
+            $('#remarks-message2').hide();
+            $('#remarks-message3').hide();
+            $('#newStation-message1').hide();
+            $('#newStation-message2').hide();
+            $('#newStation-message3').hide();
+    
+    
+    
+            var numberOfAttempts = '{{numberOfAttempts}}';
+    
+            if (numberOfAttempts > 1) {
+                $('#informativeQuery2Form').show();
+                $('#informativeQuery1Submit').hide();
+                if (numberOfAttempts > 2) {
+                    $('#informativeQuery3Form').show();
+                    $('#informativeQuery2Submit').hide();
+                }
+            }
+    
+    
+    
+            var natureType = '{{applcationStatusObjects.0.natureOfQuery}}';
+            if (natureType == 0)
+                $('#nature').val('Medical');
+            else if (natureType == 1)
+                $('#nature').val('Non Medical');
+    
+    
+    
+    
+            $(document).ready(function () {
+                //var student_id=document.getElementById;
+                /*
+                  document.getElementById('name').value={{name}};
+                  document.getElementById('student_id').value={{student_id}};
+                
+                  document.getElementById('description').value={{description}};
+                  document.getElementById('applicationDate').value={{applicationDate}};
+                  document.getElementById('PS').value={{allocatedStation}};
+                  //document.getElementById('name')=response.name;
+                var documents=response.documents;
+                */
+                var length = '{{count}}';
+                if (length > 0) {
+                    var documents = '{{documents}}';
+                    for (var i = 0; i < length; i++) {
+    
+                        var doc = '<div class="col-md-2 p-3 d-flex justify-content-center document"><a href="' + documents[i] + '" id="doc' + i + '">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">Document ' + (i + 1) + '</p>        </div>      </a>      </div>';
+                        $('#docs').append(doc);
+                    }
+                }
+                else {
+                    var doc = '<div class=" p-3 d-flex text-danger justify-content-center document"> No documents have been uploaded by the student. </div>';
+                    $('#docs').append(doc);
+                }
+    
+    
+    
+    
+    
+    
+            });
+    
+            $(document).ready(function () {
+                console.log('doc ready');
+                $('#priority-message').hide();
+                $('#remarks-message').hide();
+    
+            });
+    
+    
+    
+            function sendData(button) {
+    
+                var attempt = numberOfAttempts;
+                $('#publish-message' + attempt).hide();
+                $('#newStation-message' + attempt).hide();
+                $('#remarks-message' + attempt).hide();
+                var publish = $("input:radio[name='publish-option" + attempt + "']:checked").val();
+                var remarks = $("#remarks" + attempt).val();
+                var newStation = $("#newStation" + attempt).val();
+                console.log(newStation)
+    
+                if (!publish) {
+                    $('#publish-message' + attempt).show();
+                }
+                else if (!remarks)
+                    $('#remarks-message' + attempt).show();
+                else if (button == 'accept' && !newStation)
+                    $('#newStation-message' + attempt).show();
+                else {
+                    var token = '{{csrf_token}}'
+                    $.ajax({
+                        headers: { "X-CSRFToken": token },
+                        url: '#',
+                        type: 'POST',
+                        data: { newStation: newStation, remarks: remarks, button: button, attempt: attempt, publish: publish },
+                        success: function (response) {
+                            console.log('data sent successfully');
+                            if (response.flag != 1)
+                                location.href = '/ps-grievance/redirect/'
+                        }
+                    });
+                }
+    
+    
+    
+            }
+    
+    
+            $('priority-option').change(function () {
+    
+                var priority = $("input:radio[name='priority-option']:checked").val();
+                console.log(priority);
+                // getData(type);
+    
+            });
+        </script>
+        <style>
+            .documents a {
+                text-decoration: none;
+            }
+    
+            .caption {
+                opacity: 0;
+                text-align: center;
+                font-size: 110%;
+                position: absolute;
+                top: 0;
+                text-transform: uppercase;
+                width: 100%;
+                transition: .1s ease;
+                height: 100%;
+                left: 5px;
+            }
+    
+            .document:hover .caption {
+                opacity: 1;
+    
+            }
+    
+            .caption p {
+                font-size: 80%;
+            }
+        </style>
+    
+    
+    
+    
+    
+        {% endblock %}

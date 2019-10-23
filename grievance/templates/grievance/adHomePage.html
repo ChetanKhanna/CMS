@@ -48,11 +48,11 @@
 
 {% block content %}
 <div class="site-section">
-<div class="row mb-5 justify-content-center text-center">
+<div class="row mb-5  justify-content-center text-center">
 <div class="container-fluid">
 <br><br><br><br>
   <div class="row">
-    <div class="col-md-3  text-dark  pb-5 border-right">
+    <div class="col-md-3 text-center col-sm-12  text-dark  pb-5 border-right">
       <div id="userInfo">
         <strong>    Welcome!</strong>
           <br> 
@@ -81,7 +81,7 @@
     </div>
 
 
-    <div class="col-md-10 m-0 p-0 container-fluid col-sm-12 text-center">
+    <div class="col-md-7 offset-1 col-sm-12  justify-content-center text-center">
       <!--<div class="btn btn-group-inline btn-group-toggle btn-grp" id="priority" data-toggle="buttons">
         <label class="btn mt-2 btn-outline-warning ">
           <input type="radio" name="priority-option" value="low" id="low"  autocomplete="off" > <i class="fas fa-user"> </i> Low Priority
@@ -155,60 +155,60 @@
       //  console.log(len);
         if(len==0)
         {
-          var entry="<tr><td colspan=4>No Applications</td></tr>";
+          var entry="<tr><td colspan=3> <h3>No Applications</h3></td></tr>";
 
           $('#table-body').append(entry);
         }
         // console.log(len);
         if(type_val == "pending"){
 
-          var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th><th></th></tr>"
+          var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th></tr>"
           $('#table-head').html(head);
           console.log('head embedded');
           for(var i=0;i<len;i++)
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable' onclick=window.location='student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td><a href='student/"+id+"'>Click Here</a></td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td></tr>";
             $('#table-body').append(entry);
           }
 
         }
         else if(type_val=="forwarded "){
 
-           var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th><th>Attempt</th><th>Level</th><th>Current Status</th><th></th></tr>"
+           var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th><th>Attempt</th><th>Level</th><th>Current Status</th></tr>"
           $('#table-head').html(head);
           for(var i=0;i<len;i++)
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable' onclick=window.location='/ps-grievance/student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].level+"</td><td>"+response[i].status+"</td><td><a href='/ps-grievance/student-status/student/"+id+"'> Click Here </a></td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='/ps-grievance/student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].level+"</td><td>"+response[i].status+"</td></tr>";
             $('#table-body').append(entry);
           }
         }
 
          else if(type_val=="medical"){
 
-           var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th><th>Attempt</th><th>Level</th><th>Current Status</th><th></th></tr>"
+           var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th><th>Attempt</th><th>Level</th><th>Current Status</th></tr>"
           $('#table-head').html(head);
           for(var i=0;i<len;i++)
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable' onclick=window.location='/ps-grievance/student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].level+"</td><td>"+response[i].status+"</td><td><a href='/ps-grievance/student-status/student/"+id+"'></a></td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='/ps-grievance/student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].level+"</td><td>"+response[i].status+"</td></tr>";
             $('#table-body').append(entry);
           }
         }
 
           else if(type_val=="informative"){
 
-           var head="<tr> <th>College ID</th><th>Name</th><th>Date</th><th>Attempt</th><th>Current Status</th><th></th></tr>"
+           var head="<tr> <th>College ID</th><th>Name</th><th>Date</th><th>Attempt</th><th>Current Status</th></tr>"
           $('#table-head').html(head);
           for(var i=0;i<len;i++)
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable' onclick=window.location='/ps-grievance/student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].status+"</td><td><a href='/ps-grievance/student-status/student/"+id+"'> Click Here </a></td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='/ps-grievance/student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].status+"</td><td><a href='/ps-grievance/student-status/student/"+id+"'> Click Here </a></td></tr>";
             $('#table-body').append(entry);
           }
         }
@@ -217,7 +217,7 @@
     });
   }
   $(document).ready(function(){
-    $('#table-body').html('<th colspan=4><h5><i> Select Request Type from the menu to begin </i></h5></th>');
+    $('#table-body').html('<th colspan=3><h5><i> Select Request Type from the menu to begin </i></h5></th>');
   });
   $('#type :input').change(function(){
   var type=$("input:radio[name='type']:checked").val();
@@ -230,7 +230,17 @@
 table
 {
   table-layout: fixed;
+  /*font-size:80%;*/
   width: 100%;
+
+}
+.elementRow td
+{
+  max-width: 30%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
 }
 #name{
   max-width: 30%;

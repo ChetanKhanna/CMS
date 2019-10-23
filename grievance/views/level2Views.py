@@ -93,7 +93,7 @@ class level2RequestView(generic.View):
 				"attempt":student.attempt,
 				"nature":student.natureOfQuery,
 				"date": str(student.lastChangedDate.date()), #+ " " + str(student.lastChangedDate.time())[0:8],
-				"priority":  priority
+				"priority":  constants.Priority(priority).name
 				}
 			approvedList.append(dict1) 
 

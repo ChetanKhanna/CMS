@@ -68,7 +68,7 @@
 <div class="row mb-5 justify-content-center text-center">
 <div class="container-fluid">
 <br><br><br><br>
-  <div class="row">
+  <div class="row ">
     <div class="col-md-3 col-sm-12  text-dark p-2 pb-5 border-right">
       <div id="userInfo">
         <strong>    Welcome!</strong>
@@ -92,36 +92,12 @@
     </div>
 
 
-    <div class="col-md-6 col-sm-12 text-center offset-md-1">
-      <!--<div class="btn btn-group-inline btn-group-toggle btn-grp" id="priority" data-toggle="buttons">
-
-        <label class="btn mt-2 btn-outline-warning ">
-          <input type="radio" name="priority-option" value="low" id="low"  autocomplete="off" > <i class="fas fa-user"> </i> Low Priority
-        </label>
-        <label class="btn mt-2 btn-outline-primary ">
-          <input type="radio" name="priority-option" value="med" id="med" autocomplete="off" > <i class="fas fa-user"> </i> Medium Priority
-        </label>
-
-        <label class="btn mt-2 btn-outline-danger">
-          <input type="radio" name="priority-option" value="high" id="high" autocomplete="off" > <i class="fas fa-user"> </i> High Priority
-        </label>
-      </div>
-
-      <div class="btn-group-toggle btn" id="type" data-toggle="buttons">
-        <label class="btn mt-2 btn-outline-warning">
-          <input type="radio" name="type" id="pending" value="pending" autocomplete="off"><i class="fas fa-question"></i> Pending Requests
-        </label>
-        <label class="btn mt-2 btn-outline-success">
-          <input type="radio" name="type" id="approved" value="approved" autocomplete="off"><i class="fas fa-thumbs-up"></i> Approved Requests
-        </label>
-        <label class="btn mt-2 btn-outline-danger">
-          <input type="radio" name="type" id="rejected" value="rejected" autocomplete="off"> <i class="far fa-times-circle"></i> Rejected Requests
-        </label>
-      </div>-->
-      <div id="table" class="table-responsive">
+    <div class="col-md-7  col-sm-12 align-items-center justify-content-center text-center offset-md-1">
+     
+    
 
 
-        <table class="table table-stripped table-hover ">
+        <table id="table" class="table table-responsive ">
           <br>
           <!--  <h2 class="text-center"> High Priority</h2>-->
 
@@ -130,7 +106,6 @@
               <th>College ID</th>
               <th>Name</th>              
               <th>Date of Application</th>
-              <th></th>
             </tr>
           </thead>
           <tbody id="table-body">
@@ -140,7 +115,7 @@
           </tbody>
 
         </table>
-      </div>
+     
 
     </div>
   </div>
@@ -174,7 +149,7 @@
       //  console.log(len);
         if(len==0)
         {
-          var entry="<tr><td colspan=4>No Applications</td></tr>";
+          var entry="<tr><td colspan=3>No Applications</td></tr>";
           $('#table-body').append(entry);
 
         }
@@ -184,7 +159,7 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable' onclick=window.location='student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td><a href='student/"+id+"'>Click Here</a></td></tr>";
+            var entry="<tr class='elementRow  clickable' onclick=window.location='student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td></tr>";
             $('#table-body').append(entry);
 
           }
@@ -194,7 +169,7 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable' onclick=window.location='student-status/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td><a href='student-status/"+id+"'> Click Here </a></td></tr>";
+            var entry="<tr class='elementRow clickable' onclick=window.location='student-status/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><</tr>";
             $('#table-body').append(entry);
 
           }
@@ -206,7 +181,7 @@
   }
 
   $(document).ready(function(){
-    $('#table-body').html('<th colspan=4><h5><i> Select Request Type from the menu to begin </i></h5></th>');
+    $('#table-body').html('<th colspan=3><h5><i> Select Request Type from the menu to begin </i></h5></th>');
   });
 
   $('#type :input').change(function(){
@@ -218,5 +193,17 @@
 
 
 </script>
+
+<style type="text/css">
+
+  .elementRow td
+{
+  max-width: 30%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+  </style>
 
 {% endblock %}

@@ -63,7 +63,7 @@ class level2RequestView(generic.View):
 				"description":student.description,
 				"attempt":student.attempt,
 				"nature":student.natureOfQuery,
-				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+				"date": str(student.lastChangedDate.date()), # + " " + str(student.lastChangedDate.time())[0:8],
 				}
 
 			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
@@ -92,7 +92,7 @@ class level2RequestView(generic.View):
 				"description":student.description,
 				"attempt":student.attempt,
 				"nature":student.natureOfQuery,
-				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+				"date": str(student.lastChangedDate.date()), #+ " " + str(student.lastChangedDate.time())[0:8],
 				"priority":  priority
 				}
 			approvedList.append(dict1) 
@@ -108,8 +108,8 @@ class level2RequestView(generic.View):
 				"description":student.description,
 				"attempt":student.attempt,
 				"nature":student.natureOfQuery,
-				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
-				"priority": priority
+				"date": str(student.lastChangedDate.date()), #+ " " + str(student.lastChangedDate.time())[0:8],
+				"priority": constants.Priority(priority).name
 				}
 			rejectedList.append(dict1) 
 
@@ -132,8 +132,8 @@ class level2RequestView(generic.View):
 				"description":student.description,
 				"attempt":student.attempt,
 				"nature":student.natureOfQuery,
-				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
-				"priority": priority
+				"date": str(student.lastChangedDate.date()), #+ " " + str(student.lastChangedDate.time())[0:8],
+				"priority": constants.Priority(priority).name
 				}
 			approvedList.append(dict1) 
 
@@ -148,8 +148,8 @@ class level2RequestView(generic.View):
 				"description":student.description,
 				"attempt":student.attempt,
 				"nature":student.natureOfQuery,
-				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
-				"priority": priority
+				"date": str(student.lastChangedDate.date()), #+ " " + str(student.lastChangedDate.time())[0:8],
+				"priority": constants.Priority(priority).name
 				}
 			rejectedList.append(dict1) 
 

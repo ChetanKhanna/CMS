@@ -52,7 +52,7 @@
 <div class="container-fluid">
 <br><br><br><br>
   <div class="row">
-    <div class="col-md-3 col-sm-12  text-dark p-2 pb-5 border-right">
+    <div class="col-md-3  text-dark  pb-5 border-right">
       <div id="userInfo">
         <strong>    Welcome!</strong>
           <br> 
@@ -81,7 +81,7 @@
     </div>
 
 
-    <div class="col-md-9 col-sm-12 text-center">
+    <div class="col-md-10 m-0 p-0 container-fluid col-sm-12 text-center">
       <!--<div class="btn btn-group-inline btn-group-toggle btn-grp" id="priority" data-toggle="buttons">
         <label class="btn mt-2 btn-outline-warning ">
           <input type="radio" name="priority-option" value="low" id="low"  autocomplete="off" > <i class="fas fa-user"> </i> Low Priority
@@ -224,6 +224,22 @@
   getData(type);
   });
 </script>
+
+<style type="text/css">
+  
+table
+{
+  table-layout: fixed;
+  width: 100%;
+}
+#name{
+  max-width: 30%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /*word-wrap: break-word;*/
+}
+</style>
 
 {% endblock %}
 

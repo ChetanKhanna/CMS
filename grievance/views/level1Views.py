@@ -39,6 +39,7 @@ class level1RequestView(generic.View):
 		user_object = request.user
 		user_profile_object = UserProfile.objects.get(user_id=user_object)
 		campus =  user_profile_object.campus
+		level = 1
 
 		typeOfRequest = kwargs["type"]
 		print(typeOfRequest)

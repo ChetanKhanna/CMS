@@ -92,21 +92,20 @@
     </div>
 
 
-    <div class="col-md-7  col-sm-12 align-items-center justify-content-center text-center offset-md-1">
+    <div class="col-md-7 offset-1 col-sm-12  justify-content-center text-center">
      
     
 
 
-        <table id="table" class="table table-responsive ">
+        <div id="table" class="table-responsive">
+
+
+        <table class="table table-stripped table-hover ">
           <br>
           <!--  <h2 class="text-center"> High Priority</h2>-->
 
-          <thead>
-            <tr>
-              <th>College ID</th>
-              <th>Name</th>              
-              <th>Date of Application</th>
-            </tr>
+          <thead id="table-head">
+            
           </thead>
           <tbody id="table-body">
 
@@ -115,6 +114,7 @@
           </tbody>
 
         </table>
+      </div>
      
 
     </div>
@@ -145,6 +145,7 @@
       success: function(response)
       {
         $('#table-body').html('');
+        $('#table-head').html('');
         var len=response.length;
       //  console.log(len);
         if(len==0)
@@ -153,6 +154,8 @@
           $('#table-body').append(entry);
 
         }
+        var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th></tr>"
+        $('#table-head').html(head);
         // console.log(len);
         if(type_val == "pending"){
           for(var i=0;i<len;i++)

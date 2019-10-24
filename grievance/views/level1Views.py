@@ -42,7 +42,7 @@ class level1RequestView(generic.View):
 		level = 1
 
 		typeOfRequest = kwargs["type"]
-		print(typeOfRequest)
+		# print(typeOfRequest)
 		if typeOfRequest == "medical":
 			natureOfQuery = constants.NatureOfQuery.MEDICAL.value
 			student_list = ApplicationStatus.objects.filter(campus = campus,
@@ -75,7 +75,7 @@ class level1RequestView(generic.View):
 				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
 			}
 			returnList.append(dict1) 
-		print(returnList)
+		# print(returnList)
 		return JsonResponse(returnList, safe=False)
 
 @method_decorator([login_required, cmo_or_ad_required], name='dispatch')

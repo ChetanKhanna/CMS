@@ -75,7 +75,10 @@
     <div class="row documents d-flex justify-content-center" id="docs">
 
 
-      </div>
+    </div>
+    <div class="row d-flex justify-content-center" id="docname">
+      
+    </div>
     </div>
   </div>
   <div class="row mt-5">
@@ -137,9 +140,12 @@ for(var i=0;i<length;i++)
 {
   console.log("asdf")
   console.log('{{documents.1}}');
-  console.log(documents[0])
-  var doc='<div class="col-md-2 p-3 d-flex justify-content-center document"><a href=/ps-grievance/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">Document '+(i+1)+'</p>        </div>      </a>      </div>';
+  var name = documents[i].split("/")[2];
+  console.log(documents[0]);
+  var doc='<div class="col-md-2 p-3 d-flex justify-content-center document"><a href=/ps-grievance/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">'+name+'</p>        </div>      </a>      </div>';
 $('#docs').append(doc);
+/*  var documentname = '<div class="row col-md-2 p-3 d-flex justify-content-center document"><p id="caption1">'+name+'</p>              </a>      </div>'
+$('#docname').append(documentname);*/
 }
 }
 else
@@ -242,6 +248,15 @@ label {
     text-align: center;
     line-height: 150%;    
 }
+
+#docname , #caption1
+  {
+    width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+  
 
   </style>
 

@@ -14,9 +14,12 @@ def validate_document(document):
 
 def path_and_rename(instance, filename):
     upload_to = 'documents/' + str(instance.student_id)
-    ext = filename.split('.')[-1]
     # get filename
-    filename = '{}.{}'.format(instance.student_id, get_random_string(), ext)
+    split = filename.split('.')
+    filename = split[0]
+    ext = split[-1]
+    # set new filename
+    filename = '{}.{}'.format(filename + get_random_string(4), ext)
     # return the whole path to the file
     return os.path.join(upload_to, filename)
 

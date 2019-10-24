@@ -20,7 +20,7 @@ urlpatterns =[
 	path('level2/', VIEWS.level2HomeView.as_view()),
 	path('level2/type/<type>', VIEWS.level2RequestView.as_view()),
 	path('level2/student/<student_id>', VIEWS.level2StudentView.as_view()),
-	path('student-status/student/<student_id>', VIEWS.ViewOnlyStudentPageView.as_view()),
+	path('<level>/student-status/student/<student_id>', VIEWS.ViewOnlyStudentPageView.as_view()),
 	# path('temp/', VIEWS.TEMP.as_view()),
 	path('website-admin/change-deadline', VIEWS.changeDeadlineView.as_view()),
 	path('website-admin/add-user', VIEWS.addUser.as_view()),

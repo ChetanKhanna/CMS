@@ -111,3 +111,6 @@ migrations/
 
 # media files uploaded
 /media
+
+#csv files
+*.csv

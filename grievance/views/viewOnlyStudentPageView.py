@@ -20,6 +20,7 @@ def getStudentDetail(student_id):
 	params={
 		'name' : userProfile_object.name,
 		'student_id' : student_id,
+		'cg' : userProfile_object.cg,
 		'applcationStatusObjects' : applicationStatus_objects,
 		'grievanceFormObject' : grievanceForm_object,
 		'priority' : grievanceForm_object.priority,

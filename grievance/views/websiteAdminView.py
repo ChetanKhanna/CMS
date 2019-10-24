@@ -9,10 +9,13 @@ from django.utils.decorators import method_decorator
 from grievance.customDecorator import allocationTeam_required
 
 #import models
-from grievance.models import Deadline
+from grievance.models import *
 
 #import function for date and time
 from datetime import datetime
+
+#import function for random string to be used to set password
+from django.utils.crypto import get_random_string
 
 class changeDeadlineView(generic.View):
 	def get(self, request, *args, **kwargs):
@@ -42,4 +45,40 @@ class changeDeadlineView(generic.View):
 			deadlineObject.date = deadline[i+1]
 			deadlineObject.save()
 
+		return HttpResponseRedirect('/ps-grievance/redirect/')
+
+
+class addUser(generic.TemplateView):
+
+	def get(self, request, *args, **kwargs):
+		params = {}
+		return render(request, 'grievance/addUser.html', params)
+
+	def post(self, request, *args, **kwargs):
+		token = request.POST.get('userType')
+		username = request.POST.get('userID')
+		name = request.POST.get('name')
+		contact = request.POST.get('contact')
+		email = request.POST.get('email')
+		campus = request.POST.get('campus')
+		cg = request.POST.get('cg')
+		# print(cg)
+		user = None
+		try:
+			(user, created) = User.objects.get_or_create(username = username, email = email) 
+			user.set_password(get_random_string(8))
+			if token == 6:
+				user.is_staff = True
+				user.is_admin = True
+				user.is_superuser = True
+			user.save()
+		except:
+			pass
+
+		try:
+			(_, _) = UserProfile.objects.get_or_create(user = user, token = token, name = name, contact = contact, email = email, campus = campus, cg = cg)
+		except:
+			pass
+
+		return HttpResponseRedirect('/admin')
 		return HttpResponseRedirect('/ps-grievance/redirect/')

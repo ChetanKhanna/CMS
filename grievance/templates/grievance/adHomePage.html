@@ -153,18 +153,21 @@
 
         var len=response.length;
       //  console.log(len);
-        if(len==0)
-        {
-          var entry="<tr><td colspan=3> <h3>No Applications</h3></td></tr>";
-
-          $('#table-body').append(entry);
-        }
+        
         // console.log(len);
         if(type_val == "pending"){
 
           var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th></tr>"
           $('#table-head').html(head);
           console.log('head embedded');
+
+          if(len==0)
+          {
+            var entry="<tr><td colspan=3> <h3>No Applications</h3></td></tr>";
+
+            $('#table-body').append(entry);
+          }
+
           for(var i=0;i<len;i++)
           {
                var name = response[i].name;
@@ -178,6 +181,14 @@
 
            var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th><th>Attempt</th><th>Level</th><th>Current Status</th></tr>"
           $('#table-head').html(head);
+
+          if(len==0)
+          {
+            var entry="<tr><td colspan=6> <h3>No Applications</h3></td></tr>";
+
+            $('#table-body').append(entry);
+          }
+
           for(var i=0;i<len;i++)
           {
                var name = response[i].name;
@@ -191,6 +202,14 @@
 
            var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th><th>Attempt</th><th>Level</th><th>Current Status</th></tr>"
           $('#table-head').html(head);
+
+          if(len==0)
+          {
+            var entry="<tr><td colspan=6> <h3>No Applications</h3></td></tr>";
+
+            $('#table-body').append(entry);
+          }
+
           for(var i=0;i<len;i++)
           {
                var name = response[i].name;
@@ -204,6 +223,14 @@
 
            var head="<tr> <th>College ID</th><th>Name</th><th>Date</th><th>Attempt</th><th>Current Status</th></tr>"
           $('#table-head').html(head);
+
+          if(len==0)
+          {
+            var entry="<tr><td colspan=3> <h3>No Applications</h3></td></tr>";
+
+            $('#table-body').append(entry);
+          }
+
           for(var i=0;i<len;i++)
           {
                var name = response[i].name;

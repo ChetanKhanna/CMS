@@ -32,23 +32,16 @@
 {% load static %}
 
 {% block content %}
-<div class="site-section container-fluid">
-<div class="row mb-5 justify-content-center container-fluid text-center">
+<section class="container-fluid m-0 p-0" id="main">
 
 
-    <section class="container-fluid" id="main">
+  <br><br><br>
 
+  <div class="row container-fluid pt-4 d-flex justify-content-center m-0 table-primary pb-3">
 
-<!-- <br><br><br> -->
-
-  <div class="row pt-4 table-primary pb-3">
 
     <div class="col-md-2">
-  
-    </div>
-
-      <div class="col-md-2">
-        <label for="name" ><strong>Student Name</strong> </label>
+        <label for="name" style="text-align:center;"><strong>Student Name</strong> </label>
         <input class="form-control" id="name" style="text-align: center;" name="name" value='{{name}}' disabled type="text">
       </div>
       <div class="col-md-2">
@@ -244,6 +237,12 @@ position: absolute;
 {
   font-size: 80%;
 }
+label {
+    display: block;
+    text-align: center;
+    line-height: 150%;    
+}
+
   </style>
 
 {% endblock %}

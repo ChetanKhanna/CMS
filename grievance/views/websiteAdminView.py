@@ -80,5 +80,4 @@ class addUser(generic.TemplateView):
 		except:
 			pass
 
-		return HttpResponseRedirect('/admin')
 		return HttpResponseRedirect('/ps-grievance/redirect/')

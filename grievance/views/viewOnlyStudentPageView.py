@@ -15,6 +15,11 @@ def getStudentDetail(student_id):
 	grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
 	applicationStatus_objects = ApplicationStatus.objects.filter(student_id = userProfile_object)
 	numberOfAttempts = len(applicationStatus_objects)
+	documents = getDocuments(grievanceForm_object)
+	if documents:
+		documentCount = len(documents)
+	else:
+		documentCount = 0
 	# print("HELLO")
 	# print(grievanceForm_object.document1)
 	params={
@@ -25,10 +30,33 @@ def getStudentDetail(student_id):
 		'grievanceFormObject' : grievanceForm_object,
 		'priority' : grievanceForm_object.priority,
 		'numberOfAttempts' : numberOfAttempts,
-		'back' : '/ps-grievance/redirect'
+		'back' : '/ps-grievance/redirect',
+		'documentCount': documentCount,
+		'documents': documents,
 	}
 
 	return params
+
+def getDocuments(grievanceForm_object):
+	documents = []
+	documentCount = 0
+	if grievanceForm_object.document1:
+		documentCount+=1
+		documents.append(grievanceForm_object.document1)
+	if grievanceForm_object.document2:
+		documentCount+=1
+		documents.append(grievanceForm_object.document2)
+	if grievanceForm_object.document3:
+		documentCount+=1
+		documents.append(grievanceForm_object.document3)
+	if grievanceForm_object.document4:
+		documentCount+=1
+		documents.append(grievanceForm_object.document4)
+	if grievanceForm_object.document5:
+		documentCount+=1
+		documents.append(grievanceForm_object.document5)
+	return documents
+
 
 class ViewOnlyStudentPageView(generic.View):
 	def get(self, request, *args, **kwargs):

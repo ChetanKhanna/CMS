@@ -538,13 +538,13 @@
       //document.getElementById('name')=response.name;
     var documents=response.documents;
     */
-    var length = '{{count}}';
+    var length = '{{documentCount}}';
     if (length > 0) {
-      var documents = '{{documents}}';
+      var documents = ['{{documents.0}}','{{documents.1}}','{{documents.2}}','{{documents.3}}','{{documents.4}}'];
       for (var i = 0; i < length; i++) {
-
-        var doc = '<div class="col-md-2 p-3 d-flex justify-content-center document"><a href="' + documents[i] + '" id="doc' + i + '">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">Document ' + (i + 1) + '</p>        </div>      </a>      </div>';
-        $('#docs').append(doc);
+        var name = documents[i].split("/")[2];
+        var doc = '<div class="col-md-2 p-3 d-flex justify-content-center document"><a href=/ps-grievance/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">'+name+'</p>        </div>      </a>      </div>';
+$('#docs').append(doc);
       }
     }
     else {
@@ -645,6 +645,15 @@
       text-align: center;
       line-height: 150%;    
   }
+  #docname , #caption1
+  {
+    width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+  
+
   
 </style>
 

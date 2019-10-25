@@ -415,15 +415,15 @@
                     &emsp;
                     &emsp;
                     &emsp;
-                    <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label>
+                    <!-- <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label> -->
                     <label for="userid" class="col-sm-3 col-form-label">Station Name</label>
                 </div>
 
                 <div class="form-group row">
                     <label for="userid" class="col-sm-3 col-form-label">Allocated Station</label>
-                    <div class="col-sm-2">
+                   <!--  <div class="col-sm-2">
                         <input type="text" class="form-control" id="allocatedStationPrefNo" name="allocatedStationPrefNo" placeholder="1" size="10" readonly>
-                    </div>
+                    </div> -->
 
                     <div class="col-sm-5">
                         <input type="text" class="form-control" id="allocatedStationName" name="allocatedStationName" placeholder="XYZ Pvt. Ltd., Goa" readonly>
@@ -541,21 +541,21 @@
                     // label which says "Prefered Station X"
                     var label = document.createElement("LABEL");
                     label.className = "col-sm-3 col-form-label";
-                    label.textContent = "Prefered Station " + i.toString();
+                    label.textContent = "Prefered Station " + i.toString() + ":";
                     row.appendChild(label);
 
-                    // div of Prefered Station's Pref Number input
-                    var preferedStationNumberDiv = document.createElement("div");
-                    preferedStationNumberDiv.className = "col-sm-2";
-                    var preferedStationPrefNoInput = document.createElement("INPUT");
-                    preferedStationPrefNoInput.type = "text";
-                    preferedStationPrefNoInput.className = "form-control";
-                    preferedStationPrefNoInput.id = "preferedStation" + i.toString() + "PrefNo";
-                    preferedStationPrefNoInput.placeholder = i.toString();
-                    preferedStationPrefNoInput.size = 10;
-                    if(i == 1) preferedStationPrefNoInput.required = true;
-                    preferedStationNumberDiv.appendChild(preferedStationPrefNoInput);
-                    row.appendChild(preferedStationNumberDiv);
+                    // // div of Prefered Station's Pref Number input
+                    // var preferedStationNumberDiv = document.createElement("div");
+                    // preferedStationNumberDiv.className = "col-sm-2";
+                    // var preferedStationPrefNoInput = document.createElement("INPUT");
+                    // preferedStationPrefNoInput.type = "text";
+                    // preferedStationPrefNoInput.className = "form-control";
+                    // preferedStationPrefNoInput.id = "preferedStation" + i.toString() + "PrefNo";
+                    // preferedStationPrefNoInput.placeholder = i.toString();
+                    // preferedStationPrefNoInput.size = 10;
+                    // if(i == 1) preferedStationPrefNoInput.required = true;
+                    // preferedStationNumberDiv.appendChild(preferedStationPrefNoInput);
+                    // row.appendChild(preferedStationNumberDiv);
 
                     // div of Prefered Station's Name input
                     var preferedStationNameDiv = document.createElement("div");
@@ -649,6 +649,11 @@
                 document.getElementById("preferedStation3").value = "{{ formEntry.preferedStation3 }}";
                 document.getElementById("preferedStation4").value = "{{ formEntry.preferedStation4 }}";
                 document.getElementById("preferedStation5").value = "{{ formEntry.preferedStation5 }}";
+                document.getElementById("preferedStation6").value = "{{ formEntry.preferedStation6 }}";
+                document.getElementById("preferedStation7").value = "{{ formEntry.preferedStation7 }}";
+                document.getElementById("preferedStation8").value = "{{ formEntry.preferedStation8 }}";
+                document.getElementById("preferedStation9").value = "{{ formEntry.preferedStation9 }}";
+                document.getElementById("preferedStation10").value = "{{ formEntry.preferedStation10 }}";
                 var comments = {{ comments|safe }};
                 console.log(comments)
                 document.getElementById("comments1").value = comments[0];

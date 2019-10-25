@@ -16,8 +16,11 @@ from grievance.models import *
 from grievance.views import constants as constants
 from grievance.views import studentHomeView
 
+#import datetime
+from datetime import datetime
 
-@method_decorator([login_required, cmo_or_ad_required], name='dispatch')
+
+# @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
 class level1HomeView(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
 		current_user = request.user
@@ -27,12 +30,14 @@ class level1HomeView(generic.TemplateView):
 			return render(request,"grievance/level1HomePage.html")
 		elif userProfile_object.token == constants.UserType.AD.value:
 			return render(request,"grievance/adHomePage.html")
+		else:
+			return render(request,"grievance/level1HomePage.html")
 
 # class adHomeView(generic.TemplateView):
 # 	def get(self, request, *args, **kwargs):
 # 		return render(request,"grievance/adHomePage.html")
 
-@method_decorator([login_required, cmo_or_ad_required], name='dispatch')
+# @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
 class level1RequestView(generic.View):
 	def get(self, request, *args, **kwargs):
 
@@ -40,6 +45,10 @@ class level1RequestView(generic.View):
 		user_profile_object = UserProfile.objects.get(user_id=user_object)
 		campus =  user_profile_object.campus
 		level = 1
+
+		if user_profile_object.token == constants.UserType.PSD.value:
+			print("\n\n\n\n")
+			return self.getPSDStudentList(request)
 
 		typeOfRequest = kwargs["type"]
 		# print(typeOfRequest)
@@ -78,11 +87,37 @@ class level1RequestView(generic.View):
 		# print(returnList)
 		return JsonResponse(returnList, safe=False)
 
-@method_decorator([login_required, cmo_or_ad_required], name='dispatch')
+	def getPSDStudentList(self, request):
+		user_object = request.user
+		user_profile_object = UserProfile.objects.get(user_id = user_object)
+		campus =  user_profile_object.campus
+		status = constants.Status.PENDING.value
+		# typeOfRequest = kwargs["type"]
+		student_list = InformativeQuerryForm.objects.filter(campus = campus, status = status,).order_by('-lastChangedDate')
+		
+		returnList=[]
+		for student in student_list:
+			dict1 = {
+				"id":student.student_id.user.username,
+				"name":student.student_id.name,
+				"status" : constants.Status(student.status).name,
+				"attempt" : student.attempt,
+				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+			}
+			returnList.append(dict1) 
+		print(returnList)
+		return JsonResponse(returnList, safe=False)
+
+# @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
 class level1StudentView(generic.View):
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+			
+		if UserProfile.objects.get(user = request.user).token == constants.UserType.PSD.value:
+			params = {}
+			return render(request, "grievance/queryPage.html", params)
+
 		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt =1)
 		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
 		documents = self.getDocuments(grievanceForm_object)
@@ -101,23 +136,40 @@ class level1StudentView(generic.View):
 			'back': "/ps-grievance/level1/",
 		}
 		return render(request,"grievance/cmoStudentPage.html",params)
+
 	def post(self, request, *args, **kwargs):
-		student_id = kwargs['student_id']
-		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
-		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object, attempt =1)
-		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
+		if UserProfile.objects.get(user = request.user).token == constants.UserType.PSD.value:
+			print(request.POST)
+			student_id = kwargs['student_id']
+			userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+			attempt = request.POST.get('attempt')
+			level1comment = request.POST.get('reply')
 
-		priority = request.POST.get("priority")
-		level1comment = request.POST.get("remarks")
+			informativeQuerryForm_object = InformativeQuerryForm.objects.get(student_id = userProfile_object, attempt = attempt)
 
-		grievanceForm_object.priority = priority
+			informativeQuerryForm_object.level1Comment = level1comment
+			informativeQuerryForm_object.status = constants.Status.APPROVED.value
 
-		ApplicationStatus_object.level1Comment = level1comment
-		ApplicationStatus_object.level = 2
-		ApplicationStatus_object.status = constants.Status.PENDING.value
+			informativeQuerryForm_object.save()
 
-		ApplicationStatus_object.save()
-		grievanceForm_object.save()
+		else:
+			student_id = kwargs['student_id']
+			userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+			ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object, attempt =1)
+			grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
+
+			priority = request.POST.get("priority")
+			level1comment = request.POST.get("remarks")
+
+			grievanceForm_object.priority = priority
+
+			ApplicationStatus_object.level1Comment = level1comment
+			ApplicationStatus_object.level = 2
+			ApplicationStatus_object.status = constants.Status.PENDING.value
+			ApplicationStatus_object.lastChangedDate = datetime.now()
+
+			ApplicationStatus_object.save()
+			grievanceForm_object.save()
 
 		return HttpResponseRedirect('/ps-grievance/redirect/')
 

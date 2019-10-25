@@ -19,7 +19,7 @@ def path_and_rename(instance, filename):
     filename = split[0]
     ext = split[-1]
     # set new filename
-    filename = '{}.{}'.format(filename + get_random_string(4), ext)
+    filename = '{}.{}'.format(filename + "_" + get_random_string(4), ext)
     # return the whole path to the file
     return os.path.join(upload_to, filename)
 
@@ -90,16 +90,18 @@ class ApplicationStatus(models.Model):
 class InformativeQuerryForm(models.Model):
 	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	attempt = models.IntegerField()
-	userQuerry = models.CharField(max_length=200, blank=True)
-	psdResponse = models.CharField(max_length=200, blank=True)
+	status = models.IntegerField()
+	description = models.CharField(max_length=200, blank=True)
+	level1Comment = models.CharField(max_length=200, blank=True)
 	campus = models.IntegerField(default = 0)
 	allocatedStation = models.CharField(max_length = 500)
-
+	lastChangedDate = models.DateTimeField(auto_now_add=True)
+	
 	class Meta:
 		unique_together = (('student_id', 'attempt'))
 
 	def __str__(self):
-		return str('InformativeQuerryForm Object:', (self.student_id, self.attempt))
+		return str((self.student_id, self.attempt))
 
 class Deadline(models.Model):
 	attempt = models.IntegerField()

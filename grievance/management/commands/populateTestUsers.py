@@ -53,6 +53,14 @@ class Command(BaseCommand):
       (_, _) = UserProfile.objects.get_or_create(user = user, token=3, name="Allocation team ", contact="9876543210", email="ad@mail.com", campus=0, cg=10)
     except:
       pass
+
+    try:
+      (user, created) = User.objects.get_or_create(username="psd")
+      user.set_password('q')
+      user.save()
+      (_, _) = UserProfile.objects.get_or_create(user = user, token=4, name="Allocation team ", contact="9876543210", email="ad@mail.com", campus=0, cg=10)
+    except:
+      pass
     
 
     for i in range(4):
@@ -68,11 +76,12 @@ class Command(BaseCommand):
                                               natureOfQuery=0)
       if i%2 == 0:
         ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=2, campus=0,
-                                              level=1, status=1, description="Hello",
+                                              level=2, status=1, description="Hello",
                                               natureOfQuery=0)
         if i%3 == 0:
+          # print("\n\n\n\n", i)
           ApplicationStatus.objects.get_or_create(student_id=userProfile, attempt=3, campus=0,
-                                              level=1, status=1, description="Hello",
+                                              level=2, status=1, description="Hello",
                                               natureOfQuery=0)
 
     # for i in range(4,8):

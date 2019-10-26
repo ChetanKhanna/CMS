@@ -19,7 +19,7 @@ def path_and_rename(instance, filename):
     filename = split[0]
     ext = split[-1]
     # set new filename
-    filename = '{}.{}'.format(filename + get_random_string(4), ext)
+    filename = '{}.{}'.format(filename + "_" + get_random_string(4), ext)
     # return the whole path to the file
     return os.path.join(upload_to, filename)
 

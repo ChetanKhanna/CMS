@@ -16,6 +16,9 @@ from grievance.models import *
 from grievance.views import constants as constants
 from grievance.views import studentHomeView
 
+#import datetime
+from datetime import datetime
+
 
 # @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
 class level1HomeView(generic.TemplateView):
@@ -163,6 +166,7 @@ class level1StudentView(generic.View):
 			ApplicationStatus_object.level1Comment = level1comment
 			ApplicationStatus_object.level = 2
 			ApplicationStatus_object.status = constants.Status.PENDING.value
+			ApplicationStatus_object.lastChangedDate = datetime.now()
 
 			ApplicationStatus_object.save()
 			grievanceForm_object.save()

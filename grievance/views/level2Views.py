@@ -16,6 +16,8 @@ from grievance.models import *
 from grievance.views import constants as constants
 from grievance.views import viewOnlyStudentPageView
 
+#import date time
+from datetime import datetime
 
 @method_decorator([login_required,allocationTeam_required], name='dispatch')
 class level2HomeView(generic.TemplateView):
@@ -39,7 +41,7 @@ class level2RequestView(generic.View):
 		typeOfRequest = kwargs["type"]
 		if typeOfRequest == "pending":
 			status = constants.Status.PENDING.value
-			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,).order_by('lastChangedDate')
+			student_list = ApplicationStatus.objects.filter(level = 2, status=status ,).order_by('-lastChangedDate')
 		# elif typeOfRequest == "accept":
 		# 	status = constants.Status.APPROVED.value
 		# 	student_list = ApplicationStatus.objects.filter(level = 2, status=status ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
@@ -82,7 +84,7 @@ class level2RequestView(generic.View):
 
 	def getPublished(self):
 		approvedList = []
-		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.PUBLISHED.value).order_by('-lastChangedDate')
 		
 		for student in student_list:
 			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
@@ -99,7 +101,7 @@ class level2RequestView(generic.View):
 
 		# rejected published list
 		rejectedList = []
-		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.REJECTED.value  ,publish=constants.Publish.PUBLISHED.value).order_by('lastChangedDate')
+		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.REJECTED.value  ,publish=constants.Publish.PUBLISHED.value).order_by('-lastChangedDate')
 		for student in student_list:
 			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
 			dict1 = {
@@ -122,7 +124,7 @@ class level2RequestView(generic.View):
 
 	def getUnpublished(self):
 		approvedList = []
-		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('lastChangedDate')
+		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.APPROVED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('-lastChangedDate')
 		
 		for student in student_list:
 			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
@@ -139,7 +141,7 @@ class level2RequestView(generic.View):
 
 		# rejected unpublished list
 		rejectedList = []
-		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.REJECTED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('lastChangedDate')
+		student_list = ApplicationStatus.objects.filter(level = 2, status=constants.Status.REJECTED.value  ,publish=constants.Publish.UNPUBLISHED.value).order_by('-lastChangedDate')
 		for student in student_list:
 			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
 			dict1 = {
@@ -180,7 +182,8 @@ class level2StudentView(generic.View):
 
 			applicationStatus_object.level2Comment = level2comment
 			applicationStatus_object.publish = publish
-			if request.POST.get('button') == "approve":
+			applicationStatus_object.lastChangedDate = datetime.now()
+			if request.POST.get('button') == "accept":
 				applicationStatus_object.newStation = newStation
 				applicationStatus_object.status = constants.Status.APPROVED.value
 			else :

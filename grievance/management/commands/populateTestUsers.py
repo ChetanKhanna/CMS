@@ -67,7 +67,7 @@ class Command(BaseCommand):
       user = User.objects.get(username="2016A7PS008G"+str(i))
       userProfile = UserProfile.objects.get(user=user)
       GrievanceForm.objects.get_or_create(student_id=userProfile, allocatedStation="Cement",
-                                          preferenceNumberOfAllocatedStation=2, natureOfQuery=1,
+                                          natureOfQuery=1,
                                           applicationDate=datetime.datetime.now(), campus=0,
                                           preferedStation1="better cement 1", priority = 0)
 

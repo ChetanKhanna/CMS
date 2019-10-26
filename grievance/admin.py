@@ -81,5 +81,5 @@ class DeadlineAdmin(ImportExportModelAdmin):
 
 admin.site.register(GrievanceForm, GrievanceFormAdmin)
 admin.site.register(ApplicationStatus, ApplicationStatusAdmin)
-admin.site.register(InformativeQuerryForm)
+admin.site.register(InformativeQueryForm)
 admin.site.register(Deadline, DeadlineAdmin)

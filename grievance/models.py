@@ -43,7 +43,6 @@ class GrievanceForm(models.Model):
 	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE, primary_key=True)
 	campus = models.IntegerField(default = 0)
 	allocatedStation = models.CharField(max_length = 500)
-	preferenceNumberOfAllocatedStation = models.IntegerField()
 	natureOfQuery = models.IntegerField()
 	applicationDate = models.DateTimeField()
 	preferedStation1 = models.CharField(max_length = 500)
@@ -87,14 +86,13 @@ class ApplicationStatus(models.Model):
 		return str((self.student_id,self.attempt))
 
 
-class InformativeQuerryForm(models.Model):
+class InformativeQueryForm(models.Model):
 	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	attempt = models.IntegerField()
 	status = models.IntegerField()
 	description = models.CharField(max_length=200, blank=True)
 	level1Comment = models.CharField(max_length=200, blank=True)
 	campus = models.IntegerField(default = 0)
-	allocatedStation = models.CharField(max_length = 500)
 	lastChangedDate = models.DateTimeField(auto_now_add=True)
 	
 	class Meta:

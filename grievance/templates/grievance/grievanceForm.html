@@ -40,14 +40,14 @@
 
                 <div class="form-group row">
                     <label for="userid" class="col-sm-2 col-form-label">Status</label>
-                    <div class="ml-5 mr-5 px-5"><label id="informativeQuery1Status" name="informativeQuery1Status" class="btn btn-success text-light ml-5">Success</label></div>
+                    <div class="ml-5 mr-5 px-5"><label id="informativeQuery1Status" name="status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <fieldset id="informativeQuery1Entries">
-                    <div class="form-group row" id="informativeQuery1DescriptionDiv" name="informativeQuery1DescriptionDiv">
+                    <div class="form-group row" id="informativeQuery1DescriptionDiv" name="descriptionDiv">
                         <label for="userid" class="col-sm-2 col-form-label">Description of Query</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="informativeQuery1Description" rows="4" cols="20" name="informativeQuery1Description" placeholder="placeholder" required></textarea>
+                            <textarea class="form-control" id="informativeQuery1Description" rows="4" cols="20" name="description" placeholder="placeholder" required></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -59,7 +59,7 @@
                 <div class="form-group row" id="informativeQuery1ReplyDiv" name="informativeQuery1ReplyDiv">
                     <label for="userid" class="col-sm-2 col-form-label">Comments by authorities</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="informativeQuery1Reply" rows="4" cols="20" name="informativeQuery1Reply" readonly></textarea>
+                        <textarea class="form-control" id="informativeQuery1Reply" rows="4" cols="20" name="level1comment" readonly></textarea>
                     </div>
                 </div>
         </form>
@@ -406,19 +406,22 @@
 
                 <div class="form-group row">
                     <!-- <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label> -->
-                    <label for="userid" class="col-sm-7 col-form-label">Station Name</label>
+                    <label for="userid" class="col-sm-7 col-form-label">Current Station Name</label>
                 </div>
 
                 <div class="form-group row">
                     <label for="userid" class="col-sm-4 col-form-label">Allocated Station:</label>
-                   <!--  <div class="col-sm-2">
-                        <input type="text" class="form-control" id="allocatedStationPrefNo" name="allocatedStationPrefNo" placeholder="1" size="10" readonly>
-                    </div> -->
 
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="allocatedStationName" name="allocatedStationName" placeholder="XYZ Pvt. Ltd., Goa" readonly>
+                        <input type="text" class="form-control" id="allocatedStation" name="allocatedStation" placeholder="XYZ Pvt. Ltd., Goa" required>
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <!-- <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label> -->
+                    <label for="userid" class="col-sm-7 col-form-label">Prefered Station Names</label>
+                </div>
+
 
                 <div id="preferedStations">
                 </div>

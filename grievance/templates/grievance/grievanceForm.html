@@ -38,11 +38,9 @@
                 <h2 class="text-center"> Query 1 </h2>
                 <br/>
 
-                <div class=" mb-4 row">
-                    <label for="informativeQuery1Status" class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-md-4 offset-2">
-                        <span id="informativeQuery1Status" class="offset-4 col-md-4"></span>
-                    </div>
+                <div class="form-group row">
+                    <label for="userid" class="col-sm-2 col-form-label">Status</label>
+                    <div class="ml-5 mr-5 px-5"><label id="informativeQuery1Status" name="informativeQuery1Status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <fieldset id="informativeQuery1Entries">
@@ -71,11 +69,9 @@
                 <h2 class="text-center"> Query 2 </h2>
                 <br/>
 
-                <div class=" mb-4 row">
-                    <label for="informativeQuery2Status" class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-md-4 offset-2">
-                        <span id="informativeQuery2Status" class="offset-4 col-md-4"></span>
-                    </div>
+                <div class="form-group row">
+                    <label for="userid" class="col-sm-2 col-form-label">Status</label>
+                    <div class="ml-5 mr-5 px-5"><label id="informativeQuery2Status" name="informativeQuery2Status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <fieldset id="informativeQuery2Entries">
@@ -104,11 +100,9 @@
                 <h2 class="text-center"> Query 3 </h2>
                 <br/>
 
-                <div class=" mb-4 row">
-                    <label for="informativeQuery3Status" class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-md-4 offset-2">
-                        <span id="informativeQuery3Status" class="offset-4 col-md-4"></span>
-                    </div>
+                <div class="form-group row">
+                    <label for="userid" class="col-sm-2 col-form-label">Status</label>
+                    <div class="ml-5 mr-5 px-5"><label id="informativeQuery3Status" name="informativeQuery3Status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <fieldset id="informativeQuery3Entries">
@@ -159,11 +153,11 @@
             }
         }
 
-        var informativeQueryStatuses = [2,2,2];
-        //var informativeQueryStatuses = {{ informativeQueryStatuses|safe }};
+        //var informativeQueryStatuses = [2,2,2];
+        var informativeQueryStatuses = {{ informativeQueryStatuses|safe }};
 
-        var informativeQueryDescriptions = ["description1", "description2", "description3"];
-        //informativeQueryDescriptions = {{ informativeQueryDescriptions|safe }}
+        //var informativeQueryDescriptions = ["description1", "description2", "description3"];
+        informativeQueryDescriptions = {{ informativeQueryDescriptions|safe }}
         if(informativeQueryStatuses[0] != 0){
             document.getElementById("informativeQuery1Description").value = informativeQueryDescriptions[0];
             document.getElementById("informativeQuery1Description").readOnly = true;
@@ -177,8 +171,8 @@
             document.getElementById("informativeQuery3Description").readOnly = true;
         }
 
-        //var informativeQueryComments = {{ informativeQueryComments|safe }};
-        var informativeQueryComments = ["comment1", "comment2", "comment3" ];
+        var informativeQueryComments = {{ informativeQueryComments|safe }};
+        //var informativeQueryComments = ["comment1", "comment2", "comment3" ];
         document.getElementById("informativeQuery1Reply").value = informativeQueryComments[0];
         document.getElementById("informativeQuery2Reply").value = informativeQueryComments[1];
         document.getElementById("informativeQuery3Reply").value = informativeQueryComments[2];
@@ -241,7 +235,7 @@
                 <br/>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-sm-2 col-form-label">Status23</label>
+                    <label for="userid" class="col-sm-2 col-form-label">Status</label>
                     <div class="ml-5 mr-5 px-5"><label id="status3" name="status3" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 

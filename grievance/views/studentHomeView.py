@@ -1,4 +1,5 @@
-from grievance.models import ApplicationStatus,GrievanceForm, UserProfile, User
+from grievance.models import (ApplicationStatus, GrievanceForm,
+                              UserProfile, User, InformativeQuerryForm)
 from django.shortcuts import render
 from grievance.forms import StudentHomeViewForm, ApplicationStatusForm
 import datetime
@@ -20,11 +21,11 @@ class studentHomeView(generic.TemplateView):
     def getDetails(self, current_user):
         user = UserProfile.objects.get(user=current_user)
         const = constants.Status.NOAPPLICATION.value
+        # Non Informative Queries
         attempt_status=[const,const,const]
         description=["","",""]
         comments=["","",""]
         newStation=["","",""]
-
         formEntry = None
         if len(GrievanceForm.objects.filter(student_id=user)) ==1:
             formEntry = GrievanceForm.objects.get(student_id = user)
@@ -38,6 +39,15 @@ class studentHomeView(generic.TemplateView):
             comments[x.attempt-1]=x.level2Comment
             newStation[x.attempt-1]=x.newStation
             description[x.attempt-1]=x.description
+        # Informative Queries
+        informativeQueryStatuses = [const, const, const]
+        informativeQueryDescriptions = ["", "", ""]
+        informativeQueryComments = ["", "", ""]
+        informativeQuery_list = InformativeQuerryForm.objects.filter(student_id=user)
+        for x in informativeQuery_list:
+            informativeQueryStatuses[x.attempt-1] = x.status
+            informativeQueryDescriptions[x.attempt-1] = x.description
+            informativeQueryComments[x.attempt-1] = x.level1Comment
 
         details={       #things to be passed to front end
         'formEntry' : formEntry,
@@ -50,6 +60,9 @@ class studentHomeView(generic.TemplateView):
         'email': current_user.email,
         'comments':comments,
         'newStation':newStation,
+        'informativeQueryStatuses': informativeQueryStatuses,
+        'informativeQueryDescriptions': informativeQueryDescriptions,
+        'informativeQueryComments': informativeQueryComments,
         'back': "/ps-grievance/logout/",
         }
 

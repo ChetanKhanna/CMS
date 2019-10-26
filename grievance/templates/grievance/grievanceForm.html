@@ -548,16 +548,18 @@
                     // row.appendChild(preferedStationNumberDiv);
 
                     // div of Prefered Station's Name input
-                    var preferedStationNameDiv = document.createElement("div");
-                    preferedStationNameDiv.className = "col-sm-5";
-                    var preferedStationNameInput = document.createElement("INPUT");
+                    //var preferedStationNameDiv = document.createElement("div");
+                    //preferedStationNameDiv.className = "col-sm-5";
+                    var preferedStationNameInput = document.createElement("input");
                     preferedStationNameInput.type = "text";
-                    preferedStationNameInput.className = "form-control";
+                    preferedStationNameInput.className = "col-sm-5 form-control";
+                    preferedStationNameInput.name = "preferedStation" + i.toString();// + "Name; 
                     preferedStationNameInput.id = "preferedStation" + i.toString();// + "Name;
                     preferedStationNameInput.placeholder = "XYZ Pvt. Ltd., Goa";
                     if(i == 1) preferedStationNameInput.required = true;
-                    preferedStationNameDiv.appendChild(preferedStationNameInput);
-                    row.appendChild(preferedStationNameDiv);
+                    //preferedStationNameDiv.appendChild(preferedStationNameInput);
+                    //row.appendChild(preferedStationNameDiv);
+                    row.appendChild(preferedStationNameInput);
                     document.getElementById("preferedStations").appendChild(row);
                 }
 

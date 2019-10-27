@@ -1,16 +1,17 @@
 from grievance.models import (ApplicationStatus, GrievanceForm,
                               UserProfile, User, InformativeQueryForm)
 from django.shortcuts import render
-from grievance.forms import StudentHomeViewForm, ApplicationStatusForm, InformativeQuery
+from grievance.forms import StudentHomeViewForm, ApplicationStatusForm
 import datetime
 from . import constants as constants
 from django.views import generic
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 
 #import decorators
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from grievance.customDecorator import student_required
+
 
 @method_decorator([login_required, student_required], name='dispatch')
 class studentHomeView(generic.TemplateView):
@@ -85,6 +86,7 @@ class studentHomeView(generic.TemplateView):
                 form1.student_id=user
                 form1.campus = user.campus
                 form1.applicationDate = datetime.datetime.now()
+                form1.priority = 0
                 form1.save()
                 form2.student_id=user
                 form2.status = constants.Status.INPROGRESS.value
@@ -127,16 +129,21 @@ class studentHomeView(generic.TemplateView):
             else:   
                 return self.redirect()
         # Informative Queries
-        # elif request.POST.get('informativeQuery1Submit') and not \
-        #     InformativeQueryForm.objects.filter(student_id=user, attempt=1):
-        #     iqform_model.attempt = 1
-        #     iqform_model.save()
-        # elif request.POST.get('informativeQuery2Submit') and not \
-        #     InformativeQueryForm.objects.filter(student_id=user, attempt=2):
-        #     iqform_model.attempt = 2
-        #     iqform_model.save()
-        # elif request.POST.get('informativeQuery3Submit') and not \
-        #     InformativeQueryForm.objects.filter(student_id=user, attempt=3):
-        #     iqform_model.attempt = 3
-        #     iqform_model.save()
+        elif request.POST.get('informativeQuery1Submit') and not \
+            InformativeQueryForm.objects.filter(student_id=user, attempt=1):
+            InformativeQueryForm.objects.create(student_id=user, attempt=1, status=1,
+                description=request.POST.get('description'), campus=user.campus)
+            return HttpResponseRedirect('/ps-grievance/redirect')
+        elif request.POST.get('informativeQuery2Submit') and not \
+            InformativeQueryForm.objects.filter(student_id=user, attempt=2):
+            InformativeQueryForm.objects.create(student_id=user, attempt=2, status=1,
+                description=request.POST.get('description'), campus=user.campus)
+            return HttpResponseRedirect('/ps-grievance/redirect')
+        elif request.POST.get('informativeQuery3Submit') and not \
+            InformativeQueryForm.objects.filter(student_id=user, attempt=3):
+            InformativeQueryForm.objects.create(student_id=user, attempt=3, status=1,
+                description=request.POST.get('description'), campus=user.campus)
+            return HttpResponseRedirect('/ps-grievance/redirect')
+        else:
+            return HttpResponseRedirect('/ps-grievance/redirect')
 

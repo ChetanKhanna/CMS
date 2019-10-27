@@ -60,7 +60,7 @@ class GrievanceForm(models.Model):
 	document3 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
 	document4 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
 	document5 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
-	priority = models.IntegerField(blank=True, null=True)
+	priority = models.IntegerField(default=0)
 
 	def __str__(self):
 		return str(self.student_id)
@@ -94,7 +94,8 @@ class InformativeQueryForm(models.Model):
 	level1Comment = models.CharField(max_length=200, blank=True)
 	campus = models.IntegerField(default = 0)
 	lastChangedDate = models.DateTimeField(auto_now_add=True)
-	
+	# allocatedStation = models.CharField(max_length = 500)
+
 	class Meta:
 		unique_together = (('student_id', 'attempt'))
 

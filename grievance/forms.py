@@ -1,5 +1,5 @@
 from django import forms
-from .models import GrievanceForm, ApplicationStatus, InformativeQueryForm
+from .models import GrievanceForm, ApplicationStatus
 
 
 class StudentHomeViewForm(forms.ModelForm):
@@ -15,9 +15,3 @@ class ApplicationStatusForm(forms.ModelForm):
     class Meta:
         model = ApplicationStatus
         fields = ('description',)
-
-
-class InformativeQuery(forms.ModelForm):
-	class Meta:
-		model = InformativeQueryForm
-		fields = ('status', 'description', 'level1Comment',)

@@ -40,14 +40,14 @@
 
                 <div class="form-group row">
                     <label for="userid" class="col-sm-2 col-form-label">Status</label>
-                    <div class="ml-5 mr-5 px-5"><label id="informativeQuery1Status" name="informativeQuery1Status" class="btn btn-success text-light ml-5">Success</label></div>
+                    <div class="ml-5 mr-5 px-5"><label id="informativeQuery1Status" name="status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <fieldset id="informativeQuery1Entries">
-                    <div class="form-group row" id="informativeQuery1DescriptionDiv" name="informativeQuery1DescriptionDiv">
+                    <div class="form-group row" id="informativeQuery1DescriptionDiv" name="descriptionDiv">
                         <label for="userid" class="col-sm-2 col-form-label">Description of Query</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="informativeQuery1Description" rows="4" cols="20" name="informativeQuery1Description" placeholder="placeholder" required></textarea>
+                            <textarea class="form-control" id="informativeQuery1Description" rows="4" cols="20" name="description" placeholder="placeholder" required></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -59,7 +59,7 @@
                 <div class="form-group row" id="informativeQuery1ReplyDiv" name="informativeQuery1ReplyDiv">
                     <label for="userid" class="col-sm-2 col-form-label">Comments by authorities</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="informativeQuery1Reply" rows="4" cols="20" name="informativeQuery1Reply" readonly></textarea>
+                        <textarea class="form-control" id="informativeQuery1Reply" rows="4" cols="20" name="level1comment" readonly></textarea>
                     </div>
                 </div>
         </form>
@@ -76,9 +76,9 @@
 
                 <fieldset id="informativeQuery2Entries">
                     <div class="form-group row" id="informativeQuery2DescriptionDiv" name="informativeQuery2DescriptionDiv">
-                        <label for="userid" class="col-sm-2 col-form-label">Description of Query</label>
+                        <label for="userid" class="col-sm-2 col-form-label">Description of Query*</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="informativeQuery2Description" rows="4" cols="20" name="informativeQuery2Description" placeholder="placeholder" required></textarea>
+                            <textarea class="form-control" id="informativeQuery2Description" rows="4" cols="20" name="description" placeholder="placeholder" required></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -109,7 +109,7 @@
                     <div class="form-group row" id="informativeQuery3DescriptionDiv" name="informativeQuery3DescriptionDiv">
                         <label for="userid" class="col-sm-2 col-form-label">Description of Query</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="informativeQuery3Description" rows="4" cols="20" name="informativeQuery3Description" placeholder="placeholder" required></textarea>
+                            <textarea class="form-control" id="informativeQuery3Description" rows="4" cols="20" name="description" placeholder="placeholder" required></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -153,10 +153,7 @@
             }
         }
 
-        //var informativeQueryStatuses = [2,2,2];
         var informativeQueryStatuses = {{ informativeQueryStatuses|safe }};
-
-        //var informativeQueryDescriptions = ["description1", "description2", "description3"];
         informativeQueryDescriptions = {{ informativeQueryDescriptions|safe }}
         if(informativeQueryStatuses[0] != 0){
             document.getElementById("informativeQuery1Description").value = informativeQueryDescriptions[0];
@@ -377,12 +374,7 @@
 
             <fieldset id="initialEntries">
 
-                <div class="form-group row" id="contactNumberDiv">
-                    <label for="userid" class="col-sm-4 col-form-label">Contact No.</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="contact" name="contact" required>
-                    </div>
-                </div>
+                
             
 
                 <div class="form-group row">
@@ -411,19 +403,22 @@
 
                 <div class="form-group row">
                     <!-- <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label> -->
-                    <label for="userid" class="col-sm-7 col-form-label">Station Name</label>
+                    <label for="userid" class="col-sm-7 col-form-label">Current Station Name</label>
                 </div>
 
                 <div class="form-group row">
                     <label for="userid" class="col-sm-4 col-form-label">Allocated Station:</label>
-                   <!--  <div class="col-sm-2">
-                        <input type="text" class="form-control" id="allocatedStationPrefNo" name="allocatedStationPrefNo" placeholder="1" size="10" readonly>
-                    </div> -->
 
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="allocatedStationName" name="allocatedStationName" placeholder="XYZ Pvt. Ltd., Goa" readonly>
+                        <input type="text" class="form-control" id="allocatedStation" name="allocatedStation" placeholder="XYZ Pvt. Ltd., Goa" required>
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <!-- <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label> -->
+                    <label for="userid" class="col-sm-7 col-form-label">Prefered Station Names</label>
+                </div>
+
 
                 <div id="preferedStations">
                 </div>
@@ -553,16 +548,18 @@
                     // row.appendChild(preferedStationNumberDiv);
 
                     // div of Prefered Station's Name input
-                    var preferedStationNameDiv = document.createElement("div");
-                    preferedStationNameDiv.className = "col-sm-5";
-                    var preferedStationNameInput = document.createElement("INPUT");
+                    //var preferedStationNameDiv = document.createElement("div");
+                    //preferedStationNameDiv.className = "col-sm-5";
+                    var preferedStationNameInput = document.createElement("input");
                     preferedStationNameInput.type = "text";
-                    preferedStationNameInput.className = "form-control";
+                    preferedStationNameInput.className = "col-sm-5 form-control";
+                    preferedStationNameInput.name = "preferedStation" + i.toString();// + "Name; 
                     preferedStationNameInput.id = "preferedStation" + i.toString();// + "Name;
                     preferedStationNameInput.placeholder = "XYZ Pvt. Ltd., Goa";
                     if(i == 1) preferedStationNameInput.required = true;
-                    preferedStationNameDiv.appendChild(preferedStationNameInput);
-                    row.appendChild(preferedStationNameDiv);
+                    //preferedStationNameDiv.appendChild(preferedStationNameInput);
+                    //row.appendChild(preferedStationNameDiv);
+                    row.appendChild(preferedStationNameInput);
                     document.getElementById("preferedStations").appendChild(row);
                 }
 
@@ -622,25 +619,16 @@
                     }
                 };
 
-                //document.getElementById("informativeQueryDiv").style.display = "none";
-                //document.getElementById("nonInformativeQueryDiv").style.display = "none";
-
-                console.log("{{ campus }}");
-                console.log("{{ name }}");
                 document.getElementById("name").value = "{{ name }}";
                 document.getElementById("campus").value = getCampusName({{ campus }});
                 document.getElementById("cg").value = "{{ cg }}";
                 document.getElementById("id").value = "{{ id }}";
                 document.getElementById("email").value = "{{ email }}";
-                //document.getElementById("allocatedStation").value = "{{ formEntry.allocatedStation }}";
-                //document.getElementById("preferenceNumberOfAllocatedStation").value = "{{ formEntry.preferenceNumberOfAllocatedStation }}";
                 document.getElementById("natureOfQuery").value = "{{ formEntry.natureOfQuery }}";
                 var descriptions = {{ descriptions|safe }};
-                console.log(descriptions);
                 document.getElementById("description").value = descriptions[0];
                 document.getElementById("description2").value = descriptions[1];
                 document.getElementById("description3").value = descriptions[2];
-                //document.getElementById("description2").value = descriptions[2];
                 document.getElementById("preferedStation1").value = "{{ formEntry.preferedStation1 }}";
                 document.getElementById("preferedStation2").value = "{{ formEntry.preferedStation2 }}";
                 document.getElementById("preferedStation3").value = "{{ formEntry.preferedStation3 }}";
@@ -652,15 +640,17 @@
                 document.getElementById("preferedStation9").value = "{{ formEntry.preferedStation9 }}";
                 document.getElementById("preferedStation10").value = "{{ formEntry.preferedStation10 }}";
                 var comments = {{ comments|safe }};
-                console.log(comments)
                 document.getElementById("comments1").value = comments[0];
                 document.getElementById("comments2").value = comments[1];
                 document.getElementById("comments3").value = comments[2];
                 var newStations = {{ newStation|safe }};
-                console.log(newStations);
                 var statuses = {{ attemptStatus|safe }};
-                console.log('statuses are')
-                console.log(statuses)
+                if(statuses[0]!= 0){
+                    for(var i = 2; i <= 10; i++){
+                        document.getElementById("preferedStation" + i.toString()).placeholder = "";
+                    }
+                }
+
                 document.getElementById("status1").textContent = getStatusToWords(statuses[0]);
                 document.getElementById("status2").textContent = getStatusToWords(statuses[1]);
                 document.getElementById("status3").textContent = getStatusToWords(statuses[2]);
@@ -728,11 +718,7 @@
                     document.getElementById("application3Entries").disabled="disabled";
                     document.getElementById("submit3").style.display = "none";
                     document.getElementById("acception3Div").style.display = "none";
-                }
-                /*if(statuses[1] == 0){
-                    document.getElementById("reapplication1Form").style.display = "none";
-                }*/
-                //document.getElementById('file-uploads').style.display = "none";   
+                } 
         </script>
     </div>
 </div>
@@ -751,12 +737,7 @@
             document.getElementById("nonInformativeQueryDiv").style.display = "none";
         }
     }
-    /*if(CURRENT_VIEW == 1){
-        document.getElementById("informativeQueryDiv").style.display = "none";
-    }
-    else if(CURRENT_VIEW == 2){
-        document.getElementById("nonInformativeQueryDiv").style.display = "none";
-    }*/
+
 </script>
     <!-- footer -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 #import decorators
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from grievance.customDecorator import cmo_or_ad_required, ad_required
+from grievance.customDecorator import level1_required, ad_required
 
 #import models
 from grievance.models import *
@@ -20,7 +20,7 @@ from grievance.views import studentHomeView
 from datetime import datetime
 
 
-# @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
+@method_decorator([login_required, level1_required], name='dispatch')
 class level1HomeView(generic.TemplateView):
 	def get(self, request, *args, **kwargs):
 		current_user = request.user
@@ -37,7 +37,7 @@ class level1HomeView(generic.TemplateView):
 # 	def get(self, request, *args, **kwargs):
 # 		return render(request,"grievance/adHomePage.html")
 
-# @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
+@method_decorator([login_required, level1_required], name='dispatch')
 class level1RequestView(generic.View):
 	def get(self, request, *args, **kwargs):
 
@@ -93,7 +93,7 @@ class level1RequestView(generic.View):
 		campus =  user_profile_object.campus
 		status = constants.Status.PENDING.value
 		# typeOfRequest = kwargs["type"]
-		student_list = InformativeQuerryForm.objects.filter(campus = campus, status = status,).order_by('-lastChangedDate')
+		student_list = InformativeQueryForm.objects.filter(campus = campus, status = status,).order_by('-lastChangedDate')
 		
 		returnList=[]
 		for student in student_list:
@@ -108,16 +108,31 @@ class level1RequestView(generic.View):
 		print(returnList)
 		return JsonResponse(returnList, safe=False)
 
-# @method_decorator([login_required, cmo_or_ad_required], name='dispatch')
+@method_decorator([login_required, level1_required], name='dispatch')
 class level1StudentView(generic.View):
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
 		userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
 			
+		#PSD PAGE
 		if UserProfile.objects.get(user = request.user).token == constants.UserType.PSD.value:
-			params = {}
+			informativeQueryForm_objects = InformativeQueryForm.objects.filter(student_id = userProfile_object)
+			const = constants.Status.NOAPPLICATION.value
+			attempt_status=[const,const,const]
+			for i in informativeQueryForm_objects:
+				attempt_status[i.attempt-1] = i.status
+			print("\n\n\n\n\n")
+			print(attempt_status)
+			params = {
+				'name' : userProfile_object.name,
+				'student_id' : student_id,
+				'informativeQueryForm_objects' : informativeQueryForm_objects,
+				'statuses' : attempt_status,
+				'back': "/ps-grievance/redirect/",
+			}
 			return render(request, "grievance/queryPage.html", params)
 
+		#Other users
 		ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt =1)
 		grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
 		documents = self.getDocuments(grievanceForm_object)
@@ -145,7 +160,7 @@ class level1StudentView(generic.View):
 			attempt = request.POST.get('attempt')
 			level1comment = request.POST.get('reply')
 
-			informativeQuerryForm_object = InformativeQuerryForm.objects.get(student_id = userProfile_object, attempt = attempt)
+			informativeQuerryForm_object = InformativeQueryForm.objects.get(student_id = userProfile_object, attempt = attempt)
 
 			informativeQuerryForm_object.level1Comment = level1comment
 			informativeQuerryForm_object.status = constants.Status.APPROVED.value
@@ -195,7 +210,7 @@ class level1StudentView(generic.View):
 		return documents
 
 
-@method_decorator([login_required, cmo_or_ad_required], name='dispatch')
+@method_decorator([login_required, level1_required], name='dispatch')
 class level1StudentStatusView(generic.View):
 	def get(self, request, *args, **kwargs):
 

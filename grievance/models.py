@@ -43,7 +43,6 @@ class GrievanceForm(models.Model):
 	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE, primary_key=True)
 	campus = models.IntegerField(default = 0)
 	allocatedStation = models.CharField(max_length = 500)
-	preferenceNumberOfAllocatedStation = models.IntegerField()
 	natureOfQuery = models.IntegerField()
 	applicationDate = models.DateTimeField()
 	preferedStation1 = models.CharField(max_length = 500)
@@ -61,7 +60,8 @@ class GrievanceForm(models.Model):
 	document3 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
 	document4 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
 	document5 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
-	priority = models.IntegerField(blank=True)
+	priority = models.IntegerField(default=0)
+	preferenceNumberOfAllocatedStation = models.IntegerField(blank = True) #TODO remove blank true
 
 	def __str__(self):
 		return str(self.student_id)
@@ -71,7 +71,7 @@ class ApplicationStatus(models.Model):
 	campus = models.IntegerField(default = 0)
 	attempt = models.IntegerField()
 	level = models.IntegerField()
-	status = models.IntegerField()
+	status = models.IntegerField(default=0)
 	lastChangedDate = models.DateTimeField(auto_now_add=True)
 	description = models.CharField(max_length = 500)
 	level1Comment = models.CharField(max_length = 500, blank=True)
@@ -87,16 +87,17 @@ class ApplicationStatus(models.Model):
 		return str((self.student_id,self.attempt))
 
 
-class InformativeQuerryForm(models.Model):
+class InformativeQueryForm(models.Model):
 	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	attempt = models.IntegerField()
-	status = models.IntegerField()
-	description = models.CharField(max_length=200, blank=True)
+	status = models.IntegerField(default=0)
+	description = models.CharField(max_length=200)
 	level1Comment = models.CharField(max_length=200, blank=True)
 	campus = models.IntegerField(default = 0)
-	allocatedStation = models.CharField(max_length = 500)
 	lastChangedDate = models.DateTimeField(auto_now_add=True)
-	
+	# allocatedStation = models.CharField(max_length = 500) TODO
+	# preferenceNumberOfAllocatedStation = models.IntegerField(blank = True) #TODO remove blank true
+
 	class Meta:
 		unique_together = (('student_id', 'attempt'))
 

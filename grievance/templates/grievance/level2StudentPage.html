@@ -73,11 +73,13 @@
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-5 col-sm-5">
-      <h5> Submitted Documents </h5>
-      <div class="row container-fluid documents d-flex justify-content-center" id="docs">
+    <center><h5> <strong>Submitted Documents </strong></h5>
+    <div class="row documents d-flex justify-content-center" id="docs">
 
 
-      </div>
+ 
+      
+    </div>
     </div>
   </div>
   <div class="row  container-fluid mt-5">
@@ -120,7 +122,7 @@
     </div>
 
      <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
-        <h5> Level 1 Remarks</h5>
+        <h5><strong>Level 1 Remarks</strong></h5>
 
           <textarea class="form-control md-textarea" disabled rows="3" id="level1Remarks"  name="level1Remarks" type="text" >{{applcationStatusObjects.0.level1Comment}}</textarea>
 
@@ -541,10 +543,18 @@
     var length = '{{documentCount}}';
     if (length > 0) {
       var documents = ['{{documents.0}}','{{documents.1}}','{{documents.2}}','{{documents.3}}','{{documents.4}}'];
-      for (var i = 0; i < length; i++) {
+      for(var i=0;i<length;i++)
+      {
+        console.log("asdf")
+        console.log('{{documents.1}}');
         var name = documents[i].split("/")[2];
-        var doc = '<div class="col-md-2 p-3 d-flex justify-content-center document"><a href=/ps-grievance/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">'+name+'</p>        </div>      </a>      </div>';
-$('#docs').append(doc);
+        console.log(documents[0]);
+        var doc='<div class=" col-md-2 col-sm-6 "><div class="row p-3 d-flex justify-content-center document"><a href=/ps-grievance/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">     </div>             <div class="caption pt-4  table-warning ">          <p id="caption1">'+name+'</p>        </div>      </a>    </div>';
+
+       var documentname = '<div class="row p-0  m-0 d-flex justify-content-center document"><p id="caption1">'+name+'</p>                 </div></div>';
+       var doc1=doc+documentname;
+       $('#docs').append(doc1);
+
       }
     }
     else {

@@ -235,7 +235,7 @@
           {
                var name = response[0][i].name;
               var id = response[0][i].id;
-              var nature = (response[1][i].nature)?"Non-Medical":"Medical";
+              var nature = (response[0][i].nature)?"Non-Medical":"Medical";
               var date = response[0][i].date;
             var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  id='name'>"+name+"</td> <td >"+id+"</td><td >"+nature+"</td><td  class='collegeId'><a href=student-status/student/"+id+">Attempt: "+ response[0][i].attempt +"</a></td><td >"+date+"</td><td >"+response[0][i].priority+" Priority </td></tr>";
             $('#table3-body').append(entry);
@@ -291,7 +291,7 @@
           {
                var name = response[0][i].name;
               var id = response[0][i].id;
-              var nature = (response[1][i].nature)?"Non-Medical":"Medical";
+              var nature = (response[0][i].nature)?"Non-Medical":"Medical";
               var date = response[0][i].date;
             var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  class ='element' id='name'>"+name+"</td> <td class ='element'>"+id+"</td><td class ='element'>"+nature+"</td><td class ='element'><a href=student-status/student/"+id+">Attempt: "+ response[0][i].attempt +"</a></td><td class ='element' >"+date+"</td><td class ='element'>"+response[0][i].priority+" Priority</td></tr>";
             $('#table3-body').append(entry);
@@ -357,7 +357,7 @@
           {
                var name = response[0][i].name;
               var id = response[0][i].id;
-              var nature = (response[1][i].nature)?"Non-Medical":"Medical";
+              var nature = (response[0][i].nature)?"Non-Medical":"Medical";
               var date = response[0][i].date;
             var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'> <td  id='name'>"+response[0][i].name+"</td> <td  id='collegeId '>"+response[0][i].id+"</td><td >"+nature+"</td><td ><a href=student/"+id+">Attempt: "+response[0][i].attempt +"</a></td><td   >"+date+"</td></tr>";
             $('#table3-body').append(entry);

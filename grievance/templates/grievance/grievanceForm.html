@@ -32,22 +32,38 @@
         </div>
     </div>
 
-    <div class="table-light site-section col-md-9" id="informativeQueryDiv">
-        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="informativeQuery1Form" action="" method="post" readonly> 
+    <div class="table-light site-section col-md-8 mt-5" id="informativeQueryDiv">
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="informativeQuery1Form" action="" method="post" readonly> 
             {% csrf_token %}
                 <h2 class="text-center"> Query 1 </h2>
                 <br/>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-sm-2 col-form-label">Status</label>
-                    <div class="ml-5 mr-5 px-5"><label id="informativeQuery1Status" name="status" class="btn btn-success text-light ml-5">Success</label></div>
+                    <label for="userid" class="col-md-3 col-form-label">Status</label>
+                    <div class="col-md-5 ml-3"><label id="informativeQuery1Status" name="status" class="btn btn-success text-light ml-5">Success</label></div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="userid" class="col-md-3">Allotted Station Name*</label>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="informativeQueryAllocatedStation" name="informativeQueryAllocatedStation" placeholder="XYZ Pvt. Ltd., Goa" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="userid" class="col-md-3">Pref No. of Alloted Station*</label>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="informativeQueryPreferenceNumberOfAllocatedStation" name="informativeQueryPreferenceNumberOfAllocatedStation" placeholder="2" required>
+                    </div>
                 </div>
 
                 <fieldset id="informativeQuery1Entries">
                     <div class="form-group row" id="informativeQuery1DescriptionDiv" name="descriptionDiv">
-                        <label for="userid" class="col-sm-2 col-form-label">Description of Query</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control" id="informativeQuery1Description" rows="4" cols="20" name="description" placeholder="placeholder" required></textarea>
+                        <label class="col-md-3">Description of Query*</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="informativeQuery1Description" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -57,28 +73,28 @@
                 </div>
 
                 <div class="form-group row" id="informativeQuery1ReplyDiv" name="informativeQuery1ReplyDiv">
-                    <label for="userid" class="col-sm-2 col-form-label">Comments by authorities</label>
+                    <label class="col-sm-3 col-form-label">Comments by authorities</label>
                     <div class="col-sm-9">
                         <textarea class="form-control" id="informativeQuery1Reply" rows="4" cols="20" name="level1comment" readonly></textarea>
                     </div>
                 </div>
         </form>
 
-        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="informativeQuery2Form" action="" method="post" readonly> 
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="informativeQuery2Form" action="" method="post" readonly> 
             {% csrf_token %}
                 <h2 class="text-center"> Query 2 </h2>
                 <br/>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-sm-2 col-form-label">Status</label>
-                    <div class="ml-5 mr-5 px-5"><label id="informativeQuery2Status" name="informativeQuery2Status" class="btn btn-success text-light ml-5">Success</label></div>
+                    <label for="userid" class="col-md-3 col-form-label">Status</label>
+                    <div class="col-md-5 ml-3"><label id="informativeQuery2Status" name="status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <fieldset id="informativeQuery2Entries">
-                    <div class="form-group row" id="informativeQuery2DescriptionDiv" name="informativeQuery2DescriptionDiv">
-                        <label for="userid" class="col-sm-2 col-form-label">Description of Query*</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control" id="informativeQuery2Description" rows="4" cols="20" name="description" placeholder="placeholder" required></textarea>
+                    <div class="form-group row" id="informativeQuery2DescriptionDiv" name="descriptionDiv">
+                        <label class="col-md-3">Description of Query*</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="informativeQuery2Description" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -87,29 +103,29 @@
                     <button type="submit" id="informativeQuery2Submit" name="informativeQuery2Submit" value="informativeQuery2Submit" class="btn btn-default" style="background-color: #428bca; color: white">Submit</button>
                 </div>
 
-                <div class="form-group row" id="informativeQuery2ReplyDiv" name="informativeQuery2ReplyDiv">
-                    <label for="userid" class="col-sm-2 col-form-label">Comments by authorities</label>
+                <div class="form-group row" id="informativeQuery2ReplyDiv" name="informativeQuery1ReplyDiv">
+                    <label class="col-sm-3 col-form-label">Comments by authorities</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="informativeQuery2Reply" rows="4" cols="20" name="informativeQuery2Reply" readonly></textarea>
+                        <textarea class="form-control" id="informativeQuery2Reply" rows="4" cols="20" name="level1comment" readonly></textarea>
                     </div>
                 </div>
         </form>
 
-        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="informativeQuery3Form" action="" method="post" readonly> 
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="informativeQuery3Form" action="" method="post" readonly> 
             {% csrf_token %}
                 <h2 class="text-center"> Query 3 </h2>
                 <br/>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-sm-2 col-form-label">Status</label>
-                    <div class="ml-5 mr-5 px-5"><label id="informativeQuery3Status" name="informativeQuery3Status" class="btn btn-success text-light ml-5">Success</label></div>
+                    <label for="userid" class="col-md-3 col-form-label">Status</label>
+                    <div class="col-md-5 ml-3"><label id="informativeQuery3Status" name="status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
-                <fieldset id="informativeQuery3Entries">
-                    <div class="form-group row" id="informativeQuery3DescriptionDiv" name="informativeQuery3DescriptionDiv">
-                        <label for="userid" class="col-sm-2 col-form-label">Description of Query</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control" id="informativeQuery3Description" rows="4" cols="20" name="description" placeholder="placeholder" required></textarea>
+                <fieldset id="informativeQuery2Entries">
+                    <div class="form-group row" id="informativeQuery3DescriptionDiv" name="descriptionDiv">
+                        <label class="col-md-3">Description of Query*</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="informativeQuery3Description" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -119,9 +135,9 @@
                 </div>
 
                 <div class="form-group row" id="informativeQuery3ReplyDiv" name="informativeQuery3ReplyDiv">
-                    <label for="userid" class="col-sm-2 col-form-label">Comments by authorities</label>
+                    <label class="col-sm-3 col-form-label">Comments by authorities</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="informativeQuery3Reply" rows="4" cols="20" name="informativeQuery3Reply" readonly></textarea>
+                        <textarea class="form-control" id="informativeQuery3Reply" rows="4" cols="20" name="level1comment" readonly></textarea>
                     </div>
                 </div>
         </form>
@@ -158,6 +174,12 @@
         if(informativeQueryStatuses[0] != 0){
             document.getElementById("informativeQuery1Description").value = informativeQueryDescriptions[0];
             document.getElementById("informativeQuery1Description").readOnly = true;
+            document.getElementById("informativeQueryAllocatedStation").value = "{{ informativeQueryAllocatedStation }}";
+            document.getElementById("informativeQueryAllocatedStation").readOnly = true;
+
+        document.getElementById("informativeQueryPreferenceNumberOfAllocatedStation").value = "{{ informativeQueryPreferenceNumberOfAllocatedStation }}";
+        document.getElementById("informativeQueryPreferenceNumberOfAllocatedStation").readOnly = true;
+
         }
         if(informativeQueryStatuses[1] != 0){
             document.getElementById("informativeQuery2Description").value = informativeQueryDescriptions[1];
@@ -224,30 +246,23 @@
 
 
 
-    <div class="table-light site-section col-md-9" id="nonInformativeQueryDiv">
-        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application3Form" action="" method="post" readonly> 
+    <div class="table-light site-section col-md-8 mt-5" id="nonInformativeQueryDiv">
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="application3Form" action="" method="post" readonly> 
             {% csrf_token %}
             <div id="application3Div" name="application3Div">
                 <h2 class="text-center"> Reapplication 2 </h2>
                 <br/>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-sm-2 col-form-label">Status</label>
-                    <div class="ml-5 mr-5 px-5"><label id="status3" name="status3" class="btn btn-success text-light ml-5">Success</label></div>
-                </div>
-
-                <div class=" mb-4 row">
-                    <label for="status33" class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-md-4 offset-2">
-                        <span id="status33" class="offset-4 col-md-4"></span>
-                    </div>
+                    <label for="userid" class="col-md-3 col-form-label">Status</label>
+                    <div class="col-md-5 ml-3"><label id="status3" name="status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <fieldset id="application3Entries">
                     <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                        <label for="userid" class="col-sm-2 col-form-label">Reason to Reapply</label>
-                        <div class="col-sm-8">
-                            <textarea class="form-control" id="description3" rows="5" cols="15" name="description" required></textarea>
+                        <label class="col-md-3">Description of Query*</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="description3" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -257,30 +272,27 @@
                 </div>
 
                 <div id="application3Comments">
-
                     <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                        <label for="userid" class="col-sm-2 col-form-label">Comments by authorities</label>
-                        <div class="col-sm-8">
-                            <textarea class="form-control" id="comments3" rows="5" cols="15" name="comments3" readonly></textarea>
+                        <label class="col-md-3">Comments by authorities</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="comments3" rows="4" cols="20" name="comments3" readonly=""></textarea>
                         </div>
                     </div>
 
                     <div id="acception3Div" name="acception3Div">
-
                         <div class="form-group row">
-                            <label for="userid" class="col-sm-2 col-form-label">New Alotted Station</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="newStation3" name="newStation3" readonly>
+                            <label class="col-md-3">New Allotted Station</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" id="newStation3" rows="4" cols="20" name="newStation3" readonly=""></textarea>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </form>
 
 
-        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application2Form" action="" method="post" readonly> 
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="application2Form" action="" method="post" readonly> 
             {% csrf_token %}
             <div table-warning id="application2Div" name="application2Div">
                 
@@ -289,97 +301,93 @@
                 <br/>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-sm-4 col-form-label">Status</label>
-                    <div class="ml-5 mr-5 px-5"><label id="status2" name="status2" class="btn btn-success text-light ml-5">Success</label></div>
+                    <label for="userid" class="col-md-3 col-form-label">Status</label>
+                    <div class="col-md-5 ml-3"><label id="status2" name="status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <fieldset id="application2Entries">
                     <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                        <label for="userid" class="col-sm-4 col-form-label">Reason to Reapply</label>
-                        <div class="col-sm-8">
-                            <textarea class="form-control" id="description2" rows="5" cols="15" name="description" required></textarea>
+                        <label class="col-md-3">Description of Query*</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="description2" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
                         </div>
                     </div>
                 </fieldset>
+
 
                 <div class="form-group text-center">
                     <button type="submit" id="submit2" name="submit2" value="submit2" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
                 </div>
 
                 <div id="application2Comments">
-
                     <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                        <label for="userid" class="col-sm-4 col-form-label">Comments by authorities</label>
-                        <div class="col-sm-8">
-                            <textarea class="form-control" id="comments2" rows="5" cols="15" name="comments2" readonly></textarea>
+                        <label class="col-md-3">Comments by authorities</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="comments2" rows="4" cols="20" name="comments2" readonly=""></textarea>
                         </div>
                     </div>
 
                     <div id="acception2Div" name="acception2Div">
-
                         <div class="form-group row">
-                            <label for="userid" class="col-sm-4 col-form-label">New Alotted Station</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="newStation2" name="newStation2" readonly>
+                            <label class="col-md-3">New Allotted Station</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" id="newStation2" rows="4" cols="20" name="newStation2" readonly=""></textarea>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </form>
-        <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="application1Form" action="/ps-grievance/student/" method="post" readonly  enctype="multipart/form-data">
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="application1Form" action="/ps-grievance/student/" method="post" readonly  enctype="multipart/form-data">
             {% csrf_token %}
             <h2 class="text-center">Grievance Application Form</h2>
             <br/>
 
             <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label mr-5">Status</label>
-                <div class="ml-1 mr-1"><label id="status1" class="btn btn-success text-light ml-5">Success</label></div>
+                <label for="userid" class="col-md-3 col-form-label">Status</label>
+                <div class="col-md-5 ml-3"><label id="status1" name="status" class="btn btn-success text-light ml-5">Success</label></div>
             </div>
 
             <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Name</label>
-                <div class="col-sm-8">
+                <label for="userid" class="col-md-3">Name</label>
+                <div class="col-md-9">
                     <input type="text" class="form-control" id="name" name="name" readonly>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">ID</label>
-                <div class="col-sm-8">
+                <label for="userid" class="col-md-3">ID</label>
+                <div class="col-md-9">
                     <input type="text" class="form-control" id="id" name="id" readonly>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="userid" class="col-sm-4 col-form-label">Campus</label>
-                <div class="col-sm-8">
+                <label for="userid" class="col-md-3">Campus</label>
+                <div class="col-md-9">
                     <input type="text" class="form-control" id="campus" name="campus" readonly>
                 </div>
             </div>
-            <div class="form-group row" id="cgpaDiv">
-                <label for="userid" class="col-sm-4 col-form-label">CGPA</label>
-                <div class="col-sm-8">
+
+            <div class="form-group row">
+                <label for="userid" class="col-md-3">CGPA</label>
+                <div class="col-md-9">
                     <input type="text" class="form-control" id="cg" name="cg" readonly>
                 </div>
             </div>
 
-            <div class="form-group row" id="cgpaDiv">
-                <label for="userid" class="col-sm-4 col-form-label">Email</label>
-                <div class="col-sm-8">
+            <div class="form-group row">
+                <label for="userid" class="col-md-3">Email</label>
+                <div class="col-md-9">
                     <input type="text" class="form-control" id="email" name="email" readonly>
                 </div>
             </div>
 
-            <fieldset id="initialEntries">
-
-                
-            
+            <fieldset id="initialEntries">  
 
                 <div class="form-group row">
-                    <label for="userid" class="col-sm-4 col-form-label">Reason of Query</label>
-                    <div class="col-sm-8">
+                    <label for="userid" class="col-md-3">Reason of Query*</label>
+                    <div class="col-md-9">
                         <select class="custom-select" id="natureOfQuery" name="natureOfQuery" required>
                             <option value="">Select</option>
                             <option value="0">Medical</option>
@@ -389,8 +397,8 @@
                 </div>
 
                 <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                    <label for="userid" class="col-sm-4 col-form-label">Description of Query</label>
-                    <div class="col-sm-8">
+                    <label for="userid" class="col-md-3 col-form-label">Description of Query*</label>
+                    <div class="col-md-9">
                         <textarea class="form-control" id="description" rows="5" cols="15" name="description" placeholder="Description" required></textarea>
                     </div>
                 </div>
@@ -399,24 +407,32 @@
 
                 <p align="center">   Add your prefered stations(with location) in order from 1(most desired) to 10(least desired)</p>
 
-                <p align="center"> Disclaimer : While we will consider your preferences, it is not guaranteed that the new station allotted to you will be from your given preferences </p>
+                <p align="center"> <b> Disclaimer </b> : While we will consider your preferences, it is not guaranteed that the new station allotted to you will be from your given preferences </p>
 
-                <div class="form-group row">
+                <div class="form-group row d-flex justify-content-center">
                     <!-- <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label> -->
-                    <label for="userid" class="col-sm-7 col-form-label">Current Station Name</label>
+                    <label for="userid">Current Station Name</label>
                 </div>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-sm-4 col-form-label">Allocated Station:</label>
+                    <label for="userid" class="col-md-3">Allotted Station Name*</label>
 
-                    <div class="col-sm-5">
+                    <div class="col-md-9">
                         <input type="text" class="form-control" id="allocatedStation" name="allocatedStation" placeholder="XYZ Pvt. Ltd., Goa" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
+                    <label for="userid" class="col-md-3">Pref No. of Alloted Station*</label>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="preferenceNumberOfAllocatedStation" name="preferenceNumberOfAllocatedStation" placeholder="2" required>
+                    </div>
+                </div>
+
+                <div class="form-group row d-flex justify-content-center">
                     <!-- <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label> -->
-                    <label for="userid" class="col-sm-7 col-form-label">Prefered Station Names</label>
+                    <label for="userid" class="col-form-label">Prefered Station Names</label>
                 </div>
 
 
@@ -448,12 +464,28 @@
                         {% endif %}
                         </div>
                     {% else %}
-                        <p class="text-center"> You can add upto 5 supporting documents to support your Application. Each document should be less than 5 MB </p>
-                            <input type="file" name="document1" id="document1"></input>
-                            <input type="file" name="document2" id="document2"></input>
-                            <input type="file" name="document3" id="document3"></input>
-                            <input type="file" name="document4" id="document4"></input>
-                            <input type="file" name="document5" id="document5"></input>
+                        <p class="text-center"> You can add upto 5 supporting documents to support your Application. Each document should be less than 1 MB </p>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="file" name="document1" id="document1"></input>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="file" name="document2" id="document2"></input>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="file" name="document3" id="document3"></input>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="file" name="document4" id="document4"></input>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="file" name="document5" id="document5"></input>
+                            </div>
+                        </div>
                     {% endif %}
                 </div>
 
@@ -490,8 +522,8 @@
             <div id="application1Comments">
 
                 <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                    <label for="userid" class="col-sm-4 col-form-label">Comments by authorities</label>
-                    <div class="col-sm-8">
+                    <label for="userid" class="col-md-3">Comments by authorities</label>
+                    <div class="col-md-9">
                         <textarea class="form-control" id="comments1" rows="5" cols="15" name="comments1" readonly></textarea>
                     </div>
                 </div>
@@ -499,8 +531,8 @@
                 <div id="acception1Div" name="acception1Div">
 
                     <div class="form-group row">
-                        <label for="userid" class="col-sm-4 col-form-label">New Alotted Station</label>
-                        <div class="col-sm-8">
+                        <label for="userid" class="col-md-3">New Allotted Station</label>
+                        <div class="col-md-9">
                             <input type="text" class="form-control" id="newStation1" name="newStation1" readonly>
                         </div>
                     </div>
@@ -530,8 +562,9 @@
 
                     // label which says "Prefered Station X"
                     var label = document.createElement("LABEL");
-                    label.className = "col-sm-4 col-form-label";
-                    label.textContent = "Prefered Station " + i.toString() + ":";
+                    label.className = "col-md-3";
+                    label.textContent = "Prefered Station " + i.toString();
+                    if(i==1) label.textContent = "Prefered Station 1*";
                     row.appendChild(label);
 
                     // // div of Prefered Station's Pref Number input
@@ -548,18 +581,18 @@
                     // row.appendChild(preferedStationNumberDiv);
 
                     // div of Prefered Station's Name input
-                    //var preferedStationNameDiv = document.createElement("div");
-                    //preferedStationNameDiv.className = "col-sm-5";
+                    var preferedStationNameDiv = document.createElement("div");
+                    preferedStationNameDiv.className = "col-md-9";
                     var preferedStationNameInput = document.createElement("input");
                     preferedStationNameInput.type = "text";
-                    preferedStationNameInput.className = "col-sm-5 form-control";
+                    preferedStationNameInput.className = "form-control";
                     preferedStationNameInput.name = "preferedStation" + i.toString();// + "Name; 
                     preferedStationNameInput.id = "preferedStation" + i.toString();// + "Name;
                     preferedStationNameInput.placeholder = "XYZ Pvt. Ltd., Goa";
                     if(i == 1) preferedStationNameInput.required = true;
-                    //preferedStationNameDiv.appendChild(preferedStationNameInput);
-                    //row.appendChild(preferedStationNameDiv);
-                    row.appendChild(preferedStationNameInput);
+                    preferedStationNameDiv.appendChild(preferedStationNameInput);
+                    row.appendChild(preferedStationNameDiv);
+                    //row.appendChild(preferedStationNameInput);
                     document.getElementById("preferedStations").appendChild(row);
                 }
 
@@ -629,6 +662,10 @@
                 document.getElementById("description").value = descriptions[0];
                 document.getElementById("description2").value = descriptions[1];
                 document.getElementById("description3").value = descriptions[2];
+
+                document.getElementById("allocatedStation").value = "{{ formEntry.allocatedStation }}";
+                document.getElementById("preferenceNumberOfAllocatedStation").value = "{{ formEntry.preferenceNumberOfAllocatedStation }}";
+
                 document.getElementById("preferedStation1").value = "{{ formEntry.preferedStation1 }}";
                 document.getElementById("preferedStation2").value = "{{ formEntry.preferedStation2 }}";
                 document.getElementById("preferedStation3").value = "{{ formEntry.preferedStation3 }}";
@@ -749,5 +786,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+        <style>
+            .signup-form1 {
+    width: 100%;
+    min-width: 450px;
+    color: black;
+        }
+        </style>
 
 {% endblock %}

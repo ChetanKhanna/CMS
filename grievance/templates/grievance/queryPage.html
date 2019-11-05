@@ -35,26 +35,11 @@
             <input class="form-control" id="student_id" style="text-align: center;" name="student_id"
                 value='{{student_id}}' disabled type="text">
         </div>
-
-        <!-- <div class="col-md-2">
-              <label for="PS"><strong>Nature of Query</strong> </label>
-              <input class="form-control" id="nature" name="nature" style="text-align: center;"
-                value='{{applcationStatusObjects.0.natureOfQuery}}' disabled type="text">
-            </div> -->
-        <!-- <div class="col-md-2">
-            <label for="PS"><strong>Nature of Query</strong> </label>
-            <input class="form-control" id="nature" name="nature" style="text-align: center;" disabled type="text">
-        </div> -->
         <div class="col-md-2">
             <label for="CG"><strong>CG</strong> </label>
             <input class="form-control" id="CG" name="CG" style="text-align: center;" value='{{grievanceFormObject.cg}}'
                 disabled type="text">
         </div>
-        <!-- <div class="col-md-2">
-            <label for="Offshoot"><strong>Offshoot</strong> </label>
-            <input class="form-control" id="offshoot" name="offshoot" style="text-align: center;"
-                value='{{grievanceFormObject.offShoot}}' disabled type="text">
-        </div> -->
 
     </div>
     <hr width="80%">
@@ -66,7 +51,9 @@
 
 
     <div class="table-light site-section" id="informativeQueryDiv">
-        <div class="signup-form1 shadow p-3 mb-5 table-light rounded">
+        <div class="signup-form1 shadow p-5 mb-5 table-light rounded">
+            <h2 class="text-center">Alloted Station Details</h2>
+            <br />
             <div class="row">
                 <div class="col-md-6 text-center">
                     <strong> Current PS </strong>
@@ -95,7 +82,7 @@
                     <label for="informativeQuery1Description" class="col-sm-2 col-form-label">Query</label>
                     <div class="col-sm-9">
                         <textarea class="form-control" id="informativeQuery1Description" rows="4" cols="20"
-                            name="informativeQuery1Description" readonly>Placeholder</textarea>
+                            name="informativeQuery1Description" readonly>{{informativeQueryForm_objects.0.description}}</textarea>
                     </div>
                 </div>
             </fieldset>
@@ -104,7 +91,7 @@
                 <label for="informativeQuery1Reply" class="col-sm-2 col-form-label">Reply</label>
                 <div class="col-sm-9">
                     <textarea class="form-control" id="informativeQuery1Reply" rows="4" cols="20"
-                        name="reply">Placeholder</textarea>
+                        name="reply" required>{{informativeQueryForm_objects.0.level1Comment}}</textarea>
                 </div>
             </div>
             <input type="hidden" id="informationQuery1Attempt" name="attempt" value="1">
@@ -134,7 +121,7 @@
                     <label for="informativeQuery2Description" class="col-sm-2 col-form-label">Query</label>
                     <div class="col-sm-9">
                         <textarea class="form-control" id="informativeQuery2Description" rows="4" cols="20"
-                            name="informativeQuery2Description" readonly>Placeholder</textarea>
+                            name="informativeQuery2Description" readonly>{{informativeQueryForm_objects.1.description}}</textarea>
                     </div>
                 </div>
             </fieldset>
@@ -143,7 +130,7 @@
                 <label for="informativeQuery2Reply" class="col-sm-2 col-form-label">Reply</label>
                 <div class="col-sm-9">
                     <textarea class="form-control" id="informativeQuery2Reply" rows="4" cols="20"
-                        name="reply">Placeholder</textarea>
+                        name="reply" required>{{informativeQueryForm_objects.1.level1Comment}}</textarea>
                 </div>
             </div>
             <input type="hidden" id="informationQuery2Attempt" name="attempt" value="2">
@@ -171,7 +158,7 @@
                     <label for="informativeQuery3Description" class="col-sm-2 col-form-label">Query</label>
                     <div class="col-sm-9">
                         <textarea class="form-control" id="informativeQuery3Description" rows="4" cols="20"
-                            name="informativeQuery3Description" readonly>Placeholder</textarea>
+                            name="informativeQuery3Description" readonly>{{informativeQueryForm_objects.2.description}}</textarea>
                     </div>
                 </div>
             </fieldset>
@@ -180,7 +167,7 @@
                 <label for="informativeQuery3Reply" class="col-sm-2 col-form-label">Reply</label>
                 <div class="col-sm-9">
                     <textarea class="form-control" id="informativeQuery3Reply" rows="4" cols="20"
-                        name="reply">Placeholder</textarea>
+                        name="reply" required>{{informativeQueryForm_objects.2.level1Comment}}</textarea>
                 </div>
             </div>
             <input type="hidden" id="informationQuery3Attempt" name="attempt" value="3">
@@ -221,11 +208,12 @@
         //     }
         // }
 
-        var statusVar = '{{statuses}}';
+        var statusVar = {{statuses|safe}};
         // var statusVar = [2, 1, 0];
-
         console.log(statusVar);
+        console.log(typeof(statusVar));
         for (var i = 1; i <= 3; i++) {
+            console.log(statusVar[i]);
             if (statusVar[i - 1] > 0) {
                 $('#informativeQuery' + i + 'Form').show();
             }

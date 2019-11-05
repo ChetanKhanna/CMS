@@ -1,20 +1,3 @@
-
-
-<!--<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="grievanceForm.css">
-    <title>PSD</title>
-</head>
-
-<body>
--->
-    <!-- navbar code -->
 {% extends 'grievance/website_base.html' %}
 {% load static %}
 
@@ -51,28 +34,26 @@
                 <br/>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-md-3 col-form-label">Status</label>
+                    <label class="col-md-3 col-form-label">Status</label>
                     <div class="col-md-5 ml-3"><label id="informativeQuery1Status" name="status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-md-3">Allotted Station Name*</label>
-
+                    <label class="col-md-3">Allotted Station Name*</label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="informativeQueryAllocatedStation" name="informativeQueryAllocatedStation" placeholder="XYZ Pvt. Ltd., Goa" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-md-3">Pref No. of Alloted Station*</label>
-
+                    <label class="col-md-3">Pref No. of Alloted Station*</label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="informativeQueryPreferenceNumberOfAllocatedStation" name="informativeQueryPreferenceNumberOfAllocatedStation" placeholder="2" required>
                     </div>
                 </div>
 
                 <fieldset id="informativeQuery1Entries">
-                    <div class="form-group row" id="informativeQuery1DescriptionDiv" name="descriptionDiv">
+                    <div class="form-group row" id="informativeQuery1DescriptionDiv">
                         <label class="col-md-3">Description of Query*</label>
                         <div class="col-md-9">
                             <textarea class="form-control" id="informativeQuery1Description" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
@@ -84,10 +65,10 @@
                     <button type="submit" id="informativeQuery1Submit" name="informativeQuery1Submit" value="informativeQuery1Submit" class="btn btn-default" style="background-color: #428bca; color: white">Submit</button>
                 </div>
 
-                <div class="form-group row" id="informativeQuery1ReplyDiv" name="informativeQuery1ReplyDiv">
+                <div class="form-group row" id="informativeQuery1ReplyDiv">
                     <label class="col-sm-3 col-form-label">Comments by authorities</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="informativeQuery1Reply" rows="4" cols="20" name="level1comment" readonly></textarea>
+                        <textarea class="form-control" id="informativeQuery1Reply" rows="4" cols="20" readonly></textarea>
                     </div>
                 </div>
         </form>
@@ -98,12 +79,12 @@
                 <br/>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-md-3 col-form-label">Status</label>
+                    <label class="col-md-3 col-form-label">Status</label>
                     <div class="col-md-5 ml-3"><label id="informativeQuery2Status" name="status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <fieldset id="informativeQuery2Entries">
-                    <div class="form-group row" id="informativeQuery2DescriptionDiv" name="descriptionDiv">
+                    <div class="form-group row" id="informativeQuery2DescriptionDiv">
                         <label class="col-md-3">Description of Query*</label>
                         <div class="col-md-9">
                             <textarea class="form-control" id="informativeQuery2Description" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
@@ -115,10 +96,10 @@
                     <button type="submit" id="informativeQuery2Submit" name="informativeQuery2Submit" value="informativeQuery2Submit" class="btn btn-default" style="background-color: #428bca; color: white">Submit</button>
                 </div>
 
-                <div class="form-group row" id="informativeQuery2ReplyDiv" name="informativeQuery1ReplyDiv">
+                <div class="form-group row" id="informativeQuery2ReplyDiv">
                     <label class="col-sm-3 col-form-label">Comments by authorities</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="informativeQuery2Reply" rows="4" cols="20" name="level1comment" readonly></textarea>
+                        <textarea class="form-control" id="informativeQuery2Reply" rows="4" cols="20" readonly></textarea>
                     </div>
                 </div>
         </form>
@@ -129,12 +110,12 @@
                 <br/>
 
                 <div class="form-group row">
-                    <label for="userid" class="col-md-3 col-form-label">Status</label>
+                    <label class="col-md-3 col-form-label">Status</label>
                     <div class="col-md-5 ml-3"><label id="informativeQuery3Status" name="status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
                 <fieldset id="informativeQuery2Entries">
-                    <div class="form-group row" id="informativeQuery3DescriptionDiv" name="descriptionDiv">
+                    <div class="form-group row" id="informativeQuery3DescriptionDiv">
                         <label class="col-md-3">Description of Query*</label>
                         <div class="col-md-9">
                             <textarea class="form-control" id="informativeQuery3Description" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
@@ -146,10 +127,10 @@
                     <button type="submit" id="informativeQuery3Submit" name="informativeQuery3Submit" value="informativeQuery3Submit" class="btn btn-default" style="background-color: #428bca; color: white">Submit</button>
                 </div>
 
-                <div class="form-group row" id="informativeQuery3ReplyDiv" name="informativeQuery3ReplyDiv">
+                <div class="form-group row" id="informativeQuery3ReplyDiv">
                     <label class="col-sm-3 col-form-label">Comments by authorities</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="informativeQuery3Reply" rows="4" cols="20" name="level1comment" readonly></textarea>
+                        <textarea class="form-control" id="informativeQuery3Reply" rows="4" cols="20" readonly></textarea>
                     </div>
                 </div>
         </form>
@@ -182,41 +163,32 @@
         }
 
         var informativeQueryStatuses = {{ informativeQueryStatuses|safe }};
-        informativeQueryDescriptions = {{ informativeQueryDescriptions|safe }}
+        var informativeQueryDescriptions = {{ informativeQueryDescriptions|safe }}
         if(informativeQueryStatuses[0] != 0){
-            document.getElementById("informativeQuery1Description").value = informativeQueryDescriptions[0];
-            document.getElementById("informativeQuery1Description").readOnly = true;
             document.getElementById("informativeQueryAllocatedStation").value = "{{ informativeQueryAllocatedStation }}";
             document.getElementById("informativeQueryAllocatedStation").readOnly = true;
 
-        document.getElementById("informativeQueryPreferenceNumberOfAllocatedStation").value = "{{ informativeQueryPreferenceNumberOfAllocatedStation }}";
-        document.getElementById("informativeQueryPreferenceNumberOfAllocatedStation").readOnly = true;
+            document.getElementById("informativeQueryPreferenceNumberOfAllocatedStation").value = "{{ informativeQueryPreferenceNumberOfAllocatedStation }}";
+            document.getElementById("informativeQueryPreferenceNumberOfAllocatedStation").readOnly = true;
 
-        }
-        if(informativeQueryStatuses[1] != 0){
-            document.getElementById("informativeQuery2Description").value = informativeQueryDescriptions[1];
-            document.getElementById("informativeQuery2Description").readOnly = true;
-        }
-        if(informativeQueryStatuses[2] != 0){
-            document.getElementById("informativeQuery3Description").value = informativeQueryDescriptions[2];
-            document.getElementById("informativeQuery3Description").readOnly = true;
         }
 
         var informativeQueryComments = {{ informativeQueryComments|safe }};
-        //var informativeQueryComments = ["comment1", "comment2", "comment3" ];
-        document.getElementById("informativeQuery1Reply").value = informativeQueryComments[0];
-        document.getElementById("informativeQuery2Reply").value = informativeQueryComments[1];
-        document.getElementById("informativeQuery3Reply").value = informativeQueryComments[2];
 
-        
-        document.getElementById("informativeQuery1Status").textContent = getInformativeQueryStatusToWords(informativeQueryStatuses[0]);
-        document.getElementById("informativeQuery2Status").textContent = getInformativeQueryStatusToWords(informativeQueryStatuses[1]);
-        document.getElementById("informativeQuery3Status").textContent = getInformativeQueryStatusToWords(informativeQueryStatuses[2]);
+        for (var i = 1; i <= 3; i++){
+            var element = "informativeQuery" + i.toString() + "Reply";
+            document.getElementById(element).value = informativeQueryComments[i - 1];
 
-        document.getElementById("informativeQuery1Status").className = getInformativeQueryStatusClass(informativeQueryStatuses[0]);
-        document.getElementById("informativeQuery2Status").className = getInformativeQueryStatusClass(informativeQueryStatuses[1]);
-        document.getElementById("informativeQuery3Status").className = getInformativeQueryStatusClass(informativeQueryStatuses[2]);
-
+            element = "informativeQuery" + i.toString() + "Status";
+            document.getElementById(element).textContent = getInformativeQueryStatusToWords(informativeQueryStatuses[i - 1]);
+            document.getElementById(element).className = getInformativeQueryStatusClass(informativeQueryStatuses[i - 1]);
+            
+            element = "informativeQuery" + i.toString() + "Description";
+            if(informativeQueryStatuses[i - 1] != 0){
+                document.getElementById(element).value = informativeQueryDescriptions[i - 1];
+                document.getElementById(element).readOnly = true;
+            }
+        }
 
         if(informativeQueryStatuses[0] == 0){
             document.getElementById("informativeQuery1ReplyDiv").style.display = "none";

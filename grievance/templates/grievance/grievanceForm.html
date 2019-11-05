@@ -43,6 +43,22 @@
                     <div class="col-md-5 ml-3"><label id="informativeQuery1Status" name="status" class="btn btn-success text-light ml-5">Success</label></div>
                 </div>
 
+                <div class="form-group row">
+                    <label for="userid" class="col-md-3">Allotted Station Name*</label>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="informativeQueryAllocatedStation" name="informativeQueryAllocatedStation" placeholder="XYZ Pvt. Ltd., Goa" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="userid" class="col-md-3">Pref No. of Alloted Station*</label>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="informativeQueryPreferenceNumberOfAllocatedStation" name="informativeQueryPreferenceNumberOfAllocatedStation" placeholder="2" required>
+                    </div>
+                </div>
+
                 <fieldset id="informativeQuery1Entries">
                     <div class="form-group row" id="informativeQuery1DescriptionDiv" name="descriptionDiv">
                         <label class="col-md-3">Description of Query*</label>
@@ -158,6 +174,12 @@
         if(informativeQueryStatuses[0] != 0){
             document.getElementById("informativeQuery1Description").value = informativeQueryDescriptions[0];
             document.getElementById("informativeQuery1Description").readOnly = true;
+            document.getElementById("informativeQueryAllocatedStation").value = "{{ informativeQueryAllocatedStation }}";
+            document.getElementById("informativeQueryAllocatedStation").readOnly = true;
+
+        document.getElementById("informativeQueryPreferenceNumberOfAllocatedStation").value = "{{ informativeQueryPreferenceNumberOfAllocatedStation }}";
+        document.getElementById("informativeQueryPreferenceNumberOfAllocatedStation").readOnly = true;
+
         }
         if(informativeQueryStatuses[1] != 0){
             document.getElementById("informativeQuery2Description").value = informativeQueryDescriptions[1];
@@ -396,7 +418,7 @@
                     <label for="userid" class="col-md-3">Allotted Station Name*</label>
 
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="allocatedStation" name="allocatedStationName" placeholder="XYZ Pvt. Ltd., Goa" required>
+                        <input type="text" class="form-control" id="allocatedStation" name="allocatedStation" placeholder="XYZ Pvt. Ltd., Goa" required>
                     </div>
                 </div>
 
@@ -404,7 +426,7 @@
                     <label for="userid" class="col-md-3">Pref No. of Alloted Station*</label>
 
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="prefNoAllocatedStation" name="prefNoAllocatedStation" placeholder="2" required>
+                        <input type="text" class="form-control" id="preferenceNumberOfAllocatedStation" name="preferenceNumberOfAllocatedStation" placeholder="2" required>
                     </div>
                 </div>
 
@@ -640,6 +662,10 @@
                 document.getElementById("description").value = descriptions[0];
                 document.getElementById("description2").value = descriptions[1];
                 document.getElementById("description3").value = descriptions[2];
+
+                document.getElementById("allocatedStation").value = "{{ formEntry.allocatedStation }}";
+                document.getElementById("preferenceNumberOfAllocatedStation").value = "{{ formEntry.preferenceNumberOfAllocatedStation }}";
+
                 document.getElementById("preferedStation1").value = "{{ formEntry.preferedStation1 }}";
                 document.getElementById("preferedStation2").value = "{{ formEntry.preferedStation2 }}";
                 document.getElementById("preferedStation3").value = "{{ formEntry.preferedStation3 }}";

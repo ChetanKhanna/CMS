@@ -360,23 +360,23 @@
                         <p class="text-center"> You can add upto 5 supporting documents to support your Application. Each document should be less than 1 MB </p>
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <input type="file" name="document1" id="document1"></input>
+                                <input type="file" accept=".pdf" name="document1" id="document1"></input>
                             </div>
                             <div class="col-md-6">
-                                <input type="file" name="document2" id="document2"></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <input type="file" name="document3" id="document3"></input>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="file" name="document4" id="document4"></input>
+                                <input type="file" accept=".pdf" name="document2" id="document2"></input>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <input type="file" name="document5" id="document5"></input>
+                                <input type="file" accept=".pdf" name="document3" id="document3"></input>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="file" accept=".pdf" name="document4" id="document4"></input>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="file" accept=".pdf" name="document5" id="document5"></input>
                             </div>
                         </div>
                     {% endif %}
@@ -602,7 +602,7 @@
                 var fileUploadsDiv = document.getElementById("file-uploads");
                 fileUploadsDiv.onchange = function() {
                     for(var i = 1; i <= 5; i++){
-                        var file = document.getElementById("file" + i.toString());
+                        var file = document.getElementById("document" + i.toString());
                         if(file.files.length == 0) continue;
                         if(file.files[0].size > 1048576){
                             alert("Max size allowed is 1 MB");

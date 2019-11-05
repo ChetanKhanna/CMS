@@ -7,62 +7,57 @@
   <head>-->
 
 
-{% extends 'grievance/level2base.html' %}
-{% load static %}
 
 
-{% block content %}
-
-
-
-
-
-<section class="container-fluid m-0 " id="main">
-
-
-    <br><br><br>
-
-    <div class="row container-fluid pt-4 d-flex justify-content-center table-primary pb-3">
-
-
-        <div class="col-md-2">
-            <label for="name"><strong>Student Name</strong> </label>
-            <input class="form-control" id="name" style="text-align: center;" name="name" value='{{name}}' disabled
-                type="text">
-        </div>
-        <div class="col-md-2">
-            <label for="student_id"><strong>Student Id</strong> </label>
-            <input class="form-control" id="student_id" style="text-align: center;" name="student_id"
-                value='{{student_id}}' disabled type="text">
-        </div>
-        <div class="col-md-2">
-            <label for="CG"><strong>CG</strong> </label>
-            <input class="form-control" id="CG" name="CG" style="text-align: center;" value='{{cg}}'
-                disabled type="text">
-        </div>
-    </div>
-
-
-
-    <div class="table-light site-section" id="informativeQueryDiv" style="padding-top: 0px;">
-        <div class="signup-form1 shadow p-5 mb-5 table-light rounded">
-            <h2 class="text-center">Alloted Station Details</h2>
-            <br />
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    <strong> Current PS </strong>
-        
-                    <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;"
-                        value='{{informativeQueryForm_objects.0.allocatedStation}}' disabled type="text">
-                </div>
-                <div class="col-md-6 text-center">
-                    <strong> Preference No. of Alloted Station </strong>
-        
-                    <input class="form-control  input-sm " cols="2" name="p1" style="text-align: center;"
-                        value='{{informativeQueryForm_objects.0.preferenceNumberOfAllocatedStation}}' disabled type="text">
+    {% extends 'grievance/website_base.html' %}
+    {% load static %}
+    
+    
+    {% block content %}
+    
+    
+    
+    
+    
+   <section class="container-fluid m-0 p-0" id="main">
+    
+    
+        <br><br><br>
+    
+        <div class="row container-fluid pt-4 d-flex justify-content-center m-0 table-primary pb-3">
+    
+    
+            <div class="col-md-2">
+                <label for="name"><strong>Student Name</strong> </label>
+                <input class="form-control" id="name" style="text-align: center;" name="name" value='{{name}}' disabled
+                    type="text">
+            </div>
+            <div class="col-md-2">
+                <label for="student_id"><strong>Student Id</strong> </label>
+                <input class="form-control" id="student_id" style="text-align: center;" name="student_id"
+                    value='{{student_id}}' disabled type="text">
+            </div>
+    
+            <!-- <div class="col-md-2">
+              <label for="PS"><strong>Nature of Query</strong> </label>
+              <input class="form-control" id="nature" name="nature" style="text-align: center;"
+                value='{{applcationStatusObjects.0.natureOfQuery}}' disabled type="text">
+            </div> -->
+            <div class="col-md-2">
+                <label for="PS"><strong>Nature of Query</strong> </label>
+                <input class="form-control" id="nature" name="nature" style="text-align: center;" disabled type="text">
+            </div>
+            <div class="col-md-2">
+                <label for="CG"><strong>CG</strong> </label>
+                <input class="form-control" id="CG" name="CG" style="text-align: center;" value='{{grievanceFormObject.cg}}'
+                    disabled type="text">
+            </div>
+            <div class="col-md-2">
+                <label for="Offshoot"><strong>Offshoot</strong> </label>
+                <input class="form-control" id="offshoot" name="offshoot" style="text-align: center;"
+                    value='{{grievanceFormObject.offShoot}}' disabled type="text">
                 </div>
             </div>
-        </div>
         
         <!-- QUERY 1 -->
         <form class="signup-form1 shadow p-3 mb-5 table-light rounded" id="informativeQuery1Form" action=""

@@ -51,7 +51,7 @@ admin.site.register(UserProfile, UserProfileAdmin)
 class ApplicationStatusAdmin(ImportExportModelAdmin):
     
     model = ApplicationStatus
-    list_display = ('student_id','attempt', 'campus', 'level', 'status', 'natureOfQuery', 'publish',)
+    list_display = ('student_id','attempt', 'campus', 'level', 'status', 'natureOfQuery', 'publish', 'lastChangedDate',)
     list_filter = ('attempt',)
     search_fields = ('student_id__user__username','attempt',)
     ordering = ()

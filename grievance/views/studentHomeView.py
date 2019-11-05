@@ -64,7 +64,7 @@ class studentHomeView(generic.TemplateView):
         'informativeQueryStatuses': informativeQueryStatuses,
         'informativeQueryDescriptions': informativeQueryDescriptions,
         'informativeQueryComments': informativeQueryComments,
-        'back': "/ps-grievance/logout/",
+        'back': "/ps-grievance/login/",
         }
 
         return details

@@ -117,10 +117,17 @@ class level1StudentView(generic.View):
 		#PSD PAGE
 		if UserProfile.objects.get(user = request.user).token == constants.UserType.PSD.value:
 			informativeQueryForm_objects = InformativeQueryForm.objects.filter(student_id = userProfile_object)
+			const = constants.Status.NOAPPLICATION.value
+			attempt_status=[const,const,const]
+			for i in informativeQueryForm_objects:
+				attempt_status[i.attempt-1] = i.status
+			print("\n\n\n\n\n")
+			print(attempt_status)
 			params = {
 				'name' : userProfile_object.name,
 				'student_id' : student_id,
-				'informativeQuerryForm_objects' : informativeQuerryForm_objects,
+				'informativeQueryForm_objects' : informativeQueryForm_objects,
+				'statuses' : attempt_status,
 				'back': "/ps-grievance/redirect/",
 			}
 			return render(request, "grievance/queryPage.html", params)

@@ -293,7 +293,7 @@
                 <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
                     <label for="userid" class="col-md-3 col-form-label">Description of Query*</label>
                     <div class="col-md-9">
-                        <textarea class="form-control" id="description" rows="5" cols="15" name="description" placeholder="Description" required></textarea>
+                        <textarea class="form-control" id="description1" rows="5" cols="15" name="description" placeholder="Description" required></textarea>
                     </div>
                 </div>
 
@@ -325,7 +325,6 @@
                 </div>
 
                 <div class="form-group row d-flex justify-content-center">
-                    <!-- <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label> -->
                     <label for="userid" class="col-form-label">Prefered Station Names</label>
                 </div>
 
@@ -547,13 +546,12 @@
                     var preferedStationNameInput = document.createElement("input");
                     preferedStationNameInput.type = "text";
                     preferedStationNameInput.className = "form-control";
-                    preferedStationNameInput.name = "preferedStation" + i.toString();// + "Name; 
-                    preferedStationNameInput.id = "preferedStation" + i.toString();// + "Name;
+                    preferedStationNameInput.name = "preferedStation" + i.toString(); 
+                    preferedStationNameInput.id = "preferedStation" + i.toString();
                     preferedStationNameInput.placeholder = "XYZ Pvt. Ltd., Goa";
                     if(i == 1) preferedStationNameInput.required = true;
                     preferedStationNameDiv.appendChild(preferedStationNameInput);
                     row.appendChild(preferedStationNameDiv);
-                    //row.appendChild(preferedStationNameInput);
                     document.getElementById("preferedStations").appendChild(row);
                 }
 
@@ -619,11 +617,6 @@
                 document.getElementById("id").value = "{{ id }}";
                 document.getElementById("email").value = "{{ email }}";
                 document.getElementById("natureOfQuery").value = "{{ formEntry.natureOfQuery }}";
-                var descriptions = {{ descriptions|safe }};
-                document.getElementById("description").value = descriptions[0];
-                document.getElementById("description2").value = descriptions[1];
-                document.getElementById("description3").value = descriptions[2];
-
                 document.getElementById("allocatedStation").value = "{{ formEntry.allocatedStation }}";
                 document.getElementById("preferenceNumberOfAllocatedStation").value = "{{ formEntry.preferenceNumberOfAllocatedStation }}";
 
@@ -637,29 +630,33 @@
                 document.getElementById("preferedStation8").value = "{{ formEntry.preferedStation8 }}";
                 document.getElementById("preferedStation9").value = "{{ formEntry.preferedStation9 }}";
                 document.getElementById("preferedStation10").value = "{{ formEntry.preferedStation10 }}";
+
+                var descriptions = {{ descriptions|safe }};
                 var comments = {{ comments|safe }};
-                document.getElementById("comments1").value = comments[0];
-                document.getElementById("comments2").value = comments[1];
-                document.getElementById("comments3").value = comments[2];
                 var newStations = {{ newStation|safe }};
                 var statuses = {{ attemptStatus|safe }};
+
                 if(statuses[0]!= 0){
                     for(var i = 2; i <= 10; i++){
                         document.getElementById("preferedStation" + i.toString()).placeholder = "";
                     }
                 }
 
-                document.getElementById("status1").textContent = getStatusToWords(statuses[0]);
-                document.getElementById("status2").textContent = getStatusToWords(statuses[1]);
-                document.getElementById("status3").textContent = getStatusToWords(statuses[2]);
+                for(var i = 1; i <= 3; i++){
+                    var element = "description" + i.toString();
+                    document.getElementById(element).value = descriptions[i - 1];
 
-                document.getElementById("status1").className = getStatusClass(statuses[0]);
-                document.getElementById("status2").className = getStatusClass(statuses[1]);
-                document.getElementById("status3").className = getStatusClass(statuses[2]);
+                    element = "status" + i.toString();
+                    document.getElementById(element).textContent = getStatusToWords(statuses[i - 1]);
+                    document.getElementById(element).className = getStatusClass(statuses[i - 1]);
 
-                document.getElementById("newStation1").value = newStations[0];
-                document.getElementById("newStation2").value = newStations[1];
-                document.getElementById("newStation3").value = newStations[2];
+                    element = "newStation" + i.toString();
+                    document.getElementById(element).value = newStations[i - 1];
+
+                    element = "comments" + i.toString();
+                    document.getElementById(element).value = comments[i - 1];
+                }
+
                 if(statuses[0] == 0){
                     document.getElementById("application1Comments").style.display = "none";
                     document.getElementById("application2Form").style.display = "none";

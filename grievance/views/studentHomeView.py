@@ -72,7 +72,7 @@ class studentHomeView(generic.TemplateView):
         'informativeQueryComments': informativeQueryComments,
         'informativeQueryAllocatedStation' : informativeQueryAllocatedStation,
         'informativeQueryPreferenceNumberOfAllocatedStation' : informativeQueryPreferenceNumberOfAllocatedStation,
-        'back': "/ps-grievance/logout/",
+        'back': "/ps-grievance/login/",
         }
 
         return details

@@ -7,14 +7,33 @@
   <head>-->
 
 
-{% extends 'grievance/level2base.html' %}
+{% extends 'grievance/website_base.html' %}
 {% load static %}
 
 
 {% block content %}
 
 
+<!-- <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css"
+  integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous">
+
+  <script src='{% static "grievance/js/jscript.js" %}' type="text/javascript"></script>
+  <link rel="stylesheet" href='{% static "grievance/css/style.css" %}'>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+</head> -->
   
 
 <section class="container-fluid m-0 p-0" id="main">
@@ -303,10 +322,10 @@
 
     <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
       <div class="col-4">
-        <button id="acceptButton1" class="btn btn-lg btn-success" name="accept1" onclick="sendData('accept')" style="width: 25%">Accept</button>
+        <button id="acceptButton1" class="btn btn-lg btn-success" name="accept1" onclick="sendData('accept')" style="width: 140px">Accept</button>
 
       <button id="rejectButton1" class="btn btn-lg btn-danger" name="reject1"
-        onclick="sendData('reject')" style="margin-left: 5%; width: 25%">Reject</button>
+        onclick="sendData('reject')" style=" width: 140px">Reject</button>
       
         <button id="statusButton1" class="btn btn-lg" disabled name="status1" style="margin-left: 5px; display: none;"></button>
       

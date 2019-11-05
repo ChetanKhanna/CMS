@@ -182,7 +182,7 @@
             element = "informativeQuery" + i.toString() + "Status";
             document.getElementById(element).textContent = getInformativeQueryStatusToWords(informativeQueryStatuses[i - 1]);
             document.getElementById(element).className = getInformativeQueryStatusClass(informativeQueryStatuses[i - 1]);
-            
+
             element = "informativeQuery" + i.toString() + "Description";
             if(informativeQueryStatuses[i - 1] != 0){
                 document.getElementById(element).value = informativeQueryDescriptions[i - 1];
@@ -529,16 +529,6 @@
         
 
         <script type="text/javascript">
-                /*<div class="form-group row">
-                    <label for="userid" class="col-sm-3 col-form-label">Prefered Station 1</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" id="preferedStation1PrefNo" name="preferedStation1PrefNo" placeholder="1" size="10" required>
-                    </div>
-
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" id="preferedStation1Name" name="preferedStation1Name" placeholder="XYZ Pvt. Ltd., Goa" required>
-                    </div>
-                </div>*/
                 for(var i = 1; i <= 10; i++){
                     var row = document.createElement("div"); // the div of each stations
                     row.className = "form-group row";
@@ -550,18 +540,6 @@
                     if(i==1) label.textContent = "Prefered Station 1*";
                     row.appendChild(label);
 
-                    // // div of Prefered Station's Pref Number input
-                    // var preferedStationNumberDiv = document.createElement("div");
-                    // preferedStationNumberDiv.className = "col-sm-2";
-                    // var preferedStationPrefNoInput = document.createElement("INPUT");
-                    // preferedStationPrefNoInput.type = "text";
-                    // preferedStationPrefNoInput.className = "form-control";
-                    // preferedStationPrefNoInput.id = "preferedStation" + i.toString() + "PrefNo";
-                    // preferedStationPrefNoInput.placeholder = i.toString();
-                    // preferedStationPrefNoInput.size = 10;
-                    // if(i == 1) preferedStationPrefNoInput.required = true;
-                    // preferedStationNumberDiv.appendChild(preferedStationPrefNoInput);
-                    // row.appendChild(preferedStationNumberDiv);
 
                     // div of Prefered Station's Name input
                     var preferedStationNameDiv = document.createElement("div");
@@ -628,8 +606,8 @@
                     for(var i = 1; i <= 5; i++){
                         var file = document.getElementById("file" + i.toString());
                         if(file.files.length == 0) continue;
-                        if(file.files[0].size > 5242880){
-                            alert("Max size allowed is 5 MB");
+                        if(file.files[0].size > 1048576){
+                            alert("Max size allowed is 1 MB");
                             file.value = "";
                         };
                     }

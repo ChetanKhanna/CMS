@@ -44,11 +44,17 @@ class studentHomeView(generic.TemplateView):
         informativeQueryStatuses = [const, const, const]
         informativeQueryDescriptions = ["", "", ""]
         informativeQueryComments = ["", "", ""]
+        informativeQueryAllocatedStation = ""
+        informativeQueryPreferenceNumberOfAllocatedStation = 0
         informativeQuery_list = InformativeQueryForm.objects.filter(student_id=user)
         for x in informativeQuery_list:
             informativeQueryStatuses[x.attempt-1] = x.status
             informativeQueryDescriptions[x.attempt-1] = x.description
             informativeQueryComments[x.attempt-1] = x.level1Comment
+            if x.attempt == 1:
+                informativeQueryAllocatedStation = x.allocatedStation
+                informativeQueryPreferenceNumberOfAllocatedStation = x.preferenceNumberOfAllocatedStation
+
 
         details={       #things to be passed to front end
         'formEntry' : formEntry,
@@ -64,6 +70,8 @@ class studentHomeView(generic.TemplateView):
         'informativeQueryStatuses': informativeQueryStatuses,
         'informativeQueryDescriptions': informativeQueryDescriptions,
         'informativeQueryComments': informativeQueryComments,
+        'informativeQueryAllocatedStation' : informativeQueryAllocatedStation,
+        'informativeQueryPreferenceNumberOfAllocatedStation' : informativeQueryPreferenceNumberOfAllocatedStation,
         'back': "/ps-grievance/logout/",
         }
 
@@ -132,7 +140,9 @@ class studentHomeView(generic.TemplateView):
         elif request.POST.get('informativeQuery1Submit') and not \
             InformativeQueryForm.objects.filter(student_id=user, attempt=1):
             InformativeQueryForm.objects.create(student_id=user, attempt=1, status=1,
-                description=request.POST.get('description'), campus=user.campus)
+                description=request.POST.get('description'), campus=user.campus, 
+                allocatedStation = request.POST.get('informativeQueryAllocatedStation'),
+                preferenceNumberOfAllocatedStation = request.POST.get('informativeQueryPreferenceNumberOfAllocatedStation'))
             return HttpResponseRedirect('/ps-grievance/redirect')
         elif request.POST.get('informativeQuery2Submit') and not \
             InformativeQueryForm.objects.filter(student_id=user, attempt=2):

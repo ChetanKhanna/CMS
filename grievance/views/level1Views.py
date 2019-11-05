@@ -47,8 +47,7 @@ class level1RequestView(generic.View):
 		level = 1
 
 		if user_profile_object.token == constants.UserType.PSD.value:
-			print("\n\n\n\n")
-			return self.getPSDStudentList(request)
+			return self.getPSDStudentList(request, kwargs["type"])
 
 		typeOfRequest = kwargs["type"]
 		# print(typeOfRequest)
@@ -87,14 +86,17 @@ class level1RequestView(generic.View):
 		# print(returnList)
 		return JsonResponse(returnList, safe=False)
 
-	def getPSDStudentList(self, request):
+	def getPSDStudentList(self, request, typeOfRequest):
 		user_object = request.user
 		user_profile_object = UserProfile.objects.get(user_id = user_object)
 		campus =  user_profile_object.campus
-		status = constants.Status.PENDING.value
-		# typeOfRequest = kwargs["type"]
-		student_list = InformativeQueryForm.objects.filter(campus = campus, status = status,).order_by('-lastChangedDate')
-		
+		# typeOfRequest = request.POST.get['type']
+		student_list = []
+		if typeOfRequest == "pending":
+			student_list = InformativeQueryForm.objects.filter(campus = campus, status = 1,).order_by('-lastChangedDate')
+		elif typeOfRequest == "forwarded":
+			student_list = InformativeQueryForm.objects.filter(campus = campus,).exclude(status = 1).order_by('-lastChangedDate')
+
 		returnList=[]
 		for student in student_list:
 			dict1 = {
@@ -105,7 +107,7 @@ class level1RequestView(generic.View):
 				"date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
 			}
 			returnList.append(dict1) 
-		print(returnList)
+		# print(returnList)
 		return JsonResponse(returnList, safe=False)
 
 @method_decorator([login_required, level1_required], name='dispatch')
@@ -126,6 +128,7 @@ class level1StudentView(generic.View):
 			params = {
 				'name' : userProfile_object.name,
 				'student_id' : student_id,
+				'cg' : userProfile_object.cg,
 				'informativeQueryForm_objects' : informativeQueryForm_objects,
 				'statuses' : attempt_status,
 				'back': "/ps-grievance/redirect/",

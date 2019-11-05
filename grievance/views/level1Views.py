@@ -96,10 +96,7 @@ class level1RequestView(generic.View):
 			student_list = InformativeQueryForm.objects.filter(campus = campus, status = 1,).order_by('-lastChangedDate')
 		elif typeOfRequest == "forwarded":
 			student_list = InformativeQueryForm.objects.filter(campus = campus,).exclude(status = 1).order_by('-lastChangedDate')
-		
-		# typeOfRequest = kwargs["type"]
-		
-		
+
 		returnList=[]
 		for student in student_list:
 			dict1 = {

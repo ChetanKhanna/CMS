@@ -120,7 +120,7 @@ class level1StudentView(generic.View):
 			params = {
 				'name' : userProfile_object.name,
 				'student_id' : student_id,
-				'informativeQuerryForm_objects' : informativeQuerryForm_objects,
+				'informativeQueryForm_objects' : informativeQueryForm_objects,
 				'back': "/ps-grievance/redirect/",
 			}
 			return render(request, "grievance/queryPage.html", params)

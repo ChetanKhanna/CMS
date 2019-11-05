@@ -25,11 +25,23 @@
     <div class="table-light site-section d-flex justify-content-center col-md-3">
         <div class="btn-group-toggle btn p-1 pl-2 mt-5" id="typeOfPage">
             <br>
-            <input class="btn mt-2 btn-outline-warning" type="button" name="type" id="viewInformativeQueryDiv" value="    Informative Query    " onclick="changeDisplayDiv(2)">
+            <input class="btn mt-2 btn-outline-warning" type="button" name="type" id="viewInformativeQueryDiv" value="        Informative Query        " onclick="changeDisplayDiv(2)">
             <br>
-            <input class="btn mt-2 btn-outline-success" type="button" name="type" id="viewNonInformativeQueryDiv" value="Non Informative Query" onclick="changeDisplayDiv(1)">
+            <input class="btn mt-2 btn-outline-success" type="button" name="type" id="viewNonInformativeQueryDiv" value="Station Change Application" onclick="changeDisplayDiv(1)">
             <br>
         </div>
+    </div>
+
+    <div class="table-light site-section col-md-8 text-center" id="instructions">
+        <br>
+        <h1 class="text-dark"> PS Allottment Clarification </h1>
+        <p> There are two types of Greivance Forms (Queries) that a student can fill - </p>
+        <br>
+        <h3 class="text-dark"> 1) Informative Query </h3>
+        <p> To be used when a student has to ask any specific doubts </p>
+        <h3 class="text-dark"> 2) Station Change Application </h3>
+        <p> To be used when a student wants to apply for a change in PS Station  </p>
+        <p class="text-danger"> <b>Note</b>: Each type of Form can be filled a maximum of 3 times. After 3 attempts, no further requests will be considered. Kindly fill the forms judiciously. </p>
     </div>
 
     <div class="table-light site-section col-md-8 mt-5" id="informativeQueryDiv">
@@ -247,100 +259,10 @@
 
 
     <div class="table-light site-section col-md-8 mt-5" id="nonInformativeQueryDiv">
-        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="application3Form" action="" method="post" readonly> 
-            {% csrf_token %}
-            <div id="application3Div" name="application3Div">
-                <h2 class="text-center"> Reapplication 2 </h2>
-                <br/>
 
-                <div class="form-group row">
-                    <label for="userid" class="col-md-3 col-form-label">Status</label>
-                    <div class="col-md-5 ml-3"><label id="status3" name="status" class="btn btn-success text-light ml-5">Success</label></div>
-                </div>
-
-                <fieldset id="application3Entries">
-                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                        <label class="col-md-3">Description of Query*</label>
-                        <div class="col-md-9">
-                            <textarea class="form-control" id="description3" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <div class="form-group text-center">
-                    <button type="submit" id="submit3" name="submit3" value="submit3" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
-                </div>
-
-                <div id="application3Comments">
-                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                        <label class="col-md-3">Comments by authorities</label>
-                        <div class="col-md-9">
-                            <textarea class="form-control" id="comments3" rows="4" cols="20" name="comments3" readonly=""></textarea>
-                        </div>
-                    </div>
-
-                    <div id="acception3Div" name="acception3Div">
-                        <div class="form-group row">
-                            <label class="col-md-3">New Allotted Station</label>
-                            <div class="col-md-9">
-                                <textarea class="form-control" id="newStation3" rows="4" cols="20" name="newStation3" readonly=""></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-
-
-        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="application2Form" action="" method="post" readonly> 
-            {% csrf_token %}
-            <div table-warning id="application2Div" name="application2Div">
-                
-
-                <h2 class="text-center"> Reapplication 1 </h2>
-                <br/>
-
-                <div class="form-group row">
-                    <label for="userid" class="col-md-3 col-form-label">Status</label>
-                    <div class="col-md-5 ml-3"><label id="status2" name="status" class="btn btn-success text-light ml-5">Success</label></div>
-                </div>
-
-                <fieldset id="application2Entries">
-                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                        <label class="col-md-3">Description of Query*</label>
-                        <div class="col-md-9">
-                            <textarea class="form-control" id="description2" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
-                        </div>
-                    </div>
-                </fieldset>
-
-
-                <div class="form-group text-center">
-                    <button type="submit" id="submit2" name="submit2" value="submit2" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
-                </div>
-
-                <div id="application2Comments">
-                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
-                        <label class="col-md-3">Comments by authorities</label>
-                        <div class="col-md-9">
-                            <textarea class="form-control" id="comments2" rows="4" cols="20" name="comments2" readonly=""></textarea>
-                        </div>
-                    </div>
-
-                    <div id="acception2Div" name="acception2Div">
-                        <div class="form-group row">
-                            <label class="col-md-3">New Allotted Station</label>
-                            <div class="col-md-9">
-                                <textarea class="form-control" id="newStation2" rows="4" cols="20" name="newStation2" readonly=""></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
         <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="application1Form" action="/ps-grievance/student/" method="post" readonly  enctype="multipart/form-data">
             {% csrf_token %}
-            <h2 class="text-center">Grievance Application Form</h2>
+            <h2 class="text-center">Station Change Application Form</h2>
             <br/>
 
             <div class="form-group row">
@@ -541,7 +463,96 @@
             </div>
         </form>
 
-        
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="application2Form" action="" method="post" readonly> 
+            {% csrf_token %}
+            <div table-warning id="application2Div" name="application2Div">
+                
+
+                <h2 class="text-center"> Reapplication 1 </h2>
+                <br/>
+
+                <div class="form-group row">
+                    <label for="userid" class="col-md-3 col-form-label">Status</label>
+                    <div class="col-md-5 ml-3"><label id="status2" name="status" class="btn btn-success text-light ml-5">Success</label></div>
+                </div>
+
+                <fieldset id="application2Entries">
+                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                        <label class="col-md-3">Description of Query*</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="description2" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+                <div class="form-group text-center">
+                    <button type="submit" id="submit2" name="submit2" value="submit2" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
+                </div>
+
+                <div id="application2Comments">
+                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                        <label class="col-md-3">Comments by authorities</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="comments2" rows="4" cols="20" name="comments2" readonly=""></textarea>
+                        </div>
+                    </div>
+
+                    <div id="acception2Div" name="acception2Div">
+                        <div class="form-group row">
+                            <label class="col-md-3">New Allotted Station</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" id="newStation2" rows="4" cols="20" name="newStation2" readonly=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="application3Form" action="" method="post" readonly> 
+            {% csrf_token %}
+            <div id="application3Div" name="application3Div">
+                <h2 class="text-center"> Reapplication 2 </h2>
+                <br/>
+
+                <div class="form-group row">
+                    <label for="userid" class="col-md-3 col-form-label">Status</label>
+                    <div class="col-md-5 ml-3"><label id="status3" name="status" class="btn btn-success text-light ml-5">Success</label></div>
+                </div>
+
+                <fieldset id="application3Entries">
+                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                        <label class="col-md-3">Description of Query*</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="description3" rows="4" cols="20" name="description" placeholder="Description" required></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group text-center">
+                    <button type="submit" id="submit3" name="submit3" value="submit3" class="btn btn-default" style="background-color: #428bca; color: white">Re-apply</button>
+                </div>
+
+                <div id="application3Comments">
+                    <div class="form-group row" id="preferenceNumberDiv" name="preferenceNumberDiv">
+                        <label class="col-md-3">Comments by authorities</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="comments3" rows="4" cols="20" name="comments3" readonly=""></textarea>
+                        </div>
+                    </div>
+
+                    <div id="acception3Div" name="acception3Div">
+                        <div class="form-group row">
+                            <label class="col-md-3">New Allotted Station</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" id="newStation3" rows="4" cols="20" name="newStation3" readonly=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
         
 
@@ -768,10 +779,12 @@
         if(div_name == 1){
             document.getElementById("informativeQueryDiv").style.display = "none";
             document.getElementById("nonInformativeQueryDiv").style.display = "";
+            document.getElementById("instructions").style.display = "none";
         }
         else if(div_name == 2){
             document.getElementById("informativeQueryDiv").style.display = "";
             document.getElementById("nonInformativeQueryDiv").style.display = "none";
+            document.getElementById("instructions").style.display = "none";
         }
     }
 

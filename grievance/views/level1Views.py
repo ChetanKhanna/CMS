@@ -15,7 +15,7 @@ from grievance.models import *
 
 # import views
 from grievance.views import constants as constants
-from grievance.views import studentHomeView
+from grievance.views import studentHomeView, viewOnlyPSDStudentPageView
 
 # import datetime
 from datetime import datetime
@@ -28,12 +28,11 @@ class level1HomeView(generic.TemplateView):
         userProfile_object = UserProfile.objects.get(user=current_user)
 
         if userProfile_object.token == constants.UserType.CMO.value:
-            return render(request, "grievance/level1HomePage.html")
+            return render(request,"grievance/level1HomePage.html")
         elif userProfile_object.token == constants.UserType.AD.value:
-            return render(request, "grievance/adHomePage.html")
+            return render(request,"grievance/adHomePage.html")
         else:
-            return render(request, "grievance/level1HomePage.html")
-
+            return render(request,"grievance/psdHomePage.html")
 
 # class adHomeView(generic.TemplateView):
 #   def get(self, request, *args, **kwargs):
@@ -136,21 +135,7 @@ class level1StudentView(generic.View):
             
         #PSD PAGE
         if UserProfile.objects.get(user = request.user).token == constants.UserType.PSD.value:
-            informativeQueryForm_objects = InformativeQueryForm.objects.filter(student_id = userProfile_object)
-            const = constants.Status.NOAPPLICATION.value
-            attempt_status=[const,const,const]
-            for i in informativeQueryForm_objects:
-                attempt_status[i.attempt-1] = i.status
-            print("\n\n\n\n\n")
-            print(attempt_status)
-            params = {
-                'name' : userProfile_object.name,
-                'student_id' : student_id,
-                'cg' : userProfile_object.cg,
-                'informativeQueryForm_objects' : informativeQueryForm_objects,
-                'statuses' : attempt_status,
-                'back': "/ps-grievance/redirect/",
-            }
+            params = viewOnlyPSDStudentPageView.getStudentDetail(student_id)
             return render(request, "grievance/queryPage.html", params)
 
         #Other users

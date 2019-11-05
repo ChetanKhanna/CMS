@@ -1,0 +1,212 @@
+<!--<!doctype html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" >
+  <link rel="icon" href="img/icon2.jpg">
+  <title>Form Status </title>
+
+
+   bootstrap
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  bootstrap ends
+
+   fa icons
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous">
+   fa icons ends
+
+  custom
+  <script src="js/jscript.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="style.css">
+
+  custom ends
+</head>
+
+<body class="bg-light">
+
+  <Section class="container-fluid  bg-light container1">
+
+    <nav class="navbar border-bottom navbar-expand-md navbar-light ">
+      <div class="container-fluid">
+        <img src="img/bitslogo.gif"></img>
+
+        <h1 class="text-info text-center">
+
+
+          Administration Portal
+        </h1>
+       <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+      <a class="nav-link active" href="#">Home</a>
+    </li>
+
+  </ul>
+</div>
+
+</div>
+</nav> -->
+{% extends 'grievance/website_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="site-section">
+<div class="row mb-5 justify-content-center text-center">
+<div class="container-fluid">
+<br><br><br><br>
+  <div class="row ">
+    <div class="col-md-3 col-sm-12  text-dark p-2 pb-5 border-right">
+      <div id="userInfo">
+        <strong>    Welcome!</strong>
+          <br> 
+        </div>
+      <div class="btn-group-toggle btn" id="type" data-toggle="buttons">
+        <label class="btn mt-2 btn-outline-warning" style="width: 100%;">
+          <input type="radio" name="type" id="pending" value="pending" autocomplete="off"><i class="fas fa-question"></i> Pending Requests
+        </label><br>
+        <label class="btn mt-2 btn-outline-success" style="width: 100%;">
+          <input type="radio" name="type" id="forwarded" value="forwarded" autocomplete="off"><i class="fas fa-thumbs-up"></i> Forwarded Requests
+        </label><br>
+        <!--<label class="btn mt-2 btn-outline-danger">
+          <input type="radio" name="type" id="rejected" value="rejected" autocomplete="off"> <i class="far fa-times-circle"></i> Rejected Requests
+        </label>-->
+      </div>
+      
+
+
+
+    </div>
+
+
+    <div class="col-md-7 offset-1 col-sm-12  justify-content-center text-center">
+     
+    
+
+
+        <div id="table" class="table-responsive">
+
+
+        <table class="table table-stripped table-hover ">
+          <br>
+          <!--  <h2 class="text-center"> High Priority</h2>-->
+
+          <thead id="table-head">
+            
+          </thead>
+          <tbody id="table-body">
+
+
+
+          </tbody>
+
+        </table>
+      </div>
+     
+
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+</div>
+
+
+
+ 
+
+  <script type="text/javascript">
+
+  function getData(type)
+  {
+
+
+  var type_val=type;
+  // console.log("Type = "+type_val);
+  //  console.log("Priority ="+priority);
+    $.ajax({
+      url: '/ps-grievance/level1/type/'+type_val,
+      type:'GET',
+      success: function(response)
+      {
+        $('#table-body').html('');
+        $('#table-head').html('');
+        var len=response.length;
+      //  console.log(len);
+        if(len==0)
+        {
+          var entry="<tr><td colspan=3>No Applications</td></tr>";
+          $('#table-body').append(entry);
+
+        }
+        var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th></tr>"
+        $('#table-head').html(head);
+        // console.log(len);
+        if(type_val == "pending"){
+          for(var i=0;i<len;i++)
+          {
+               var name = response[i].name;
+              var id = response[i].id;
+            var entry="<tr class='elementRow  clickable' onclick=window.location='student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td></tr>";
+            $('#table-body').append(entry);
+
+          }
+        }
+        else{
+          for(var i=0;i<len;i++)
+          {
+               var name = response[i].name;
+              var id = response[i].id;
+            var entry="<tr class='elementRow clickable' onclick=window.location='psd-student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><</tr>";
+            $('#table-body').append(entry);
+
+          }
+        }
+      }
+    });
+
+
+  }
+
+  $(document).ready(function(){
+    $('#table-body').html('<th colspan=3><h5><i> Select Request Type from the menu to begin </i></h5></th>');
+  });
+
+  $('#type :input').change(function(){
+
+  var type=$("input:radio[name='type']:checked").val();
+  getData(type);
+
+  });
+
+
+</script>
+
+<style type="text/css">
+
+  .elementRow td
+{
+  max-width: 30%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+  </style>
+
+{% endblock %}

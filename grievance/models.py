@@ -8,7 +8,7 @@ import os
 
 def validate_document(document):
     file_size = document.file.size
-    limit_mb = 5
+    limit_mb = 1
     if file_size > limit_mb * 1024 * 1024:
        raise ValidationError("Max size of file is %s MB" % limit_mb)
 

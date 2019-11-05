@@ -67,7 +67,6 @@ class level2RequestView(generic.View):
 				"nature":student.natureOfQuery,
 				"date": str(student.lastChangedDate.date()), # + " " + str(student.lastChangedDate.time())[0:8],
 				}
-
 			priority = GrievanceForm.objects.get(student_id=student.student_id).priority
 			if priority == constants.Priority.LOW.value : 
 				lowPriorityList.append(dict1) 

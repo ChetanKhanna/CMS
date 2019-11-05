@@ -36,8 +36,8 @@ class level1HomeView(generic.TemplateView):
 
 
 # class adHomeView(generic.TemplateView):
-# 	def get(self, request, *args, **kwargs):
-# 		return render(request,"grievance/adHomePage.html")
+#   def get(self, request, *args, **kwargs):
+#       return render(request,"grievance/adHomePage.html")
 
 @method_decorator([login_required, level1_required], name='dispatch')
 class level1RequestView(generic.View):
@@ -45,21 +45,20 @@ class level1RequestView(generic.View):
 
         user_object = request.user
         user_profile_object = UserProfile.objects.get(user_id=user_object)
-        campus = user_profile_object.campus
+        campus =  user_profile_object.campus
         level = 1
 
         if user_profile_object.token == constants.UserType.PSD.value:
-            return self.getPSDStudentList(request)
+            return self.getPSDStudentList(request, kwargs["type"])
 
         typeOfRequest = kwargs["type"]
+        # print(typeOfRequest)
         if typeOfRequest == "medical":
             natureOfQuery = constants.NatureOfQuery.MEDICAL.value
-            student_list = ApplicationStatus.objects.filter(campus=campus,
-                                                            natureOfQuery=natureOfQuery).order_by('-lastChangedDate')
+            student_list = ApplicationStatus.objects.filter(campus = campus,
+                natureOfQuery = natureOfQuery).order_by('-lastChangedDate')
         elif typeOfRequest == "informative":
-            l = self.getInformativeQueryList(request)
-            print(l)
-            return l
+            return self.getInformativeQueryList(request)
         else:
             if typeOfRequest == "pending":
                 level = 1
@@ -71,22 +70,21 @@ class level1RequestView(generic.View):
             else:
                 natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value
 
-                student_list = ApplicationStatus.objects.filter(campus=campus, level=level,
-                                                                natureOfQuery=natureOfQuery, attempt=1).order_by(
-                    '-lastChangedDate')
-
-        returnList = []
+            student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
+                 natureOfQuery = natureOfQuery, attempt=1).order_by('-lastChangedDate')
+        
+        returnList=[]
         for student in student_list:
             dict1 = {
-                "id": student.student_id.user.username,
-                "name": student.student_id.name,
-                "description": student.description,
-                "status": constants.Status(student.status).name,
-                "level": student.level,
-                "attempt": student.attempt,
+                "id":student.student_id.user.username,
+                "name":student.student_id.name,
+                "description":student.description,
+                "status" : constants.Status(student.status).name,
+                "level" : student.level,
+                "attempt" : student.attempt,
                 "date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
             }
-            returnList.append(dict1)
+            returnList.append(dict1) 
         return JsonResponse(returnList, safe=False)
 
     def getInformativeQueryList(self, request):
@@ -106,82 +104,84 @@ class level1RequestView(generic.View):
             return_list.append(dict1)
         return JsonResponse(return_list, safe=False)
 
-    def getPSDStudentList(self, request):
+    def getPSDStudentList(self, request, typeOfRequest):
         user_object = request.user
-        user_profile_object = UserProfile.objects.get(user_id=user_object)
-        campus = user_profile_object.campus
-        status = constants.Status.PENDING.value
-        # typeOfRequest = kwargs["type"]
+        user_profile_object = UserProfile.objects.get(user_id = user_object)
+        campus =  user_profile_object.campus
+        # typeOfRequest = request.POST.get['type']
+        student_list = []
+        if typeOfRequest == "pending":
+            student_list = InformativeQueryForm.objects.filter(campus = campus, status = 1,).order_by('-lastChangedDate')
+        elif typeOfRequest == "forwarded":
+            student_list = InformativeQueryForm.objects.filter(campus = campus,).exclude(status = 1).order_by('-lastChangedDate')
 
-        student_list = InformativeQueryForm.objects.filter(campus=campus, status=status, ).order_by('-lastChangedDate')
-        returnList = []
+        returnList=[]
         for student in student_list:
             dict1 = {
-                "id": student.student_id.user.username,
-                "name": student.student_id.name,
-                "status": constants.Status(student.status).name,
-                "attempt": student.attempt,
+                "id":student.student_id.user.username,
+                "name":student.student_id.name,
+                "status" : constants.Status(student.status).name,
+                "attempt" : student.attempt,
                 "date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
             }
-            returnList.append(dict1)
-
+            returnList.append(dict1) 
+        # print(returnList)
         return JsonResponse(returnList, safe=False)
-
 
 @method_decorator([login_required, level1_required], name='dispatch')
 class level1StudentView(generic.View):
     def get(self, request, *args, **kwargs):
         student_id = kwargs['student_id']
-        userProfile_object = UserProfile.objects.get(user=User.objects.get(username=student_id))
-
-		# PSD PAGE
-        if UserProfile.objects.get(user=request.user).token == constants.UserType.PSD.value:
-            informativeQueryForm_objects = InformativeQueryForm.objects.filter(student_id=userProfile_object)
+        userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+            
+        #PSD PAGE
+        if UserProfile.objects.get(user = request.user).token == constants.UserType.PSD.value:
+            informativeQueryForm_objects = InformativeQueryForm.objects.filter(student_id = userProfile_object)
             const = constants.Status.NOAPPLICATION.value
-            attempt_status = [const, const, const]
+            attempt_status=[const,const,const]
             for i in informativeQueryForm_objects:
-                attempt_status[i.attempt - 1] = i.status
+                attempt_status[i.attempt-1] = i.status
             print("\n\n\n\n\n")
             print(attempt_status)
             params = {
-                'name': userProfile_object.name,
-                'student_id': student_id,
-                'informativeQueryForm_objects': informativeQueryForm_objects,
-                'statuses': attempt_status,
+                'name' : userProfile_object.name,
+                'student_id' : student_id,
+                'cg' : userProfile_object.cg,
+                'informativeQueryForm_objects' : informativeQueryForm_objects,
+                'statuses' : attempt_status,
                 'back': "/ps-grievance/redirect/",
             }
             return render(request, "grievance/queryPage.html", params)
 
-		# Other users
-        ApplicationStatus_object = ApplicationStatus.objects.get(student_id=userProfile_object, attempt=1)
-        grievanceForm_object = GrievanceForm.objects.get(student_id=userProfile_object)
+        #Other users
+        ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt =1)
+        grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
         documents = self.getDocuments(grievanceForm_object)
         if documents:
             documentCount = len(documents)
         else:
             documentCount = 0
-        params = {
-            'name': userProfile_object.name,
-            'student_id': student_id,
-            'allocatedStation': grievanceForm_object.allocatedStation,
-            'applicationDate': ApplicationStatus_object.lastChangedDate,
+        params={
+            'name' : userProfile_object.name,
+            'student_id' : student_id,
+            'allocatedStation' : grievanceForm_object.allocatedStation,
+            'applicationDate' : ApplicationStatus_object.lastChangedDate,
             'description': ApplicationStatus_object.description,
             'documentCount': documentCount,
             'documents': documents,
             'back': "/ps-grievance/level1/",
         }
-        return render(request, "grievance/cmoStudentPage.html", params)
+        return render(request,"grievance/cmoStudentPage.html",params)
 
     def post(self, request, *args, **kwargs):
-        if UserProfile.objects.get(user=request.user).token == constants.UserType.PSD.value:
+        if UserProfile.objects.get(user = request.user).token == constants.UserType.PSD.value:
             print(request.POST)
             student_id = kwargs['student_id']
-            userProfile_object = UserProfile.objects.get(user=User.objects.get(username=student_id))
+            userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
             attempt = request.POST.get('attempt')
             level1comment = request.POST.get('reply')
 
-            informativeQuerryForm_object = InformativeQueryForm.objects.get(student_id=userProfile_object,
-                                                                            attempt=attempt)
+            informativeQuerryForm_object = InformativeQueryForm.objects.get(student_id = userProfile_object, attempt = attempt)
 
             informativeQuerryForm_object.level1Comment = level1comment
             informativeQuerryForm_object.status = constants.Status.APPROVED.value
@@ -190,9 +190,9 @@ class level1StudentView(generic.View):
 
         else:
             student_id = kwargs['student_id']
-            userProfile_object = UserProfile.objects.get(user=User.objects.get(username=student_id))
-            ApplicationStatus_object = ApplicationStatus.objects.get(student_id=userProfile_object, attempt=1)
-            grievanceForm_object = GrievanceForm.objects.get(student_id=userProfile_object)
+            userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
+            ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object, attempt =1)
+            grievanceForm_object = GrievanceForm.objects.get(student_id = userProfile_object)
 
             priority = request.POST.get("priority")
             level1comment = request.POST.get("remarks")
@@ -209,26 +209,26 @@ class level1StudentView(generic.View):
 
         return HttpResponseRedirect('/ps-grievance/redirect/')
 
+
     def getDocuments(self, grievanceForm_object):
         documents = []
         documentCount = 0
         if grievanceForm_object.document1:
-            documentCount += 1
+            documentCount+=1
             documents.append(grievanceForm_object.document1)
         if grievanceForm_object.document2:
-            documentCount += 1
+            documentCount+=1
             documents.append(grievanceForm_object.document2)
         if grievanceForm_object.document3:
-            documentCount += 1
+            documentCount+=1
             documents.append(grievanceForm_object.document3)
         if grievanceForm_object.document4:
-            documentCount += 1
+            documentCount+=1
             documents.append(grievanceForm_object.document4)
         if grievanceForm_object.document5:
-            documentCount += 1
+            documentCount+=1
             documents.append(grievanceForm_object.document5)
         return documents
-
 
 @method_decorator([login_required, level1_required], name='dispatch')
 class level1StudentStatusView(generic.View):

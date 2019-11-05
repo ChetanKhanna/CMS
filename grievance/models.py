@@ -61,7 +61,7 @@ class GrievanceForm(models.Model):
 	document4 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
 	document5 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
 	priority = models.IntegerField(default=0)
-	preferenceNumberOfAllocatedStation = models.IntegerField()
+	preferenceNumberOfAllocatedStation = models.IntegerField() 
 
 	def __str__(self):
 		return str(self.student_id)

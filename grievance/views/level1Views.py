@@ -214,12 +214,3 @@ class level1StudentView(generic.View):
             documentCount+=1
             documents.append(grievanceForm_object.document5)
         return documents
-
-# @method_decorator([login_required, level1_required], name='dispatch')
-# class level1StudentStatusView(generic.View):
-#     def get(self, request, *args, **kwargs):
-#         student_id = kwargs['student_id']
-#         student = User.objects.get(username=student_id)
-#         details = studentHomeView.studentHomeView().getDetails(student)
-#         return render(request, "grievance/grievanceForm.html", details)
-

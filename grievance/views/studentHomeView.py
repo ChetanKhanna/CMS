@@ -88,7 +88,7 @@ class studentHomeView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
         current_user=request.user
         details = self.getDetails(current_user)
-        return render (request, "grievance/grievanceForm.html", details)
+        return render (request, "grievance/studentHomePage.html", details)
        
     def post(self, request, *args, **kwargs):
         current_user=request.user

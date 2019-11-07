@@ -37,7 +37,7 @@ class changeDeadlineView(generic.View):
 		deadline[2] = request.POST.get("deadline2")
 		deadline[3] = request.POST.get("deadline3")
 
-		print(request.POST.get("deadline1"))
+		# print(request.POST.get("deadline1"))
 
 		for i in range(3):
 			# print(i, " ", deadline[i])

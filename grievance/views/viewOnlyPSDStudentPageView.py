@@ -18,8 +18,8 @@ def getStudentDetail(student_id):
 	attempt_status=[const,const,const]
 	for i in informativeQueryForm_objects:
 		attempt_status[i.attempt-1] = i.status
-	print("\n\n\n\n\n")
-	print(attempt_status)
+	# print("\n\n\n\n\n")
+	# print(attempt_status)
 	params = {
 		'name' : userProfile_object.name,
 		'student_id' : student_id,
@@ -35,4 +35,4 @@ class ViewOnlyPSDStudentPageView(generic.View):
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']
 		params = getStudentDetail(student_id)
-		return render(request, "grievance/viewOnlyQueryPage.html", params)
+		return render(request, "grievance/viewOnlyPSDStudentPage.html", params)

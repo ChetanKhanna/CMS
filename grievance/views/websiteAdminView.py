@@ -1,12 +1,14 @@
 #common django imports
 from django.shortcuts import render
 from django.views import generic
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import redirect
 
 #import decorators
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from grievance.customDecorator import allocationTeam_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 #import models
 from grievance.models import *
@@ -17,37 +19,45 @@ from datetime import datetime
 #import function for random string to be used to set password
 from django.utils.crypto import get_random_string
 
-class changeDeadlineView(generic.View):
-	def get(self, request, *args, **kwargs):
+#import function to call management commands
+from django.core import management
+
+from django.conf import settings
+BASE_DIR = settings.BASE_DIR
+
+from django.core.files.storage import FileSystemStorage
+
+# class changeDeadlineView(generic.View):
+# 	def get(self, request, *args, **kwargs):
 		
-		if Deadline.objects.filter().count() == 0:
-			for i in range(3):
-				Deadline.objects.create(attempt = i+1, date = datetime.now())
-		return HttpResponseRedirect("/admin/grievance/deadline")
+# 		if Deadline.objects.filter().count() == 0:
+# 			for i in range(3):
+# 				Deadline.objects.create(attempt = i+1, date = datetime.now())
+# 		return HttpResponseRedirect("/admin/grievance/deadline")
 
-		params = {
-			'deadline1' : Deadline.objects.get(attempt = 1).date,
-			'deadline2' : Deadline.objects.get(attempt = 2).date,
-			'deadline3' : Deadline.objects.get(attempt = 3).date,
-			}
-		return render(request, "grievance/websiteAdminChangeDeadline.html", params)
+# 		params = {
+# 			'deadline1' : Deadline.objects.get(attempt = 1).date,
+# 			'deadline2' : Deadline.objects.get(attempt = 2).date,
+# 			'deadline3' : Deadline.objects.get(attempt = 3).date,
+# 			}
+# 		return render(request, "grievance/websiteAdminChangeDeadline.html", params)
 
-	def post(self, request, *args, **kwargs):
-		deadline[1] = request.POST.get("deadline1")
-		deadline[2] = request.POST.get("deadline2")
-		deadline[3] = request.POST.get("deadline3")
+# 	def post(self, request, *args, **kwargs):
+# 		deadline[1] = request.POST.get("deadline1")
+# 		deadline[2] = request.POST.get("deadline2")
+# 		deadline[3] = request.POST.get("deadline3")
 
-		# print(request.POST.get("deadline1"))
+# 		# print(request.POST.get("deadline1"))
 
-		for i in range(3):
-			# print(i, " ", deadline[i])
-			deadlineObject = Deadline.objects.get(attempt = i+1)
-			deadlineObject.date = deadline[i+1]
-			deadlineObject.save()
+# 		for i in range(3):
+# 			# print(i, " ", deadline[i])
+# 			deadlineObject = Deadline.objects.get(attempt = i+1)
+# 			deadlineObject.date = deadline[i+1]
+# 			deadlineObject.save()
 
-		return HttpResponseRedirect('/ps-grievance/redirect/')
+# 		return HttpResponseRedirect('/ps-grievance/redirect/')
 
-
+@method_decorator([login_required, staff_member_required], name='dispatch')
 class addUser(generic.TemplateView):
 
 	def get(self, request, *args, **kwargs):
@@ -81,3 +91,52 @@ class addUser(generic.TemplateView):
 			pass
 
 		return HttpResponseRedirect('/ps-grievance/redirect/')
+
+@method_decorator([login_required, staff_member_required], name='dispatch')
+class websiteAdminHomePageView(generic.TemplateView):
+
+	def get(self, request, *args, **kwargs):
+		params = {}
+		return render(request, 'grievance/websiteAdminHomePage.html', params)
+
+	def post(self, request, *args, **kwargs):
+		# Generate Download file
+		if request.POST.get("generateDownload"):
+			# management.call_command('downloadDatabaseAsCsv') #TODO
+			return HttpResponse("<h1> wait for 5 mins and then click on download button")
+		# DOWNLOAD
+		if request.POST.get("download"):
+			filename = 'databaseEntriesAsCsv.csv'
+			path = os.path.join(BASE_DIR, filename)
+			file_path = os.path.join(settings.MEDIA_ROOT, path)
+			file_path = path
+
+			with open(file_path, 'rb') as fh:
+				response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+				response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+				return response
+
+			return HttpResponse("<h1> Download : Error please try again </h1>") 
+		# ERASE
+		elif request.POST.get("erase"):
+			# Erase database
+			management.call_command('clearModels')
+			return redirect('/ps-grievance/redirect')
+		# UPLOAD
+		elif request.FILES['myfile']: 
+			fs = FileSystemStorage()
+			# getting file 'data.csv'
+			## Name of the file is hard-coded to accept only 'data.csv'.
+			## No other file name would work.
+			filename = 'data.csv'
+			file = os.path.join(BASE_DIR+"/media", filename)				
+			#DELETE data.csv IF ALREADY EXISTS
+			if fs.exists(file):
+				os.remove(file)
+			# UPLOAD CODE
+			myfile = request.FILES['myfile']
+			fs = FileSystemStorage()
+			filename = fs.save(myfile.name, myfile)
+			# POPULATE DATABASE
+			management.call_command('populateDB')
+			return HttpResponse("<h1> Done, check log for more info </h1>")

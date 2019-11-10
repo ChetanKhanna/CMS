@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ycw91n((t9u_evv6n6z!^h&xe1r)!cvrw*0f5_r5u)1hn^p!-t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #TODO
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','192.168.43.226']
 
@@ -119,8 +119,8 @@ USE_TZ = True
 
 
 #redirects
-LOGIN_REDIRECT_URL = '/ps-grievance/redirect/'
-LOGOUT_REDIRECT_URL = '/ps-grievance/login/'
+LOGIN_REDIRECT_URL = '/ps-grievance/redirect/' #TODO
+LOGOUT_REDIRECT_URL = '/ps-grievance/login/' #TODO
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
@@ -133,7 +133,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com' # mail service smtp
-EMAIL_HOST_USER = 'psdiary.bits@gmail.com' # email id
+EMAIL_HOST_USER = 'psdiary.bits@gmail.com' # email id #TODO
 EMAIL_HOST_PASSWORD = 'Q!W@E#R$' # password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

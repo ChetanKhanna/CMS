@@ -7,7 +7,7 @@ class Command(BaseCommand):
 		GrievanceForm.objects.all().delete()
 		UserProfile.objects.all().delete()
 		ApplicationStatus.objects.all().delete()
-		InformativeQuerryForm.objects.all().delete()
+		InformativeQueryForm.objects.all().delete()
 		User.objects.all().exclude(is_staff=True, is_superuser=True).delete()
 
 	def handle(self, *args, **options):

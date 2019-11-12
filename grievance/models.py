@@ -8,7 +8,7 @@ import os
 
 def validate_document(document):
     file_size = document.file.size
-    limit_mb = 5
+    limit_mb = 1
     if file_size > limit_mb * 1024 * 1024:
        raise ValidationError("Max size of file is %s MB" % limit_mb)
 
@@ -19,7 +19,7 @@ def path_and_rename(instance, filename):
     filename = split[0]
     ext = split[-1]
     # set new filename
-    filename = '{}.{}'.format(filename + get_random_string(4), ext)
+    filename = '{}.{}'.format(filename + "_" + get_random_string(4), ext)
     # return the whole path to the file
     return os.path.join(upload_to, filename)
 
@@ -43,7 +43,6 @@ class GrievanceForm(models.Model):
 	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE, primary_key=True)
 	campus = models.IntegerField(default = 0)
 	allocatedStation = models.CharField(max_length = 500)
-	preferenceNumberOfAllocatedStation = models.IntegerField()
 	natureOfQuery = models.IntegerField()
 	applicationDate = models.DateTimeField()
 	preferedStation1 = models.CharField(max_length = 500)
@@ -61,7 +60,8 @@ class GrievanceForm(models.Model):
 	document3 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
 	document4 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
 	document5 = models.FileField(upload_to=path_and_rename,validators=[FileExtensionValidator(allowed_extensions=['pdf']),validate_document], blank=True)
-	priority = models.IntegerField(blank=True)
+	priority = models.IntegerField(default=0)
+	preferenceNumberOfAllocatedStation = models.IntegerField() 
 
 	def __str__(self):
 		return str(self.student_id)
@@ -71,7 +71,7 @@ class ApplicationStatus(models.Model):
 	campus = models.IntegerField(default = 0)
 	attempt = models.IntegerField()
 	level = models.IntegerField()
-	status = models.IntegerField()
+	status = models.IntegerField(default=0)
 	lastChangedDate = models.DateTimeField(auto_now_add=True)
 	description = models.CharField(max_length = 500)
 	level1Comment = models.CharField(max_length = 500, blank=True)
@@ -87,19 +87,22 @@ class ApplicationStatus(models.Model):
 		return str((self.student_id,self.attempt))
 
 
-class InformativeQuerryForm(models.Model):
+class InformativeQueryForm(models.Model):
 	student_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	attempt = models.IntegerField()
-	userQuerry = models.CharField(max_length=200, blank=True)
-	psdResponse = models.CharField(max_length=200, blank=True)
+	status = models.IntegerField(default=0)
+	description = models.CharField(max_length=200)
+	level1Comment = models.CharField(max_length=200, blank=True)
 	campus = models.IntegerField(default = 0)
-	allocatedStation = models.CharField(max_length = 500)
+	lastChangedDate = models.DateTimeField(auto_now_add=True)
+	allocatedStation = models.CharField(max_length = 500, blank = True)
+	preferenceNumberOfAllocatedStation = models.IntegerField(default = 1) 
 
 	class Meta:
 		unique_together = (('student_id', 'attempt'))
 
 	def __str__(self):
-		return str('InformativeQuerryForm Object:', (self.student_id, self.attempt))
+		return str((self.student_id, self.attempt))
 
 class Deadline(models.Model):
 	attempt = models.IntegerField()

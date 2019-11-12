@@ -7,14 +7,33 @@
   <head>-->
 
 
-{% extends 'grievance/level2base.html' %}
+{% extends 'grievance/website_base.html' %}
 {% load static %}
 
 
 {% block content %}
 
 
+<!-- <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css"
+  integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous">
+
+  <script src='{% static "grievance/js/jscript.js" %}' type="text/javascript"></script>
+  <link rel="stylesheet" href='{% static "grievance/css/style.css" %}'>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+</head> -->
   
 
 <section class="container-fluid m-0 p-0" id="main">
@@ -73,11 +92,13 @@
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-5 col-sm-5">
-      <h5> Submitted Documents </h5>
-      <div class="row container-fluid documents d-flex justify-content-center" id="docs">
+    <center><h5> <strong>Submitted Documents </strong></h5>
+    <div class="row documents d-flex justify-content-center" id="docs">
 
 
-      </div>
+ 
+      
+    </div>
     </div>
   </div>
   <div class="row  container-fluid mt-5">
@@ -120,7 +141,7 @@
     </div>
 
      <div class="col-md-4 col-sm-12 form-group text-center p-0 m-2 mt-3">
-        <h5> Level 1 Remarks</h5>
+        <h5><strong>Level 1 Remarks</strong></h5>
 
           <textarea class="form-control md-textarea" disabled rows="3" id="level1Remarks"  name="level1Remarks" type="text" >{{applcationStatusObjects.0.level1Comment}}</textarea>
 
@@ -301,10 +322,10 @@
 
     <div class="row pb-5 mt-5 mb-5 d-flex text-center justify-content-center">
       <div class="col-4">
-        <button id="acceptButton1" class="btn btn-lg btn-success" name="accept1" onclick="sendData('accept')" style="width: 25%">Accept</button>
+        <button id="acceptButton1" class="btn btn-lg btn-success" name="accept1" onclick="sendData('accept')" style="width: 140px">Accept</button>
 
       <button id="rejectButton1" class="btn btn-lg btn-danger" name="reject1"
-        onclick="sendData('reject')" style="margin-left: 5%; width: 25%">Reject</button>
+        onclick="sendData('reject')" style=" width: 140px">Reject</button>
       
         <button id="statusButton1" class="btn btn-lg" disabled name="status1" style="margin-left: 5px; display: none;"></button>
       
@@ -541,10 +562,18 @@
     var length = '{{documentCount}}';
     if (length > 0) {
       var documents = ['{{documents.0}}','{{documents.1}}','{{documents.2}}','{{documents.3}}','{{documents.4}}'];
-      for (var i = 0; i < length; i++) {
+      for(var i=0;i<length;i++)
+      {
+        console.log("asdf")
+        console.log('{{documents.1}}');
         var name = documents[i].split("/")[2];
-        var doc = '<div class="col-md-2 p-3 d-flex justify-content-center document"><a href=/ps-grievance/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">      </div>        <div class="caption pt-4  table-warning ">          <p id="caption1">'+name+'</p>        </div>      </a>      </div>';
-$('#docs').append(doc);
+        console.log(documents[0]);
+        var doc='<div class=" col-md-2 col-sm-6 "><div class="row p-3 d-flex justify-content-center document"><a href=/ps-grievance/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">     </div>             <div class="caption pt-4  table-warning ">          <p id="caption1">'+name+'</p>        </div>      </a>    </div>';
+
+       var documentname = '<div class="row p-0  m-0 d-flex justify-content-center document"><p id="caption1">'+name+'</p>                 </div></div>';
+       var doc1=doc+documentname;
+       $('#docs').append(doc1);
+
       }
     }
     else {

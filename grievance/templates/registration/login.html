@@ -13,7 +13,7 @@
     <!-- <h1> a </h1> -->
     {% if form.errors %}
     <div class="header">
-      <h1 style="color: #2962FF ; font-size: 28px; "><div style="font-size: 20px; font-weight: normal; padding-bottom: 125px; padding-top: 100px;"></div>BITS PS Grievances</h1>
+      <h1 style="color: #2962FF ; font-size: 28px; "><div style="font-size: 20px; font-weight: normal; padding-bottom: 125px; padding-top: 100px;"></div>PS Allotment <br> Clarification System</h1>
      </div>
       <p style="color:red ; font-size: 13px;" >Your username and password didn't match. Please try again.</p>
       <br>
@@ -30,14 +30,14 @@
     
       {% else %}
       <div class="header">
-      <h1 style="color: #2962FF ; font-size: 28px; "><div style="font-size: 20px; font-weight: normal; padding-bottom: 150px; padding-top: 50px;"></div>BITS PS Grievances</h1>
+      <h1 style="color: #2962FF ; font-size: 28px; "><div style="font-size: 20px; font-weight: normal; padding-bottom: 150px; padding-top: 50px;"></div>PS Allotment <br> Clarification System</h1>
      </div>
 
     <form method="post" action =".">
         {% csrf_token %}
 
         <p>Username</p>
-        <input type="text" name="username" value="" placeholder="Enter Username (2018XXPSXXXXG)" required/>
+        <input type="text" name="username" value="" placeholder="2016XXPSXXXXG" required/>
         <p>Password</p>
         <input type="password" name="password" placeholder="Enter Password" required/>
         <div class="button"><button type="submit" style="font-size: 16px;">Login</button></div>

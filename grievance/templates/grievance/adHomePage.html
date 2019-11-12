@@ -235,7 +235,7 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].status+"</td><td><a href='student-status/student/"+id+"'> Click Here </a></td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='psd-student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].status+"</td></tr>";
             $('#table-body').append(entry);
           }
         }

@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from import_export import resources
 from django.contrib.auth.admin import UserAdmin as BaseAdmin
-
-
 from .models import *
 from import_export.admin import ImportExportModelAdmin
 
@@ -12,8 +10,6 @@ class UserResource(resources.ModelResource):
     class Meta:
         model = User
         
-        
-
 class UserAdmin(BaseAdmin, ImportExportModelAdmin):
     resource_class = UserResource
     skip_unchanged = True

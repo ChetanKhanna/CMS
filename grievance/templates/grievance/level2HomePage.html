@@ -178,8 +178,8 @@
   {
     $('#publishAllButton').hide();
     var type_val=type;
-    console.log("Type = "+type_val);
-    //  console.log("Priority ="+priority);
+    // console.log("Type = "+type_val);
+    //  // console.log("Priority ="+priority);
     $.ajax({
       url: '/ps-grievance/level2/type/'+type_val,
       type:'GET',
@@ -390,7 +390,7 @@
         type: 'POST',
         data: { },
         success: function (response) {
-          console.log('data sent successfully');
+          // console.log('data sent successfully');
           if (response.flag != 1)
             location.href = '/ps-grievance/redirect/'
         }

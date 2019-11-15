@@ -16,17 +16,16 @@
     </div>
 
     <div class="table-light site-section col-md-8 text-center" id="instructions">
-        <br>
+        <br><br>
         <h1 class="text-dark"> PS Allottment Clarification </h1>
         <p class="text-dark"> There are two types of Clarification Forms (Queries) that a student can fill: </p>
-        <br>
         <h3 class="text-dark"> 1) Informative Query </h3>
         <p class="text-dark"> To be used when a student has to ask any specific doubts </p>
         <h3 class="text-dark"> 2) Station Change Application </h3>
         <p class="text-dark"> To be used when a student wants to apply for a change in PS Station  </p>
-        <p class="text-danger"> <b>Note</b>: Each type of Form can be filled a maximum of 3 times. After 3 attempts, no further requests will be considered. Kindly fill the forms judiciously. </p>
+        <p class="text-danger"> <b>Note</b>: Each type of Form can be filled a maximum of 3 times. After 3 attempts,<br> no further requests will be considered. Kindly fill the forms judiciously. </p>
 
-        <!-- <br> -->
+        <br>
         <h1 class="text-dark"> Deadline </h1>
         <p class="text-dark"> Deadline for each attempt is as follows: </p>
         <p class="text-dark"> <b>Attempt 1:</b> {{deadlines.0}} </p>
@@ -316,7 +315,7 @@
 
                 <p align="center">   Add your prefered stations(with location) in order from 1(most desired) to 10(least desired)</p>
 
-                <p align="center"> <b> Disclaimer </b> : While we will consider your preferences, it is not guaranteed that the new station allotted to you will be from your given preferences </p>
+                <p align="center" class="text-danger"> <b> Disclaimer </b> : While we will consider your preferences, it is not guaranteed <br> that the new station allotted to you will be from your given preferences </p>
 
                 <div class="form-group row d-flex justify-content-center">
                     <!-- <label for="userid" class="col-sm-4 col-form-label">Pref. No.</label> -->
@@ -738,7 +737,7 @@
                 } 
 
                 var deadlineExpired = {{ expired }};
-                console.log(deadlineExpired);
+                // console.log(deadlineExpired);
                 for(var i = 0; i <= 2; i++){
                     if(deadlineExpired[i]){
                         document.getElementById("submit" + (i + 1).toString()).disabled = true;

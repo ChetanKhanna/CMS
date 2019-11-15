@@ -137,8 +137,8 @@
 
 
   var type_val=type;
-  // console.log("Type = "+type_val);
-  //  console.log("Priority ="+priority);
+  // // console.log("Type = "+type_val);
+  //  // console.log("Priority ="+priority);
     $.ajax({
       url: '/ps-grievance/level1/type/'+type_val,
       type:'GET',
@@ -147,7 +147,7 @@
         $('#table-body').html('');
         $('#table-head').html('');
         var len=response.length;
-      //  console.log(len);
+      //  // console.log(len);
         if(len==0)
         {
           var entry="<tr><td colspan=3>No Applications</td></tr>";
@@ -156,7 +156,7 @@
         }
         var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th></tr>"
         $('#table-head').html(head);
-        // console.log(len);
+        // // console.log(len);
         if(type_val == "pending"){
           for(var i=0;i<len;i++)
           {

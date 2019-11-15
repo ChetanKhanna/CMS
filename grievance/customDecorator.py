@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from grievance.views import constants 
 
 def getUser(request):
-	current_user = request.user#User.objects.get(username="20160080G") #TODO request.user
+	current_user = request.user
 	return UserProfile.objects.get(user=current_user)
 
 def redirect():
@@ -47,11 +47,11 @@ def ad_required(function):
 
 	return wrap
 
-def ad_or_level2_required(function):
+def not_student_required(function):
 	@wraps(function)
 	def wrap(request, *args, **kwargs):
 		profile = getUser(request)
-		if profile.token == constants.UserType.AD.value or profile.token == constants.UserType.ALLOCATIONTEAM.value:
+		if profile.token == constants.UserType.AD.value or profile.token == constants.UserType.ALLOCATIONTEAM.value or profile.token == constants.UserType.CMO.value:
 			return function(request, *args, **kwargs)
 		else:
 			return redirect()

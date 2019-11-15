@@ -5,7 +5,7 @@ from django.views import generic
 #import decorators
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from grievance.customDecorator import ad_or_level2_required
+from grievance.customDecorator import not_student_required
 
 #import models
 from grievance.models import *
@@ -57,7 +57,7 @@ def getDocuments(grievanceForm_object):
 		documents.append(grievanceForm_object.document5)
 	return documents
 
-@method_decorator([login_required, ad_or_level2_required], name='dispatch')
+@method_decorator([login_required, not_student_required], name='dispatch')
 class ViewOnlyStudentPageView(generic.View):
 	def get(self, request, *args, **kwargs):
 		student_id = kwargs['student_id']

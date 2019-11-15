@@ -197,7 +197,12 @@
           $('#publishAllButton').show();
           len = response[1].length + response[0].length;
           var entry="<tr><th colspan=5>Unpublished Applications</th><th>Total: "+len+"</th></tr>";
-            $('#table1-header').append(entry);          
+            $('#table1-header').append(entry);
+          if(len != 0)    
+          {
+            var head="<tr> <th>Name</th><th>College ID</th><th>Nature</th><th >Attempt</th><th>Application Date</th><th>Priority</th></tr>"
+            $('#table1-header').append(head);       
+          }
 
           len=response[1].length;
           var entry="<tr><th colspan=5>Rejected</th><th>Total: "+len+"</th></tr>";
@@ -215,7 +220,7 @@
               var id = response[1][i].id;
               var nature = (response[1][i].nature)?"Non-Medical":"Medical";
               var date = response[1][i].date;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  id='name'>"+name+"</td> <td  id='collegeId'>"+id+"</td><td >"+nature+"</td><td ><a href=student-status/student/"+id+">Attempt: "+ response[1][i].attempt +"</a></td><td >"+date+"</td><td >"+response[1][i].priority+" Priority</td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  id='name'>"+name+"</td> <td  id='collegeId'>"+id+"</td><td >"+nature+"</td><td >Attempt: "+ response[1][i].attempt +"</td><td >"+date+"</td><td >"+response[1][i].priority+" Priority</td></tr>";
             $('#table2-body').append(entry);
 
 
@@ -237,7 +242,7 @@
               var id = response[0][i].id;
               var nature = (response[0][i].nature)?"Non-Medical":"Medical";
               var date = response[0][i].date;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  id='name'>"+name+"</td> <td >"+id+"</td><td >"+nature+"</td><td  class='collegeId'><a href=student-status/student/"+id+">Attempt: "+ response[0][i].attempt +"</a></td><td >"+date+"</td><td >"+response[0][i].priority+" Priority </td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  id='name'>"+name+"</td> <td >"+id+"</td><td >"+nature+"</td><td  class='collegeId'>Attempt: "+ response[0][i].attempt +"</td><td >"+date+"</td><td >"+response[0][i].priority+" Priority </td></tr>";
             $('#table3-body').append(entry);
 
 
@@ -249,7 +254,12 @@
           //$('#publishAllButton').show();
           len = response[1].length + response[0].length;
           var entry="<tr><th  colspan=5>Published Applications</th><th>Total: "+len+"</th></tr>";
-            $('#table1-header').append(entry);          
+            $('#table1-header').append(entry);     
+          if(len != 0)
+          {
+            var head="<tr> <th>Name</th><th>College ID</th><th>Nature</th><th >Attempt</th><th>Application Date</th><th>Priority</th></tr>"
+            $('#table1-header').append(head);     
+          }
 
           len=response[1].length;
           var entry="<tr><th colspan=5 >Rejected</th><th>Total: "+len+"</th></tr>";
@@ -267,7 +277,7 @@
               var id = response[1][i].id;
               var nature = (response[1][i].nature)?"Non-Medical":"Medical";
               var date = response[1][i].date;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td id='name'>"+name+"</td> <td>"+id+"</td><td>"+nature+"</td><td id='collegeId'><a href=student-status/student/"+id+">Attempt: "+ response[1][i].attempt +"</a></td><td  >"+date+"</td><td>"+response[1][i].priority+" Priority</td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td id='name'>"+name+"</td> <td>"+id+"</td><td>"+nature+"</td><td id='collegeId'>Attempt: "+ response[1][i].attempt +"</td><td  >"+date+"</td><td>"+response[1][i].priority+" Priority</td></tr>";
             $('#table2-body').append(entry);
 
            
@@ -293,7 +303,7 @@
               var id = response[0][i].id;
               var nature = (response[0][i].nature)?"Non-Medical":"Medical";
               var date = response[0][i].date;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  class ='element' id='name'>"+name+"</td> <td class ='element'>"+id+"</td><td class ='element'>"+nature+"</td><td class ='element'><a href=student-status/student/"+id+">Attempt: "+ response[0][i].attempt +"</a></td><td class ='element' >"+date+"</td><td class ='element'>"+response[0][i].priority+" Priority</td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  class ='element' id='name'>"+name+"</td> <td class ='element'>"+id+"</td><td class ='element'>"+nature+"</td><td class ='element'>Attempt: "+ response[0][i].attempt +"</td><td class ='element' >"+date+"</td><td class ='element'>"+response[0][i].priority+" Priority</td></tr>";
             $('#table3-body').append(entry);
 
 
@@ -305,6 +315,8 @@
           len=response[2].length;
           var entry="<tr><th colspan=4 >High Priority Applications</th><th>Total: "+len+"</th></tr>";
             $('#table1-header').append(entry);
+          var head="<tr> <th>Name</th><th>College ID</th><th>Nature</th><th >Attempt</th><th>Application Date</th></tr>"
+          $('#table1-header').append(head);    
           if(len==0)
           {
             var entry="<tr><td colspan=4>No Applications</td><td/></tr>";
@@ -317,7 +329,7 @@
               var id = response[2][i].id;
               var nature = (response[2][i].nature)?"Non-Medical":"Medical";
               var date = response[2][i].date;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'> <td  id='name'>"+response[2][i].name+"</td> <td  id='collegeId'>"+response[2][i].id+"</td><td >"+nature+"</td><td ><a href=student/"+id+">Attempt: "+ response[2][i].attempt +"</a></td><td   >"+date+"</td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'> <td  id='name'>"+response[2][i].name+"</td> <td  id='collegeId'>"+response[2][i].id+"</td><td >"+nature+"</td><td >Attempt: "+ response[2][i].attempt +"</td><td   >"+date+"</td></tr>";
             $('#table1-body').append(entry);
 
 
@@ -338,7 +350,7 @@
               var id = response[1][i].id;
               var nature = (response[1][i].nature)?"Non-Medical":"Medical";
               var date = response[1][i].date;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'> <td  id='name'>"+response[1][i].name+"</td> <td  id='collegeId'>"+response[1][i].id+"</td><td >"+nature+"</td><td  ><a href=student/"+id+">Attempt: "+ response[1][i].attempt +"</a></td><td   >"+date+"</td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'> <td  id='name'>"+response[1][i].name+"</td> <td  id='collegeId'>"+response[1][i].id+"</td><td >"+nature+"</td><td  >Attempt: "+ response[1][i].attempt +"</td><td   >"+date+"</td></tr>";
             $('#table2-body').append(entry);
 
 
@@ -359,7 +371,7 @@
               var id = response[0][i].id;
               var nature = (response[0][i].nature)?"Non-Medical":"Medical";
               var date = response[0][i].date;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'> <td  id='name'>"+response[0][i].name+"</td> <td  id='collegeId '>"+response[0][i].id+"</td><td >"+nature+"</td><td ><a href=student/"+id+">Attempt: "+response[0][i].attempt +"</a></td><td   >"+date+"</td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'> <td  id='name'>"+response[0][i].name+"</td> <td  id='collegeId '>"+response[0][i].id+"</td><td >"+nature+"</td><td >Attempt: "+response[0][i].attempt +"</td><td   >"+date+"</td></tr>";
             $('#table3-body').append(entry);
 
 

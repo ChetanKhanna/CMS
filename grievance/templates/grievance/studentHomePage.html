@@ -142,6 +142,10 @@
                 </div>
         </form>
 
+        <div id="noMoreInformativeApplications">
+            <p class="text-danger text-center"> No more applications allowed </p>
+        </div>
+
     </div>
 
     <script type="text/javascript">
@@ -195,6 +199,10 @@
                 document.getElementById(element).value = informativeQueryDescriptions[i - 1];
                 document.getElementById(element).readOnly = true;
             }
+        }
+
+        if(!(informativeQueryStatuses[1] >= 2)){
+            document.getElementById("noMoreInformativeApplications").style.display = "none";
         }
 
         if(informativeQueryStatuses[0] == 0){
@@ -364,7 +372,8 @@
                         {% endif %}
                         </div>
                     {% else %}
-                        <p class="text-center"> You can add upto 5 supporting documents to support your Application. Each document should be less than 1 MB </p>
+                        <p class="text-center"> You can add upto 5 supporting documents (PDF Only) to support your Application. Each document should be less than 1 MB </p>
+
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <input type="file" accept=".pdf" name="document1" id="document1"></input>
@@ -532,6 +541,10 @@
             </div>
         </form>
 
+        <div id="noMoreNonInformativeApplications">
+            <p class="text-danger text-center"> No more applications allowed </p>
+        </div>
+
         
 
         <script type="text/javascript">
@@ -663,7 +676,9 @@
                     element = "comments" + i.toString();
                     document.getElementById(element).value = comments[i - 1];
                 }
-
+                if(!(statuses[1] >= 2)){
+                    document.getElementById("noMoreNonInformativeApplications").style.display = "none";
+                }
                 if(statuses[0] == 0){
                     document.getElementById("application1Comments").style.display = "none";
                     document.getElementById("application2Form").style.display = "none";
@@ -721,6 +736,14 @@
                     document.getElementById("submit3").style.display = "none";
                     document.getElementById("acception3Div").style.display = "none";
                 } 
+
+                var deadlineExpired = {{ expired }};
+                console.log(deadlineExpired);
+                for(var i = 0; i <= 2; i++){
+                    if(deadlineExpired[i]){
+                        document.getElementById("submit" + (i + 1).toString()).disabled = true;
+                    }
+                }
         </script>
     </div>
 </div>

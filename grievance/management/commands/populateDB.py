@@ -6,9 +6,16 @@ from django.utils.crypto import get_random_string
 
 from grievance.views import constants
 
+#import for base directory address
+from django.conf import settings
+BASE_DIR = settings.BASE_DIR
+
 class Command(BaseCommand):
 	def _create(self):
-		with open("data.csv") as data_file:
+		i = 0
+		filename = 'data.csv'
+		file = os.path.join(BASE_DIR+"/media", filename)
+		with open(file) as data_file:
 			reader = csv.reader(data_file)
 			for column in reader:
 				token = constants.UserType.STUDENT.value
@@ -30,6 +37,9 @@ class Command(BaseCommand):
 					(_, _) = UserProfile.objects.get_or_create(user = user, token = token, name = name, contact = contact, email = email, campus = campus, cg = cg)
 				except:
 					pass
+
+				print(i)
+				i = i + 1
 
 	def handle(self, *args, **options):
 		self._create()

@@ -12,6 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from grievance.customDecorator import student_required
 
+#import deadline
+from grievance.views import deadlineView
 
 @method_decorator([login_required, student_required], name='dispatch')
 class studentHomeView(generic.TemplateView):
@@ -55,6 +57,7 @@ class studentHomeView(generic.TemplateView):
                 informativeQueryAllocatedStation = x.allocatedStation
                 informativeQueryPreferenceNumberOfAllocatedStation = x.preferenceNumberOfAllocatedStation
 
+        showDeadline = deadlineView.showDeadlineInHeader()
 
         details={       #things to be passed to front end
         'formEntry' : formEntry,
@@ -73,6 +76,10 @@ class studentHomeView(generic.TemplateView):
         'informativeQueryAllocatedStation' : informativeQueryAllocatedStation,
         'informativeQueryPreferenceNumberOfAllocatedStation' : informativeQueryPreferenceNumberOfAllocatedStation,
         'back': "/ps-grievance/login/",
+        'expired' : deadlineView.checkAllDeadline(),
+        'deadlines' : deadlineView.getDeadlines(),
+        'deadlineAttempt' : showDeadline[0],
+        'deadline' : showDeadline[1],
         }
 
         return details
@@ -81,14 +88,14 @@ class studentHomeView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
         current_user=request.user
         details = self.getDetails(current_user)
-        return render (request, "grievance/grievanceForm.html", details)
+        return render (request, "grievance/studentHomePage.html", details)
        
     def post(self, request, *args, **kwargs):
         current_user=request.user
         user = UserProfile.objects.get(user=current_user)
         # Non Informative Queries
         if request.POST.get("submit1"):
-            if (GrievanceForm.objects.filter(student_id = user).count())==0:
+            if (GrievanceForm.objects.filter(student_id = user).count())==0 and deadlineView.checkDeadline(1) == 0:
                 form1 = StudentHomeViewForm(request.POST, request.FILES).save(commit=False)
                 form2 = ApplicationStatusForm(request.POST).save(commit=False)
                 form1.student_id=user
@@ -108,7 +115,7 @@ class studentHomeView(generic.TemplateView):
                 return self.redirect()
         elif request.POST.get("submit2"):
             applicationStatus_object = ApplicationStatus.objects.filter(student_id = user)
-            if(len(applicationStatus_object) == 1):
+            if(len(applicationStatus_object) == 1)  and deadlineView.checkDeadline(2) == 0:
                 form = ApplicationStatusForm(request.POST).save(commit=False)
                 form.student_id = user
                 form.status = constants.Status.INPROGRESS.value
@@ -123,7 +130,7 @@ class studentHomeView(generic.TemplateView):
                 return self.redirect() 
         elif request.POST.get("submit3"):
             applicationStatus_object = ApplicationStatus.objects.filter(student_id = user)
-            if(len(applicationStatus_object) == 2):
+            if(len(applicationStatus_object) == 2)  and deadlineView.checkDeadline(3) == 0:
                 form = ApplicationStatusForm(request.POST).save(commit=False)
                 form.student_id = user
                 form.status = constants.Status.INPROGRESS.value

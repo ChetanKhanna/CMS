@@ -15,7 +15,7 @@ from grievance.models import *
 
 # import views
 from grievance.views import constants as constants
-from grievance.views import studentHomeView
+from grievance.views import studentHomeView, viewOnlyPSDStudentPageView
 
 # import datetime
 from datetime import datetime
@@ -28,12 +28,11 @@ class level1HomeView(generic.TemplateView):
         userProfile_object = UserProfile.objects.get(user=current_user)
 
         if userProfile_object.token == constants.UserType.CMO.value:
-            return render(request, "grievance/level1HomePage.html")
+            return render(request,"grievance/cmoHomePage.html")
         elif userProfile_object.token == constants.UserType.AD.value:
-            return render(request, "grievance/adHomePage.html")
+            return render(request,"grievance/adHomePage.html")
         else:
-            return render(request, "grievance/level1HomePage.html")
-
+            return render(request,"grievance/psdHomePage.html")
 
 # class adHomeView(generic.TemplateView):
 #   def get(self, request, *args, **kwargs):
@@ -136,22 +135,8 @@ class level1StudentView(generic.View):
             
         #PSD PAGE
         if UserProfile.objects.get(user = request.user).token == constants.UserType.PSD.value:
-            informativeQueryForm_objects = InformativeQueryForm.objects.filter(student_id = userProfile_object)
-            const = constants.Status.NOAPPLICATION.value
-            attempt_status=[const,const,const]
-            for i in informativeQueryForm_objects:
-                attempt_status[i.attempt-1] = i.status
-            print("\n\n\n\n\n")
-            print(attempt_status)
-            params = {
-                'name' : userProfile_object.name,
-                'student_id' : student_id,
-                'cg' : userProfile_object.cg,
-                'informativeQueryForm_objects' : informativeQueryForm_objects,
-                'statuses' : attempt_status,
-                'back': "/ps-grievance/redirect/",
-            }
-            return render(request, "grievance/queryPage.html", params)
+            params = viewOnlyPSDStudentPageView.getStudentDetail(student_id)
+            return render(request, "grievance/psdStudentPage.html", params)
 
         #Other users
         ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt =1)
@@ -171,11 +156,11 @@ class level1StudentView(generic.View):
             'documents': documents,
             'back': "/ps-grievance/level1/",
         }
-        return render(request,"grievance/cmoStudentPage.html",params)
+        return render(request,"grievance/cmoAndADStudentPage.html",params)
 
     def post(self, request, *args, **kwargs):
         if UserProfile.objects.get(user = request.user).token == constants.UserType.PSD.value:
-            print(request.POST)
+            # print(request.POST)
             student_id = kwargs['student_id']
             userProfile_object = UserProfile.objects.get(user=User.objects.get(username = student_id))
             attempt = request.POST.get('attempt')
@@ -229,12 +214,3 @@ class level1StudentView(generic.View):
             documentCount+=1
             documents.append(grievanceForm_object.document5)
         return documents
-
-@method_decorator([login_required, level1_required], name='dispatch')
-class level1StudentStatusView(generic.View):
-    def get(self, request, *args, **kwargs):
-        student_id = kwargs['student_id']
-        student = User.objects.get(username=student_id)
-        details = studentHomeView.studentHomeView().getDetails(student)
-        return render(request, "grievance/grievanceForm.html", details)
-

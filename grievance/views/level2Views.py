@@ -53,7 +53,7 @@ class level2RequestView(generic.View):
 		elif typeOfRequest == "unpublished":
 			return self.getUnpublished()
 		
-		print(student_list, "\n\n\n")
+		# print(student_list, "\n\n\n")
 		returnList=[]
 		lowPriorityList=[]
 		midPriorityList=[]

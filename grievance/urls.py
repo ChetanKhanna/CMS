@@ -23,6 +23,7 @@ urlpatterns =[
 	path('website-admin', VIEWS.websiteAdminHomePageView.as_view()),
 	# path('website-admin/change-deadline', VIEWS.changeDeadlineView.as_view()),
 	path('website-admin/add-user', VIEWS.addUser.as_view()),
+	path('get-deadline', VIEWS.showDeadlineInHeader.as_view()),
 
 ]
 

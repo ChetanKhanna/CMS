@@ -132,14 +132,8 @@
       <br>
       <div class="site-navbar py-3  site-navbar-target border border-dark" role="banner" style="background: #B8D0E1">
         <center>
-          <div style="font-size: 22px; color: red;"> <b> 
-            {% if deadlineAttempt == 1%}
-              Last date of submission : {{deadline}}
-            {% elif deadlineAttempt == 2 %}
-              Last date of Re-Application 1 : {{deadline}}
-            {% elif deadlineAttempt == 3 %}
-              Last date of Re-Application 2 : {{deadline}}
-            {% endif %}
+          <div style="font-size: 22px; color: red;" id="website_base_deadline"> <b>
+            <!-- <p type="abc" name="website_base_deadline" id="website_base_deadline"> </p> -->
           </div>
       </div>
     </header>
@@ -184,8 +178,35 @@
 
 </body>
 
-<script src="{% static 'grievance/js/date.js' %}">
-document.getElementById('date').value=date;
+<script type="text/javascript">
+
+  
+  $.ajax({
+    url: '/ps-grievance/get-deadline',
+    type:'GET',
+    success: function(response)
+    {
+      var deadlineAttempt = response['deadlineAttempt'];
+      var deadline = response['deadline'];
+      var value = "";
+
+      if( deadlineAttempt == 1 ){
+        value = "Last date of submission : " + deadline;
+      }
+      else if ( deadlineAttempt == 2 ){
+        value = "Last date of Re-Application 1 : " + deadline;
+      }
+      else if (deadlineAttempt == 3 ){
+        value = "Last date of Re-Application 2 : " + deadline; 
+      }
+      else if (deadlineAttempt == 0 ){
+        value = "Deadline passed, no more applications being accepted.";
+      }
+      document.getElementById("website_base_deadline").innerHTML = value;
+    }
+  });
+  
  </script>
 
 </html>
+

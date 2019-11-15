@@ -57,8 +57,6 @@ class studentHomeView(generic.TemplateView):
                 informativeQueryAllocatedStation = x.allocatedStation
                 informativeQueryPreferenceNumberOfAllocatedStation = x.preferenceNumberOfAllocatedStation
 
-        showDeadline = deadlineView.showDeadlineInHeader()
-
         details={       #things to be passed to front end
         'formEntry' : formEntry,
         'attemptStatus':attempt_status,
@@ -78,8 +76,6 @@ class studentHomeView(generic.TemplateView):
         'back': "/ps-grievance/login/",
         'expired' : deadlineView.checkAllDeadline(),
         'deadlines' : deadlineView.getDeadlines(),
-        'deadlineAttempt' : showDeadline[0],
-        'deadline' : showDeadline[1],
         }
 
         return details

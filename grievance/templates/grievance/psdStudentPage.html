@@ -203,10 +203,10 @@
 
         var statusVar = {{statuses|safe}};
         // var statusVar = [2, 1, 0];
-        console.log(statusVar);
-        console.log(typeof(statusVar));
+        // console.log(statusVar);
+        // console.log(typeof(statusVar));
         for (var i = 1; i <= 3; i++) {
-            console.log(statusVar[i]);
+            // console.log(statusVar[i]);
             if (statusVar[i - 1] > 0) {
                 $('#informativeQuery' + i + 'Form').show();
             }
@@ -226,7 +226,7 @@
             var publish = $("input:radio[name='publish-option" + attempt + "']:checked").val();
             var remarks = $("#remarks" + attempt).val();
             var newStation = $("#newStation" + attempt).val();
-            console.log(newStation)
+            // console.log(newStation)
 
             if (!publish) {
                 $('#publish-message' + attempt).show();
@@ -243,7 +243,7 @@
                     type: 'POST',
                     data: { newStation: newStation, remarks: remarks, button: button, attempt: attempt, publish: publish },
                     success: function (response) {
-                        console.log('data sent successfully');
+                        // console.log('data sent successfully');
                         if (response.flag != 1)
                             location.href = '/ps-grievance/redirect/'
                     }
@@ -258,7 +258,7 @@
         $('priority-option').change(function () {
 
             var priority = $("input:radio[name='priority-option']:checked").val();
-            console.log(priority);
+            // console.log(priority);
             // getData(type);
 
         });

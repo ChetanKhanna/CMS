@@ -137,10 +137,10 @@ if(length>0)
 var documents = ['{{documents.0}}','{{documents.1}}','{{documents.2}}','{{documents.3}}','{{documents.4}}'];
 for(var i=0;i<length;i++)
 {
-  console.log("asdf")
-  console.log('{{documents.1}}');
+  // console.log("asdf")
+  // console.log('{{documents.1}}');
   var name = documents[i].split("/")[2];
-  console.log(documents[0]);
+  // console.log(documents[0]);
   var doc='<div class=" col-md-2 col-sm-6 "><div class="row p-3 d-flex justify-content-center document"><a href=/ps-grievance/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">     </div>             <div class="caption pt-4  table-warning ">          <p id="caption1">'+name+'</p>        </div>      </a>    </div>';
 
  var documentname = '<div class="row p-0  m-0 d-flex justify-content-center document"><p id="caption1">'+name+'</p>                 </div></div>';
@@ -164,7 +164,7 @@ else
 
 $(document).ready(function()
 {
-  console.log('doc ready');
+  // console.log('doc ready');
 $('#priority-message').hide();
 $('#remarks-message').hide();
 
@@ -184,7 +184,7 @@ $('#priority-message').hide();
 if(!priority)
 {
 $('#priority-message').show();
-console.log('here');
+// console.log('here');
 }
 else if(!remarks)
 $('#remarks-message').show();
@@ -199,7 +199,7 @@ else {
   data:{priority:priority,remarks:remarks},
   success: function(response)
   {
-    console.log('data sent successfully');
+    // console.log('data sent successfully');
     if(response.flag!=1)
       location.href = '/ps-grievance/redirect/'
   }
@@ -215,7 +215,7 @@ else {
 $('priority-option').change(function(){
 
   var priority=$("input:radio[name='priority-option']:checked").val();
-  console.log(priority);
+  // console.log(priority);
  // getData(type);
 
   });

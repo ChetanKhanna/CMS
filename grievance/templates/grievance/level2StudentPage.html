@@ -130,8 +130,8 @@
         </label>
 
         <script type="text/javascript"> 
-        console.log("sdfsdfsfdsdf");
-          console.log('{{ priority }}');
+        // console.log("sdfsdfsfdsdf");
+          // console.log('{{ priority }}');
         </script>
         
         {% endif %}
@@ -564,10 +564,10 @@
       var documents = ['{{documents.0}}','{{documents.1}}','{{documents.2}}','{{documents.3}}','{{documents.4}}'];
       for(var i=0;i<length;i++)
       {
-        console.log("asdf")
-        console.log('{{documents.1}}');
+        // console.log("asdf")
+        // console.log('{{documents.1}}');
         var name = documents[i].split("/")[2];
-        console.log(documents[0]);
+        // console.log(documents[0]);
         var doc='<div class=" col-md-2 col-sm-6 "><div class="row p-3 d-flex justify-content-center document"><a href=/ps-grievance/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">     </div>             <div class="caption pt-4  table-warning ">          <p id="caption1">'+name+'</p>        </div>      </a>    </div>';
 
        var documentname = '<div class="row p-0  m-0 d-flex justify-content-center document"><p id="caption1">'+name+'</p>                 </div></div>';
@@ -589,7 +589,7 @@
   });
 
   $(document).ready(function () {
-    console.log('doc ready');
+    // console.log('doc ready');
     $('#priority-message').hide();
     $('#remarks-message').hide();
 
@@ -606,7 +606,7 @@
     var publish = $("input:radio[name='publish-option" + attempt + "']:checked").val();
     var remarks = $("#remarks" + attempt).val();
     var newStation = $("#newStation" + attempt).val();
-    console.log(newStation)
+    // console.log(newStation)
 
     if (!publish) {
       $('#publish-message' + attempt).show();
@@ -623,7 +623,7 @@
         type: 'POST',
         data: { newStation: newStation, remarks: remarks, button: button, attempt:attempt, publish: publish },
         success: function (response) {
-          console.log('data sent successfully');
+          // console.log('data sent successfully');
           if (response.flag != 1)
             location.href = '/ps-grievance/redirect/'
         }
@@ -638,7 +638,7 @@
   $('priority-option').change(function () {
 
     var priority = $("input:radio[name='priority-option']:checked").val();
-    console.log(priority);
+    // console.log(priority);
     // getData(type);
 
   });

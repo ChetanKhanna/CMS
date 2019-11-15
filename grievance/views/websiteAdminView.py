@@ -27,36 +27,6 @@ BASE_DIR = settings.BASE_DIR
 
 from django.core.files.storage import FileSystemStorage
 
-# class changeDeadlineView(generic.View):
-# 	def get(self, request, *args, **kwargs):
-		
-# 		if Deadline.objects.filter().count() == 0:
-# 			for i in range(3):
-# 				Deadline.objects.create(attempt = i+1, date = datetime.now())
-# 		return HttpResponseRedirect("/admin/grievance/deadline")
-
-# 		params = {
-# 			'deadline1' : Deadline.objects.get(attempt = 1).date,
-# 			'deadline2' : Deadline.objects.get(attempt = 2).date,
-# 			'deadline3' : Deadline.objects.get(attempt = 3).date,
-# 			}
-# 		return render(request, "grievance/websiteAdminChangeDeadline.html", params)
-
-# 	def post(self, request, *args, **kwargs):
-# 		deadline[1] = request.POST.get("deadline1")
-# 		deadline[2] = request.POST.get("deadline2")
-# 		deadline[3] = request.POST.get("deadline3")
-
-# 		# print(request.POST.get("deadline1"))
-
-# 		for i in range(3):
-# 			# print(i, " ", deadline[i])
-# 			deadlineObject = Deadline.objects.get(attempt = i+1)
-# 			deadlineObject.date = deadline[i+1]
-# 			deadlineObject.save()
-
-# 		return HttpResponseRedirect('/ps-grievance/redirect/')
-
 @method_decorator([login_required, staff_member_required], name='dispatch')
 class addUser(generic.TemplateView):
 
@@ -102,12 +72,12 @@ class websiteAdminHomePageView(generic.TemplateView):
 	def post(self, request, *args, **kwargs):
 		# Generate Download file
 		if request.POST.get("generateDownload"):
-			# management.call_command('downloadDatabaseAsCsv') #TODO
+			management.call_command('downloadDatabaseAsCsv')
 			return HttpResponse("<h1> wait for 5 mins and then click on download button")
 		# DOWNLOAD
 		if request.POST.get("download"):
 			filename = 'databaseEntriesAsCsv.csv'
-			path = os.path.join(BASE_DIR, filename)
+			path = os.path.join(BASE_DIR + '/media/', filename)
 			file_path = os.path.join(settings.MEDIA_ROOT, path)
 			file_path = path
 

@@ -3,6 +3,7 @@ from grievance.models import *
 import csv
 import os
 from django.conf import settings
+from grievance.views import constants as constants
 
 BASE_DIR = settings.BASE_DIR
 
@@ -56,16 +57,16 @@ class Command(BaseCommand):
                                         if(k==1 and j==1):
                                                 break
                                         if(k==0):
-                                                toWrite.append(str(appstatus.campus).encode('utf-8'))
+                                                toWrite.append(constants.Campus(appstatus.campus).name.encode('utf-8'))
                                                 toWrite.append(str(appstatus.attempt).encode('utf-8'))
                                                 toWrite.append(str(appstatus.level).encode('utf-8'))
-                                                toWrite.append(str(appstatus.status).encode('utf-8'))
+                                                toWrite.append(constants.Status(appstatus.status).name.encode('utf-8'))
                                                 toWrite.append((appstatus.description).encode('utf-8'))
                                                 toWrite.append((appstatus.level1Comment).encode('utf-8'))
                                                 toWrite.append((appstatus.level2Comment).encode('utf-8'))
                                                 toWrite.append((appstatus.newStation).encode('utf-8'))
-                                                toWrite.append(str(appstatus.natureOfQuery).encode('utf-8'))
-                                                toWrite.append(str(appstatus.publish).encode('utf-8'))
+                                                toWrite.append(constants.NatureOfQuery(appstatus.natureOfQuery).name.encode('utf-8'))
+                                                toWrite.append(constants.Publish(appstatus.publish).name.encode('utf-8'))
                                                 toWrite.append(str(appstatus.lastChangedDate).encode('utf-8'))
                                         else:
                                                 for z in range(0,11):
@@ -81,7 +82,7 @@ class Command(BaseCommand):
                                                 toWrite.append((GrievanceFormob.preferedStation8).encode('utf-8'))
                                                 toWrite.append((GrievanceFormob.preferedStation9).encode('utf-8'))
                                                 toWrite.append((GrievanceFormob.preferedStation10).encode('utf-8'))
-                                                toWrite.append(str(GrievanceFormob.priority).encode('utf-8'))
+                                                toWrite.append(constants.Priority(GrievanceFormob.priority).name.encode('utf-8'))
                                                 toWrite.append(str(GrievanceFormob.preferenceNumberOfAllocatedStation).encode('utf-8'))
                                         else:
                                                 for z in range(0,12):
@@ -89,7 +90,7 @@ class Command(BaseCommand):
                                         
                                         if(j==0):
                                                 toWrite.append(str(informativeQueryFormOb.attempt).encode('utf-8'))
-                                                toWrite.append(str(informativeQueryFormOb.status).encode('utf-8'))
+                                                toWrite.append(constants.Status(informativeQueryFormOb.status).name.encode('utf-8'))
                                                 toWrite.append((informativeQueryFormOb.description).encode('utf-8'))
                                                 toWrite.append((informativeQueryFormOb.level1Comment).encode('utf-8'))
                                                 toWrite.append(str(informativeQueryFormOb.lastChangedDate).encode('utf-8'))

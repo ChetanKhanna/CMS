@@ -19,7 +19,7 @@ from grievance.views import deadlineView
 class studentHomeView(generic.TemplateView):
 
     def redirect(self):
-        return HttpResponseRedirect('/ps-grievance/redirect')
+        return HttpResponseRedirect('/PS2/redirect')
 
     def getDetails(self, current_user):
         user = UserProfile.objects.get(user=current_user)
@@ -73,7 +73,7 @@ class studentHomeView(generic.TemplateView):
         'informativeQueryComments': informativeQueryComments,
         'informativeQueryAllocatedStation' : informativeQueryAllocatedStation,
         'informativeQueryPreferenceNumberOfAllocatedStation' : informativeQueryPreferenceNumberOfAllocatedStation,
-        'back': "/ps-grievance/login/",
+        'back': "/PS2/login/",
         'expired' : deadlineView.checkAllDeadline(),
         'deadlines' : deadlineView.getDeadlines(),
         }
@@ -146,17 +146,17 @@ class studentHomeView(generic.TemplateView):
                 description=request.POST.get('description'), campus=user.campus, 
                 allocatedStation = request.POST.get('informativeQueryAllocatedStation'),
                 preferenceNumberOfAllocatedStation = request.POST.get('informativeQueryPreferenceNumberOfAllocatedStation'))
-            return HttpResponseRedirect('/ps-grievance/redirect')
+            return HttpResponseRedirect('/PS2/redirect')
         elif request.POST.get('informativeQuery2Submit') and not \
             InformativeQueryForm.objects.filter(student_id=user, attempt=2):
             InformativeQueryForm.objects.create(student_id=user, attempt=2, status=1,
                 description=request.POST.get('description'), campus=user.campus)
-            return HttpResponseRedirect('/ps-grievance/redirect')
+            return HttpResponseRedirect('/PS2/redirect')
         elif request.POST.get('informativeQuery3Submit') and not \
             InformativeQueryForm.objects.filter(student_id=user, attempt=3):
             InformativeQueryForm.objects.create(student_id=user, attempt=3, status=1,
                 description=request.POST.get('description'), campus=user.campus)
-            return HttpResponseRedirect('/ps-grievance/redirect')
+            return HttpResponseRedirect('/PS2/redirect')
         else:
-            return HttpResponseRedirect('/ps-grievance/redirect')
+            return HttpResponseRedirect('/PS2/redirect')
 

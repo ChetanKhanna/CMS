@@ -30,7 +30,7 @@ def getStudentDetail(student_id):
 		'grievanceFormObject' : grievanceForm_object,
 		'priority' : grievanceForm_object.priority,
 		'numberOfAttempts' : numberOfAttempts,
-		'back' : '/ps-grievance/redirect',
+		'back' : '/PS2/redirect',
 		'documentCount': documentCount,
 		'documents': documents,
 	}

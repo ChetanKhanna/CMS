@@ -81,7 +81,7 @@
       <div class="container">
         <div class="d-flex align-items-center text-right col-lg-15">        	
           <div class="site-logo">
-            <a href="/ps-grievance/redirect" class="d-block">
+            <a href="/PS2/redirect" class="d-block">
               <img src="{% static 'grievance/images/logo.png' %}" alt="Image" class="img-fluid">
             </a>
           </div>
@@ -92,7 +92,7 @@
               		<a href='{{back}}' class="small btn btn-warning px-4 py-2 rounded-1 mr-3 ml-3" style="color: white"><span class="icon-reply mr-2"></span> Back</a> 
               	</li>
                 <li class="active">
-                  <a href="/ps-grievance/redirect/" class="small btn px-4 py-2 rounded-1 mr-3 ml-3" style="color: darkblue;">Home</a>
+                  <a href="/PS2/redirect/" class="small btn px-4 py-2 rounded-1 mr-3 ml-3" style="color: darkblue;">Home</a>
                 </li>
                               
                 
@@ -102,7 +102,7 @@
                  
                   <li class="ml-2"></li>       
                   <li> 
-                    <a href="/ps-grievance/logout/" class="small btn btn-danger py-2 rounded-1 px-4 mr-3 ml-3" style="color: white "><span class="icon-lock"></span> Log Out</a>
+                    <a href="/PS2/logout/" class="small btn btn-danger py-2 rounded-1 px-4 mr-3 ml-3" style="color: white "><span class="icon-lock"></span> Log Out</a>
                   </li>
                 </ul> 
 
@@ -114,7 +114,7 @@
               <nav class="px-5 site-navigation position-relative text-right " role="navigation">
                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-5">                
                     <li> 
-                      <a href="/ps-grievance/logout/" class="small btn btn-danger py-2 rounded-1 px-4" style="color: white"><span class="icon-lock"></span> Log Out</a>
+                      <a href="/PS2/logout/" class="small btn btn-danger py-2 rounded-1 px-4" style="color: white"><span class="icon-lock"></span> Log Out</a>
                     </li>
                 </ul>                                                                                                          
               </nav>                
@@ -182,7 +182,7 @@
 
   
   $.ajax({
-    url: '/ps-grievance/get-deadline',
+    url: '/PS2/get-deadline',
     type:'GET',
     success: function(response)
     {

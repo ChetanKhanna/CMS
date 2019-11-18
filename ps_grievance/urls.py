@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^accounts/login/(?P<next>.*)$',VIEWS.RedirectView.as_view()),
     url('^', include('django.contrib.auth.urls')),
-    url('ps-grievance/', include('grievance.urls')),
+    url('PS2/', include('grievance.urls')),
     # url('grievance/', include('grievance.urls')),
 ]

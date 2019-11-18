@@ -246,7 +246,7 @@
 
     <div class="table-light site-section col-md-8 mt-5" id="nonInformativeQueryDiv">
 
-        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="application1Form" action="/ps-grievance/student/" method="post" readonly  enctype="multipart/form-data">
+        <form class="signup-form1 shadow p-3 mb-5 table-light rounded text-center" id="application1Form" action="/PS2/student/" method="post" readonly  enctype="multipart/form-data">
             {% csrf_token %}
             <h2 class="text-center">Station Change Application Form</h2>
             <br/>
@@ -353,21 +353,21 @@
                     {% if attemptStatus.0 > 0 %}
                         <div class="text-center">
                         {% if formEntry.document1 %}
-                            <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document1 }}'>File 1</a>
+                            <a style="margin: 0 10px;" target="_blank" href='/PS2/media/{{ formEntry.document1 }}'>File 1</a>
                         {% else %}
                             <p style="color:red;"> No documents uploaded </p>
                         {% endif %}
                         {% if formEntry.document2 %}
-                            <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document2 }}'>File 2</a>
+                            <a style="margin: 0 10px;" target="_blank" href='/PS2/media/{{ formEntry.document2 }}'>File 2</a>
                         {% endif %}
                         {% if formEntry.document3 %}
-                            <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document3 }}'>File 3</a>
+                            <a style="margin: 0 10px;" target="_blank" href='/PS2/media/{{ formEntry.document3 }}'>File 3</a>
                         {% endif %}
                         {% if formEntry.document4 %}
-                            <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document4 }}'>File 4</a>
+                            <a style="margin: 0 10px;" target="_blank" href='/PS2/media/{{ formEntry.document4 }}'>File 4</a>
                         {% endif %}
                         {% if formEntry.document5 %}
-                            <a style="margin: 0 10px;" target="_blank" href='/ps-grievance/media/{{ formEntry.document5 }}'>File 5</a>
+                            <a style="margin: 0 10px;" target="_blank" href='/PS2/media/{{ formEntry.document5 }}'>File 5</a>
                         {% endif %}
                         </div>
                     {% else %}
@@ -403,7 +403,7 @@
                 <!-- <h3 class="text-center">Supporting Documents</h3>
                 {% if 1 %}
                     <p>Uploaded 
-                            <a href="/ps-grievance/media/"+{{ formEntry.document1 }}>File1</a>
+                            <a href="/PS2/media/"+{{ formEntry.document1 }}>File1</a>
                         </p>
                 {% else %}
                     <p class="text-center"> You can add upto 5 supporting documents to support your Application. Each document should be less than 5 MB </p>

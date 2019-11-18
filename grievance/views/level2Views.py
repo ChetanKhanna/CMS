@@ -32,7 +32,7 @@ class level2HomeView(generic.TemplateView):
 			student.publish = 1
 			student.save()
 
-		return HttpResponseRedirect('/ps-grievance/redirect/')
+		return HttpResponseRedirect('/PS2/redirect/')
 
 @method_decorator([login_required, allocationTeam_required], name='dispatch')
 class level2RequestView(generic.View):
@@ -190,4 +190,4 @@ class level2StudentView(generic.View):
 
 			applicationStatus_object.save()
 
-		return HttpResponseRedirect('/ps-grievance/redirect/')
+		return HttpResponseRedirect('/PS2/redirect/')

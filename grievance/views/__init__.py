@@ -6,3 +6,4 @@ from .viewOnlyStudentPageView import *
 from .websiteAdminView import *
 from .viewOnlyPSDStudentPageView import *
 from .deadlineView import *
+from .devPageView import *

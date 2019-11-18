@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>
+		PSD Developers
+	</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+	<link href="{% static 'grievance/css/our-team-diamond.css' %}" rel="stylesheet">	
+
+
+<!-- <script type="text/javascript" src="{% static 'grievance/js/developers.js' %}"></script> -->
+
+
+</head>
+
+<body class="">
+<section id="intro" class="demo container-fluid m-0 p-0">
+	
+
+	
+   		<div class="content">
+      		<div id="large-header" class="large-header">
+         	<canvas id="demo-canvas"></canvas>
+         	<h1 class="main-title" ><p data-aos="fade-right" data-aos-once="true" data-aos-duration="500">Meet the</p> <span data-aos="fade-in" data-aos-once="true"
+     		data-aos-duration="2000" id="developers"> DEVELOPERS</span></h1>
+      		
+      			
+    		  	</div>
+
+      
+		</div>
+ 
+		<a href="#container2"><img class="container img"  id="scroll" src="{% static 'grievance/images/scroll.gif' %}">
+			
+				</img>
+		</a>
+
+
+</section>
+
+<section id="container2" class=" pt-2">
+
+	<h1 class=" text-center text-light pt-2">Welcome To Practice School Diaries</h1>
+	<div class="row container-fluid mt-5">
+		<div class="col-md-6 text-light" id="about-text">
+		This website is designed for the students going for the practice school. The website will help maintain an online database that will help keep a record of the work done by these students. This database will be later made availabe to the students for future reference. Till now students used to maintain a handwritten dairy. This is the first time such an eco friendly approach has been taken and we are looking forward to its success. We have done our best to make the site as intuitive as possible, keeping in mind all the important functionalities.
+		<br><br>
+The website is completely designed by the undergradguate students of BITS Pilani - Goa Campus. Please contact us if you have any suggestions.
+	</div>
+	<div class="col-md-6 text-center" data-aos="fade-left">
+		<img src="{% static 'grievance/images/img2.webp' %}" class="container-fluid img "></img>
+	</div>
+	</div>
+</section>
+
+<section id="container3" class="container-fluid pt-2 ">
+
+
+
+	<h1 class="text-center text-light" id="our-team" data-aos="fade-in"> Our Team</h1>
+	
+
+
+	<div class="container container-fluid">
+		<div class="row  container-fluid flex-center sm-no-flex">
+
+			<div class="pull-left col-md-4 col-sm-12  sm-text-center">
+				<div class=" text-light team-overview">
+					<h2>Who Are We?</h2>
+					<a href="#">Meet the Entire Team</a>
+					<p><div>All of us have two things in common - our college and our passion for coding!</div></p>
+				</div>
+			</div>
+
+			<div class="pull-right sm-no-float col-md-8 ">
+				<ul class="team-members">
+					<a href="#container4">
+					<!-- single member row starts -->
+					<li class="clearfix">
+						<div class="member-details">
+							<div>
+								
+							</div>
+						</div>
+						
+						<div class="member-details">
+							<div>
+								
+							</div>
+						</div>
+						
+						<div data-aos="fade-left"  data-aos-once="true" class="member-details">
+							<div onclick="display(0)" >
+								<img src="{% static 'grievance/images/keshav.jpg' %}"  alt="UI Designer">
+								<div class="member-info">
+									<h3>Keshav Mittal</h3>
+									
+								</div>
+							</div>
+						</div>
+					</li><!-- /single member row ends -->
+					
+					<!-- single member row starts -->
+					<li class="clearfix">
+						<div data-aos="fade-left"  data-aos-once="true" data-aos-delay="300" class="member-details">
+							<div onclick="display(1)">
+								<img src="{% static 'grievance/images/ritik.jpg' %}" class="container-fluid img" >
+								<div class="member-info">
+									<h3>Ritik Taneja</h3>
+								
+								</div>
+							</div>
+						</div>
+						
+						<div data-aos="fade-left"  data-aos-once="true" data-aos-delay="300" class="member-details">
+							<div onclick="display(2)">
+								<img src="{% static 'grievance/images/NAME2.jpg' %}" class="container-fluid img" >
+								<div class="member-info">
+									<h3>NAME2</h3>
+								
+								</div>
+							</div>
+						</div>
+						
+						<div data-aos="fade-left"  data-aos-once="true" data-aos-delay="300" class="member-details">
+							<div onclick="display(3)">
+								<img src="{% static 'grievance/images/NAME3.jpg' %}" class="container-fluid img" >
+								<div class="member-info">
+									<h3>NAME3</h3>
+								
+								</div>
+							</div>
+						</div>
+					</li><!-- /single member row ends -->
+
+					<!-- single member row starts -->
+					<li class="clearfix">
+						<div data-aos="fade-left"  data-aos-once="true" data-aos-delay="500" class="member-details">
+							<div onclick="display(4)">
+								<img src="{% static 'grievance/images/NAME4.jpg' %}" class="container-fluid img" >
+								<div class="member-info">
+									<h3>NAME4</h3>
+								
+								</div>
+							</div>
+						</div>
+						
+						<div data-aos="fade-left"  data-aos-once="true" data-aos-delay="500" class="member-details">
+							<div onclick="display(5)">
+								<img src="{% static 'grievance/images/NAME5.jpg' %}" class="container-fluid img" >
+								<div class="member-info">
+									<h3>NAME5</h3>
+								
+								</div>
+							</div>
+						</div>
+						
+						<div data-aos="fade-left"  data-aos-once="true" data-aos-delay="500" class="member-details">
+							<div onclick="display(6)">
+								<img src="{% static 'grievance/images/NAME6.jpg' %}" class="container-fluid img" >
+								<div class="member-info">
+									<h3>NAME6</h3>
+								
+								</div>
+							</div>
+						</div>
+					</li><!-- /single member row ends -->
+				</a>
+				</ul><!-- /end team-photos -->
+			</div><!-- /end col-md-8 -->
+			
+			<!-- /end col-md-4 -->
+		</div><!-- /end row -->
+	</div><!-- /end container -->
+
+<!-- extra -->
+
+</section>
+
+
+<section id="container4" class="bg-dark container-fluid"> 
+
+ 
+ <video autoplay muted loop class="video" > 
+        <source src="{% static 'grievance//images/video.webm' %}" type="video/mp4">
+        	
+    </video>
+
+
+
+
+<div class="row  container-fluid" id="dev-row" >
+<div id="content-1"  class="text-light  col-sm-12 col-xs-12 col-md-6 container-fluid">
+	
+	<div id="content-1-1" class="pt-5 text-light text-center container-fluid">
+	
+	</div>
+	<div id="content-1-2">
+	</div>
+
+
+</div>
+<div id="content-2" class="col-sm-12 col-xs-12 col-md-5 >	 
+ container-fluid">
+		
+
+
+</div>
+</div>
+
+
+</section>
+
+<section class=" mb-0 bg-dark footer  text-center text-light">
+	 Page Developed By:<a href="http://www.ritiktaneja.in" target="_blank" class="text- ml-2" ><b>Ritik Taneja </b>
+
+	</section>
+
+</body>
+
+
+
+<script>
+  AOS.init();
+/* The speed/duration of the effect in milliseconds */
+</script>
+
+
+
+<!-- Developers.JS -->
+<script type="text/javascript">
+	var i = 0;
+var speed = 100; 
+
+
+var devs=[
+
+{
+	'Name':'Keshav Nagpal',
+	'Img':'keshav.jpg		',
+	'Desc':'I provide web design hosting services, SEO, front-end and back-end development I specialize in standards-based XHTML,CSS and Javascript development. I have also worked with various organizations, building their Database Management System and developing software for their day-to-day work. ',
+	'LinkedIn':'https://www.linkedin.com/in/ritiktaneja',
+	'GitHub':'https://github.com/ritiktaneja',
+	'Web':'https://www.ritiktaneja.in',
+	'Mail':'mailto:ritiktaneja10@gmail.com'
+
+},
+{
+	'Name':'Ritik Taneja',
+	'Img':"{% static 'grievance/images/ritik.jpg' %}",
+	'Desc':'I provide web design hosting services, SEO, front-end and back-end development I specialize in standards-based XHTML,CSS and Javascript development. I have also worked with various organizations, building their Database Management System and developing software for their day-to-day work. ',
+	'LinkedIn':'https://www.linkedin.com/in/ritiktaneja',
+	'GitHub':'https://github.com/ritiktaneja',
+	'Web':'http://www.ritiktaneja.in'
+
+},
+{
+
+	'Name':'NAME2',
+	'Img':"{% static 'grievance/images/name2.jpg' %}",
+	'Desc':'desc',
+	'LinkedIn':'https://www.linkedin.com/in/ritiktaneja',
+	'GitHub':'https://github.com/ritiktaneja',
+	'Web':'http://www.ritiktaneja.in'
+
+
+},
+{
+
+	'Name':'NAME3',
+	'Img':"{% static 'grievance/images/name3.jpg' %}",
+	'Desc':'desc',
+	'LinkedIn':'https://www.linkedin.com/in/ritiktaneja',
+	'GitHub':'https://github.com/ritiktaneja',
+	'Web':'http://www.ritiktaneja.in'
+
+
+},
+{
+
+	'Name':'NAME4',
+	'Img':"{% static 'grievance/images/name4.jpg' %}",
+	'Desc':'desc',
+	'LinkedIn':'https://www.linkedin.com/in/ritiktaneja',
+	'GitHub':'https://github.com/ritiktaneja',
+	'Web':'http://www.ritiktaneja.in'
+
+
+},
+{
+
+	'Name':'NAME5',
+	'Img':"{% static 'grievance/images/name5.jpg' %}",
+	'Desc':'desc',
+	'LinkedIn':'https://www.linkedin.com/in/ritiktaneja',
+	'GitHub':'https://github.com/ritiktaneja',
+	'Web':'http://www.ritiktaneja.in'
+
+
+},
+{
+
+	'Name':'NAME6',
+	'Img':"{% static 'grievance/images/name6.jpg' %}",
+	'Desc':'desc',
+	'LinkedIn':'https://www.linkedin.com/in/ritiktaneja',
+	'GitHub':'https://github.com/ritiktaneja',
+	'Web':'http://www.ritiktaneja.in'
+
+
+},
+
+
+]
+
+
+  function display(num)
+{
+
+ i = 0;
+speed = 10; 
+
+	document.getElementById('content-1-1').innerHTML="";
+		document.getElementById('content-1-2').innerHTML="";
+		document.getElementById('content-2').innerHTML="";
+	addLinks(num);
+	typeWriter(devs[num].Desc);
+	showImage(devs[num].Img);
+}
+
+
+	function addLinks(val)
+	{	
+		//var links=document.createElement('div');
+
+		var github=`<a class='p-2' href='`+devs[val].GitHub+`' ><img height="32" width="32" src="{% static 'grievance/images/github.svg' %}" /></a>`;
+		var linkedin=`<a class='p-2' href='`+devs[val].LinkedIn+`' ><img height="32" width="32" src="{% static 'grievance/images/linkedin.svg' %}" /></a>`;
+		var web=`<a class='p-2' href='`+devs[val].Web+`' ><img height="32" width="32" src="{% static 'grievance/images/internetexplorer.svg' %}" /></a>`;
+		var mail=`<a class='p-2' href='`+devs[val].Mail+`' ><img height="32" width="32" src="{% static 'grievance/images/gmail.svg' %}"  /></a>`;
+		var links=`<div class="text-center" style="fill:white; color:white;">`+github+linkedin+web+mail+`</div>`
+		document.getElementById('content-1-1').insertAdjacentHTML('afterbegin',links);
+	}
+
+	
+
+	function showImage(src)
+  {
+  	console.log(src);
+  	
+  	document.getElementById('content-2').innerHTML="<img data-aos='fade-in' src="+src+" id='devImg' class='container-fluid img'></img> ";
+
+  	blinkImg(1,1000,1);
+
+  }
+
+
+function blinkImg(x,speed1,count)
+{
+
+f=document.getElementById("devImg");
+
+
+speed1=speed1-500;
+
+
+
+
+if(x)
+f.style.display="block";
+
+else
+ f.style.display="none";
+
+
+count++;
+if(count<55)
+ setTimeout("blinkImg("+!x+","+speed1+","+count+")",speed1);
+	else
+	{f.style.display="block";
+					
+	}
+
+  
+}
+
+
+
+function typeWriter(txt) {
+
+
+
+	//console.log("hereee"+txt);
+  if (i < txt.length) {
+   document.getElementById("content-1-2").innerHTML += txt.charAt(i);
+    i++;
+    
+  //   if(i==txt.length)
+  //   { 
+  //   	var now=(new Date()).getTime();
+  //   	while ( new Date().getTime() < now + 5000 )
+		// {	
+
+		// }
+  //   	document.getElementById('content-1').innerHTML="";
+  //   	i=0;
+  //   }
+
+
+    setTimeout("typeWriter('"+txt+"')", speed);
+
+
+  }
+
+  
+
+
+}
+
+</script>
+
+
+
+
+<script src="{% static 'grievance/js/introPage.js' %}"></script>
+	
+
+
+
+
+
+<!-- BG -->
+<style>
+	@import url('https://fonts.googleapis.com/css?family=McLaren|Poppins|Raleway|Roboto&display=swap');
+
+
+
+
+
+
+
+	body
+	{	
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	line-height: 1.5;
+	 display:flex; 
+  flex-direction:column; 
+	}
+
+	html {
+		width: 100%;
+		overflow-x: hidden;
+  scroll-behavior: smooth;
+	}
+
+
+	#container2
+	{
+	background: #808080;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #3fada8, #808080);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #3fada8, #808080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	z-index: 2;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	min-height: 600px !important	;
+	height: auto;
+	min-height: 100%;
+	}
+
+		#container3	
+	{
+		height: auto;
+
+			min-height: 100%;
+			z-index: 2;
+		background: #1D4350;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #A43931, #1D4350);  /* Chrome 10-25, Safari 5.1-6 */
+
+	background: linear-gradient(to right, #A43931, #1D4350); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	}
+
+	#container4
+	{
+		position: relative;
+		 display:inline-block;
+		
+		 width: 100% !important;
+		 margin: 0;
+		 top: 0;
+	}
+	#dev-row
+	{
+		padding: 0;
+		padding-top:10%;
+		z-index: 1	;
+		margin: 0;
+		width: 100% !important;
+		height: 100;
+		position: fixed;
+		top : 0px;
+		left: 0;
+	}
+	#content-1{
+		
+		height: auto;
+		
+		background-color: rgba(10,150,10,.4);
+		font-size: 1.5em;
+	}
+	#content-1-1, #content-1-1 img
+	{
+		
+		z-index: 2;	
+		fill:white;
+		color: white;
+
+
+	}
+	#content-1-2
+	{
+		padding-top:10%;
+	}
+	#content-2{
+		
+		
+		z-index: 0;
+		background-color: rgba(10,150,10,.4);
+		
+	}
+	.video
+	{
+		padding: 0;
+		margin-bottom: 20px;
+		margin: 0;
+		width: 100% !important;
+		height: 100% !important;
+		position: relative;
+		top : 0px;
+		z-index: 0;
+		left: 0;
+
+	}
+	.footer
+	{
+		z-index: 2;
+		  bottom: 0;
+    position: relative;
+
+    margin-top: a
+   	margin-bottom: 0;
+	}
+
+	
+
+	
+
+
+	#our-team
+	{
+		font-family: 'Raleway'
+	}
+
+
+	#scroll
+	{
+		position: absolute;
+		bottom: 5px;
+		width: 8%;
+		left: 45%;
+		height: 15%;
+		z-index: 100;
+
+	}
+	#about-text
+	{
+		font-size: 120%;
+	}
+
+
+	.large-header {
+	   position: relative;
+	   width: 100%;
+	   background: #111;
+	   overflow: hidden;
+	   background-size: cover;
+	   background-position: center center;
+
+	}
+
+	.demo .large-header {
+		height: auto;
+		z-index: 2;
+	   background-image: url("{% static 'grievance/images/bg2.jpg' %}");
+	   background-attachment: fixed;
+	}
+
+	.main-title {
+	   position: absolute;
+	   margin: 0;
+	   padding: 0;
+	   color: #F9F1E9;
+	   text-align: center;
+	   top: 25%;
+	   left: 50%;
+	   -webkit-transform: translate3d(-50%, -50%, 0);
+	   transform: translate3d(-50%, -50%, 0);
+	}
+
+	.demo .main-title {
+	   text-transform: uppercase;
+	   font-size: 4.2em;
+	   letter-spacing: 0.1em;
+	}
+
+	.main-title .thin {
+	   font-weight: 200;
+	}
+	#developers
+	{
+		font-style: bold;
+		color: orange;
+		font-size:1.54em;
+	}
+
+	@media only screen and (max-width: 768px) {
+	   .demo .main-title {
+	      font-size: 3em;
+	   }
+
+	}
+	@media (max-width: 992px)
+	{
+	
+	#container4
+	{
+		height: auto !important;
+	}
+	#dev-row
+	{
+		padding: 0;
+		z-index: 1	;
+		margin: 0;
+		width: 100% !important;
+		height: 90%;
+		position: absolute;
+		top: 0;
+		
+		top : 0px;
+		left: 0;
+	}
+	#content-1{
+		
+
+		
+		background-color: rgba(10,150,10,.4);
+		font-size: 1em;
+		height: 100%;
+		min-height: 250px;
+	
+	}
+
+	#content-2{
+		
+		
+	
+	
+		height: 100%;
+		position: fixed;
+		top: 0;
+	
+		
+		width: 100% !important;
+		z-index: -2;
+		border: 2px solid red;
+		background-color: rgba(10,150,10,.4);
+	
+		
+	}
+
+	}
+
+
+</style>
+
+
+</a>
+</section>
+</body>
+</html>

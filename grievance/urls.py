@@ -24,6 +24,7 @@ urlpatterns =[
 	# path('website-admin/change-deadline', VIEWS.changeDeadlineView.as_view()),
 	path('website-admin/add-user', VIEWS.addUser.as_view()),
 	path('get-deadline', VIEWS.showDeadlineInHeader.as_view()),
+	path('dev_page', VIEWS.devPageView.as_view()),
 
 ]
 

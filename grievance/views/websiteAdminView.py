@@ -60,7 +60,7 @@ class addUser(generic.TemplateView):
 		except:
 			pass
 
-		return HttpResponseRedirect('/ps-grievance/redirect/')
+		return HttpResponseRedirect('/PS2/redirect/')
 
 @method_decorator([login_required, staff_member_required], name='dispatch')
 class websiteAdminHomePageView(generic.TemplateView):
@@ -91,7 +91,7 @@ class websiteAdminHomePageView(generic.TemplateView):
 		elif request.POST.get("erase"):
 			# Erase database
 			management.call_command('clearModels')
-			return redirect('/ps-grievance/redirect')
+			return redirect('/PS2/redirect')
 		# UPLOAD
 		elif request.FILES['myfile']: 
 			fs = FileSystemStorage()

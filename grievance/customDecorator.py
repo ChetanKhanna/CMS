@@ -12,7 +12,7 @@ def getUser(request):
 	return UserProfile.objects.get(user=current_user)
 
 def redirect():
-	return HttpResponseRedirect('/ps-grievance/redirect/')
+	return HttpResponseRedirect('/PS2/redirect/')
 
 def student_required(function):
 	@wraps(function)

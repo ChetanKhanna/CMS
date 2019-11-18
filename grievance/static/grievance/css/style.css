@@ -706,13 +706,13 @@ h1, h2, h3, h4, h5,
     -ms-flex: 0 0 90px;
     flex: 0 0 90px; }
 
-.social-wrap a {
+.social-wrap #navbut {
   display: inline-block;
   width: 40px;
   height: 40px;
   background: #51be78;
   position: relative; }
-  .social-wrap a > span {
+  .social-wrap #navbut > span {
     position: absolute;
     color: #fff;
     left: 50%;
@@ -720,7 +720,7 @@ h1, h2, h3, h4, h5,
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
-  .social-wrap a:hover {
+  .social-wrap #navbut:hover {
     background: #000; }
 
 .block-number-1 .icon {

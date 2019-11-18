@@ -1,89 +1,97 @@
+
 {% extends 'grievance/website_base.html' %}
 {% load static %}
-{% block header %}
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
+{% block content %}
 
 <!-- <div id="loader"></div> -->
 
-<div class="logo"><img src="{% static 'grievance/Images/logo.gif' %}"/>
-</div>
+<section class="container-fluid m-0 p-0" id="main">
+
+<br><br><br><br>  
+<div class="col"> 
+
+  <div class="row d-flex justify-content-center">
+    <p style="text-align: center; color: red; font-size: 18px;">*WARNING: Following links can modify or delete the existing database.</p>
+  </div>
+  <div class="row d-flex justify-content-center mb-4">
+    <h1 style="color: black;"><center>Admin</h1>
+  </div>
+   
+
+  <div class="row d-flex justify-content-center mb-4">
+    <div class="col-md-7">
+    <legend><h2>Change Deadline</h2></legend>
+      <a href="/admin/grievance/deadline/" class="small btn btn-warning px-4 py-2 rounded-1" style="font-size: 18px; color: black;"><span class="icon-update" style="font-size: 20px; color: black;"></span> Click here to change the deadlines</a>
+    </div>
+  </div>
 
 
-
-<div class="Entry" id="wrapper">
-  <br><br><br><br>
-  
-<!-- <div id="myDiv"> -->
-<p style="text-align: center; color: red; font-size: 18px;">*WARNING: Following links can modify or delete the existing database.</p>
-
-<h2><center>Admin</h2>
-
-<legend><h2>Change Deadline</h2></legend>
-  <p> <a href="/admin/grievance/deadline/"> Click here to change the deadlines</a></p>
-  <br><br><br>
-
-
-<form method="post" enctype="multipart/form-data" >
-<legend><h2>Upload Files</h2></legend>
-
-    
-        {% csrf_token %}
-
-        <input type="file" value="myfile" name="myfile" >
-        <button type="submit" style="float:right;" onclick="">Upload</button>
-
+  <div class="row d-flex justify-content-center mb-5">
+    <div class="col-md-7">
+    <form method="post" enctype="multipart/form-data" >
+    <legend><h2>Upload Files</h2></legend>
 
         
-      <!-- {% if uploaded_file_url %}
-        <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-      {% endif %} -->
+            {% csrf_token %}
+          <div class="row d-flex">
+            <div class="col d-flex">
+            <input type="file" class="small btn btn-secondary px-4 py-2 rounded-1" value="myfile" name="myfile" >
+            </div>
+            <div class="col d-flex">
+            <button type="submit" class="small btn btn-success px-4 py-2 rounded-1" style="font-size: 18px; color: white;" onclick=""><span class="icon-upload"></span> Upload</button>        
+            </div>
+          </div>
+    </form>
+    </div>
+  </div>
 
-</form>
 
-<br><br><br>
+  <div class="row d-flex justify-content-center mb-5">
+    <div class="col-md-7">
+    <form method="POST" >
+    {% csrf_token %}
+    <legend><h2>Download Files</h2></legend>
+      <div class="row">
+        <div class="col d-flex">
+        <!-- <div class="dropdown" style="float:left;"> -->
+        <button type="submit" class="small btn btn-secondary px-4 py-2 rounded-1" name="generateDownload" value="generateDownload" style="font-size: 18px; color: white;"><span class="icon-refresh"></span> Generate Download</button>
+        </div>
+        <div class="col d-flex">
+        <button type="submit" class="small btn btn-primary px-4 py-2 rounded-1" name="download" value="download" style="font-size: 18px; color: white;"><span class="icon-download"></span> Download</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
 
+  <div class="row d-flex justify-content-center mb-5">
+    <div class="col-md-7">
 
-<form method="POST" >
-{% csrf_token %}
-<legend><h2>Download Files</h2></legend>
+    <form method="POST">
+      {% csrf_token %}
+    <legend><h2>Erase Files</h2></legend>
 
-<!-- <div class="dropdown" style="float:left;"> -->
-<button type="submit" name="generateDownload" value="generateDownload"> Generate Download</button>
-<button type="submit" name="download" value="download"> Download</button>
-</form>
+    <div>
+      <!-- <a onclick="return confirm('Make sure you have downloaded the Database before erasing.\nClick Ok to continue')" name="erase" value="erase" class="small btn btn-danger px-3 py-2 rounded-1 ml-3" style="color: white;"><span class="icon-trash"></span> Erase</a> -->
+    <button onclick="return confirm('Make sure you have downloaded the Database before erasing.\nClick Ok to continue')" name="erase" value="erase" class="small btn btn-danger px-4 py-2 rounded-1" style="font-size: 18px; color: white;"  ><span class="icon-trash"></span> Erase</button>
+    </div>
+    </form>
+    </div>
+  </div>
 
-<br><br><br>
+  <div class="row d-flex justify-content-center mb-4">
+    <div class="col-md-7">
+    <legend><h2>Add New User</h2></legend>
+      <a href="/ps-grievance/website-admin/add-user" class="small btn btn-info px-4 py-2 rounded-1" style="font-size: 18px; color: black;"><span class="icon-add" style="font-size: 20px; color: black;"></span> Click Here to Add a New User</a>
+    </div>
+  </div>
 
-<form method="POST">
-  {% csrf_token %}
-<legend><h2>Erase Files</h2></legend>
-
-<div class="dropdown" style="float:left;">
-<button onclick="return confirm('Make sure you have downloaded the Database before erasing.\nClick Ok to continue')" name="erase" value="erase" class="btn" style="font-size: 20px; color: red;"  ><i class="fa fa-trash" ></i> Erase</button>
 </div>
-</form>
-
-
-</div>
-
+</section>
 
 <!-- This is a test comment -->
 
-{% endblock %}
-
-{% block content %}
-{% endblock %}
-
-{% block weeks_data %}
-{% endblock %}
-
-{% block footer %}
 
 
 

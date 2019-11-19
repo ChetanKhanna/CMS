@@ -17,7 +17,7 @@ from grievance.views import constants as constants
 from grievance.views import viewOnlyStudentPageView
 
 #import date time
-from datetime import datetime
+from django.utils import timezone as datetime
 
 @method_decorator([login_required,allocationTeam_required], name='dispatch')
 class level2HomeView(generic.TemplateView):

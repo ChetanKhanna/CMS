@@ -141,7 +141,7 @@ for(var i=0;i<length;i++)
   // console.log('{{documents.1}}');
   var name = documents[i].split("/")[2];
   // console.log(documents[0]);
-  var doc='<div class=" col-md-2 col-sm-6 "><div class="row p-3 d-flex justify-content-center document"><a href=/PS2/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">     </div>             <div class="caption pt-4  table-warning ">          <p id="caption1">'+name+'</p>        </div>      </a>    </div>';
+  var doc='<div class=" col-md-2 col-sm-6 "><div class="row p-3 d-flex justify-content-center document"><a href=/media/'+documents[i]+' target="_blank" id="doc'+i+'">      <div class="thumbnail">        <img src={% static "grievance/images/doc.png" %} id="img1" class="p-1 img " style="width:100%;">     </div>             <div class="caption pt-4  table-warning ">          <p id="caption1">'+name+'</p>        </div>      </a>    </div>';
 
  var documentname = '<div class="row p-0  m-0 d-flex justify-content-center document"><p id="caption1">'+name+'</p>                 </div></div>';
  var doc1=doc+documentname;

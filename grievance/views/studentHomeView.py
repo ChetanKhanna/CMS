@@ -2,7 +2,7 @@ from grievance.models import (ApplicationStatus, GrievanceForm,
                               UserProfile, User, InformativeQueryForm)
 from django.shortcuts import render
 from grievance.forms import StudentHomeViewForm, ApplicationStatusForm
-import datetime
+from django.utils import timezone as datetime
 from . import constants as constants
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -96,7 +96,7 @@ class studentHomeView(generic.TemplateView):
                 form2 = ApplicationStatusForm(request.POST).save(commit=False)
                 form1.student_id=user
                 form1.campus = user.campus
-                form1.applicationDate = datetime.datetime.now()
+                form1.applicationDate = datetime.now()
                 form1.priority = 0
                 form1.save()
                 form2.student_id=user
@@ -117,7 +117,7 @@ class studentHomeView(generic.TemplateView):
                 form.status = constants.Status.INPROGRESS.value
                 form.attempt = 2
                 form.level = 2
-                form.lastChangedDate = datetime.datetime.now()
+                form.lastChangedDate = datetime.now()
                 form.campus = user.campus
                 form.natureOfQuery = applicationStatus_object[0].natureOfQuery
                 form.save()
@@ -132,7 +132,7 @@ class studentHomeView(generic.TemplateView):
                 form.status = constants.Status.INPROGRESS.value
                 form.attempt = 3
                 form.level = 2
-                form.lastChangedDate = datetime.datetime.now()
+                form.lastChangedDate = datetime.now()
                 form.campus = user.campus
                 form.natureOfQuery = applicationStatus_object[0].natureOfQuery
                 form.save()

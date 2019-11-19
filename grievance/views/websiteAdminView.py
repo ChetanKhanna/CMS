@@ -13,9 +13,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 #import models
 from grievance.models import *
 
-#import function for date and time
-from datetime import datetime
-
 #import function for random string to be used to set password
 from django.utils.crypto import get_random_string
 
@@ -72,7 +69,7 @@ class websiteAdminHomePageView(generic.TemplateView):
 	def post(self, request, *args, **kwargs):
 		# Generate Download file
 		if request.POST.get("generateDownload"):
-			management.call_command('downloadDatabaseAsCsv')
+			management.call_command('export')
 			return HttpResponse("<h1> wait for 5 mins and then click on download button")
 		# DOWNLOAD
 		if request.POST.get("download"):

@@ -18,6 +18,8 @@ from django.urls import path,include
 from django.contrib import admin
 import grievance.views as VIEWS
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,3 +28,5 @@ urlpatterns = [
     url('PS2/', include('grievance.urls')),
     # url('grievance/', include('grievance.urls')),
 ]
+
+urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

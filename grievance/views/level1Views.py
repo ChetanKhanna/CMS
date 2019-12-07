@@ -154,6 +154,7 @@ class level1StudentView(generic.View):
             'description': ApplicationStatus_object.description,
             'documentCount': documentCount,
             'documents': documents,
+            'cg': userProfile_object.cg,
             'back': "/PS2/level1/",
         }
         return render(request,"grievance/cmoAndADStudentPage.html",params)

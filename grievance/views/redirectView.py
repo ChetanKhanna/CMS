@@ -13,18 +13,18 @@ class RedirectView(generic.TemplateView):
 			current_user = request.user
 			user_object = UserProfile.objects.get(user=current_user)
 			if user_object.token == constants.UserType.STUDENT.value:
-				return redirect('/PS2/student')
+				return redirect('/CMS/student')
 			elif user_object.token == constants.UserType.CMO.value or user_object.token == constants.UserType.AD.value or user_object.token == constants.UserType.PSD.value:
-				return redirect('/PS2/level1')
+				return redirect('/CMS/level1')
 			elif user_object.token == constants.UserType.ALLOCATIONTEAM.value :
-				return redirect('/PS2/level2')
+				return redirect('/CMS/level2')
 			else:
 				print("Unknow user logged in")
-				return redirect('/PS2/login')
+				return redirect('/CMS/login')
 		except :
 			# Check if user credentials match any admin/staff
 			if current_user.is_superuser or current_user.is_staff:
-				return redirect('/PS2/website-admin')
+				return redirect('/CMS/website-admin')
 			# Redirect to login page for re-entry
 			else:
-				return redirect('/PS2/login')
+				return redirect('/CMS/login')

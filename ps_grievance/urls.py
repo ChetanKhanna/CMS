@@ -22,11 +22,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('cms-admin/', admin.site.urls),
     url(r'^accounts/login/(?P<next>.*)$',VIEWS.RedirectView.as_view()),
     url('^', include('django.contrib.auth.urls')),
-    url('PS2/', include('grievance.urls')),
-    # url('grievance/', include('grievance.urls')),
+    url('CMS/', include('grievance.urls')),
 ]
 
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -26,7 +26,7 @@ def getStudentDetail(student_id):
 		'cg' : userProfile_object.cg,
 		'informativeQueryForm_objects' : informativeQueryForm_objects,
 		'statuses' : attempt_status,
-		'back': "/PS2/redirect/",
+		'back': "/CMS/redirect/",
 	}
 
 	return params

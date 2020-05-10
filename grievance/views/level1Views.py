@@ -155,7 +155,7 @@ class level1StudentView(generic.View):
             'documentCount': documentCount,
             'documents': documents,
             'cg': userProfile_object.cg,
-            'back': "/PS2/level1/",
+            'back': "/CMS/level1/",
         }
         return render(request,"grievance/cmoAndADStudentPage.html",params)
 
@@ -193,7 +193,7 @@ class level1StudentView(generic.View):
             ApplicationStatus_object.save()
             grievanceForm_object.save()
 
-        return HttpResponseRedirect('/PS2/redirect/')
+        return HttpResponseRedirect('/CMS/redirect/')
 
 
     def getDocuments(self, grievanceForm_object):

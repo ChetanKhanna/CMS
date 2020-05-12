@@ -118,8 +118,8 @@ USE_TZ = False
 
 
 #redirects
-LOGIN_REDIRECT_URL = '/PS2/redirect/'
-LOGOUT_REDIRECT_URL = '/PS2/login/'
+LOGIN_REDIRECT_URL = '/CMS/redirect/'
+LOGOUT_REDIRECT_URL = '/CMS/login/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
@@ -130,7 +130,7 @@ STATI_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+# try:
+#     from .local_settings import *
+# except ImportError:
+#     pass

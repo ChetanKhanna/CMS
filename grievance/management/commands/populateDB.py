@@ -17,13 +17,14 @@ class Command(BaseCommand):
 		file = os.path.join(BASE_DIR+"/media", filename)
 		with open(file) as data_file:
 			reader = csv.reader(data_file)
+			next(reader)
 			for column in reader:
 				token = constants.UserType.STUDENT.value
-				username = column[0]
-				name = column[1]
-				contact = column[3]
-				email = column[4]
-				cg = column[2]
+				username = column[1]
+				name = column[2]
+				contact = column[4]
+				email = column[3]
+				cg = column[5]
 				campus = self.getCampus(username)
 				user = None
 				try:

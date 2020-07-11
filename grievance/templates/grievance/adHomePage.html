@@ -157,13 +157,13 @@
         // // console.log(len);
         if(type_val == "pending"){
 
-          var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th></tr>"
+          var head="<tr> <th>Sr. No.</th><th>College ID</th><th>Name</th><th>Date of Application</th></tr>"
           $('#table-head').html(head);
           // console.log('head embedded');
 
           if(len==0)
           {
-            var entry="<tr><td colspan=3> <h3>No Applications</h3></td></tr>";
+            var entry="<tr><td colspan=4> <h3>No Applications</h3></td></tr>";
 
             $('#table-body').append(entry);
           }
@@ -172,19 +172,19 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'><td>"+(i+1)+"</td><td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td></tr>";
             $('#table-body').append(entry);
           }
 
         }
         else if(type_val=="forwarded "){
 
-           var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th><th width=\"8%\">Attempt</th><th width=\"8%\">Level</th><th>Current Status</th></tr>"
+           var head="<tr> <th width=\"8%\">Sr. No.</th><th>College ID</th><th>Name</th><th>Date of Application</th><th width=\"8%\">Attempt</th><th width=\"8%\">Level</th><th>Current Status</th></tr>"
           $('#table-head').html(head);
 
           if(len==0)
           {
-            var entry="<tr><td colspan=6> <h3>No Applications</h3></td></tr>";
+            var entry="<tr><td colspan=7> <h3>No Applications</h3></td></tr>";
 
             $('#table-body').append(entry);
           }
@@ -193,14 +193,35 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].level+"</td><td>"+response[i].status+"</td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td>"+(i+1)+"</td> <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].level+"</td><td>"+response[i].status+"</td></tr>";
             $('#table-body').append(entry);
           }
         }
 
          else if(type_val=="medical"){
 
-           var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th><th width=\"8%\">Attempt</th><th width=\"8%\">Level</th><th>Current Status</th></tr>"
+           var head="<tr><th width=\"8%\">Sr. No.</th><th>College ID</th><th>Name</th><th>Date of Application</th><th width=\"8%\">Attempt</th><th width=\"8%\">Level</th><th>Current Status</th></tr>"
+          $('#table-head').html(head);
+
+          if(len==0)
+          {
+            var entry="<tr><td colspan=7> <h3>No Applications</h3></td></tr>";
+
+            $('#table-body').append(entry);
+          }
+
+          for(var i=0;i<len;i++)
+          {
+               var name = response[i].name;
+              var id = response[i].id;
+            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td>"+(i+1)+"</td> <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].level+"</td><td>"+response[i].status+"</td></tr>";
+            $('#table-body').append(entry);
+          }
+        }
+
+          else if(type_val=="informative"){
+
+           var head="<tr> <th width=\"8%\">Sr. No.</th><th>College ID</th><th>Name</th><th>Date of Application</th><th  width=\"10%\">Attempt</th><th>Current Status</th></tr>"
           $('#table-head').html(head);
 
           if(len==0)
@@ -214,28 +235,7 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].level+"</td><td>"+response[i].status+"</td></tr>";
-            $('#table-body').append(entry);
-          }
-        }
-
-          else if(type_val=="informative"){
-
-           var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th><th  width=\"10%\">Attempt</th><th>Current Status</th></tr>"
-          $('#table-head').html(head);
-
-          if(len==0)
-          {
-            var entry="<tr><td colspan=5> <h3>No Applications</h3></td></tr>";
-
-            $('#table-body').append(entry);
-          }
-
-          for(var i=0;i<len;i++)
-          {
-               var name = response[i].name;
-              var id = response[i].id;
-            var entry="<tr class='clickable elementRow' onclick=window.location='psd-student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].status+"</td></tr>";
+            var entry="<tr class='clickable elementRow' onclick=window.location='psd-student-status/student/"+id+"'> <td>"+(i+1)+"</td> <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><td>"+response[i].attempt+"</td><td>"+response[i].status+"</td></tr>";
             $('#table-body').append(entry);
           }
         }

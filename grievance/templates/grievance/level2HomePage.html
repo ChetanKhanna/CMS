@@ -98,9 +98,9 @@
 
     </div>
 
-
-    <div class="col-md-7 offset-1 col-sm-12  justify-content-center text-center  ">
     
+    <div class="col-md-7 offset-1 col-sm-12  justify-content-center text-center  ">
+    <h4 id="empty" class="table-responsive shadow p-3 text-dark">No Applications Here</h4>
       <div id="table1" class="table-responsive shadow">
 
 
@@ -173,6 +173,10 @@
 
   <script type="text/javascript">
 
+
+    $('#table2').hide();
+    $('#table3').hide();
+    $('#empty').hide();
   $('#publishAllButton').hide();
   function getData(type)
   {
@@ -186,6 +190,9 @@
       success: function(response)
       {
 
+        $('#table2').hide();
+        $('#table3').hide();
+        $('#empty').hide();
         $('#table1-body').html('');
         $('#table2-body').html('');
         $('#table3-body').html('');
@@ -193,7 +200,11 @@
         var len;
 
         if(type_val == 'unpublished')
-        {
+        {          
+          $('#table1').show();
+          $('#table2').show();
+          $('#table3').show();
+          $('#empty').hide();
           $('#publishAllButton').show();
           len = response[1].length + response[0].length;
           var entry="<tr><th colspan=5>Unpublished Applications</th><th>Total: "+len+"</th></tr>";
@@ -218,7 +229,19 @@
           {
                var name = response[1][i].name;
               var id = response[1][i].id;
-              var nature = (response[1][i].nature)?"Non-Medical":"Medical";
+              var nature;
+              if (response[1][i].nature==1) 
+              {
+                nature = "Non-Medical";
+              }
+              else if (response[1][i].nature==0) 
+              {
+                nature = "Medical";
+              }
+              else 
+              {
+                nature = "Not Alloted";
+              }
               var date = response[1][i].date;
             var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  id='name'>"+name+"</td> <td  id='collegeId'>"+id+"</td><td >"+nature+"</td><td >Attempt: "+ response[1][i].attempt +"</td><td >"+date+"</td><td >"+response[1][i].priority+" Priority</td></tr>";
             $('#table2-body').append(entry);
@@ -240,7 +263,19 @@
           {
                var name = response[0][i].name;
               var id = response[0][i].id;
-              var nature = (response[0][i].nature)?"Non-Medical":"Medical";
+              var nature;
+              if (response[0][i].nature==1) 
+              {
+                nature = "Non-Medical";
+              }
+              else if (response[0][i].nature==0) 
+              {
+                nature = "Medical";
+              }
+              else 
+              {
+                nature = "Not Alloted";
+              }
               var date = response[0][i].date;
             var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  id='name'>"+name+"</td> <td >"+id+"</td><td >"+nature+"</td><td  class='collegeId'>Attempt: "+ response[0][i].attempt +"</td><td >"+date+"</td><td >"+response[0][i].priority+" Priority </td></tr>";
             $('#table3-body').append(entry);
@@ -251,6 +286,10 @@
 
         else if(type_val == 'published') //published requests
         {
+          $('#table1').show();
+          $('#table2').show();
+          $('#table3').show();
+          $('#empty').hide();
           //$('#publishAllButton').show();
           len = response[1].length + response[0].length;
           var entry="<tr><th  colspan=5>Published Applications</th><th>Total: "+len+"</th></tr>";
@@ -275,7 +314,20 @@
           {
                var name = response[1][i].name;
               var id = response[1][i].id;
-              var nature = (response[1][i].nature)?"Non-Medical":"Medical";
+              var nature;
+              if (response[1][i].nature==1) 
+              {
+                nature = "Non-Medical";
+              }
+              else if (response[1][i].nature==0) 
+              {
+                nature = "Medical";
+              }
+              else 
+              {
+                nature = "Not Alloted";
+              }
+
               var date = response[1][i].date;
             var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td id='name'>"+name+"</td> <td>"+id+"</td><td>"+nature+"</td><td id='collegeId'>Attempt: "+ response[1][i].attempt +"</td><td  >"+date+"</td><td>"+response[1][i].priority+" Priority</td></tr>";
             $('#table2-body').append(entry);
@@ -301,7 +353,19 @@
           {
                var name = response[0][i].name;
               var id = response[0][i].id;
-              var nature = (response[0][i].nature)?"Non-Medical":"Medical";
+              var nature;
+              if (response[0][i].nature==1) 
+              {
+                nature = "Non-Medical";
+              }
+              else if (response[0][i].nature==0) 
+              {
+                nature = "Medical";
+              }
+              else 
+              {
+                nature = "Not Alloted";
+              }
               var date = response[0][i].date;
             var entry="<tr class='clickable elementRow' onclick=window.location='student-status/student/"+id+"'> <td  class ='element' id='name'>"+name+"</td> <td class ='element'>"+id+"</td><td class ='element'>"+nature+"</td><td class ='element'>Attempt: "+ response[0][i].attempt +"</td><td class ='element' >"+date+"</td><td class ='element'>"+response[0][i].priority+" Priority</td></tr>";
             $('#table3-body').append(entry);
@@ -312,6 +376,19 @@
 
         else // pending request
         {
+          $('#table1').show();
+          $('#table2').show();
+          $('#table3').show();
+          $('#empty').hide();
+          if (response[2].length==0 && response[1].length==0 && response[0].length==0) 
+          {
+            $('#table1').hide();
+            $('#table2').hide();
+            $('#table3').hide();
+            $('#empty').show();
+          }
+          else
+          {
           len=response[2].length;
           var entry="<tr><th colspan=4 >High Priority Applications</th><th>Total: "+len+"</th></tr>";
             $('#table1-header').append(entry);
@@ -319,6 +396,7 @@
           $('#table1-header').append(head);    
           if(len==0)
           {
+            $('#table1').hide();            
             var entry="<tr><td colspan=4>No Applications</td><td/></tr>";
             $('#table1-body').append(entry);
 
@@ -327,7 +405,20 @@
           {
                var name = response[2][i].name;
               var id = response[2][i].id;
-              var nature = (response[2][i].nature)?"Non-Medical":"Medical";
+              var nature;
+              if (response[2][i].nature==1) 
+              {
+                nature = "Non-Medical";
+              }
+              else if (response[2][i].nature==0) 
+              {
+                nature = "Medical";
+              }
+              else 
+              {
+                nature = "Not Alloted";
+              }
+              console.log(nature);
               var date = response[2][i].date;
             var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'> <td  id='name'>"+response[2][i].name+"</td> <td  id='collegeId'>"+response[2][i].id+"</td><td >"+nature+"</td><td >Attempt: "+ response[2][i].attempt +"</td><td   >"+date+"</td></tr>";
             $('#table1-body').append(entry);
@@ -340,6 +431,7 @@
             $('#table2-header').append(entry);
           if(len==0)
           {
+            $('#table2').hide();
             var entry="<tr><td colspan=4>No Applications</td><td/></tr>";
             $('#table2-body').append(entry);
 
@@ -348,7 +440,21 @@
           {
                var name = response[1][i].name;
               var id = response[1][i].id;
-              var nature = (response[1][i].nature)?"Non-Medical":"Medical";
+              var nature;
+              if (response[1][i].nature==1) 
+              {
+                nature = "Non-Medical";
+              }
+              else if (response[1][i].nature==0) 
+              {
+                nature = "Medical";
+              }
+              else 
+              {
+                nature = "Not Alloted";
+              }
+
+              console.log(response[1][i].nature);
               var date = response[1][i].date;
             var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'> <td  id='name'>"+response[1][i].name+"</td> <td  id='collegeId'>"+response[1][i].id+"</td><td >"+nature+"</td><td  >Attempt: "+ response[1][i].attempt +"</td><td   >"+date+"</td></tr>";
             $('#table2-body').append(entry);
@@ -360,7 +466,7 @@
           var entry="<tr><th colspan=4>Low Priority Applications</th><th>Total: "+len+"</th></tr>";
             $('#table3-header').append(entry);
           if(len==0)
-          {
+          { $('#table3').hide();
             var entry="<tr><td colspan=4>No Applications</td><td/></tr>";
             $('#table3-body').append(entry);
 
@@ -369,11 +475,25 @@
           {
                var name = response[0][i].name;
               var id = response[0][i].id;
-              var nature = (response[0][i].nature)?"Non-Medical":"Medical";
+              var nature;
+              if (response[0][i].nature==1) 
+              {
+                nature = "Non-Medical";
+              }
+              else if (response[0][i].nature==0) 
+              {
+                nature = "Medical";
+              }
+              else 
+              {
+                nature = "Not Alloted";
+              }
+              
+              //console.log(response[0][i].nature);
               var date = response[0][i].date;
             var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'> <td  id='name'>"+response[0][i].name+"</td> <td  id='collegeId '>"+response[0][i].id+"</td><td >"+nature+"</td><td >Attempt: "+response[0][i].attempt +"</td><td   >"+date+"</td></tr>";
             $('#table3-body').append(entry);
-
+          }
 
           }
         }        

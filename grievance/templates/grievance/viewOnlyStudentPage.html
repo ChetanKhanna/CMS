@@ -86,7 +86,7 @@
       
           <div class="col-md-6 col-sm-12 p-0 d-flex justify-content-center ">
             <div class="row btn btn-group-inline  btn-group-toggle btn-grp  pl-0" id="priority" data-toggle="buttons">
-              <h5 class="h5" style="font-size: 17.6px; color:rgb(128, 128, 128);"><strong>Priority</strong></h5>
+              <h5 class="h5" style="font-size: 17.6px; color:rgb(128, 128, 128);"><strong>Priority</strong> (Not to be considered this time)</h5>
               {% if priority == 0 %}
               <label class="btn mt-2 btn-warning">
                 <input type="radio" name="priority-option" value="0" id="low" autocomplete="off"> <i class="fas fa-user"> </i>
@@ -651,6 +651,8 @@
           $('#nature').val('Medical');
         else if (natureType == 1)
           $('#nature').val('Non Medical');
+        else if (natureType == 3)
+          $('#nature').val('Station Not Alloted');
       
         $(document).ready(function () {
           //var student_id=document.getElementById;

@@ -14,7 +14,7 @@ class RedirectView(generic.TemplateView):
 			user_object = UserProfile.objects.get(user=current_user)
 			if user_object.token == constants.UserType.STUDENT.value:
 				return redirect('/CMS/student')
-			elif user_object.token == constants.UserType.CMO.value or user_object.token == constants.UserType.AD.value or user_object.token == constants.UserType.PSD.value:
+			elif user_object.token == constants.UserType.CMO.value or user_object.token == constants.UserType.AD.value or user_object.token == constants.UserType.PSD.value or user_object.token == constants.UserType.DEAN.value:
 				return redirect('/CMS/level1')
 			elif user_object.token == constants.UserType.ALLOCATIONTEAM.value :
 				return redirect('/CMS/level2')

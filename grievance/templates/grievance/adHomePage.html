@@ -106,8 +106,9 @@
       </div>-->
       <div id="table" class="table-responsive shadow">
 
+        <span id="table_head" style="font-size: 22px"></span>
 
-        <table class="table table-stripped table-hover ">
+        <table id="table-header" class="table table-stripped table-hover ">
           <br>
           <!--  <h2 class="text-center"> High Priority</h2>-->
 
@@ -115,6 +116,25 @@
             
           </thead>
           <tbody id="table-body">
+
+
+
+          </tbody>
+
+        </table>
+      </div>
+      <br>
+      <div id="table1" class="table-responsive shadow">
+        <span id="table1_head" style="font-size: 22px"></span>
+
+        <table id="table1-header" class="table table-stripped table-hover ">
+          <br>
+          <!--  <h2 class="text-center"> High Priority</h2>-->
+
+          <thead id="table1-head">
+            
+          </thead>
+          <tbody id="table1-body">
 
 
 
@@ -137,6 +157,7 @@
  
 
   <script type="text/javascript">
+    $('#table1').hide();
   function getData(type)
   {
   var type_val=type;
@@ -147,34 +168,61 @@
       type:'GET',
       success: function(response)
       {
+        $('#table1').hide();
         $('#table-body').html('');
-         $('#table-head').html('');
+        $('#table-head').html('');
+        $('#table1-body').html('');
+        $('#table1-head').html('');
+        $('#table_head').html('');
+        $('#table1_head').html('');
         
-
         var len=response.length;
       //  // console.log(len);
         
         // // console.log(len);
         if(type_val == "pending"){
-
+          $('#table1').show();
+          $('#table_head').append("PENDING (Station Alloted)");
+          $('#table1_head').append("PENDING (Station Not Alloted)");
           var head="<tr> <th>Sr. No.</th><th>College ID</th><th>Name</th><th>Date of Application</th></tr>"
           $('#table-head').html(head);
+          $('#table1-head').html(head);
           // console.log('head embedded');
 
-          if(len==0)
-          {
-            var entry="<tr><td colspan=4> <h3>No Applications</h3></td></tr>";
+          
 
-            $('#table-body').append(entry);
-          }
-
+          var j = 0;
+          var k = 0;
           for(var i=0;i<len;i++)
-          {
-               var name = response[i].name;
+          {              
+              var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'><td>"+(i+1)+"</td><td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td></tr>";
-            $('#table-body').append(entry);
+              var natureOfQuery = response[i].natureOfQuery;
+              //console.log(natureOfQuery);            
+            if (natureOfQuery==3) 
+            { j+=1;
+              var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'><td>"+(j)+"</td><td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td></tr>";
+              $('#table1-body').append(entry);
+            }
+            else
+            { k+=1;
+              var entry="<tr class='clickable elementRow' onclick=window.location='student/"+id+"'><td>"+(k)+"</td><td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td></tr>";
+              $('#table-body').append(entry);
+            }
+            
           }
+          if(k==0)
+            {
+              var entry="<tr><td colspan=4> <h3>No Applications</h3></td></tr>";
+
+              $('#table-body').append(entry);
+            }
+            if(j==0)
+            {
+              var entry="<tr><td colspan=4> <h3>No Applications</h3></td></tr>";
+
+              $('#table1-body').append(entry);
+            }
 
         }
         else if(type_val=="forwarded "){

@@ -47,11 +47,22 @@ def ad_required(function):
 
 	return wrap
 
+def dean_required(function):
+	@wraps(function)
+	def wrap(request, *args, **kwargs):
+		profile = getUser(request)
+		if profile.token == constants.UserType.DEAN.value:
+			return function(request, *args, **kwargs)
+		else:
+			return redirect()
+
+	return wrap
+
 def not_student_required(function):
 	@wraps(function)
 	def wrap(request, *args, **kwargs):
 		profile = getUser(request)
-		if profile.token == constants.UserType.AD.value or profile.token == constants.UserType.ALLOCATIONTEAM.value or profile.token == constants.UserType.CMO.value:
+		if profile.token == constants.UserType.AD.value or profile.token == constants.UserType.ALLOCATIONTEAM.value or profile.token == constants.UserType.CMO.value or profile.token == constants.UserType.DEAN.value:
 			return function(request, *args, **kwargs)
 		else:
 			return redirect()
@@ -62,7 +73,7 @@ def level1_required(function):
 	@wraps(function)
 	def wrap(request, *args, **kwargs):
 		profile = getUser(request)
-		if profile.token == constants.UserType.AD.value or profile.token == constants.UserType.CMO.value or profile.token == constants.UserType.PSD.value:
+		if profile.token == constants.UserType.AD.value or profile.token == constants.UserType.CMO.value or profile.token == constants.UserType.PSD.value or profile.token == constants.UserType.DEAN.value:
 			return function(request, *args, **kwargs)
 		else:
 			return redirect()

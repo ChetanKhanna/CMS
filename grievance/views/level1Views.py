@@ -74,8 +74,8 @@ class level1RequestView(generic.View):
                 student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
                 natureOfQuery = constants.NatureOfQuery.MEDICAL.value, attempt=1).order_by('-lastChangedDate')
             else:
-                student_list = ApplicationStatus.objects.filter(Q(natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value) | Q(natureOfQuery = constants.NatureOfQuery.NOTALLOTED.value),campus = campus, level = level, attempt=1).order_by('-lastChangedDate')
-            
+                student_list = ApplicationStatus.objects.filter(Q(natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value) | Q(natureOfQuery = constants.NatureOfQuery.NOTALLOTED.value),
+                    campus = campus, level = level, attempt=1).order_by('-lastChangedDate')
         
         returnList=[]
         for student in student_list:

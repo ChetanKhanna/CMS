@@ -7,7 +7,6 @@ class UserType(enum.Enum):
 	PSD = 4
 	SUPERUSER = 5
 	ADMIN = 6
-	DEAN = 7
 
 class NatureOfQuery(enum.Enum):
 	MEDICAL=0

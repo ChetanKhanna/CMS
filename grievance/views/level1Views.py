@@ -12,6 +12,7 @@ from grievance.customDecorator import level1_required, ad_required
 
 # import models
 from grievance.models import *
+from django.db.models import Q
 
 # import views
 from grievance.views import constants as constants
@@ -65,12 +66,11 @@ class level1RequestView(generic.View):
                 level = 2
 
             if user_profile_object.token == constants.UserType.CMO.value:
-                natureOfQuery = constants.NatureOfQuery.MEDICAL.value
+                student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
+                    natureOfQuery = constants.NatureOfQuery.MEDICAL.value, attempt=1).order_by('-lastChangedDate')
             else:
-                natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value
-
-            student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
-                 natureOfQuery = natureOfQuery, attempt=1).order_by('-lastChangedDate')
+                student_list = ApplicationStatus.objects.filter(Q(natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value) | Q(natureOfQuery = constants.NatureOfQuery.NOTALLOTED.value),
+                    campus = campus, level = level, attempt=1).order_by('-lastChangedDate')
         
         returnList=[]
         for student in student_list:
@@ -82,6 +82,7 @@ class level1RequestView(generic.View):
                 "level" : student.level,
                 "attempt" : student.attempt,
                 "date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+                "natureOfQuery": student.natureOfQuery,
             }
             returnList.append(dict1) 
         return JsonResponse(returnList, safe=False)

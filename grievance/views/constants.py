@@ -12,6 +12,7 @@ class NatureOfQuery(enum.Enum):
 	MEDICAL=0
 	NONMEDICAL=1
 	INFORMATIVE = 2
+	NOTALLOTED = 3
 
 class Campus(enum.Enum):
 	GOA=0

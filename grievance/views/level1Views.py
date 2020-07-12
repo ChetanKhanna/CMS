@@ -12,10 +12,11 @@ from grievance.customDecorator import level1_required, ad_required
 
 # import models
 from grievance.models import *
+from django.db.models import Q
 
 # import views
 from grievance.views import constants as constants
-from grievance.views import studentHomeView, viewOnlyPSDStudentPageView
+from grievance.views import studentHomeView, viewOnlyPSDStudentPageView, viewOnlyStudentPageView
 
 # import datetime
 from django.utils import timezone as datetime
@@ -30,6 +31,8 @@ class level1HomeView(generic.TemplateView):
         if userProfile_object.token == constants.UserType.CMO.value:
             return render(request,"grievance/cmoHomePage.html")
         elif userProfile_object.token == constants.UserType.AD.value:
+            return render(request,"grievance/adHomePage.html")
+        elif userProfile_object.token == constants.UserType.DEAN.value:
             return render(request,"grievance/adHomePage.html")
         else:
             return render(request,"grievance/psdHomePage.html")
@@ -50,6 +53,9 @@ class level1RequestView(generic.View):
         if user_profile_object.token == constants.UserType.PSD.value:
             return self.getPSDStudentList(request, kwargs["type"])
 
+        if user_profile_object.token == constants.UserType.DEAN.value:
+            return self.getDEANStudentList(request, kwargs["type"])
+
         typeOfRequest = kwargs["type"]
         # print(typeOfRequest)
         if typeOfRequest == "medical":
@@ -65,12 +71,11 @@ class level1RequestView(generic.View):
                 level = 2
 
             if user_profile_object.token == constants.UserType.CMO.value:
-                natureOfQuery = constants.NatureOfQuery.MEDICAL.value
+                student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
+                natureOfQuery = constants.NatureOfQuery.MEDICAL.value, attempt=1).order_by('-lastChangedDate')
             else:
-                natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value
-
-            student_list = ApplicationStatus.objects.filter(campus = campus, level = level, 
-                 natureOfQuery = natureOfQuery, attempt=1).order_by('-lastChangedDate')
+                student_list = ApplicationStatus.objects.filter(Q(natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value) | Q(natureOfQuery = constants.NatureOfQuery.NOTALLOTED.value),campus = campus, level = level, attempt=1).order_by('-lastChangedDate')
+            
         
         returnList=[]
         for student in student_list:
@@ -82,6 +87,7 @@ class level1RequestView(generic.View):
                 "level" : student.level,
                 "attempt" : student.attempt,
                 "date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+                "natureOfQuery": student.natureOfQuery,
             }
             returnList.append(dict1) 
         return JsonResponse(returnList, safe=False)
@@ -90,7 +96,10 @@ class level1RequestView(generic.View):
         user_object = request.user
         user_profile_object = UserProfile.objects.get(user_id=user_object)
         campus = user_profile_object.campus
-        student_list = InformativeQueryForm.objects.filter(campus=campus).order_by('-lastChangedDate')
+        if user_profile_object.token == constants.UserType.DEAN.value:
+            student_list = InformativeQueryForm.objects.order_by('-lastChangedDate')
+        else:
+            student_list = InformativeQueryForm.objects.filter(campus=campus).order_by('-lastChangedDate')
         return_list = []
         for student in student_list:
             dict1 = {
@@ -127,6 +136,41 @@ class level1RequestView(generic.View):
         # print(returnList)
         return JsonResponse(returnList, safe=False)
 
+    def getDEANStudentList(self, request, typeOfRequest):
+        user_object = request.user
+        user_profile_object = UserProfile.objects.get(user_id=user_object)
+        if typeOfRequest == "medical":
+            natureOfQuery = constants.NatureOfQuery.MEDICAL.value
+            student_list = ApplicationStatus.objects.filter(
+                natureOfQuery = natureOfQuery).order_by('-lastChangedDate')
+        elif typeOfRequest == "informative":
+            return self.getInformativeQueryList(request)
+        else:
+            if typeOfRequest == "pending":
+                level = 1
+            elif typeOfRequest == "forwarded":
+                level = 2
+
+            if user_profile_object.token == constants.UserType.CMO.value:
+                student_list = ApplicationStatus.objects.filter(level = level, 
+                natureOfQuery = constants.NatureOfQuery.MEDICAL.value, attempt=1).order_by('-lastChangedDate')
+            else:
+                student_list = ApplicationStatus.objects.filter(Q(natureOfQuery = constants.NatureOfQuery.NONMEDICAL.value) | Q(natureOfQuery = constants.NatureOfQuery.NOTALLOTED.value), level = level, attempt=1).order_by('-lastChangedDate')
+            
+        
+        returnList=[]
+        for student in student_list:
+            dict1 = {
+                "id":student.student_id.user.username,
+                "name":student.student_id.name,
+                "description":student.description,
+                "status" : constants.Status(student.status).name,
+                "level" : student.level,
+                "attempt" : student.attempt,
+                "date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
+            }
+            returnList.append(dict1) 
+        return JsonResponse(returnList, safe=False)
 @method_decorator([login_required, level1_required], name='dispatch')
 class level1StudentView(generic.View):
     def get(self, request, *args, **kwargs):
@@ -137,6 +181,11 @@ class level1StudentView(generic.View):
         if UserProfile.objects.get(user = request.user).token == constants.UserType.PSD.value:
             params = viewOnlyPSDStudentPageView.getStudentDetail(student_id)
             return render(request, "grievance/psdStudentPage.html", params)
+
+        #Dean Page
+        if UserProfile.objects.get(user = request.user).token == constants.UserType.DEAN.value:
+            params = viewOnlyStudentPageView.getStudentDetail(student_id)
+            return render(request, "grievance/viewOnlyStudentPage.html", params)
 
         #Other users
         ApplicationStatus_object = ApplicationStatus.objects.get(student_id = userProfile_object,attempt =1)

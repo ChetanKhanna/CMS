@@ -59,7 +59,7 @@ class GrievanceFormAdmin(ImportExportModelAdmin):
     model = GrievanceForm
     list_display = ('student_id', 'campus', 'natureOfQuery',)
     list_filter = ('student_id__name',)
-    search_fields = ('student_id__name',)
+    search_fields = ('student_id__name','student_id__user__username',)
     ordering = ()
     filter_horizontal = ()
     fieldsets = ()

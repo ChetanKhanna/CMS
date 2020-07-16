@@ -115,13 +115,13 @@ class level1RequestView(generic.View):
     def getPSDStudentList(self, request, typeOfRequest):
         user_object = request.user
         user_profile_object = UserProfile.objects.get(user_id = user_object)
-        campus =  user_profile_object.campus
+        # campus =  user_profile_object.campus  ## Uncomment for seperating list on campus basis. Also add filter below
         # typeOfRequest = request.POST.get['type']
         student_list = []
         if typeOfRequest == "pending":
-            student_list = InformativeQueryForm.objects.filter(campus = campus, status = 1,).order_by('-lastChangedDate')
+            student_list = InformativeQueryForm.objects.filter(status = 1,).order_by('-lastChangedDate')
         elif typeOfRequest == "forwarded":
-            student_list = InformativeQueryForm.objects.filter(campus = campus,).exclude(status = 1).order_by('-lastChangedDate')
+            student_list = InformativeQueryForm.objects.exclude(status = 1).order_by('-lastChangedDate')
 
         returnList=[]
         for student in student_list:
@@ -132,7 +132,7 @@ class level1RequestView(generic.View):
                 "attempt" : student.attempt,
                 "date": str(student.lastChangedDate.date()) + " " + str(student.lastChangedDate.time())[0:8],
             }
-            returnList.append(dict1) 
+            returnList.append(dict1)
         # print(returnList)
         return JsonResponse(returnList, safe=False)
 

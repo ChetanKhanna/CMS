@@ -150,11 +150,11 @@
       //  // console.log(len);
         if(len==0)
         {
-          var entry="<tr><td colspan=3>No Applications</td></tr>";
+          var entry="<tr><td colspan=4>No Applications</td></tr>";
           $('#table-body').append(entry);
 
         }
-        var head="<tr> <th>College ID</th><th>Name</th><th>Date of Application</th></tr>"
+        var head="<tr> <th>Sr. No.</th><th>College ID</th><th>Name</th><th>Date of Application</th></tr>"
         $('#table-head').html(head);
         // // console.log(len);
         if(type_val == "pending"){
@@ -162,7 +162,7 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='elementRow  clickable' onclick=window.location='student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td></tr>";
+            var entry="<tr class='elementRow  clickable' onclick=window.location='student/"+id+"'>  <td>"+(i+1)+"</td><td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td></tr>";
             $('#table-body').append(entry);
 
           }
@@ -172,7 +172,7 @@
           {
                var name = response[i].name;
               var id = response[i].id;
-            var entry="<tr class='elementRow clickable' onclick=window.location='psd-student-status/student/"+id+"'>  <td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><</tr>";
+            var entry="<tr class='elementRow clickable' onclick=window.location='psd-student-status/student/"+id+"'>  <td>"+(i+1)+"</td><td>"+response[i].id+"</td><td>"+response[i].name+"</td><td>"+response[i].date+"</td><</tr>";
             $('#table-body').append(entry);
 
           }

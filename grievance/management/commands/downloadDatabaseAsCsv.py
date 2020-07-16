@@ -24,9 +24,8 @@ class Command(BaseCommand):
                         entry_writer.writeheader()
                 # writting data into csv
                 with open(file_path, mode='a', encoding='utf-8') as databaseEntriesAsCsv:
-                        entry_writer = csv.writer(databaseEntriesAsCsv, delimiter=',', quotechar='"',
-                                                        quoting=csv.QUOTE_MINIMAL)
-                        for student in UserProfile.objects.all() :
+                        entry_writer = csv.writer(databaseEntriesAsCsv)
+                        for student in UserProfile.objects.all():
                                 row = []
                                 try:
                                         grievance_form = GrievanceForm.objects.get(student_id = student)
@@ -37,19 +36,19 @@ class Command(BaseCommand):
                                 else:
                                         try:
                                                 # UserProfile model fields
-                                                row.append((student.user.username).encode('utf-8'))
-                                                row.append((student.name).encode('utf-8'))
-                                                row.append((student.cg).encode('utf-8'))
+                                                row.append((student.user.username))
+                                                row.append((student.name))
+                                                row.append((student.cg))
                                                 campus = constants.Campus._value2member_map_[student.campus].name
-                                                row.append((campus).encode('utf-8'))
+                                                row.append((campus))
                                                 # GrievanceForm model fields
-                                                row.append(str(grievance_form.allocatedStation).encode('utf-8'))
-                                                row.append(str(grievance_form.preferenceNumberOfAllocatedStation).encode('utf-8'))
+                                                row.append(str(grievance_form.allocatedStation))
+                                                row.append(str(grievance_form.preferenceNumberOfAllocatedStation))
                                                 nature_of_query = constants.NatureOfQuery._value2member_map_[
                                                         grievance_form.natureOfQuery].name
-                                                row.append(str(nature_of_query).encode('utf-8'))
+                                                row.append(str(nature_of_query))
                                                 # ApplicationStatus model fields
-                                                row.append((app_status.description).encode('utf-8'))
+                                                row.append((app_status.description))
                                                 entry_writer.writerow(row)
                                         except Exception as e:
                                                 print(e)
